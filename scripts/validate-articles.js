@@ -31,6 +31,12 @@ const VALID_CATEGORIES = [
   'ライフスタイル',
 ];
 
+function expectedIdPrefixForCategory(category) {
+  const n = VALID_CATEGORIES.indexOf(category) + 1; // 0 => not found
+  if (!n) return null;
+  return String(n).repeat(n);
+}
+
 // ── ロード ──────────────────────────────────────────────────────
 function loadArticles() {
   if (!fs.existsSync(ARTICLES_JS)) {
@@ -81,6 +87,16 @@ function validate(articles) {
         errors.push(`${label}: slug "${article.slug}" が重複しています。`);
       }
       slugSeen.add(article.slug);
+
+      // 16桁・カテゴリ接頭（暫定ID規則）の整合性チェック（警告）
+      if (/^\d{16}$/.test(String(article.slug))) {
+        const expectedPrefix = expectedIdPrefixForCategory(article.category);
+        if (expectedPrefix && !String(article.slug).startsWith(expectedPrefix)) {
+          warnings.push(`${label}: slug "${article.slug}" の接頭がカテゴリ "${article.category}" と一致しません（期待: ${expectedPrefix}…）。`);
+        }
+      } else {
+        warnings.push(`${label}: slug "${article.slug}" は16桁数値ではありません（暫定ID規則未適用の可能性）。`);
+      }
     }
 
     // カテゴリチェック

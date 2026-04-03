@@ -16,6 +16,7 @@ const vm       = require('vm');
 const ROOT         = path.resolve(__dirname, '..');
 const ARTICLES_JS  = path.join(ROOT, 'data', 'articles.js');
 const TEMPLATE_JSON = path.join(ROOT, 'article-template.json');
+const { generateSlugFromCategory } = require('./id-from-category');
 
 // ── カテゴリ選択肢 ──────────────────────────────────────────────
 const CATEGORIES = [
@@ -125,27 +126,14 @@ async function main() {
   });
 
   try {
-    // ── 1. スラッグ ────────────────────────────────────────────
-    let slug = '';
-    while (true) {
-      slug = await ask(rl, '📌 スラッグ（英小文字・数字・ハイフンのみ。例: abc-service）: ');
-      if (!slug) { console.log('  ⚠  スラッグは必須です。'); continue; }
-      if (!isValidSlug(slug)) { console.log('  ⚠  形式が正しくありません（英小文字・数字・ハイフンのみ）。'); continue; }
-      if (existing.some(a => a.slug === slug)) {
-        console.log(`  ⚠  スラッグ "${slug}" はすでに存在します。別のスラッグを指定してください。`);
-        continue;
-      }
-      break;
-    }
-
-    // ── 2. 企業・サービス名 ────────────────────────────────────
+    // ── 1. 企業・サービス名 ────────────────────────────────────
     let company = '';
     while (!company) {
       company = await ask(rl, '🏢 企業・サービス名: ');
       if (!company) console.log('  ⚠  企業名は必須です。');
     }
 
-    // ── 3. カテゴリ ────────────────────────────────────────────
+    // ── 2. カテゴリ ────────────────────────────────────────────
     console.log('\nカテゴリを番号で選択してください:');
     CATEGORIES.forEach((c, i) => console.log(`  ${i + 1}. ${c}`));
     let category = '';
@@ -156,6 +144,35 @@ async function main() {
         category = CATEGORIES[idx];
       } else {
         console.log('  ⚠  1〜' + CATEGORIES.length + ' の番号を入力してください。');
+      }
+    }
+
+    // ── 3. スラッグ（=記事ID 16桁） ───────────────────────────
+    let slug = '';
+    const autoSlugPrompt = await ask(
+      rl,
+      `📌 記事ID slug（空で自動生成。カテゴリ接頭ルール+16桁数字）: `
+    );
+    if (!autoSlugPrompt) {
+      slug = generateSlugFromCategory(category);
+      let guard = 0;
+      while (existing.some(a => a.slug === slug)) {
+        slug = generateSlugFromCategory(category);
+        guard++;
+        if (guard > 10) throw new Error('slug collision guard exceeded');
+      }
+      console.log(`  ✅ 自動生成した slug: ${slug}`);
+    } else {
+      slug = autoSlugPrompt;
+      while (true) {
+        if (!isValidSlug(slug)) {
+          console.log('  ⚠  形式が正しくありません（英小文字・数字・ハイフンのみ）。');
+        } else if (existing.some(a => a.slug === slug)) {
+          console.log(`  ⚠  スラッグ "${slug}" はすでに存在します。別のスラッグを指定してください。`);
+        } else {
+          break;
+        }
+        slug = await ask(rl, '📌 正しい slug を入力してください: ');
       }
     }
 

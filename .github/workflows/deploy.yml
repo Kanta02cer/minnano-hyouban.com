@@ -25,6 +25,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Compile published drafts (_drafts → data/articles.js)
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ secrets.OPENAI_MODEL }}
+        run: node scripts/compile-drafts.js
+
       - name: Validate articles data
         run: node scripts/validate-articles.js
 

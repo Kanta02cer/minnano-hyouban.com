@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "add-article": "node scripts/add-article.js",
-    "validate":    "node scripts/validate-articles.js"
+    "validate":    "node scripts/validate-articles.js",
+    "compile-drafts": "node scripts/compile-drafts.js"
   },
   "engines": {
     "node": ">=18.0.0"
