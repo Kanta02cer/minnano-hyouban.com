@@ -28,6 +28,70 @@ const PLACEHOLDER_IMG = {
   og: 'images/placeholders/og-career.svg',
 };
 
+const CONTACT_MAILTO = 'mailto:info@minnano-hyouban.com';
+
+function resolveOfficialUrl(u) {
+  const raw = String(u || '').trim();
+  if (!raw || raw === '#') return { href: CONTACT_MAILTO, source: 'fallback_mailto' };
+  try {
+    // Normalize to absolute URL (relative is allowed).
+    const abs = new URL(raw, window.location.href).href;
+    return { href: abs, source: 'official_url' };
+  } catch {
+    return { href: CONTACT_MAILTO, source: 'fallback_mailto' };
+  }
+}
+
+function analyticsConsentEnabled() {
+  // CMPがないため、明示設定がなければ許可扱いにして計測が止まらないようにする
+  // （必要なら localStorage('analytics_consent') を 'false' にして停止可能）
+  try {
+    const v = localStorage.getItem('analytics_consent');
+    return v === null ? true : v === 'true';
+  } catch {
+    return true;
+  }
+}
+
+function trackEvent(eventName, params = {}) {
+  if (!analyticsConsentEnabled()) return;
+  try {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: eventName, ...params });
+  } catch {
+    // dataLayer が使えない環境でも落とさない
+  }
+
+  // 将来GA4（gtag.js）を後から差し込む場合にも互換を持たせる
+  if (typeof window.gtag === 'function') {
+    try { window.gtag('event', eventName, params); } catch {}
+  }
+}
+
+let ga4InitOnce = false;
+function maybeInitGA4() {
+  if (ga4InitOnce) return;
+  ga4InitOnce = true;
+
+  if (!analyticsConsentEnabled()) return;
+
+  const idFromGlobal = window.__GA4_MEASUREMENT_ID__;
+  const idFromMeta = document.querySelector('meta[name="ga4-measurement-id"]')?.content;
+  const measurementId = idFromGlobal || idFromMeta;
+  if (!measurementId) return;
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+
+  const script = document.createElement('script');
+  script.async = true;
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`;
+  document.head.appendChild(script);
+
+  window.gtag('js', new Date());
+  window.gtag('config', measurementId, { send_page_view: false });
+}
+
 function galleryServiceForArticle(a) {
   const g = a.galleries?.service;
   if (g && g.length) return g;
@@ -77,6 +141,10 @@ function setMeta(name, content, attr = 'name') {
    BUILD ARTICLE HTML
 ============================================================ */
 function buildArticleHTML(a) {
+  const cta = resolveOfficialUrl(a.officialUrl);
+  const isMailto = String(cta.href).startsWith('mailto:');
+  const ctaLinkAttrs = isMailto ? '' : ' target="_blank" rel="noopener noreferrer"';
+
   // Service cards
   const serviceCardsHTML = (a.serviceCards || []).map(c => `
     <div class="service-card" role="listitem">
@@ -367,8 +435,22 @@ function buildArticleHTML(a) {
       <div class="container">
         <h2 class="cta-title" id="cta-heading">${esc(a.ctaTitle || 'この評判記事が気になった方へ')}</h2>
         <p class="cta-sub">${esc(a.ctaSub || 'まずは公式サイトで詳細をご確認ください。')}</p>
-        <a href="${esc(a.officialUrl || '#')}" class="btn btn--cta" target="_blank" rel="noopener noreferrer">${esc(a.ctaBtn || '公式サイトを確認する →')}</a>
-        <a href="${esc(a.officialUrl || '#')}" class="btn-text-link" target="_blank" rel="noopener noreferrer">無料相談・お問い合わせはこちら</a>
+        <a href="${esc(cta.href)}"
+           class="btn btn--cta"
+           ${ctaLinkAttrs}
+           data-cta-kind="article_official"
+           data-article-slug="${esc(a.slug || '')}"
+           data-company="${esc(a.company || '')}"
+           data-cta-source="${esc(cta.source)}"
+        >${esc(a.ctaBtn || '公式サイトを確認する →')}</a>
+        <a href="${esc(cta.href)}"
+           class="btn-text-link"
+           ${ctaLinkAttrs}
+           data-cta-kind="article_contact"
+           data-article-slug="${esc(a.slug || '')}"
+           data-company="${esc(a.company || '')}"
+           data-cta-source="${esc(cta.source)}"
+        >無料相談・お問い合わせはこちら</a>
       </div>
     </section>
   `;
@@ -586,8 +668,114 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   setMeta('og:image', ogImageAbsolute(article.ogImage), 'property');
 
+  /* ============================================================
+     JSON-LD（構造化データ）
+     - 記事ページに Article / BreadcrumbList / FAQPage を付与
+     - 記者（漆沢祐樹）は「公開前提（要ファクトチェック）」で最小限の項目のみ反映
+  ============================================================ */
+  function upsertJSONLD(id, obj) {
+    const json = JSON.stringify(obj);
+    let el = document.getElementById(id);
+    if (!el) {
+      el = document.createElement('script');
+      el.type = 'application/ld+json';
+      el.id = id;
+      document.head.appendChild(el);
+    }
+    el.textContent = json;
+  }
+
+  function stripHTML(str) {
+    return String(str || '').replace(/<[^>]*>/g, '');
+  }
+
+  const pageUrl = new URL(window.location.href).href;
+  const siteOrigin = window.location.origin;
+
+  // TODO: 公開可能項目の最終ファクトチェック（schemaに入れる項目は最小限）
+  const authorPerson = {
+    '@type': 'Person',
+    name: '漆沢 祐樹',
+    jobTitle: '株式会社パーソナルナビ 代表取締役社長',
+    worksFor: { '@type': 'Organization', name: '株式会社パーソナルナビ' },
+    sameAs: ['https://thecareer.jp', 'https://humanstory.jp'],
+    knowsAbout: [
+      'キャリア教育',
+      '人材紹介',
+      '企業研修',
+      '浮世絵外交',
+      '国際芸術文化協会'
+    ]
+  };
+
+  const publisherOrg = {
+    '@type': 'Organization',
+    name: 'みんなの評判.com',
+    url: new URL('./', siteOrigin).href
+  };
+
+  const ogImgAbs = ogImageAbsolute(article.ogImage);
+  const breadcrumbLD = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'トップ', item: new URL('/index.html', siteOrigin).href },
+      { '@type': 'ListItem', position: 2, name: '記事一覧', item: new URL('/articles.html', siteOrigin).href },
+      { '@type': 'ListItem', position: 3, name: stripHTML(article.company || article.title || ''), item: pageUrl }
+    ]
+  };
+
+  const articleLD = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    url: pageUrl,
+    mainEntityOfPage: pageUrl,
+    headline: stripHTML(article.heroTitle || article.title || ''),
+    description: article.metaDesc || '',
+    image: ogImgAbs,
+    articleSection: article.category || undefined,
+    inLanguage: 'ja-JP',
+    datePublished: article.publishedAt || undefined,
+    dateModified: article.updatedAt || article.publishedAt || undefined,
+    author: authorPerson,
+    publisher: publisherOrg
+  };
+
+  upsertJSONLD('jsonld-breadcrumb', breadcrumbLD);
+  upsertJSONLD('jsonld-article', articleLD);
+
+  if (Array.isArray(article.faqs) && article.faqs.length > 0) {
+    const faqLD = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: article.faqs.slice(0, 10).map(item => ({
+        '@type': 'Question',
+        name: stripHTML(item.q || ''),
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: stripHTML(item.a || '')
+        }
+      }))
+    };
+    upsertJSONLD('jsonld-faq', faqLD);
+  }
+
   // Render article
   main.innerHTML = buildArticleHTML(article);
+
+  // CTA click tracking（指名検索→記事→公式遷移の計測を想定）
+  maybeInitGA4();
+  main.querySelectorAll('a[data-cta-kind]').forEach((a) => {
+    a.addEventListener('click', () => {
+      trackEvent('article_cta_click', {
+        cta_kind: a.dataset.ctaKind,
+        article_slug: a.dataset.articleSlug,
+        company: a.dataset.company,
+        cta_source: a.dataset.ctaSource,
+        page_url: window.location.href,
+      });
+    }, { capture: true, passive: true });
+  });
 
   // Post-render: reviews, FAQ, animations, swipers
   renderReviewsInArticle(article.reviews || []);
