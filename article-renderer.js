@@ -17,6 +17,46 @@ function esc(str) {
     .replace(/"/g, '&quot;');
 }
 
+/** 記事データに画像URLが無い場合の仮画像（images/placeholders/） */
+const PLACEHOLDER_IMG = {
+  editor: 'images/placeholders/avatar-reporter.svg',
+  story: 'images/placeholders/story-portrait.svg',
+  gallery: 'images/placeholders/gallery-photo.svg',
+  before: 'images/placeholders/gallery-before.svg',
+  after: 'images/placeholders/gallery-after.svg',
+  media: 'images/placeholders/media-logo.svg',
+  og: 'images/placeholders/og-career.svg',
+};
+
+function galleryServiceForArticle(a) {
+  const g = a.galleries?.service;
+  if (g && g.length) return g;
+  return [
+    { src: PLACEHOLDER_IMG.gallery, alt: 'サービス環境（仮）', caption: '取材写真・差し替え予定（1）' },
+    { src: PLACEHOLDER_IMG.gallery, alt: 'サービス環境（仮）', caption: '取材写真・差し替え予定（2）' },
+    { src: PLACEHOLDER_IMG.gallery, alt: 'サービス環境（仮）', caption: '取材写真・差し替え予定（3）' },
+  ];
+}
+
+function galleryBeforeAfterForArticle(a) {
+  const g = a.galleries?.beforeAfter;
+  if (g && g.length) return g;
+  return [
+    { src: PLACEHOLDER_IMG.before, alt: 'ビフォー（仮）', label: '利用前' },
+    { src: PLACEHOLDER_IMG.after, alt: 'アフター（仮）', label: '利用後（仮）' },
+  ];
+}
+
+function galleryMediaForArticle(a) {
+  const g = a.galleries?.media;
+  if (g && g.length) return g;
+  return [
+    { src: PLACEHOLDER_IMG.media, alt: 'メディア掲載（仮）' },
+    { src: PLACEHOLDER_IMG.media, alt: 'メディア掲載（仮）' },
+    { src: PLACEHOLDER_IMG.media, alt: 'メディア掲載（仮）' },
+  ];
+}
+
 function starsHTML(count, max = 5) {
   let html = '';
   for (let i = 1; i <= max; i++) html += i <= count ? '★' : '☆';
@@ -58,7 +98,7 @@ function buildArticleHTML(a) {
   `).join('');
 
   // Gallery service slides
-  const serviceSlides = (a.galleries?.service || []).map(img => `
+  const serviceSlides = galleryServiceForArticle(a).map(img => `
     <div class="swiper-slide">
       <figure class="slide-figure">
         <img src="${esc(img.src)}" alt="${esc(img.alt)}" loading="lazy">
@@ -68,7 +108,7 @@ function buildArticleHTML(a) {
   `).join('');
 
   // Gallery before/after slides
-  const baSlides = (a.galleries?.beforeAfter || []).map(img => `
+  const baSlides = galleryBeforeAfterForArticle(a).map(img => `
     <div class="swiper-slide">
       <figure class="ba-figure">
         <img src="${esc(img.src)}" alt="${esc(img.alt)}" loading="lazy">
@@ -78,7 +118,7 @@ function buildArticleHTML(a) {
   `).join('');
 
   // Media logos
-  const mediaLogos = (a.galleries?.media || []).map(m => `
+  const mediaLogos = galleryMediaForArticle(a).map(m => `
     <div class="media-logo-wrap" role="listitem">
       <img src="${esc(m.src)}" alt="${esc(m.alt)}" class="media-logo" loading="lazy" height="32">
     </div>
@@ -178,7 +218,7 @@ function buildArticleHTML(a) {
         <div class="note-card">
           <span class="pr-badge" aria-label="本記事は広告・PR記事です">PR</span>
           <div class="editor-profile">
-            <img src="${esc(a.editorImg || 'https://placehold.co/64x64/1a5fa8/ffffff?text=Y')}"
+            <img src="${esc(a.editorImg || PLACEHOLDER_IMG.editor)}"
                  alt="${esc(a.editorName || '記者')}の顔写真" class="editor-avatar" loading="lazy" width="64" height="64">
             <div>
               <p class="editor-name">${esc(a.editorName || '記者：漆沢 祐樹')}</p>
@@ -315,7 +355,7 @@ function buildArticleHTML(a) {
       <div class="container">
         <h2 class="section-title" id="story-heading">このメディアを始めた理由</h2>
         <div class="story-content">
-          <img src="${esc(a.storyImg || 'https://placehold.co/200x200')}"
+          <img src="${esc(a.storyImg || PLACEHOLDER_IMG.story)}"
                alt="${esc(a.storyAlt || '代表者の写真')}" class="story-img" loading="lazy" width="200" height="200">
           <blockquote class="story-quote">${storyParas}</blockquote>
         </div>
@@ -536,7 +576,15 @@ document.addEventListener('DOMContentLoaded', () => {
   setMeta('description', article.metaDesc || '');
   setMeta('og:title', article.title || '', 'property');
   setMeta('og:description', article.metaDesc || '', 'property');
-  setMeta('og:image', article.ogImage || '', 'property');
+  function ogImageAbsolute(u) {
+    const path = u || PLACEHOLDER_IMG.og;
+    try {
+      return new URL(path, window.location.href).href;
+    } catch {
+      return path;
+    }
+  }
+  setMeta('og:image', ogImageAbsolute(article.ogImage), 'property');
 
   // Render article
   main.innerHTML = buildArticleHTML(article);

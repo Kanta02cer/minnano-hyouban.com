@@ -10,7 +10,7 @@
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="index.css">
 </head>
 <body>
@@ -73,7 +73,7 @@
             <a href="#featured" class="hero-cta">最新の評判記事を読む</a>
           </div>
           <aside class="hero-editor" aria-label="担当記者プロフィール">
-            <img src="https://placehold.co/180x220/1c3d8a/f0ede8?text=漆沢" alt="記者・漆沢祐樹" class="editor-photo" loading="lazy">
+            <img src="images/placeholders/editor-portrait.svg" alt="記者・漆沢祐樹" class="editor-photo" width="180" height="220" loading="lazy">
             <div class="editor-meta">
               <p class="editor-role">担当記者</p>
               <p class="editor-name">漆沢 祐樹</p>
@@ -245,9 +245,12 @@
     }
 
     /* ─── 注目記事（Featured）レンダリング ──────────────────── */
+    const IMG_THUMB_GENERIC = 'images/placeholders/card-thumb-generic.svg';
+    const IMG_WIDE_GENERIC  = 'images/placeholders/card-wide-generic.svg';
+
     function renderFeatured(art) {
       const score  = avgScore(art.reviews);
-      const thumb  = art.ogImage || ('https://placehold.co/680x420/eef2ff/1c3d8a?text=' + encodeURIComponent(art.company || '評判記事'));
+      const thumb  = art.ogImage || IMG_WIDE_GENERIC;
       const heroT  = art.heroTitle || art.title || '';
       const scoreH = score ? `<span class="featured-score" aria-label="評価スコア${score}">★ ${score} <em>/ 5.0</em></span>` : '';
       const cntH   = art.reviews && art.reviews.length
@@ -282,9 +285,14 @@
     function renderFeaturedPlaceholder() {
       return `
         <article class="featured-card featured-card--upcoming anim-up" aria-label="準備中の注目記事">
-          <div class="featured-placeholder">
-            <p class="featured-placeholder-head">取材進行中</p>
-            <p class="featured-placeholder-body">記者・漆沢が複数の企業を現在取材中です。<br>近日、注目の評判記事を公開予定です。</p>
+          <div class="featured-upcoming-grid">
+            <figure class="featured-img-wrap featured-img-wrap--placeholder" aria-hidden="true">
+              <img src="images/placeholders/featured-upcoming-wide.svg" alt="" width="680" height="420" loading="lazy">
+            </figure>
+            <div class="featured-placeholder">
+              <p class="featured-placeholder-head">取材進行中</p>
+              <p class="featured-placeholder-body">記者・漆沢が複数の企業を現在取材中です。<br>近日、注目の評判記事を公開予定です。</p>
+            </div>
           </div>
         </article>`;
     }
@@ -292,7 +300,7 @@
     /* ─── 記事リスト（Article List）レンダリング ────────────── */
     function renderArticleItem(art) {
       const score = avgScore(art.reviews);
-      const thumb = art.ogImage || ('https://placehold.co/240x160/f0f0f0/888?text=' + encodeURIComponent(art.company || '評判'));
+      const thumb = art.ogImage || IMG_THUMB_GENERIC;
       const cc    = catClass(art.category);
       const scoreH = score ? `<span class="meta-score">★ ${score}</span>` : '';
       return `
@@ -324,7 +332,8 @@
         <article class="article-item article-item--upcoming anim-up" role="listitem" aria-label="準備中の記事">
           <div class="article-item-link">
             <figure class="article-thumb article-thumb--blank">
-              <span>取材中</span>
+              <img src="images/placeholders/thumb-upcoming.svg" alt="" width="240" height="160" loading="lazy">
+              <span class="article-thumb-label">取材中</span>
             </figure>
             <div class="article-body">
               <span class="article-category ${catClass(cat)}">${cat}</span>
