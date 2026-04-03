@@ -1,9 +1,9 @@
 セクション,要素名,役割・目的,コンテンツ内容,CSS クラス,備考
-HEADER,ロゴ,サイト識別・トップページへの導線,みんなの評判.com,.logo / .logo-serif,Noto Serif JP
+HEADER,ロゴ,サイト識別・トップページへの導線,みんなの評判.com,.logo / .logo-serif,Shippori Mincho
 HEADER,スコアバッジ,評価スコアを常時表示して信頼性維持,★ 4.7 （127件）,.header-score,sticky固定
 HEADER,デスクトップナビ,記事一覧 / 公式サイトへの導線,2リンク,.nav-desktop,—
 HERO,ベントグリッド,視覚的に多彩な情報を整理して提示,4ブロック構成,.hero-bento,CSS Grid / grid-template-areas
-HERO,ヘッドライン,記事タイトル・記者バイライン・リード文,〇〇の評判を徹底調査 / 漆沢 祐樹,.bento-headline,Noto Serif JP
+HERO,ヘッドライン,記事タイトル・記者バイライン・リード文,〇〇の評判を徹底調査 / 漆沢 祐樹,.bento-headline,Shippori Mincho
 HERO,スコアカード,総合評価を視覚的に大きく提示,4.7 / 5.0 / 127件 / 取材済み,.bento-score,sticky / ボーダー枠
 HERO,メディア掲載実績,第三者メディア掲載で権威性付与,ロゴ3点,.bento-media,—
 HERO,記事特徴バッジ,第三者取材・PR記事であることの明示,✓バッジ5点,.bento-badges,—

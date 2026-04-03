@@ -1,9 +1,9 @@
 セクション,要素名,役割・目的,コンテンツ内容,CSS クラス,備考
-HEADER,ロゴ,サイト識別・トップへの導線,みんなの評判.com,.logo / .logo-text / .logo-com,Noto Serif JP
+HEADER,ロゴ,サイト識別・トップへの導線,みんなの評判.com,.logo / .logo-text / .logo-com,Shippori Mincho
 HEADER,デスクトップナビ,主要セクションへのアンカーリンク,記事一覧 / カテゴリ / 取材について / 取材依頼,.nav-desktop,sticky固定
 HEADER,ハンバーガー,モバイルメニュー開閉,—,.hamburger,768px以下で表示
 HEADER,モバイルナビ,スマホ用ドロップダウンメニュー,デスクトップと同一リンク,.nav-mobile,hidden属性で制御
-HERO,アイキャッチコピー,読者の関心を引く第一印象,企業の本音を あなたに届ける。,.hero-title,Noto Serif JP / clamp(2rem～3rem)
+HERO,アイキャッチコピー,読者の関心を引く第一印象,企業の本音を あなたに届ける。,.hero-title,Shippori Mincho / clamp(2rem～3rem)
 HERO,リード文,メディアの立場・信頼性訴求,フリーランス記者・漆沢が取材した旨,.hero-lead,—
 HERO,実績数値バー,信頼補強・第三者性の証明,127件+ / 10年+ / 500件+,.hero-stats / .hero-stat,縦区切り線で分割
 HERO,CTA,記事への誘導,最新の評判記事を読む,.hero-cta,コバルト背景

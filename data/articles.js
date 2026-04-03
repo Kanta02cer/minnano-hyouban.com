@@ -30,7 +30,7 @@ window.ARTICLES = [
 
     title:    "サンプルコーチングの評判を徹底調査しました | みんなの評判.com",
     metaDesc: "記者・漆沢が実際の利用者127名の声をもとに独自取材。サンプルコーチングのリアルな評判・料金・効果を第三者目線でレポート。",
-    ogImage:  "https://placehold.co/1200x630/1e40af/ffffff?text=コーチング+評判レポート",
+    ogImage:  "images/placeholders/og-career.svg",
     company:  "サンプルコーチング",
     category: "キャリア・転職",
     publishedAt: "2025-01-15",
@@ -42,7 +42,7 @@ window.ARTICLES = [
 
     editorName:  "記者：漆沢 祐樹",
     editorTitle: "フリーランス記者 / 消費者メディア専門",
-    editorImg:   "https://placehold.co/64x64/1e40af/ffffff?text=Y",
+    editorImg:   "images/placeholders/avatar-reporter.svg",
     checkItems: [
       "転職成功率87%の算出方法と信頼性",
       "料金が高いと言われる理由と価値の検証",
@@ -51,18 +51,18 @@ window.ARTICLES = [
 
     galleries: {
       service: [
-        { src: "https://placehold.co/800x600/eef2ff/1e40af?text=Online+Mentoring", alt: "オンラインコーチング", caption: "専任コーチとのオンライン面談（週1回60分）" },
-        { src: "https://placehold.co/800x600/eef2ff/1e40af?text=Assessment+Tool",  alt: "自己分析ツール",     caption: "独自アセスメントで強みを可視化" },
-        { src: "https://placehold.co/800x600/eef2ff/1e40af?text=Chat+Support",     alt: "チャットサポート",   caption: "面談外でも相談できるチャット対応" }
+        { src: "images/placeholders/gallery-photo.svg", alt: "オンラインコーチング", caption: "専任コーチとのオンライン面談（週1回60分）" },
+        { src: "images/placeholders/gallery-photo.svg", alt: "自己分析ツール",     caption: "独自アセスメントで強みを可視化" },
+        { src: "images/placeholders/gallery-photo.svg", alt: "チャットサポート",   caption: "面談外でも相談できるチャット対応" }
       ],
       beforeAfter: [
-        { src: "https://placehold.co/600x400/fef3e2/c8941a?text=Before", alt: "受講前：方向性が定まらない",  label: "受講前" },
-        { src: "https://placehold.co/600x400/eef2ff/1e40af?text=After",  alt: "受講後：自信を持って転職活動", label: "受講3ヶ月後" }
+        { src: "images/placeholders/gallery-before.svg", alt: "受講前：方向性が定まらない",  label: "受講前" },
+        { src: "images/placeholders/gallery-after.svg",  alt: "受講後：自信を持って転職活動", label: "受講3ヶ月後" }
       ],
       media: [
-        { src: "https://placehold.co/120x40/cccccc/555555?text=Business+News", alt: "ビジネスニュース" },
-        { src: "https://placehold.co/120x40/cccccc/555555?text=Career+Web",    alt: "キャリアウェブ" },
-        { src: "https://placehold.co/120x40/cccccc/555555?text=IT+Trends",     alt: "ITトレンド" }
+        { src: "images/placeholders/media-logo.svg", alt: "ビジネスニュース" },
+        { src: "images/placeholders/media-logo.svg", alt: "キャリアウェブ" },
+        { src: "images/placeholders/media-logo.svg", alt: "ITトレンド" }
       ]
     },
 
@@ -94,7 +94,7 @@ window.ARTICLES = [
       { q: "この記事は広告ですか？",            a: "本記事はPR記事です。第三者の記者が取材・編集していますが、掲載費用を企業からいただいています。" }
     ],
 
-    storyImg:  "https://placehold.co/200x200/eef2ff/1e40af?text=CEO",
+    storyImg:  "images/placeholders/story-portrait.svg",
     storyAlt:  "代表取締役の写真",
     storyText: [
       "「求人を大量に紹介して、どこかに転職させる」エージェントモデルに疑問を持ったことが起業のきっかけです。転職は手段であり、本当の目的はキャリアの充実にあるはずです。",
@@ -180,7 +180,7 @@ window.ARTICLES = [
 
     title:    "サンプルエステサロンの評判を徹底調査しました | みんなの評判.com",
     metaDesc: "記者・漆沢が実際の利用者93名の声をもとに独自取材。サンプルエステサロンの効果・料金・スタッフ対応を第三者目線でレポート。",
-    ogImage:  "https://placehold.co/1200x630/9d174d/ffffff?text=エステ+評判レポート",
+    ogImage:  "images/placeholders/og-beauty.svg",
     company:  "サンプルエステサロン",
     category: "美容・健康",
     publishedAt: "2025-01-08",
@@ -192,7 +192,7 @@ window.ARTICLES = [
 
     editorName:  "記者：漆沢 祐樹",
     editorTitle: "フリーランス記者 / 消費者メディア専門",
-    editorImg:   "https://placehold.co/64x64/9d174d/ffffff?text=Y",
+    editorImg:   "images/placeholders/avatar-reporter.svg",
     checkItems: [
       "93%満足という数字の根拠と信頼性",
       "施術効果の実態（利用者への直接インタビュー）",
@@ -201,18 +201,18 @@ window.ARTICLES = [
 
     galleries: {
       service: [
-        { src: "https://placehold.co/800x600/fdf2f8/9d174d?text=Treatment+Room", alt: "施術ルーム",       caption: "プライバシーに配慮した個室の施術ルーム" },
-        { src: "https://placehold.co/800x600/fdf2f8/9d174d?text=Counseling",     alt: "カウンセリング",   caption: "入会前の丁寧な無料カウンセリング" },
-        { src: "https://placehold.co/800x600/fdf2f8/9d174d?text=Equipment",      alt: "最新美容機器",     caption: "医療グレードの最新美容機器を使用" }
+        { src: "images/placeholders/gallery-photo.svg", alt: "施術ルーム",     caption: "プライバシーに配慮した個室の施術ルーム" },
+        { src: "images/placeholders/gallery-photo.svg", alt: "カウンセリング", caption: "入会前の丁寧な無料カウンセリング" },
+        { src: "images/placeholders/gallery-photo.svg", alt: "最新美容機器",   caption: "医療グレードの最新美容機器を使用" }
       ],
       beforeAfter: [
-        { src: "https://placehold.co/600x400/fef3e2/c8941a?text=Before", alt: "施術前",     label: "施術前" },
-        { src: "https://placehold.co/600x400/fdf2f8/9d174d?text=After",  alt: "3回施術後",  label: "3回施術後" }
+        { src: "images/placeholders/gallery-before.svg", alt: "施術前",    label: "施術前" },
+        { src: "images/placeholders/gallery-after.svg",  alt: "3回施術後", label: "3回施術後" }
       ],
       media: [
-        { src: "https://placehold.co/120x40/cccccc/555555?text=Beauty+Magazine", alt: "ビューティ誌" },
-        { src: "https://placehold.co/120x40/cccccc/555555?text=Health+Media",    alt: "健康メディア" },
-        { src: "https://placehold.co/120x40/cccccc/555555?text=SNS+Trend",       alt: "SNSトレンド" }
+        { src: "images/placeholders/media-logo.svg", alt: "ビューティ誌" },
+        { src: "images/placeholders/media-logo.svg", alt: "健康メディア" },
+        { src: "images/placeholders/media-logo.svg", alt: "SNSトレンド" }
       ]
     },
 
@@ -244,7 +244,7 @@ window.ARTICLES = [
       { q: "この記事は広告ですか？",         a: "本記事はPR記事です。第三者の記者が取材・編集していますが、掲載費用を企業からいただいています。" }
     ],
 
-    storyImg:  "https://placehold.co/200x200/fdf2f8/9d174d?text=CEO",
+    storyImg:  "images/placeholders/story-portrait.svg",
     storyAlt:  "代表の写真",
     storyText: [
       "「エステに通いたいけど、効果があるか不安」「しつこい勧誘が嫌だ」という声を多く聞き、そのイメージを変えたいと思いこのサロンを立ち上げました。",

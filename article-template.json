@@ -2,7 +2,7 @@
   "slug": "",
   "title": "",
   "metaDesc": "",
-  "ogImage": "https://placehold.co/1200x630/1a5fa8/ffffff?text=OGP",
+  "ogImage": "images/placeholders/og-career.svg",
   "company": "",
   "category": "",
   "publishedAt": "",
@@ -12,7 +12,7 @@
   "heroSub": "",
   "editorName": "記者：漆沢 祐樹",
   "editorTitle": "フリーランス記者 / 消費者メディア専門",
-  "editorImg": "https://placehold.co/64x64/1a5fa8/ffffff?text=Y",
+  "editorImg": "images/placeholders/avatar-reporter.svg",
   "checkItems": [
     "実際の利用者から集めたリアルな評判",
     "サービスの詳細と料金の概要",
@@ -20,18 +20,18 @@
   ],
   "galleries": {
     "service": [
-      { "src": "https://placehold.co/800x600/e8f0fe/1a5fa8?text=Service+1", "alt": "サービス画像1", "caption": "充実したサービス環境" },
-      { "src": "https://placehold.co/800x600/e8f0fe/1a5fa8?text=Service+2", "alt": "サービス画像2", "caption": "専門スタッフによる対応" },
-      { "src": "https://placehold.co/800x600/e8f0fe/1a5fa8?text=Service+3", "alt": "サービス画像3", "caption": "快適な利用環境" }
+      { "src": "images/placeholders/gallery-photo.svg", "alt": "サービス画像1", "caption": "充実したサービス環境" },
+      { "src": "images/placeholders/gallery-photo.svg", "alt": "サービス画像2", "caption": "専門スタッフによる対応" },
+      { "src": "images/placeholders/gallery-photo.svg", "alt": "サービス画像3", "caption": "快適な利用環境" }
     ],
     "beforeAfter": [
-      { "src": "https://placehold.co/600x400/fef3e2/c9a84c?text=Before", "alt": "利用前", "label": "利用前" },
-      { "src": "https://placehold.co/600x400/e8f5e9/0a7c5c?text=After",  "alt": "利用後", "label": "利用3ヶ月後" }
+      { "src": "images/placeholders/gallery-before.svg", "alt": "利用前", "label": "利用前" },
+      { "src": "images/placeholders/gallery-after.svg",  "alt": "利用後", "label": "利用3ヶ月後" }
     ],
     "media": [
-      { "src": "https://placehold.co/120x40/cccccc/555555?text=Media+A", "alt": "メディアA" },
-      { "src": "https://placehold.co/120x40/cccccc/555555?text=Media+B", "alt": "メディアB" },
-      { "src": "https://placehold.co/120x40/cccccc/555555?text=Media+C", "alt": "メディアC" }
+      { "src": "images/placeholders/media-logo.svg", "alt": "メディアA" },
+      { "src": "images/placeholders/media-logo.svg", "alt": "メディアB" },
+      { "src": "images/placeholders/media-logo.svg", "alt": "メディアC" }
     ]
   },
   "reviews": [
@@ -59,7 +59,7 @@
     { "q": "解約・キャンセルはできますか？",    "a": "所定の手続きにより解約が可能です。詳細は公式サイトをご確認ください。" },
     { "q": "この記事は広告ですか？",           "a": "本記事はPR記事です。第三者の記者が取材・編集していますが、掲載費用を企業からいただいています。" }
   ],
-  "storyImg":  "https://placehold.co/200x200/e8f0fe/1a5fa8?text=CEO",
+  "storyImg":  "images/placeholders/story-portrait.svg",
   "storyAlt":  "代表者の写真",
   "storyText": [
     "企業の良さを自ら伝えても、なかなか信頼してもらえない。そんな悩みを持つ企業と、本当に良いサービスを探している消費者の双方を繋ぎたい——そんな想いでこのメディアを立ち上げました。",

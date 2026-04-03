@@ -6,7 +6,7 @@
   <title>記事管理 | みんなの評判.com Admin</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
     /* ── Admin-only extras ── */
@@ -453,7 +453,7 @@
         <div class="admin-form">
           <div class="form-group">
             <label for="f-story-img">代表者画像URL</label>
-            <input type="url" id="f-story-img" value="https://placehold.co/200x200/e8f0fe/1a5fa8?text=CEO">
+            <input type="url" id="f-story-img" value="images/placeholders/story-portrait.svg">
           </div>
           <div class="form-group">
             <label for="f-story">本文（段落ごとに空行で区切る）</label>
@@ -599,9 +599,9 @@
   ============================================================ */
   function buildGalleryServiceRows() {
     const defaults = [
-      { src: 'https://placehold.co/800x600/e8f0fe/1a5fa8?text=Service+1', alt: 'サービス画像1', caption: '充実したサービス環境' },
-      { src: 'https://placehold.co/800x600/e8f0fe/1a5fa8?text=Service+2', alt: 'サービス画像2', caption: '専門スタッフによる丁寧な対応' },
-      { src: 'https://placehold.co/800x600/e8f0fe/1a5fa8?text=Service+3', alt: 'サービス画像3', caption: '快適な利用環境を整えています' }
+      { src: 'images/placeholders/gallery-photo.svg', alt: 'サービス画像1', caption: '充実したサービス環境' },
+      { src: 'images/placeholders/gallery-photo.svg', alt: 'サービス画像2', caption: '専門スタッフによる丁寧な対応' },
+      { src: 'images/placeholders/gallery-photo.svg', alt: 'サービス画像3', caption: '快適な利用環境を整えています' }
     ];
     const wrap = document.getElementById('gallery-service-rows');
     wrap.innerHTML = defaults.map((d, i) => `
@@ -627,8 +627,8 @@
 
   function buildGalleryBARows() {
     const defaults = [
-      { src: 'https://placehold.co/600x400/fef3e2/c9a84c?text=Before', alt: '利用前', label: '利用前' },
-      { src: 'https://placehold.co/600x400/e8f5e9/0a7c5c?text=After',  alt: '利用3ヶ月後', label: '利用3ヶ月後' }
+      { src: 'images/placeholders/gallery-before.svg', alt: '利用前', label: '利用前' },
+      { src: 'images/placeholders/gallery-after.svg',  alt: '利用3ヶ月後', label: '利用3ヶ月後' }
     ];
     const wrap = document.getElementById('gallery-ba-rows');
     wrap.innerHTML = defaults.map((d, i) => `
@@ -654,9 +654,9 @@
 
   function buildGalleryMediaRows() {
     const defaults = [
-      { src: 'https://placehold.co/120x40/cccccc/555555?text=Media+A', alt: 'メディアA' },
-      { src: 'https://placehold.co/120x40/cccccc/555555?text=Media+B', alt: 'メディアB' },
-      { src: 'https://placehold.co/120x40/cccccc/555555?text=Media+C', alt: 'メディアC' }
+      { src: 'images/placeholders/media-logo.svg', alt: 'メディアA' },
+      { src: 'images/placeholders/media-logo.svg', alt: 'メディアB' },
+      { src: 'images/placeholders/media-logo.svg', alt: 'メディアC' }
     ];
     const wrap = document.getElementById('gallery-media-rows');
     wrap.innerHTML = defaults.map((d, i) => `
@@ -930,7 +930,7 @@
       slug,
       title: `${company}の評判を徹底調査 | みんなの評判.com`,
       metaDesc: val('f-meta-desc') || `記者・漆沢が実際の利用者の声をもとに独自取材した、${company}の評判記事です。`,
-      ogImage: serviceImgs[0]?.src || 'https://placehold.co/1200x630/1a5fa8/ffffff?text=OGP',
+      ogImage: serviceImgs[0]?.src || 'images/placeholders/og-career.svg',
       company,
       category: val('f-category') || 'その他',
       publishedAt: val('f-published') || today,
@@ -940,7 +940,7 @@
       heroSub:   val('f-hero-sub') || `記者・漆沢が実際の利用者の声をもとに独自取材した、${company}の信頼性の高い評判記事です。`,
       editorName:  '記者：漆沢 祐樹',
       editorTitle: 'フリーランス記者 / 消費者メディア専門',
-      editorImg:   'https://placehold.co/64x64/1a5fa8/ffffff?text=Y',
+      editorImg:   'images/placeholders/avatar-reporter.svg',
       checkItems: [
         '実際の利用者から集めたリアルな評判',
         'サービスの詳細と料金の概要',
@@ -951,7 +951,7 @@
       serviceCards,
       steps,
       faqs,
-      storyImg:  val('f-story-img') || 'https://placehold.co/200x200/e8f0fe/1a5fa8?text=CEO',
+      storyImg:  val('f-story-img') || 'images/placeholders/story-portrait.svg',
       storyAlt:  '代表者の写真',
       storyText,
       officialUrl: val('f-official-url') || '#',

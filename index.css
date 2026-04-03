@@ -9,7 +9,7 @@
 html { font-size: 16px; scroll-behavior: smooth; }
 
 body {
-  font-family: 'Noto Sans JP', sans-serif;
+  font-family: 'Zen Maru Gothic', sans-serif;
   color: #0f0f0f;
   background: #fff;
   line-height: 1.75;
@@ -67,7 +67,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 .section-title {
-  font-family: 'Noto Serif JP', serif;
+  font-family: 'Shippori Mincho', serif;
   font-size: 1.375rem;
   font-weight: 700;
   letter-spacing: .03em;
@@ -104,7 +104,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* Logo */
 .logo { display: flex; align-items: baseline; gap: 1px; }
 .logo-text {
-  font-family: 'Noto Serif JP', serif;
+  font-family: 'Shippori Mincho', serif;
   font-size: 1.125rem;
   font-weight: 700;
   color: var(--ink);
@@ -201,7 +201,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 .hero-title {
-  font-family: 'Noto Serif JP', serif;
+  font-family: 'Shippori Mincho', serif;
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 700;
   line-height: 1.3;
@@ -242,7 +242,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .hero-stat:first-child { padding-left: 0; }
 
 .hero-stat strong {
-  font-family: 'Noto Serif JP', serif;
+  font-family: 'Shippori Mincho', serif;
   font-size: 1.625rem;
   font-weight: 700;
   color: var(--ink);
@@ -311,7 +311,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 .editor-name {
-  font-family: 'Noto Serif JP', serif;
+  font-family: 'Shippori Mincho', serif;
   font-size: 1rem;
   font-weight: 700;
   color: var(--ink);
@@ -427,7 +427,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .meta-sep { color: var(--border); }
 
 .featured-title {
-  font-family: 'Noto Serif JP', serif;
+  font-family: 'Shippori Mincho', serif;
   font-size: 1.1875rem;
   font-weight: 700;
   line-height: 1.55;
@@ -520,20 +520,34 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .article-item:hover .article-thumb img { transform: scale(1.04); }
 
 .article-thumb--blank {
+  position: relative;
   background: var(--bg-wash);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   border-right: 1px solid var(--border);
+  padding: 0;
 }
 
-.article-thumb--blank span {
+.article-thumb--blank img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.article-thumb-label {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   font-size: .75rem;
-  color: var(--ink-mute);
+  color: var(--ink);
   letter-spacing: .06em;
   border: 1px solid var(--border);
   padding: 4px 10px;
   border-radius: 20px;
+  background: rgba(255,255,255,.92);
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+  pointer-events: none;
+  white-space: nowrap;
 }
 
 .article-body {
@@ -560,7 +574,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .cat-lifestyle  { background: #f0fdfa; color: #134e4a; }
 
 .article-title {
-  font-family: 'Noto Serif JP', serif;
+  font-family: 'Shippori Mincho', serif;
   font-size: 1rem;
   font-weight: 700;
   line-height: 1.55;
@@ -609,7 +623,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .section-categories { padding: 48px 0; }
 
 .section-categories .section-title {
-  font-family: 'Noto Serif JP', serif;
+  font-family: 'Shippori Mincho', serif;
   font-size: 1.375rem;
   font-weight: 700;
   margin-bottom: 24px;
@@ -659,7 +673,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 .about-title {
-  font-family: 'Noto Serif JP', serif;
+  font-family: 'Shippori Mincho', serif;
   font-size: 1.5rem;
   font-weight: 700;
   color: #fff;
@@ -715,7 +729,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 .contact-title {
-  font-family: 'Noto Serif JP', serif;
+  font-family: 'Shippori Mincho', serif;
   font-size: 1.625rem;
   font-weight: 700;
   color: var(--ink);
@@ -787,7 +801,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 .footer-logo {
-  font-family: 'Noto Serif JP', serif;
+  font-family: 'Shippori Mincho', serif;
   font-size: 1.0625rem;
   font-weight: 700;
   color: var(--ink);
@@ -839,20 +853,32 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .footer-pr-note { font-style: italic; }
 
 /* ─── 注目記事・準備中プレースホルダー ────────────────────── */
+.featured-upcoming-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  min-height: 0;
+}
+
+.featured-img-wrap--placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .featured-card--upcoming .featured-placeholder {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 260px;
   gap: 12px;
   padding: 48px 32px;
   background: var(--bg-wash);
   text-align: center;
+  min-height: 100%;
 }
 
 .featured-placeholder-head {
-  font-family: 'Noto Serif JP', serif;
+  font-family: 'Shippori Mincho', serif;
   font-size: 1.125rem;
   font-weight: 700;
   color: var(--ink-soft);
@@ -904,6 +930,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   }
 
   .featured-link {
+    grid-template-columns: 1fr;
+  }
+
+  .featured-upcoming-grid {
     grid-template-columns: 1fr;
   }
 
