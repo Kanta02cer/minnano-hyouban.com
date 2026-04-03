@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>記事一覧 | みんなの評判.com</title>
+  <meta name="description" content="みんなの評判.comの記事一覧ページです。各サービス・企業の評判記事をご覧いただけます。">
+  <meta property="og:title" content="記事一覧 | みんなの評判.com">
+  <meta property="og:description" content="第三者記者が取材・執筆した評判記事の一覧です。">
+  <meta property="og:type" content="website">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="articles-page">
+
+  <!-- Header -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <a href="index.html" class="logo" aria-label="みんなの評判.com トップへ">
+        <span class="logo-text">みんなの評判<span class="logo-com">.com</span></span>
+      </a>
+      <nav class="nav-desktop" aria-label="メインナビゲーション">
+        <ul role="list">
+          <li><a href="articles.html" aria-current="page">評判カテゴリ</a></li>
+          <li><a href="articles.html">記事一覧</a></li>
+          <li><a href="index.html#contact">取材依頼</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav-mobile">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </button>
+    </div>
+    <nav class="nav-mobile" id="nav-mobile" aria-label="モバイルナビゲーション" hidden>
+      <ul role="list">
+        <li><a href="articles.html">評判カテゴリ</a></li>
+        <li><a href="articles.html">記事一覧</a></li>
+        <li><a href="index.html#contact">取材依頼</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <div class="articles-hero">
+      <div class="container">
+        <h1>評判記事一覧</h1>
+        <p>第三者記者が取材・執筆した、信頼性の高い評判記事をご覧いただけます。</p>
+      </div>
+    </div>
+
+    <!-- Article List -->
+    <section class="articles-list-section" aria-labelledby="articles-list-heading">
+      <div class="container">
+        <h2 class="section-title" id="articles-list-heading">掲載中の記事</h2>
+        <div class="articles-grid" id="articles-grid" role="list" aria-label="記事一覧">
+          <!-- JS で生成 -->
+        </div>
+        <div id="articles-empty" style="display:none;text-align:center;padding:48px 0;color:var(--color-muted);">
+          <p>現在掲載中の記事はありません。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <p class="footer-logo">みんなの評判<span class="footer-com">.com</span></p>
+        <p class="footer-tagline">第三者が届ける、信頼の評判メディア</p>
+      </div>
+      <nav class="footer-nav" aria-label="フッターナビゲーション">
+        <ul role="list">
+          <li><a href="articles.html">評判カテゴリ</a></li>
+          <li><a href="articles.html">記事一覧</a></li>
+          <li><a href="index.html#contact">取材依頼</a></li>
+          <li><a href="#">プライバシーポリシー</a></li>
+        </ul>
+      </nav>
+      <div class="footer-sns" aria-label="SNSでシェア">
+        <a href="https://twitter.com/share" class="sns-btn" aria-label="X（旧Twitter）でシェア" target="_blank" rel="noopener noreferrer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.74l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="copyright">© 2024 みんなの評判.com All Rights Reserved.</p>
+      <p class="pr-footer-note">本サイトに掲載している記事は、広告・PR記事を含みます。</p>
+    </div>
+  </footer>
+
+  <script src="data/articles.js"></script>
+  <script>
+    /* ── Hamburger ── */
+    const hamburger = document.querySelector('.hamburger');
+    const navMobile = document.getElementById('nav-mobile');
+    if (hamburger && navMobile) {
+      hamburger.addEventListener('click', () => {
+        const isOpen = hamburger.getAttribute('aria-expanded') === 'true';
+        hamburger.setAttribute('aria-expanded', String(!isOpen));
+        navMobile.hidden = isOpen;
+      });
+    }
+
+    /* ── Article Listing ── */
+    document.addEventListener('DOMContentLoaded', () => {
+      const grid = document.getElementById('articles-grid');
+      const empty = document.getElementById('articles-empty');
+      const articles = window.ARTICLES || [];
+
+      if (articles.length === 0) {
+        empty.style.display = 'block';
+        return;
+      }
+
+      articles.forEach(a => {
+        const thumb = (a.galleries?.service?.[0]?.src) || 'https://placehold.co/640x360/e8f0fe/1a5fa8?text=Article';
+
+        const card = document.createElement('a');
+        card.href = `article.html?id=${encodeURIComponent(a.slug)}`;
+        card.className = 'article-card';
+        card.setAttribute('role', 'listitem');
+        card.setAttribute('aria-label', `${a.company || a.slug}の評判記事を読む`);
+
+        card.innerHTML = `
+          <img src="${thumb}" alt="${a.company || ''}のサムネイル" class="article-card-thumb" loading="lazy">
+          <div class="article-card-body">
+            <span class="article-card-tag">${a.category || 'その他'}</span>
+            <h2 class="article-card-title">${a.heroTitle ? a.heroTitle.replace('<br>', '') : (a.company || '') + 'の評判を徹底調査'}</h2>
+            <div class="article-card-meta">
+              <span>記者：${a.editorName ? a.editorName.replace('記者：', '') : '漆沢 祐樹'}</span>
+              <span>${a.publishedAt || ''}</span>
+            </div>
+            <p class="article-card-link">記事を読む</p>
+          </div>
+        `;
+
+        grid.appendChild(card);
+      });
+    });
+  </script>
+</body>
+</html>

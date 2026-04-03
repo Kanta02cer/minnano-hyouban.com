@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>記事管理 | みんなの評判.com Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── Admin-only extras ── */
+    .tab-bar {
+      display: flex;
+      gap: 0;
+      border-bottom: 2px solid var(--color-border);
+      margin-bottom: 28px;
+    }
+    .tab-btn {
+      padding: 10px 22px;
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      font-family: var(--font-main);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--color-muted);
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+      min-height: 44px;
+    }
+    .tab-btn.active {
+      color: var(--color-primary);
+      border-bottom-color: var(--color-primary);
+    }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* Dynamic rows */
+    .dynamic-row {
+      display: grid;
+      gap: 10px;
+      padding: 16px;
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      position: relative;
+    }
+    .dynamic-row + .dynamic-row { margin-top: 10px; }
+    .row-num {
+      position: absolute;
+      top: 10px;
+      left: 14px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      background: rgba(26,95,168,0.08);
+      border-radius: 999px;
+      padding: 2px 8px;
+    }
+    .row-delete {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #fee2e2;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      line-height: 28px;
+      text-align: center;
+      color: #dc2626;
+      transition: background 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .row-delete:hover { background: #fca5a5; }
+    .row-fields { padding-top: 24px; }
+    .row-fields-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .row-fields-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+    @media(max-width:600px) {
+      .row-fields-2, .row-fields-3 { grid-template-columns: 1fr; }
+    }
+
+    .add-row-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 16px;
+      margin-top: 10px;
+      background: rgba(26,95,168,0.06);
+      border: 1px dashed var(--color-primary);
+      border-radius: var(--radius-md);
+      color: var(--color-primary);
+      font-family: var(--font-main);
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+      width: 100%;
+      justify-content: center;
+      min-height: 44px;
+    }
+    .add-row-btn:hover { background: rgba(26,95,168,0.1); }
+
+    .stars-select { height: 40px; }
+
+    .section-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .download-box {
+      background: linear-gradient(135deg, #0f4c8a 0%, var(--color-primary) 100%);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      text-align: center;
+      margin-top: 8px;
+    }
+    .download-box h3 {
+      color: white;
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+    }
+    .download-box p {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.85rem;
+      margin-bottom: 20px;
+      line-height: 1.7;
+    }
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--color-accent);
+      color: white;
+      border: none;
+      border-radius: var(--radius-md);
+      padding: 14px 32px;
+      font-family: var(--font-main);
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s;
+      min-height: 44px;
+    }
+    .btn-download:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    .validation-error {
+      background: #fee2e2;
+      border: 1px solid #fca5a5;
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      color: #dc2626;
+      font-size: 0.85rem;
+      margin-bottom: 16px;
+      display: none;
+    }
+    .validation-error ul { margin-top: 6px; padding-left: 18px; }
+    .validation-error li { margin-top: 4px; }
+
+    .success-toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--color-review);
+      color: white;
+      padding: 14px 28px;
+      border-radius: var(--radius-lg);
+      font-weight: 700;
+      font-size: 0.95rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+      z-index: 9999;
+      white-space: nowrap;
+    }
+    .success-toast.show { transform: translateX(-50%) translateY(0); }
+
+    .progress-steps {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .progress-step {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      color: var(--color-muted);
+    }
+    .progress-step .step-dot {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--color-muted);
+      flex-shrink: 0;
+    }
+    .progress-step.done .step-dot {
+      background: var(--color-review);
+      color: white;
+    }
+    .progress-step.active .step-dot {
+      background: var(--color-primary);
+      color: white;
+    }
+    .progress-arrow { color: var(--color-border); font-size: 0.8rem; }
+
+    code {
+      background: #f1f5f9;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 0.82em;
+      font-family: 'Courier New', monospace;
+    }
+
+    .img-preview {
+      width: 60px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--color-border);
+      margin-top: 6px;
+      display: none;
+    }
+    .badge-count {
+      display: inline-block;
+      background: var(--color-primary);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 1px 7px;
+      border-radius: 999px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body class="admin-page">
+
+  <!-- Toast -->
+  <div class="success-toast" id="toast" role="status" aria-live="polite"></div>
+
+  <header class="admin-header" role="banner">
+    <a href="index.html" style="color:white;font-size:0.85rem;opacity:0.65;">← サイトへ戻る</a>
+    <h1 style="flex:1;text-align:center;">みんなの評判.com</h1>
+    <span class="admin-badge">管理画面</span>
+  </header>
+
+  <div class="admin-body">
+
+    <!-- ====================================================
+         タブナビ
+    ==================================================== -->
+    <div class="tab-bar" role="tablist" aria-label="管理メニュー">
+      <button class="tab-btn active" role="tab" aria-selected="true"  aria-controls="tab-list"   id="btn-list">掲載中の記事</button>
+      <button class="tab-btn"        role="tab" aria-selected="false" aria-controls="tab-add"    id="btn-add">新規記事を追加</button>
+    </div>
+
+    <!-- ====================================================
+         TAB 1: 記事一覧
+    ==================================================== -->
+    <div class="tab-panel active" id="tab-list" role="tabpanel" aria-labelledby="btn-list">
+      <div class="admin-section">
+        <h2>掲載中の記事</h2>
+        <div class="admin-articles-list" id="admin-articles-list">
+          <p style="color:var(--color-muted);font-size:0.85rem;">読み込み中…</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================================
+         TAB 2: 新規記事追加
+    ==================================================== -->
+    <div class="tab-panel" id="tab-add" role="tabpanel" aria-labelledby="btn-add">
+
+      <!-- 手順ガイド -->
+      <div class="admin-section" style="padding:20px 28px;">
+        <div class="progress-steps" aria-label="作業手順">
+          <div class="progress-step active">
+            <span class="step-dot">1</span>
+            <span>フォームを入力</span>
+          </div>
+          <span class="progress-arrow" aria-hidden="true">→</span>
+          <div class="progress-step">
+            <span class="step-dot">2</span>
+            <span>「ダウンロード」を押す</span>
+          </div>
+          <span class="progress-arrow" aria-hidden="true">→</span>
+          <div class="progress-step">
+            <span class="step-dot">3</span>
+            <span><code>data/articles.js</code> を差し替え</span>
+          </div>
+          <span class="progress-arrow" aria-hidden="true">→</span>
+          <div class="progress-step">
+            <span class="step-dot">4</span>
+            <span>プレビューで確認</span>
+          </div>
+        </div>
+        <p style="font-size:0.82rem;color:var(--color-muted);">
+          全フィールドを入力後、最下部の「articles.js をダウンロード」ボタンを押してください。<br>
+          ダウンロードしたファイルで <code>data/articles.js</code> を上書き保存すると、サイトに記事が追加されます。
+        </p>
+      </div>
+
+      <div id="validation-error" class="validation-error" role="alert">
+        <strong>入力エラーがあります</strong>
+        <ul id="error-list"></ul>
+      </div>
+
+      <!-- ── SECTION A: 基本情報 ── -->
+      <div class="admin-section">
+        <h2>基本情報</h2>
+        <div class="admin-form">
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="f-slug">スラッグ（URL識別子）<span style="color:red" aria-hidden="true">*</span></label>
+              <input type="text" id="f-slug" placeholder="例: abc-beauty" pattern="[a-z0-9\-]+" autocomplete="off" spellcheck="false">
+              <span class="hint-text">英小文字・数字・ハイフンのみ。記事URL: <code>article.html?id=abc-beauty</code></span>
+            </div>
+            <div class="form-group">
+              <label for="f-company">企業・サービス名<span style="color:red" aria-hidden="true">*</span></label>
+              <input type="text" id="f-company" placeholder="例: ABCビューティー">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="f-category">カテゴリ</label>
+              <input type="text" id="f-category" value="美容・健康" placeholder="例: 美容・エステ">
+            </div>
+            <div class="form-group">
+              <label for="f-published">公開日</label>
+              <input type="date" id="f-published">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="f-official-url">公式サイトURL（CTAボタンのリンク先）</label>
+            <input type="url" id="f-official-url" placeholder="https://example.com">
+          </div>
+
+          <div class="form-group">
+            <label for="f-meta-desc">メタディスクリプション（SEO用・120文字程度）</label>
+            <textarea id="f-meta-desc" rows="2" placeholder="記事の説明文をここに入力してください。検索結果に表示されます。"></textarea>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── SECTION B: ヒーロー ── -->
+      <div class="admin-section">
+        <h2>ヒーロー（ファーストビュー）</h2>
+        <div class="admin-form">
+
+          <div class="form-group">
+            <label for="f-hero-tag">シリーズタグ（pill表示）</label>
+            <input type="text" id="f-hero-tag" value="大手ネットニュースでも話題！">
+          </div>
+
+          <div class="form-group">
+            <label for="f-hero-title">メインキャッチ（h1）</label>
+            <input type="text" id="f-hero-title" placeholder="〇〇の評判を&lt;br&gt;徹底調査しました">
+            <span class="hint-text">改行を入れたい箇所に <code>&lt;br&gt;</code> と入力してください</span>
+          </div>
+
+          <div class="form-group">
+            <label for="f-hero-sub">サブコピー</label>
+            <textarea id="f-hero-sub" rows="2" placeholder="記者・漆沢が実際の利用者の声をもとに独自取材した、信頼性の高い評判記事です。"></textarea>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── SECTION C: ギャラリー画像 ── -->
+      <div class="admin-section">
+        <h2>ギャラリー画像</h2>
+        <div class="admin-form">
+
+          <span class="section-label">G1 — サービスイメージ（3枚）</span>
+          <div id="gallery-service-rows">
+            <!-- JS で生成 -->
+          </div>
+
+          <span class="section-label" style="margin-top:20px;">G2 — ビフォーアフター（2枚）</span>
+          <div id="gallery-ba-rows">
+            <!-- JS で生成 -->
+          </div>
+
+          <span class="section-label" style="margin-top:20px;">G3 — メディアロゴ（3枚）</span>
+          <div id="gallery-media-rows">
+            <!-- JS で生成 -->
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── SECTION D: レビュー ── -->
+      <div class="admin-section">
+        <h2>お客様の声（レビュー）<span class="badge-count" id="review-count">0</span></h2>
+        <div id="reviews-rows"></div>
+        <button type="button" class="add-row-btn" id="add-review-btn" aria-label="レビューを追加">
+          ＋ レビューを追加
+        </button>
+      </div>
+
+      <!-- ── SECTION E: サービス概要 ── -->
+      <div class="admin-section">
+        <h2>サービス概要カード</h2>
+        <div id="service-card-rows">
+          <!-- JS で生成 -->
+        </div>
+      </div>
+
+      <!-- ── SECTION F: ご利用の流れ ── -->
+      <div class="admin-section">
+        <h2>ご利用の流れ（STEP）</h2>
+        <div id="steps-rows">
+          <!-- JS で生成 -->
+        </div>
+      </div>
+
+      <!-- ── SECTION G: FAQ ── -->
+      <div class="admin-section">
+        <h2>よくある疑問（FAQ）<span class="badge-count" id="faq-count">0</span></h2>
+        <div id="faqs-rows"></div>
+        <button type="button" class="add-row-btn" id="add-faq-btn" aria-label="FAQを追加">
+          ＋ FAQを追加
+        </button>
+      </div>
+
+      <!-- ── SECTION H: 創業ストーリー ── -->
+      <div class="admin-section">
+        <h2>創業ストーリー</h2>
+        <div class="admin-form">
+          <div class="form-group">
+            <label for="f-story-img">代表者画像URL</label>
+            <input type="url" id="f-story-img" value="https://placehold.co/200x200/e8f0fe/1a5fa8?text=CEO">
+          </div>
+          <div class="form-group">
+            <label for="f-story">本文（段落ごとに空行で区切る）</label>
+            <textarea id="f-story" rows="6" placeholder="段落1のテキスト
+
+段落2のテキスト
+
+段落3のテキスト"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SECTION I: CTA ── -->
+      <div class="admin-section">
+        <h2>メインCTA</h2>
+        <div class="admin-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="f-cta-title">CTAタイトル</label>
+              <input type="text" id="f-cta-title" value="この評判記事が気になった方へ">
+            </div>
+            <div class="form-group">
+              <label for="f-cta-sub">CTAサブコピー</label>
+              <input type="text" id="f-cta-sub" value="まずは公式サイトで詳細をご確認ください。">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="f-cta-btn">ボタンテキスト</label>
+            <input type="text" id="f-cta-btn" value="公式サイトを確認する →">
+          </div>
+        </div>
+      </div>
+
+      <!-- ── DOWNLOAD ── -->
+      <div class="admin-section">
+        <div class="download-box">
+          <h3>完成したら保存してください</h3>
+          <p>
+            「ダウンロード」を押すと、<strong>現在の全記事 ＋ 今回の新規記事</strong>を含んだ<br>
+            <code style="color:var(--color-accent);">articles.js</code> がダウンロードされます。<br>
+            ダウンロードしたファイルで <code style="color:var(--color-accent);">data/articles.js</code> を上書きしてください。
+          </p>
+          <button type="button" class="btn-download" id="download-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            articles.js をダウンロード
+          </button>
+        </div>
+
+        <div style="margin-top:20px;padding:16px;background:var(--color-bg);border-radius:var(--radius-md);font-size:0.82rem;color:var(--color-muted);line-height:1.8;">
+          <strong style="color:var(--color-text);">保存後の確認手順</strong><br>
+          1. ダウンロードした <code>articles.js</code> をプロジェクトの <code>data/</code> フォルダに移動して上書き<br>
+          2. <code>article.html?id=<em>入力したスラッグ</em></code> をブラウザで開いてプレビュー確認<br>
+          3. 問題なければ <code>articles.html</code> にも記事が表示されます
+        </div>
+
+        <div id="preview-area" style="display:none;margin-top:16px;">
+          <a id="preview-link" href="#" target="_blank" class="btn-admin" style="text-decoration:none;display:inline-flex;align-items:center;gap:8px;">
+            プレビューを開く →
+          </a>
+          <span style="font-size:0.78rem;color:var(--color-muted);margin-left:10px;">（data/articles.js を差し替えた後に確認してください）</span>
+        </div>
+      </div>
+
+    </div><!-- /tab-add -->
+
+  </div><!-- /admin-body -->
+
+  <script src="data/articles.js"></script>
+  <script>
+  'use strict';
+
+  /* ============================================================
+     UTILITIES
+  ============================================================ */
+  function esc(s) {
+    return String(s ?? '')
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3000);
+  }
+
+  function val(id) {
+    return document.getElementById(id)?.value.trim() ?? '';
+  }
+
+  /* ============================================================
+     TAB SWITCHING
+  ============================================================ */
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      document.getElementById(btn.getAttribute('aria-controls')).classList.add('active');
+    });
+  });
+
+  /* ============================================================
+     ARTICLES LIST (Tab 1)
+  ============================================================ */
+  function renderAdminList() {
+    const list = document.getElementById('admin-articles-list');
+    const articles = window.ARTICLES || [];
+
+    if (articles.length === 0) {
+      list.innerHTML = `
+        <div style="text-align:center;padding:32px;color:var(--color-muted);">
+          <p style="font-size:2rem;margin-bottom:8px;">📭</p>
+          <p>記事がまだありません。「新規記事を追加」タブから追加してください。</p>
+        </div>`;
+      return;
+    }
+
+    list.innerHTML = articles.map((a, i) => `
+      <div class="admin-article-row">
+        <div class="admin-article-row-info">
+          <p class="admin-article-row-title">${esc(a.company || a.slug)}</p>
+          <p class="admin-article-row-slug">
+            <code>${esc(a.slug)}</code>
+            &nbsp;·&nbsp; ${esc(a.category || '未分類')}
+            &nbsp;·&nbsp; 公開: ${esc(a.publishedAt || '未設定')}
+          </p>
+        </div>
+        <div class="admin-article-row-actions">
+          <a href="article.html?id=${encodeURIComponent(a.slug)}" target="_blank"
+             class="btn-admin btn-sm" style="text-decoration:none;">記事を確認</a>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  /* ============================================================
+     GALLERY ROWS BUILDER
+  ============================================================ */
+  function buildGalleryServiceRows() {
+    const defaults = [
+      { src: 'https://placehold.co/800x600/e8f0fe/1a5fa8?text=Service+1', alt: 'サービス画像1', caption: '充実したサービス環境' },
+      { src: 'https://placehold.co/800x600/e8f0fe/1a5fa8?text=Service+2', alt: 'サービス画像2', caption: '専門スタッフによる丁寧な対応' },
+      { src: 'https://placehold.co/800x600/e8f0fe/1a5fa8?text=Service+3', alt: 'サービス画像3', caption: '快適な利用環境を整えています' }
+    ];
+    const wrap = document.getElementById('gallery-service-rows');
+    wrap.innerHTML = defaults.map((d, i) => `
+      <div class="dynamic-row" style="margin-top:${i>0?'10px':'0'};">
+        <span class="row-num">画像 ${i+1}</span>
+        <div class="row-fields row-fields-3">
+          <div class="form-group">
+            <label>画像URL</label>
+            <input type="url" class="gs-src" value="${esc(d.src)}" placeholder="https://...">
+          </div>
+          <div class="form-group">
+            <label>alt テキスト</label>
+            <input type="text" class="gs-alt" value="${esc(d.alt)}" placeholder="画像の説明">
+          </div>
+          <div class="form-group">
+            <label>キャプション</label>
+            <input type="text" class="gs-caption" value="${esc(d.caption)}" placeholder="キャプションテキスト">
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function buildGalleryBARows() {
+    const defaults = [
+      { src: 'https://placehold.co/600x400/fef3e2/c9a84c?text=Before', alt: '利用前', label: '利用前' },
+      { src: 'https://placehold.co/600x400/e8f5e9/0a7c5c?text=After',  alt: '利用3ヶ月後', label: '利用3ヶ月後' }
+    ];
+    const wrap = document.getElementById('gallery-ba-rows');
+    wrap.innerHTML = defaults.map((d, i) => `
+      <div class="dynamic-row" style="margin-top:${i>0?'10px':'0'};">
+        <span class="row-num">${i===0?'Before':'After'}</span>
+        <div class="row-fields row-fields-3">
+          <div class="form-group">
+            <label>画像URL</label>
+            <input type="url" class="gba-src" value="${esc(d.src)}" placeholder="https://...">
+          </div>
+          <div class="form-group">
+            <label>alt テキスト</label>
+            <input type="text" class="gba-alt" value="${esc(d.alt)}" placeholder="画像の説明">
+          </div>
+          <div class="form-group">
+            <label>オーバーレイラベル</label>
+            <input type="text" class="gba-label" value="${esc(d.label)}" placeholder="利用前 / 利用3ヶ月後">
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function buildGalleryMediaRows() {
+    const defaults = [
+      { src: 'https://placehold.co/120x40/cccccc/555555?text=Media+A', alt: 'メディアA' },
+      { src: 'https://placehold.co/120x40/cccccc/555555?text=Media+B', alt: 'メディアB' },
+      { src: 'https://placehold.co/120x40/cccccc/555555?text=Media+C', alt: 'メディアC' }
+    ];
+    const wrap = document.getElementById('gallery-media-rows');
+    wrap.innerHTML = defaults.map((d, i) => `
+      <div class="dynamic-row" style="margin-top:${i>0?'10px':'0'};">
+        <span class="row-num">ロゴ ${i+1}</span>
+        <div class="row-fields row-fields-2">
+          <div class="form-group">
+            <label>ロゴ画像URL</label>
+            <input type="url" class="gm-src" value="${esc(d.src)}" placeholder="https://...">
+          </div>
+          <div class="form-group">
+            <label>メディア名（alt）</label>
+            <input type="text" class="gm-alt" value="${esc(d.alt)}" placeholder="メディア名">
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  /* ============================================================
+     SERVICE CARDS BUILDER
+  ============================================================ */
+  function buildServiceCardRows() {
+    const defaults = [
+      { icon: '📋', title: 'サービス内容', text: '専門家による個別相談から継続サポートまで幅広く対応しています。' },
+      { icon: '💰', title: '料金プラン',   text: 'お問い合わせください' },
+      { icon: '📍', title: '対応エリア',   text: '全国対応' },
+      { icon: '📈', title: '利用実績',     text: '累計10,000件以上' }
+    ];
+    const wrap = document.getElementById('service-card-rows');
+    wrap.innerHTML = defaults.map((d, i) => `
+      <div class="dynamic-row" style="margin-top:${i>0?'10px':'0'};">
+        <span class="row-num">カード ${i+1}</span>
+        <div class="row-fields row-fields-3">
+          <div class="form-group">
+            <label>アイコン（絵文字）</label>
+            <input type="text" class="sc-icon" value="${esc(d.icon)}" placeholder="📋">
+          </div>
+          <div class="form-group">
+            <label>タイトル</label>
+            <input type="text" class="sc-title" value="${esc(d.title)}" placeholder="サービス内容">
+          </div>
+          <div class="form-group">
+            <label>説明文</label>
+            <input type="text" class="sc-text" value="${esc(d.text)}" placeholder="説明テキスト">
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  /* ============================================================
+     STEPS BUILDER
+  ============================================================ */
+  function buildStepsRows() {
+    const defaults = [
+      { title: 'お問い合わせ', text: '公式サイトのフォームまたはお電話でお気軽にご相談ください。' },
+      { title: 'ヒアリング',   text: '専門スタッフがお客様のご要望を丁寧にヒアリングします。' },
+      { title: 'サービス開始', text: 'ご要望に合わせたプランでサービスをご提供します。' }
+    ];
+    const wrap = document.getElementById('steps-rows');
+    wrap.innerHTML = defaults.map((d, i) => `
+      <div class="dynamic-row" style="margin-top:${i>0?'10px':'0'};">
+        <span class="row-num">STEP ${i+1}</span>
+        <div class="row-fields row-fields-2">
+          <div class="form-group">
+            <label>ステップ名</label>
+            <input type="text" class="step-title" value="${esc(d.title)}" placeholder="お問い合わせ">
+          </div>
+          <div class="form-group">
+            <label>説明文</label>
+            <input type="text" class="step-text" value="${esc(d.text)}" placeholder="説明テキスト">
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  /* ============================================================
+     REVIEWS (dynamic rows)
+  ============================================================ */
+  let reviewCount = 0;
+
+  const defaultReviewData = [
+    { name: '田中 M様', age: '32歳・女性', stars: 5, tag: '効果実感',
+      text: '最初は半信半疑でしたが、使ってみて本当によかったです。他の口コミサイトと違い、具体的な体験談が多くて参考になりました。' },
+    { name: '佐藤 K様', age: '45歳・男性', stars: 5, tag: '信頼性',
+      text: '企業の広告では分からないリアルな情報が載っていて、購入前の不安が解消されました。友人にも勧めています。' },
+    { name: '伊藤 A様', age: '28歳・女性', stars: 4, tag: '価格納得',
+      text: '料金が少し高いかと思いましたが、サービスの質を考えると納得できました。担当の方の対応も丁寧でした。' },
+    { name: '山本 T様', age: '38歳・男性', stars: 4, tag: '使いやすさ',
+      text: '初めて利用しましたが、思っていたより使いやすかったです。もう少し早く知りたかった。' },
+    { name: '鈴木 E様', age: '41歳・女性', stars: 5, tag: '継続利用',
+      text: '友人に勧められて使ってみました。期待以上の結果が出て、今では毎月利用しています。継続するつもりです。' }
+  ];
+
+  function addReviewRow(data = {}) {
+    reviewCount++;
+    const id = `review-row-${Date.now()}-${reviewCount}`;
+    const wrap = document.getElementById('reviews-rows');
+
+    const row = document.createElement('div');
+    row.className = 'dynamic-row';
+    row.id = id;
+    row.style.marginTop = wrap.children.length > 0 ? '10px' : '0';
+
+    const stars = data.stars || 5;
+    const starsOptions = [5,4,3,2,1].map(v =>
+      `<option value="${v}" ${v===stars?'selected':''}>${'★'.repeat(v)}${'☆'.repeat(5-v)} (${v}点)</option>`
+    ).join('');
+
+    row.innerHTML = `
+      <span class="row-num">レビュー ${reviewCount}</span>
+      <button type="button" class="row-delete" aria-label="このレビューを削除" data-target="${id}">×</button>
+      <div class="row-fields">
+        <div class="row-fields-2" style="margin-bottom:10px;">
+          <div class="form-group">
+            <label>お名前</label>
+            <input type="text" class="rv-name" value="${esc(data.name || '')}" placeholder="田中 M様">
+          </div>
+          <div class="form-group">
+            <label>属性（年齢・性別）</label>
+            <input type="text" class="rv-age" value="${esc(data.age || '')}" placeholder="32歳・女性">
+          </div>
+        </div>
+        <div class="row-fields-2" style="margin-bottom:10px;">
+          <div class="form-group">
+            <label>星評価</label>
+            <select class="rv-stars stars-select">${starsOptions}</select>
+          </div>
+          <div class="form-group">
+            <label>タグ</label>
+            <input type="text" class="rv-tag" value="${esc(data.tag || '')}" placeholder="効果実感">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>レビュー本文</label>
+          <textarea class="rv-text" rows="3" placeholder="実際に使ってみた感想を入力してください…">${esc(data.text || '')}</textarea>
+        </div>
+      </div>
+    `;
+
+    wrap.appendChild(row);
+    row.querySelector('.row-delete').addEventListener('click', () => {
+      row.remove();
+      updateCounts();
+    });
+
+    updateCounts();
+  }
+
+  /* ============================================================
+     FAQS (dynamic rows)
+  ============================================================ */
+  let faqCount = 0;
+
+  const defaultFaqData = [
+    { q: '本当に効果はありますか？', a: '実際にご利用いただいた方の〇割以上が「満足」とお答えいただいています。個人差はありますが、多くの方に実感していただいています。' },
+    { q: '料金はどのくらいかかりますか？', a: 'サービス内容によって異なります。詳細は公式サイトのお問い合わせフォームよりご確認ください。' },
+    { q: '初めてでも安心して使えますか？', a: 'はい、初めての方でも丁寧にサポートいたします。ご不明な点はお気軽にご相談ください。' },
+    { q: '解約・キャンセルはできますか？', a: '所定の手続きにより解約が可能です。詳細は公式サイトをご確認ください。' },
+    { q: 'この記事は広告ですか？', a: '本記事はPR記事です。第三者の記者が取材・編集していますが、掲載費用を企業からいただいています。' }
+  ];
+
+  function addFaqRow(data = {}) {
+    faqCount++;
+    const id = `faq-row-${Date.now()}-${faqCount}`;
+    const wrap = document.getElementById('faqs-rows');
+
+    const row = document.createElement('div');
+    row.className = 'dynamic-row';
+    row.id = id;
+    row.style.marginTop = wrap.children.length > 0 ? '10px' : '0';
+
+    row.innerHTML = `
+      <span class="row-num">Q${faqCount}</span>
+      <button type="button" class="row-delete" aria-label="このFAQを削除" data-target="${id}">×</button>
+      <div class="row-fields">
+        <div class="form-group" style="margin-bottom:10px;">
+          <label>質問（Q）</label>
+          <input type="text" class="faq-q" value="${esc(data.q || '')}" placeholder="例: 料金はどのくらいかかりますか？">
+        </div>
+        <div class="form-group">
+          <label>回答（A）</label>
+          <textarea class="faq-a" rows="3" placeholder="回答を入力してください…">${esc(data.a || '')}</textarea>
+        </div>
+      </div>
+    `;
+
+    wrap.appendChild(row);
+    row.querySelector('.row-delete').addEventListener('click', () => {
+      row.remove();
+      updateCounts();
+    });
+
+    updateCounts();
+  }
+
+  function updateCounts() {
+    document.getElementById('review-count').textContent =
+      document.getElementById('reviews-rows').children.length;
+    document.getElementById('faq-count').textContent =
+      document.getElementById('faqs-rows').children.length;
+  }
+
+  /* ============================================================
+     COLLECT FORM DATA
+  ============================================================ */
+  function collectFormData() {
+    // Basic
+    const slug    = val('f-slug');
+    const company = val('f-company');
+
+    // Gallery
+    const serviceImgs = [...document.querySelectorAll('#gallery-service-rows .dynamic-row')].map(r => ({
+      src:     r.querySelector('.gs-src').value.trim(),
+      alt:     r.querySelector('.gs-alt').value.trim(),
+      caption: r.querySelector('.gs-caption').value.trim()
+    }));
+
+    const baImgs = [...document.querySelectorAll('#gallery-ba-rows .dynamic-row')].map(r => ({
+      src:   r.querySelector('.gba-src').value.trim(),
+      alt:   r.querySelector('.gba-alt').value.trim(),
+      label: r.querySelector('.gba-label').value.trim()
+    }));
+
+    const mediaImgs = [...document.querySelectorAll('#gallery-media-rows .dynamic-row')].map(r => ({
+      src: r.querySelector('.gm-src').value.trim(),
+      alt: r.querySelector('.gm-alt').value.trim()
+    }));
+
+    // Reviews
+    const reviews = [...document.querySelectorAll('#reviews-rows .dynamic-row')].map((r, i) => ({
+      id:    i + 1,
+      name:  r.querySelector('.rv-name').value.trim(),
+      age:   r.querySelector('.rv-age').value.trim(),
+      stars: parseInt(r.querySelector('.rv-stars').value, 10),
+      tag:   r.querySelector('.rv-tag').value.trim(),
+      text:  r.querySelector('.rv-text').value.trim()
+    }));
+
+    // Service cards
+    const serviceCards = [...document.querySelectorAll('#service-card-rows .dynamic-row')].map(r => ({
+      icon:  r.querySelector('.sc-icon').value.trim(),
+      title: r.querySelector('.sc-title').value.trim(),
+      text:  r.querySelector('.sc-text').value.trim()
+    }));
+
+    // Steps
+    const steps = [...document.querySelectorAll('#steps-rows .dynamic-row')].map(r => ({
+      title: r.querySelector('.step-title').value.trim(),
+      text:  r.querySelector('.step-text').value.trim()
+    }));
+
+    // FAQs
+    const faqs = [...document.querySelectorAll('#faqs-rows .dynamic-row')].map(r => ({
+      q: r.querySelector('.faq-q').value.trim(),
+      a: r.querySelector('.faq-a').value.trim()
+    }));
+
+    // Story
+    const storyRaw = val('f-story');
+    const storyText = storyRaw
+      ? storyRaw.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean)
+      : ['企業の良さを自ら伝えても、なかなか信頼してもらえない。そんな悩みを持つ企業と、本当に良いサービスを探している消費者の双方を繋ぎたい——そんな想いでこのメディアを立ち上げました。'];
+
+    const today = new Date().toISOString().split('T')[0];
+    const heroTitle = val('f-hero-title') || `${company}の評判を<br>徹底調査しました`;
+
+    return {
+      slug,
+      title: `${company}の評判を徹底調査 | みんなの評判.com`,
+      metaDesc: val('f-meta-desc') || `記者・漆沢が実際の利用者の声をもとに独自取材した、${company}の評判記事です。`,
+      ogImage: serviceImgs[0]?.src || 'https://placehold.co/1200x630/1a5fa8/ffffff?text=OGP',
+      company,
+      category: val('f-category') || 'その他',
+      publishedAt: val('f-published') || today,
+      updatedAt: today,
+      heroTag:   val('f-hero-tag')  || '大手ネットニュースでも話題！',
+      heroTitle,
+      heroSub:   val('f-hero-sub') || `記者・漆沢が実際の利用者の声をもとに独自取材した、${company}の信頼性の高い評判記事です。`,
+      editorName:  '記者：漆沢 祐樹',
+      editorTitle: 'フリーランス記者 / 消費者メディア専門',
+      editorImg:   'https://placehold.co/64x64/1a5fa8/ffffff?text=Y',
+      checkItems: [
+        '実際の利用者から集めたリアルな評判',
+        'サービスの詳細と料金の概要',
+        '購入前に知っておくべき注意点'
+      ],
+      galleries: { service: serviceImgs, beforeAfter: baImgs, media: mediaImgs },
+      reviews,
+      serviceCards,
+      steps,
+      faqs,
+      storyImg:  val('f-story-img') || 'https://placehold.co/200x200/e8f0fe/1a5fa8?text=CEO',
+      storyAlt:  '代表者の写真',
+      storyText,
+      officialUrl: val('f-official-url') || '#',
+      ctaTitle:    val('f-cta-title') || 'この評判記事が気になった方へ',
+      ctaSub:      val('f-cta-sub')   || 'まずは公式サイトで詳細をご確認ください。',
+      ctaBtn:      val('f-cta-btn')   || '公式サイトを確認する →'
+    };
+  }
+
+  /* ============================================================
+     VALIDATION
+  ============================================================ */
+  function validate(data) {
+    const errors = [];
+    if (!data.slug)    errors.push('スラッグは必須です');
+    if (!/^[a-z0-9\-]+$/.test(data.slug)) errors.push('スラッグは英小文字・数字・ハイフンのみ使用できます');
+    if (!data.company) errors.push('企業・サービス名は必須です');
+
+    const existing = window.ARTICLES || [];
+    if (existing.some(a => a.slug === data.slug)) {
+      errors.push(`スラッグ「${data.slug}」はすでに存在します。別のスラッグを使用してください`);
+    }
+
+    if (data.reviews.length === 0) errors.push('レビューを1件以上追加してください');
+    if (data.faqs.length === 0)    errors.push('FAQを1件以上追加してください');
+
+    return errors;
+  }
+
+  /* ============================================================
+     GENERATE articles.js CONTENT
+  ============================================================ */
+  function generateArticlesJS(articles) {
+    const json = JSON.stringify(articles, null, 2);
+    return `/**
+ * ================================================================
+ *  みんなの評判.com — 記事データストア
+ * ================================================================
+ *
+ * ■ 記事の追加方法
+ *   admin.html を使って管理画面から新しい articles.js を生成・ダウンロードしてください。
+ *
+ * ■ 最終更新: ${new Date().toISOString().replace('T', ' ').slice(0, 16)}
+ * ================================================================
+ */
+
+window.ARTICLES = ${json};
+`;
+  }
+
+  /* ============================================================
+     DOWNLOAD
+  ============================================================ */
+  document.getElementById('download-btn').addEventListener('click', () => {
+    const data = collectFormData();
+
+    // Validate
+    const errors = validate(data);
+    const errBox  = document.getElementById('validation-error');
+    const errList = document.getElementById('error-list');
+
+    if (errors.length > 0) {
+      errList.innerHTML = errors.map(e => `<li>${esc(e)}</li>`).join('');
+      errBox.style.display = 'block';
+      errBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    errBox.style.display = 'none';
+
+    // Merge with existing articles
+    const existing = window.ARTICLES || [];
+    const merged = [...existing, data];
+
+    // Generate file content
+    const content = generateArticlesJS(merged);
+
+    // Download
+    const blob = new Blob([content], { type: 'text/javascript;charset=utf-8' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href     = url;
+    a.download = 'articles.js';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    // Show preview link
+    const previewArea = document.getElementById('preview-area');
+    const previewLink = document.getElementById('preview-link');
+    previewLink.href   = `article.html?id=${encodeURIComponent(data.slug)}`;
+    previewArea.style.display = 'block';
+
+    showToast('✓ articles.js をダウンロードしました！');
+  });
+
+  /* ============================================================
+     INIT
+  ============================================================ */
+  document.addEventListener('DOMContentLoaded', () => {
+    // Set default publish date
+    document.getElementById('f-published').value = new Date().toISOString().split('T')[0];
+
+    // Build static rows
+    buildGalleryServiceRows();
+    buildGalleryBARows();
+    buildGalleryMediaRows();
+    buildServiceCardRows();
+    buildStepsRows();
+
+    // Add default reviews
+    defaultReviewData.forEach(r => addReviewRow(r));
+
+    // Add default FAQs
+    defaultFaqData.forEach(f => addFaqRow(f));
+
+    // Add review / FAQ buttons
+    document.getElementById('add-review-btn').addEventListener('click', () => addReviewRow());
+    document.getElementById('add-faq-btn').addEventListener('click', () => addFaqRow());
+
+    // Render articles list
+    renderAdminList();
+  });
+  </script>
+</body>
+</html>

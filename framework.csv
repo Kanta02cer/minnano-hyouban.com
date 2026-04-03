@@ -1,0 +1,25 @@
+セクション,要素名,役割・目的,コンテンツ内容,CSS クラス,備考
+HEADER,ロゴ,サイト識別・トップへの導線,みんなの評判.com,.logo / .logo-text / .logo-com,Noto Serif JP
+HEADER,デスクトップナビ,主要セクションへのアンカーリンク,記事一覧 / カテゴリ / 取材について / 取材依頼,.nav-desktop,sticky固定
+HEADER,ハンバーガー,モバイルメニュー開閉,—,.hamburger,768px以下で表示
+HEADER,モバイルナビ,スマホ用ドロップダウンメニュー,デスクトップと同一リンク,.nav-mobile,hidden属性で制御
+HERO,アイキャッチコピー,読者の関心を引く第一印象,企業の本音を あなたに届ける。,.hero-title,Noto Serif JP / clamp(2rem～3rem)
+HERO,リード文,メディアの立場・信頼性訴求,フリーランス記者・漆沢が取材した旨,.hero-lead,—
+HERO,実績数値バー,信頼補強・第三者性の証明,127件+ / 10年+ / 500件+,.hero-stats / .hero-stat,縦区切り線で分割
+HERO,CTA,記事への誘導,最新の評判記事を読む,.hero-cta,コバルト背景
+HERO,担当記者アサイド,記者プロフィールで権威性を付与,顔写真・役職・名前・略歴,.hero-editor,カード型ボーダー
+PROMISE BAR,約束リスト,メディアの透明性・信頼性を宣言,5項目の約束,.promise-bar / .promise-list,コバルト背景帯
+FEATURED,注目記事カード,最新・主力記事への大型誘導,キャリアコーチング記事 / スコア / 口コミ数,.featured-card,2カラムグリッド
+FEATURED,カテゴリラベル,記事分類を視覚的に示す,キャリア・転職,.featured-category,画像上にabsolute配置
+FEATURED,スコア・口コミ数,評価の信頼性を数値で提示,★4.7 / 口コミ127件,.featured-score / .featured-count,—
+ARTICLES,記事リスト,複数記事を一覧表示,エステ / 語学スクール / 準備中,.article-list,ボーダー区切り
+ARTICLES,記事サムネイル,視覚的に内容を示す,プレースホルダー画像,.article-thumb,200px固定幅
+ARTICLES,カテゴリタグ,色分けで分類を伝える,美容 / 語学 / マネー,.cat-beauty / .cat-study / .cat-money,背景色で色分け
+ARTICLES,準備中アイテム,今後の記事を予告・期待感醸成,取材中ラベル + 公開予定日,.article-item--upcoming,opacity 0.72
+CATEGORIES,カテゴリナビ,テーマ別に記事を絞り込む,5カテゴリ + すべて,.category-nav / .category-tag,—
+ABOUT,メディア紹介,設立背景・目的の説明,企業と消費者を繋ぐ想い,.about-intro,2カラムグリッド
+ABOUT,5つの約束,透明性・公正性の具体的な宣言,5項目ordered list,.promise-items,数字リスト / ダーク背景
+CONTACT,取材依頼セクション,企業からの問い合わせ誘導,掲載の案内 + 注意事項 + メールCTA,.contact-inner,中央寄せ
+FOOTER,フッターブランド,サイト名・キャッチコピー,みんなの評判.com,.footer-brand,—
+FOOTER,フッターナビ,各セクション・法的ページへのリンク,4リンク + プライバシー + 免責,.footer-nav,—
+FOOTER,著作権・PR注記,法的表示,Copyright / PR記事表示,.footer-bottom,—

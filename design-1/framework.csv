@@ -1,0 +1,26 @@
+セクション,要素名,役割・目的,コンテンツ内容,CSS クラス,備考
+HEADER,ロゴ,サイト識別・トップページへの導線,みんなの評判.com,.logo / .logo-serif,Noto Serif JP
+HEADER,スコアバッジ,評価スコアを常時表示して信頼性維持,★ 4.7 （127件）,.header-score,sticky固定
+HEADER,デスクトップナビ,記事一覧 / 公式サイトへの導線,2リンク,.nav-desktop,—
+HERO,ベントグリッド,視覚的に多彩な情報を整理して提示,4ブロック構成,.hero-bento,CSS Grid / grid-template-areas
+HERO,ヘッドライン,記事タイトル・記者バイライン・リード文,〇〇の評判を徹底調査 / 漆沢 祐樹,.bento-headline,Noto Serif JP
+HERO,スコアカード,総合評価を視覚的に大きく提示,4.7 / 5.0 / 127件 / 取材済み,.bento-score,sticky / ボーダー枠
+HERO,メディア掲載実績,第三者メディア掲載で権威性付与,ロゴ3点,.bento-media,—
+HERO,記事特徴バッジ,第三者取材・PR記事であることの明示,✓バッジ5点,.bento-badges,—
+EDITORIAL BODY,記者ノートカード,記事の読み始めで記者の立ち位置を宣言,取材前提・立場,.reporter-note-card,枠線カード
+EDITORIAL BODY,サービスナレーション,サービス内容の文脈的な説明,利用体験の流れ,.editorial-body,本文スタイル
+EDITORIAL BODY,特徴ボックス,サービス4つの強みを番号付きで提示,01〜04の各強み,.feature-boxes / .feature-box / .fb-icon,数字アイコン
+EDITORIAL BODY,ジャーナリスト視点ボックス,記者の客観的評価を挿入,記者コメント,.journalist-take-box / .jtb-label,背景色強調
+EDITORIAL BODY,評価基準,記者が何を基準に評価したかを明示,5項目,.evaluation-criteria / .eval-item,番号付きリスト
+SCORE,スコアバーグラフ,5評価軸の詳細スコアをアニメで表示,効果・サポート・コスパ・信頼・継続意向,.score-bars / .score-bar-row,IntersectionObserver + CSS --bar-pct
+GALLERY 1,サービスギャラリー,サービス雰囲気を写真で伝える,Swiperスライダー3枚,.swiper-service,Swiper.js v11
+INTERVIEWS,インタビューカード3件,利用者の生の声をR25形式で掲載,A=32歳女性 / B=38歳男性 / C=29歳女性,.interview-section / .interview-card,Q&A形式 / 記者観察メモ付き
+GALLERY 2,ビフォーアフター,変化を視覚的に見せる,Swiperスライダー,.swiper-ba,—
+REVIEWS,口コミマソンリー,多様な口コミを不規則なレイアウトで表示,JS動的生成 / 5件,.reviews-masonry,CSS columns: 2
+JOURNALIST CUTTIN,直撃Q&A 3本,記者が会社に直撃取材した内容,費用 / 成功率 / コーチ変更,.cuttin-section / .cuttin-qa-item,Q/A/記者見解の3層構造
+JOURNALIST CUTTIN,最終評決,記者の総評,.journalist-summary,.cuttin-summary,強調枠
+SERVICE,サービス概要カード,料金・エリア・内容・実績を整理,4カード / 数字アイコン,.service-grid / .service-card,—
+SERVICE,利用ステップ,申し込みから開始までの流れ,3ステップ,.steps-list / .step,01/02/03
+FAQ,よくある質問,利用前の疑問を解消,JS動的生成,.faq-list,accordion
+CTA,最終行動喚起,公式サイトへの最終誘導,評価スコア訴求 + ボタン,.cta-section,—
+FOOTER,フッター,法的表示・ナビゲーション,ブランド・ナビ・SNS・PR注記,.site-footer,—

@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>記事投稿フォーマット — みんなの評判.com</title>
+  <style>
+    :root {
+      --primary: #1a5fa8;
+      --accent:  #c9a84c;
+      --cta:     #e85d24;
+      --success: #0a7c5c;
+      --danger:  #c0392b;
+      --muted:   #666;
+      --bg:      #f5f8fc;
+      --border:  #d0daea;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif; background: var(--bg); color: #1a1a1a; font-size: 14px; line-height: 1.7; }
+
+    /* ── HEADER ── */
+    .page-header { background: var(--primary); color: #fff; padding: 24px 32px; }
+    .page-header h1 { font-size: 22px; font-weight: 700; }
+    .page-header p  { font-size: 13px; opacity: .8; margin-top: 4px; }
+
+    /* ── LAYOUT ── */
+    .page-body  { max-width: 1100px; margin: 0 auto; padding: 32px 24px; display: grid; grid-template-columns: 260px 1fr; gap: 32px; }
+    @media (max-width: 800px) { .page-body { grid-template-columns: 1fr; } }
+
+    /* ── SIDEBAR TOC ── */
+    .toc { position: sticky; top: 24px; align-self: start; background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
+    .toc h2 { font-size: 13px; font-weight: 700; color: var(--primary); border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 10px; }
+    .toc ol  { padding-left: 18px; }
+    .toc li  { font-size: 12px; margin-bottom: 4px; }
+    .toc a   { color: var(--primary); text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+    .flow-box { margin-top: 16px; background: #f0f4fa; border-radius: 6px; padding: 12px; font-size: 12px; }
+    .flow-box h3 { font-size: 12px; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+    .flow-step { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px; }
+    .flow-num  { background: var(--primary); color: #fff; width: 18px; height: 18px; border-radius: 50%; font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+
+    /* ── MAIN CONTENT ── */
+    .main { min-width: 0; }
+
+    /* ── SECTION BLOCK ── */
+    .section-block { background: #fff; border: 1px solid var(--border); border-radius: 10px; margin-bottom: 20px; overflow: hidden; }
+    .section-block-header { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--border); }
+    .sec-num    { background: var(--primary); color: #fff; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; white-space: nowrap; }
+    .sec-num.gallery { background: var(--accent); color: #1a1a1a; }
+    .sec-num.optional { background: #e0e7ef; color: #333; }
+    .sec-title  { font-size: 15px; font-weight: 700; }
+    .sec-badge  { font-size: 11px; padding: 2px 8px; border-radius: 4px; font-weight: 600; white-space: nowrap; }
+    .required   { background: #fee2e2; color: var(--danger); }
+    .recommended{ background: #fef3c7; color: #92400e; }
+    .optional   { background: #e0e7ef; color: #555; }
+    .section-block-body { padding: 14px 16px; }
+
+    /* ── FIELD TABLE ── */
+    table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    th    { background: #f0f4fa; color: var(--primary); font-weight: 700; text-align: left; padding: 7px 10px; border: 1px solid var(--border); }
+    td    { padding: 7px 10px; border: 1px solid var(--border); vertical-align: top; }
+    td.field-name { font-family: monospace; font-size: 11px; background: #fafafa; white-space: nowrap; }
+    td.char-count { text-align: center; color: var(--muted); }
+    .badge-r { background: #fee2e2; color: var(--danger);  font-size: 10px; padding: 1px 5px; border-radius: 3px; font-weight: 700; }
+    .badge-w { background: #fef3c7; color: #92400e; font-size: 10px; padding: 1px 5px; border-radius: 3px; font-weight: 700; }
+
+    /* ── IMAGE SPEC ── */
+    .img-spec-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-top: 10px; }
+    .img-spec-card { background: #f0f4fa; border: 2px dashed var(--border); border-radius: 8px; padding: 12px; text-align: center; }
+    .img-spec-card .img-label   { font-size: 11px; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
+    .img-spec-card .img-size    { font-size: 18px; font-weight: 700; color: #1a1a1a; }
+    .img-spec-card .img-sub     { font-size: 11px; color: var(--muted); margin-top: 2px; }
+    .img-spec-card .img-count   { font-size: 11px; font-weight: 700; color: var(--cta); margin-top: 4px; }
+
+    /* ── HINT BOX ── */
+    .hint-box { background: #f0fdf4; border-left: 3px solid var(--success); border-radius: 0 6px 6px 0; padding: 10px 12px; margin-top: 10px; font-size: 12px; }
+    .hint-box strong { color: var(--success); }
+    .warn-box { background: #fff7ed; border-left: 3px solid #f59e0b; border-radius: 0 6px 6px 0; padding: 10px 12px; margin-top: 10px; font-size: 12px; }
+    .warn-box strong { color: #92400e; }
+
+    /* ── SECTION ORDER DIAGRAM ── */
+    .order-diagram { display: flex; flex-direction: column; gap: 0; }
+    .order-row { display: flex; align-items: center; gap: 10px; }
+    .order-box { flex: 1; background: #fff; border: 1px solid var(--border); border-radius: 6px; padding: 8px 12px; font-size: 12px; display: flex; align-items: center; gap: 8px; }
+    .order-box.gallery-box { border-color: var(--accent); background: #fffbeb; }
+    .order-box .o-num { font-size: 10px; font-weight: 700; background: var(--primary); color: #fff; padding: 1px 6px; border-radius: 3px; white-space: nowrap; }
+    .order-box.gallery-box .o-num { background: var(--accent); color: #1a1a1a; }
+    .order-arrow { text-align: center; color: var(--muted); font-size: 16px; line-height: 1; margin: 2px 0 2px 0; }
+    .order-meta { font-size: 11px; color: var(--muted); white-space: nowrap; }
+
+    /* ── POSTING FLOW ── */
+    .posting-flow { display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
+    .pf-step { display: flex; gap: 12px; align-items: flex-start; }
+    .pf-num  { background: var(--cta); color: #fff; width: 28px; height: 28px; border-radius: 50%; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .pf-content h4 { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
+    .pf-content p  { font-size: 12px; color: var(--muted); }
+    code { background: #f0f4fa; padding: 1px 5px; border-radius: 3px; font-family: monospace; font-size: 12px; color: var(--primary); }
+  </style>
+</head>
+<body>
+
+<header class="page-header">
+  <h1>みんなの評判.com ─ 記事投稿フォーマットガイド</h1>
+  <p>固定11セクション構成 / 画像挿入箇所・推奨文字数・投稿フロー</p>
+</header>
+
+<div class="page-body">
+
+  <!-- ── SIDEBAR ── -->
+  <aside>
+    <nav class="toc">
+      <h2>目次</h2>
+      <ol>
+        <li><a href="#sec-order">セクション構成図</a></li>
+        <li><a href="#sec-01">01 ヒーロー</a></li>
+        <li><a href="#sec-02">02 記者紹介</a></li>
+        <li><a href="#sec-03">03 記事本文</a></li>
+        <li><a href="#sec-g1">G1 サービス画像</a></li>
+        <li><a href="#sec-04">04 スコア評価</a></li>
+        <li><a href="#sec-05">05 インタビュー</a></li>
+        <li><a href="#sec-06">06 口コミ・レビュー</a></li>
+        <li><a href="#sec-g2">G2 ビフォーアフター</a></li>
+        <li><a href="#sec-07">07 切り込みQ&A</a></li>
+        <li><a href="#sec-08">08 サービス詳細</a></li>
+        <li><a href="#sec-09">09 FAQ</a></li>
+        <li><a href="#sec-g3">G3 メディア掲載</a></li>
+        <li><a href="#sec-10">10 創業ストーリー</a></li>
+        <li><a href="#sec-11">11 CTA</a></li>
+        <li><a href="#sec-flow">投稿フロー</a></li>
+      </ol>
+
+      <div class="flow-box">
+        <h3>クイック投稿フロー</h3>
+        <div class="flow-step"><div class="flow-num">1</div><span>取材・コンテンツ準備</span></div>
+        <div class="flow-step"><div class="flow-num">2</div><span><code>npm run add-article</code></span></div>
+        <div class="flow-step"><div class="flow-num">3</div><span><code>data/articles.js</code> に各フィールド追記</span></div>
+        <div class="flow-step"><div class="flow-num">4</div><span><code>npm run validate</code></span></div>
+        <div class="flow-step"><div class="flow-num">5</div><span><code>git push origin main</code></span></div>
+        <div class="flow-step"><div class="flow-num">6</div><span>GitHub Actions → 自動公開</span></div>
+      </div>
+    </nav>
+  </aside>
+
+  <!-- ── MAIN ── -->
+  <main class="main">
+
+    <!-- セクション構成図 -->
+    <div class="section-block" id="sec-order">
+      <div class="section-block-header">
+        <span class="sec-num">全体</span>
+        <span class="sec-title">固定セクション構成図（11セクション + 画像3箇所）</span>
+      </div>
+      <div class="section-block-body">
+        <div class="order-diagram">
+          <div class="order-row"><div class="order-box"><span class="o-num">01</span> ヒーロー</div><span class="order-meta">画像なし / テキスト中心</span></div>
+          <div class="order-arrow">↓</div>
+          <div class="order-row"><div class="order-box"><span class="o-num">02</span> 記者紹介 + この記事で分かること</div><span class="order-meta">顔写真 64×64px</span></div>
+          <div class="order-arrow">↓</div>
+          <div class="order-row"><div class="order-box"><span class="o-num">03</span> 記事本文（記者コメント / 注目ポイント4点 / 記者見解）</div><span class="order-meta">テキストのみ</span></div>
+          <div class="order-arrow">↓</div>
+          <div class="order-row"><div class="order-box gallery-box"><span class="o-num">G1</span> サービス画像スライダー</div><span class="order-meta">800×600px × 3枚</span></div>
+          <div class="order-arrow">↓</div>
+          <div class="order-row"><div class="order-box"><span class="o-num">04</span> スコア評価バー（5指標）</div><span class="order-meta">テキスト + アニメーション</span></div>
+          <div class="order-arrow">↓</div>
+          <div class="order-row"><div class="order-box"><span class="o-num">05</span> 取材インタビュー（利用者3名）</div><span class="order-meta">テキストのみ</span></div>
+          <div class="order-arrow">↓</div>
+          <div class="order-row"><div class="order-box"><span class="o-num">06</span> 口コミ・レビュー（5件）</div><span class="order-meta">テキスト / ★評価</span></div>
+          <div class="order-arrow">↓</div>
+          <div class="order-row"><div class="order-box gallery-box"><span class="o-num">G2</span> ビフォーアフタースライダー</div><span class="order-meta">600×400px × 2枚</span></div>
+          <div class="order-arrow">↓</div>
+          <div class="order-row"><div class="order-box"><span class="o-num">07</span> 記者 切り込みQ&A（3問 + 総評）</div><span class="order-meta">テキストのみ</span></div>
+          <div class="order-arrow">↓</div>
+          <div class="order-row"><div class="order-box"><span class="o-num">08</span> サービス概要 + 利用ステップ</div><span class="order-meta">テキスト / アイコン</span></div>
+          <div class="order-arrow">↓</div>
+          <div class="order-row"><div class="order-box"><span class="o-num">09</span> FAQ（アコーディオン）</div><span class="order-meta">テキストのみ / 5問</span></div>
+          <div class="order-arrow">↓</div>
+          <div class="order-row"><div class="order-box gallery-box"><span class="o-num">G3</span> メディア掲載ロゴ</div><span class="order-meta">120×40px × 3枚以上</span></div>
+          <div class="order-arrow">↓</div>
+          <div class="order-row"><div class="order-box"><span class="o-num">10</span> 創業ストーリー</div><span class="order-meta">写真 200×200px</span></div>
+          <div class="order-arrow">↓</div>
+          <div class="order-row"><div class="order-box"><span class="o-num">11</span> CTA（公式サイトへ誘導）</div><span class="order-meta">テキスト + ボタン</span></div>
+        </div>
+        <div class="hint-box" style="margin-top:14px">
+          <strong>セクション順は固定です。</strong> セクション単体の省略は可能ですが、順序の変更は禁止。省略する場合は該当フィールドを空文字・空配列にしてください（セクション自体が非表示になります）。
+        </div>
+      </div>
+    </div>
+
+    <!-- 01 HERO -->
+    <div class="section-block" id="sec-01">
+      <div class="section-block-header">
+        <span class="sec-num">01</span>
+        <span class="sec-title">ヒーローセクション</span>
+        <span class="sec-badge required">必須</span>
+      </div>
+      <div class="section-block-body">
+        <table>
+          <tr><th>フィールド名</th><th>説明</th><th>推奨文字数</th><th>必須</th></tr>
+          <tr>
+            <td class="field-name">heroTag</td>
+            <td>タグバッジ（例: "取材件数127件！" "SNSで話題沸騰！"）</td>
+            <td class="char-count">〜15字</td>
+            <td><span class="badge-w">推奨</span></td>
+          </tr>
+          <tr>
+            <td class="field-name">heroTitle</td>
+            <td>h1見出し。<code>&lt;br&gt;</code> タグで改行可。サービス名 + 評判訴求を含めること</td>
+            <td class="char-count">20〜35字</td>
+            <td><span class="badge-r">必須</span></td>
+          </tr>
+          <tr>
+            <td class="field-name">heroSub</td>
+            <td>サブコピー。取材規模・ネガ口コミへの言及を含めると効果的。記事一覧のエクサープトとして使用される</td>
+            <td class="char-count">80〜120字</td>
+            <td><span class="badge-w">推奨</span></td>
+          </tr>
+        </table>
+        <div class="hint-box"><strong>書き方のコツ：</strong>heroSub には「◯◯名に直接取材」「ネガコメントの真相も含め」などの表現を入れると読者の信頼感が増します。</div>
+      </div>
+    </div>
+
+    <!-- 02 EDITOR'S NOTE -->
+    <div class="section-block" id="sec-02">
+      <div class="section-block-header">
+        <span class="sec-num">02</span>
+        <span class="sec-title">記者紹介 / この記事で分かること</span>
+        <span class="sec-badge recommended">推奨</span>
+      </div>
+      <div class="section-block-body">
+        <table>
+          <tr><th>フィールド名</th><th>説明</th><th>推奨文字数</th><th>必須</th></tr>
+          <tr><td class="field-name">editorName</td><td>記者名（例: "記者：漆沢 祐樹"）</td><td class="char-count">固定</td><td><span class="badge-w">推奨</span></td></tr>
+          <tr><td class="field-name">editorTitle</td><td>記者肩書き</td><td class="char-count">〜30字</td><td><span class="badge-w">推奨</span></td></tr>
+          <tr><td class="field-name">editorImg</td><td>記者顔写真URL（<strong>64×64px</strong> / 正方形）</td><td class="char-count">URL</td><td><span class="badge-w">推奨</span></td></tr>
+          <tr><td class="field-name">checkItems</td><td>「この記事で分かること」リスト。3項目固定。読者の疑問に直接答える形で書く</td><td class="char-count">各20〜40字</td><td><span class="badge-w">推奨</span></td></tr>
+        </table>
+        <div class="img-spec-grid" style="max-width:280px">
+          <div class="img-spec-card">
+            <div class="img-label">editorImg（記者顔写真）</div>
+            <div class="img-size">64 × 64 px</div>
+            <div class="img-sub">正方形 / JPG or PNG</div>
+            <div class="img-count">1枚</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 03 ARTICLE BODY -->
+    <div class="section-block" id="sec-03">
+      <div class="section-block-header">
+        <span class="sec-num">03</span>
+        <span class="sec-title">記事本文（記者コメント / 注目ポイント / 記者見解）</span>
+        <span class="sec-badge recommended">推奨</span>
+      </div>
+      <div class="section-block-body">
+        <table>
+          <tr><th>フィールド名</th><th>説明</th><th>推奨文字数</th><th>必須</th></tr>
+          <tr>
+            <td class="field-name">reporterNote</td>
+            <td>記者コメントカード。取材で最も印象に残った1点を主観的に書く。読者の続読を促す"フック"として機能する</td>
+            <td class="char-count">60〜100字</td>
+            <td><span class="badge-w">推奨</span></td>
+          </tr>
+          <tr>
+            <td class="field-name">featureBoxes</td>
+            <td>注目ポイント4点（01〜04番号付き）。取材で確認した根拠・事実を中心に書く。各タイトル15字以内、本文100〜150字</td>
+            <td class="char-count">各100〜150字</td>
+            <td><span class="badge-w">推奨</span></td>
+          </tr>
+          <tr>
+            <td class="field-name">journalistTake</td>
+            <td>記者の総括見解ボックス（金色ボーダー）。ポジティブ・ネガティブ両面と読者へのアクションアドバイスを含めること</td>
+            <td class="char-count">80〜150字</td>
+            <td><span class="badge-w">推奨</span></td>
+          </tr>
+        </table>
+        <div class="warn-box"><strong>注意：</strong> featureBoxes の4項目はすべて「取材で確認した事実」に基づいて書くこと。主観的な誇張表現は避け、根拠となる数字や具体的なエピソードを入れることを推奨します。</div>
+      </div>
+    </div>
+
+    <!-- G1 SERVICE GALLERY -->
+    <div class="section-block" id="sec-g1">
+      <div class="section-block-header">
+        <span class="sec-num gallery">G1</span>
+        <span class="sec-title">サービス画像スライダー</span>
+        <span class="sec-badge recommended">推奨</span>
+      </div>
+      <div class="section-block-body">
+        <table>
+          <tr><th>フィールド名</th><th>説明</th><th>必須</th></tr>
+          <tr><td class="field-name">galleries.service[].src</td><td>画像URL（実ファイルは <code>images/</code> フォルダに格納）</td><td><span class="badge-w">推奨</span></td></tr>
+          <tr><td class="field-name">galleries.service[].alt</td><td>alt属性テキスト（アクセシビリティ対応）</td><td><span class="badge-w">推奨</span></td></tr>
+          <tr><td class="field-name">galleries.service[].caption</td><td>スライド下のキャプション（20〜40字）</td><td><span class="badge-w">推奨</span></td></tr>
+        </table>
+        <div class="img-spec-grid">
+          <div class="img-spec-card">
+            <div class="img-label">G1 サービス画像</div>
+            <div class="img-size">800 × 600 px</div>
+            <div class="img-sub">JPG / PNG<br>横スライダー表示</div>
+            <div class="img-count">3枚（推奨）</div>
+          </div>
+        </div>
+        <div class="hint-box"><strong>撮影ガイド：</strong> ①サービス環境・施設 ②スタッフ対応シーン ③ツール・機器クローズアップ の順で撮影すると、サービス全体像が伝わりやすくなります。</div>
+      </div>
+    </div>
+
+    <!-- 04 SCORE BREAKDOWN -->
+    <div class="section-block" id="sec-04">
+      <div class="section-block-header">
+        <span class="sec-num">04</span>
+        <span class="sec-title">スコア評価バー（5指標）</span>
+        <span class="sec-badge recommended">推奨</span>
+      </div>
+      <div class="section-block-body">
+        <table>
+          <tr><th>フィールド名</th><th>説明</th><th>必須</th></tr>
+          <tr><td class="field-name">scoreDetails[].label</td><td>評価指標名（例: "サービス品質" "コスパ" "サポート体制" "透明性・誠実さ" "利用者満足度"）</td><td><span class="badge-w">推奨</span></td></tr>
+          <tr><td class="field-name">scoreDetails[].score</td><td>スコア（数値 / 小数点1桁まで）</td><td><span class="badge-w">推奨</span></td></tr>
+          <tr><td class="field-name">scoreDetails[].max</td><td>最大スコア（通常 <code>5</code>）</td><td><span class="badge-w">推奨</span></td></tr>
+          <tr><td class="field-name">scoreNote</td><td>スコア下の注釈（算出根拠・取材人数等）</td><td><span class="badge-w">推奨</span></td></tr>
+        </table>
+        <div class="warn-box"><strong>注意：</strong> 5指標の名称は原則固定。指標を変更する場合は社内承認が必要です。スコアは取材結果に基づく主観的評価であることを <code>scoreNote</code> に明記してください。</div>
+      </div>
+    </div>
+
+    <!-- 05 INTERVIEWS -->
+    <div class="section-block" id="sec-05">
+      <div class="section-block-header">
+        <span class="sec-num">05</span>
+        <span class="sec-title">取材インタビュー（利用者3名）</span>
+        <span class="sec-badge recommended">推奨</span>
+      </div>
+      <div class="section-block-body">
+        <table>
+          <tr><th>フィールド名</th><th>説明</th><th>推奨文字数</th><th>必須</th></tr>
+          <tr><td class="field-name">interviews[].name</td><td>取材協力者名（匿名可 / 例: "田中 M様（32歳・女性）"）</td><td class="char-count">〜20字</td><td><span class="badge-w">推奨</span></td></tr>
+          <tr><td class="field-name">interviews[].bg</td><td>利用前の状況・職業・課題（1行）</td><td class="char-count">〜40字</td><td><span class="badge-w">推奨</span></td></tr>
+          <tr><td class="field-name">interviews[].resultType</td><td><code>"success"</code> または <code>"other"</code>（バッジの色が変わる）</td><td class="char-count">固定</td><td><span class="badge-w">推奨</span></td></tr>
+          <tr><td class="field-name">interviews[].resultLabel</td><td>バッジに表示する結果ラベル（例: "転職成功 / 年収+80万"）</td><td class="char-count">〜20字</td><td><span class="badge-w">推奨</span></td></tr>
+          <tr><td class="field-name">interviews[].qa</td><td>Q&Aペア（2問固定）。Q: 記者からの質問、A: 利用者の回答（一人称で、NG: 美化・誇張）</td><td class="char-count">A: 各60〜120字</td><td><span class="badge-w">推奨</span></td></tr>
+          <tr><td class="field-name">interviews[].obs</td><td>取材後記（記者の補足コメント）。斜体で表示される</td><td class="char-count">50〜100字</td><td><span class="badge-w">推奨</span></td></tr>
+        </table>
+        <div class="hint-box">
+          <strong>3名の構成推奨：</strong><br>
+          ① 最もポジティブな成果を出した利用者（resultType: "success"）<br>
+          ② 別の属性・背景の成功事例（resultType: "success"）<br>
+          ③ 転職しなかった・別の結果など異なる角度のケース（resultType: "other"）<br>
+          → 多様な読者に自分ごと化させる構成が有効です。
+        </div>
+      </div>
+    </div>
+
+    <!-- 06 REVIEWS -->
+    <div class="section-block" id="sec-06">
+      <div class="section-block-header">
+        <span class="sec-num">06</span>
+        <span class="sec-title">口コミ・レビュー（5件）</span>
+        <span class="sec-badge required">必須</span>
+      </div>
+      <div class="section-block-body">
+        <table>
+          <tr><th>フィールド名</th><th>説明</th><th>必須</th></tr>
+          <tr><td class="field-name">reviews[].id</td><td>一意のID（連番: 1〜5）</td><td><span class="badge-r">必須</span></td></tr>
+          <tr><td class="field-name">reviews[].name</td><td>投稿者名（例: "田中 M様"）</td><td><span class="badge-r">必須</span></td></tr>
+          <tr><td class="field-name">reviews[].age</td><td>年代・性別（例: "32歳・女性"）</td><td><span class="badge-r">必須</span></td></tr>
+          <tr><td class="field-name">reviews[].stars</td><td>評価点数（<strong>数値</strong> 1〜5。文字列 "5" は無効）</td><td><span class="badge-r">必須</span></td></tr>
+          <tr><td class="field-name">reviews[].tag</td><td>特徴タグ（例: "転職成功" "効果実感"）</td><td><span class="badge-r">必須</span></td></tr>
+          <tr><td class="field-name">reviews[].text</td><td>レビュー本文（実際の利用者の言葉で。記者による改変は内容・文脈を変えないこと）</td><td><span class="badge-r">必須</span></td></tr>
+        </table>
+        <div class="warn-box"><strong>重要：</strong> <code>stars</code> は必ず <strong>数値（integer）</strong> で入力してください。文字列 <code>"5"</code> ではスコア計算が動きません。</div>
+      </div>
+    </div>
+
+    <!-- G2 BEFORE/AFTER -->
+    <div class="section-block" id="sec-g2">
+      <div class="section-block-header">
+        <span class="sec-num gallery">G2</span>
+        <span class="sec-title">ビフォーアフタースライダー</span>
+        <span class="sec-badge recommended">推奨</span>
+      </div>
+      <div class="section-block-body">
+        <table>
+          <tr><th>フィールド名</th><th>説明</th><th>必須</th></tr>
+          <tr><td class="field-name">galleries.beforeAfter[].src</td><td>画像URL</td><td><span class="badge-w">推奨</span></td></tr>
+          <tr><td class="field-name">galleries.beforeAfter[].alt</td><td>alt属性テキスト</td><td><span class="badge-w">推奨</span></td></tr>
+          <tr><td class="field-name">galleries.beforeAfter[].label</td><td>画像下ラベル（例: "受講前" "受講3ヶ月後"）</td><td><span class="badge-w">推奨</span></td></tr>
+        </table>
+        <div class="img-spec-grid">
+          <div class="img-spec-card">
+            <div class="img-label">G2 ビフォーアフター</div>
+            <div class="img-size">600 × 400 px</div>
+            <div class="img-sub">JPG / PNG<br>左: Before / 右: After</div>
+            <div class="img-count">2枚（推奨）</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 07 CUTTING QA -->
+    <div class="section-block" id="sec-07">
+      <div class="section-block-header">
+        <span class="sec-num">07</span>
+        <span class="sec-title">記者 切り込みQ&A（3問 + 総評）</span>
+        <span class="sec-badge recommended">推奨</span>
+      </div>
+      <div class="section-block-body">
+        <table>
+          <tr><th>フィールド名</th><th>説明</th><th>推奨文字数</th><th>必須</th></tr>
+          <tr><td class="field-name">cuttingIntro</td><td>セクション導入テキスト（例: "取材の終盤、記者として気になった点を直接企業に確認しました。"）</td><td class="char-count">30〜50字</td><td><span class="badge-w">推奨</span></td></tr>
+          <tr><td class="field-name">cuttingQA[].who</td><td>質問者（通常 <code>"記者"</code>）</td><td class="char-count">固定</td><td><span class="badge-w">推奨</span></td></tr>
+          <tr><td class="field-name">cuttingQA[].q</td><td>記者からの鋭い質問（ネガコメント・疑問点に切り込む内容）</td><td class="char-count">30〜60字</td><td><span class="badge-w">推奨</span></td></tr>
+          <tr><td class="field-name">cuttingQA[].a</td><td>企業担当者の回答</td><td class="char-count">60〜150字</td><td><span class="badge-w">推奨</span></td></tr>
+          <tr><td class="field-name">cuttingSummary.label</td><td>総評ラベル（通常 <code>"記者の総評"</code>）</td><td class="char-count">固定</td><td><span class="badge-w">推奨</span></td></tr>
+          <tr><td class="field-name">cuttingSummary.text</td><td>全取材を踏まえた最終判断。良い点・懸念点・読者へのアドバイスを含めること</td><td class="char-count">100〜200字</td><td><span class="badge-w">推奨</span></td></tr>
+        </table>
+        <div class="hint-box">
+          <strong>Q3問の構成推奨：</strong><br>
+          ① ネガコメント・疑問点への直接質問（「〇〇という口コミがありますが…」）<br>
+          ② 具体的な条件・数字への確認（料金・解約・実績等）<br>
+          ③ 他社との差別化・競合比較への見解
+        </div>
+      </div>
+    </div>
+
+    <!-- 08 SERVICE DETAILS -->
+    <div class="section-block" id="sec-08">
+      <div class="section-block-header">
+        <span class="sec-num">08</span>
+        <span class="sec-title">サービス概要 + 利用ステップ</span>
+        <span class="sec-badge recommended">推奨</span>
+      </div>
+      <div class="section-block-body">
+        <table>
+          <tr><th>フィールド名</th><th>説明</th><th>必須</th></tr>
+          <tr><td class="field-name">serviceCards[].icon</td><td>絵文字アイコン（例: "🤝" "💰"）</td><td><span class="badge-w">推奨</span></td></tr>
+          <tr><td class="field-name">serviceCards[].title</td><td>カード見出し（15字以内）</td><td><span class="badge-w">推奨</span></td></tr>
+          <tr><td class="field-name">serviceCards[].text</td><td>カード本文（50〜80字）</td><td><span class="badge-w">推奨</span></td></tr>
+          <tr><td class="field-name">steps[].title</td><td>ステップ見出し（20字以内）</td><td><span class="badge-w">推奨</span></td></tr>
+          <tr><td class="field-name">steps[].text</td><td>ステップ説明（40〜80字）</td><td><span class="badge-w">推奨</span></td></tr>
+        </table>
+        <div class="hint-box"><strong>推奨構成：</strong> serviceCards 4枚 / steps 3ステップ</div>
+      </div>
+    </div>
+
+    <!-- 09 FAQ -->
+    <div class="section-block" id="sec-09">
+      <div class="section-block-header">
+        <span class="sec-num">09</span>
+        <span class="sec-title">FAQ（よくある疑問）</span>
+        <span class="sec-badge required">必須</span>
+      </div>
+      <div class="section-block-body">
+        <table>
+          <tr><th>フィールド名</th><th>説明</th><th>推奨文字数</th><th>必須</th></tr>
+          <tr><td class="field-name">faqs[].q</td><td>質問文（読者が実際に疑問に思うことを想定して書く）</td><td class="char-count">20〜40字</td><td><span class="badge-r">必須</span></td></tr>
+          <tr><td class="field-name">faqs[].a</td><td>回答文（具体的・誠実に。最後のFAQは「この記事は広告ですか？」を固定）</td><td class="char-count">60〜120字</td><td><span class="badge-r">必須</span></td></tr>
+        </table>
+        <div class="warn-box"><strong>固定ルール：</strong> FAQの最後（5問目）は必ず「この記事は広告ですか？」+ PR開示回答を入れること。景品表示法のステルスマーケティング規制対応のため必須です。</div>
+      </div>
+    </div>
+
+    <!-- G3 MEDIA -->
+    <div class="section-block" id="sec-g3">
+      <div class="section-block-header">
+        <span class="sec-num gallery">G3</span>
+        <span class="sec-title">メディア掲載ロゴ</span>
+        <span class="sec-badge optional">任意</span>
+      </div>
+      <div class="section-block-body">
+        <table>
+          <tr><th>フィールド名</th><th>説明</th><th>必須</th></tr>
+          <tr><td class="field-name">galleries.media[].src</td><td>メディアロゴ画像URL</td><td><span class="badge-w">推奨</span></td></tr>
+          <tr><td class="field-name">galleries.media[].alt</td><td>メディア名（alt属性）</td><td><span class="badge-w">推奨</span></td></tr>
+        </table>
+        <div class="img-spec-grid">
+          <div class="img-spec-card">
+            <div class="img-label">G3 メディアロゴ</div>
+            <div class="img-size">120 × 40 px</div>
+            <div class="img-sub">PNG（透過推奨）<br>横並び表示</div>
+            <div class="img-count">3枚以上（任意）</div>
+          </div>
+        </div>
+        <div class="hint-box"><strong>注意：</strong> 実際に掲載された媒体のロゴのみ使用可。使用許諾が必要な場合は事前に確認してください。</div>
+      </div>
+    </div>
+
+    <!-- 10 STORY -->
+    <div class="section-block" id="sec-10">
+      <div class="section-block-header">
+        <span class="sec-num">10</span>
+        <span class="sec-title">創業ストーリー / メディアを始めた理由</span>
+        <span class="sec-badge optional">任意</span>
+      </div>
+      <div class="section-block-body">
+        <table>
+          <tr><th>フィールド名</th><th>説明</th><th>推奨文字数</th><th>必須</th></tr>
+          <tr><td class="field-name">storyImg</td><td>代表者・創業者の写真URL（<strong>200×200px</strong> / 正方形）</td><td class="char-count">URL</td><td><span class="badge-w">推奨</span></td></tr>
+          <tr><td class="field-name">storyAlt</td><td>写真のalt属性テキスト</td><td class="char-count">〜20字</td><td><span class="badge-w">推奨</span></td></tr>
+          <tr><td class="field-name">storyText</td><td>ストーリー本文（段落ごとの配列）。企業の創業理念・動機を記者の取材をもとに書く</td><td class="char-count">各80〜150字</td><td><span class="badge-w">推奨</span></td></tr>
+        </table>
+        <div class="img-spec-grid" style="max-width:280px">
+          <div class="img-spec-card">
+            <div class="img-label">storyImg（代表写真）</div>
+            <div class="img-size">200 × 200 px</div>
+            <div class="img-sub">正方形 / JPG or PNG</div>
+            <div class="img-count">1枚</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 11 CTA -->
+    <div class="section-block" id="sec-11">
+      <div class="section-block-header">
+        <span class="sec-num">11</span>
+        <span class="sec-title">CTA（公式サイト誘導）</span>
+        <span class="sec-badge required">必須</span>
+      </div>
+      <div class="section-block-body">
+        <table>
+          <tr><th>フィールド名</th><th>説明</th><th>推奨文字数</th><th>必須</th></tr>
+          <tr><td class="field-name">ctaTitle</td><td>CTAセクション見出し（例: "〇〇が気になった方へ"）</td><td class="char-count">〜25字</td><td><span class="badge-r">必須</span></td></tr>
+          <tr><td class="field-name">ctaSub</td><td>CTAサブテキスト（背中を押すコピー）</td><td class="char-count">〜50字</td><td><span class="badge-r">必須</span></td></tr>
+          <tr><td class="field-name">officialUrl</td><td>公式サイトURL（ボタンのリンク先）。準備中の場合は <code>"#"</code></td><td class="char-count">URL</td><td><span class="badge-r">必須</span></td></tr>
+          <tr><td class="field-name">ctaBtn</td><td>ボタンラベル（例: "公式サイトで無料相談を予約する →"）</td><td class="char-count">〜25字</td><td><span class="badge-r">必須</span></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- 投稿フロー -->
+    <div class="section-block" id="sec-flow">
+      <div class="section-block-header">
+        <span class="sec-num">フロー</span>
+        <span class="sec-title">記事投稿フロー（ステップ別）</span>
+      </div>
+      <div class="section-block-body">
+        <div class="posting-flow">
+          <div class="pf-step">
+            <div class="pf-num">1</div>
+            <div class="pf-content">
+              <h4>取材・コンテンツ素材の準備</h4>
+              <p>利用者3名へのインタビュー（オンライン可） / 企業担当者へのQ&A確認 / 写真素材の取得・許諾確認。写真は <code>images/</code> フォルダに格納しておく。</p>
+            </div>
+          </div>
+          <div class="pf-step">
+            <div class="pf-num">2</div>
+            <div class="pf-content">
+              <h4>CLIウィザードで記事の骨格を生成</h4>
+              <p><code>npm run add-article</code> を実行。スラッグ・企業名・カテゴリ・公開日・ヒーロータイトル・サブコピー・公式URLを入力すると、<code>data/articles.js</code> に記事オブジェクトが自動追記される。</p>
+            </div>
+          </div>
+          <div class="pf-step">
+            <div class="pf-num">3</div>
+            <div class="pf-content">
+              <h4>data/articles.js に詳細フィールドを追記</h4>
+              <p>エディタで <code>data/articles.js</code> を開き、追記された記事オブジェクトに以下を追加する：<br>
+              <code>reporterNote</code> / <code>featureBoxes</code> / <code>journalistTake</code> / <code>scoreDetails</code> / <code>interviews</code> / <code>cuttingQA</code> / <code>cuttingSummary</code> / <code>reviews</code> / <code>galleries</code> / <code>serviceCards</code> / <code>steps</code> / <code>faqs</code> / <code>storyText</code></p>
+            </div>
+          </div>
+          <div class="pf-step">
+            <div class="pf-num">4</div>
+            <div class="pf-content">
+              <h4>ローカルでプレビュー確認</h4>
+              <p><code>python3 -m http.server 8080</code> または <code>npx serve .</code> でサーバーを起動し、<code>http://localhost:8080/article.html?id=&lt;slug&gt;</code> で記事を確認する。</p>
+            </div>
+          </div>
+          <div class="pf-step">
+            <div class="pf-num">5</div>
+            <div class="pf-content">
+              <h4>バリデーション実行</h4>
+              <p><code>npm run validate</code> を実行し「✅ 検証完了: エラーなし」を確認する。エラーがある場合は修正してから次へ進む。</p>
+            </div>
+          </div>
+          <div class="pf-step">
+            <div class="pf-num">6</div>
+            <div class="pf-content">
+              <h4>git commit &amp; push → 自動デプロイ</h4>
+              <p><code>git add data/articles.js images/</code> → <code>git commit -m "記事追加: [企業名]の評判記事"</code> → <code>git push origin main</code><br>
+              GitHub Actions が自動で検証 → GitHub Pages へデプロイ（約1〜2分）。</p>
+            </div>
+          </div>
+          <div class="pf-step">
+            <div class="pf-num">7</div>
+            <div class="pf-content">
+              <h4>公開後の確認</h4>
+              <p><code>gh run list --limit 3</code> でデプロイ状況を確認。本番URLで記事・トップページへの反映をチェックする。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+</body>
+</html>

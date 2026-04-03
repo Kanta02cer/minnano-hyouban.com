@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>みんなの評判.com | 第三者記者が書く、企業評判メディア</title>
+  <meta name="description" content="フリーランス記者・漆沢祐樹が実際に取材・検証した企業評判レポートを掲載。広告でなく、リアルな調査結果をお届けするメディアです。">
+  <meta property="og:title" content="みんなの評判.com | 第三者記者が書く、企業評判メディア">
+  <meta property="og:description" content="記者が直接取材・検証した評判レポートを掲載。不都合な情報も、正直に書きます。">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo" aria-label="みんなの評判.com トップへ">
+        <span class="logo-text">みんなの評判</span><span class="logo-com">.com</span>
+      </a>
+      <nav class="nav-desktop" aria-label="サイトナビゲーション">
+        <ul>
+          <li><a href="#articles">記事一覧</a></li>
+          <li><a href="#categories">カテゴリ</a></li>
+          <li><a href="#about">取材について</a></li>
+          <li><a href="#contact" class="nav-inquiry">取材依頼</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav-mobile">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="nav-mobile" id="nav-mobile" hidden aria-label="モバイルナビゲーション">
+      <div class="container">
+        <ul>
+          <li><a href="#articles">記事一覧</a></li>
+          <li><a href="#categories">カテゴリ</a></li>
+          <li><a href="#about">取材について</a></li>
+          <li><a href="#contact">取材依頼</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-h">
+      <div class="container">
+        <div class="hero-inner">
+          <div class="hero-text">
+            <p class="hero-eyebrow">評判レポートメディア — 第三者取材</p>
+            <h1 id="hero-h" class="hero-title">企業の<span class="hero-accent">本音</span>を、<br>あなたに届ける。</h1>
+            <p class="hero-lead">フリーランス記者・漆沢祐樹が、利用者への直接インタビューと運営会社への直撃取材を経て書いた評判レポートを掲載しています。都合の良いことだけでなく、不都合な情報も正直に書きます。</p>
+            <div class="hero-stats" aria-label="メディア実績">
+              <div class="hero-stat">
+                <strong>127<span>件+</span></strong>
+                <span>取材・検証済み口コミ</span>
+              </div>
+              <div class="hero-stat-div" aria-hidden="true"></div>
+              <div class="hero-stat">
+                <strong>10<span>年+</span></strong>
+                <span>フリーランス記者歴</span>
+              </div>
+              <div class="hero-stat-div" aria-hidden="true"></div>
+              <div class="hero-stat">
+                <strong>500<span>件+</span></strong>
+                <span>累計執筆記事数</span>
+              </div>
+            </div>
+            <a href="#featured" class="hero-cta">最新の評判記事を読む</a>
+          </div>
+          <aside class="hero-editor" aria-label="担当記者プロフィール">
+            <img src="https://placehold.co/180x220/1c3d8a/f0ede8?text=漆沢" alt="記者・漆沢祐樹" class="editor-photo" loading="lazy">
+            <div class="editor-meta">
+              <p class="editor-role">担当記者</p>
+              <p class="editor-name">漆沢 祐樹</p>
+              <p class="editor-note">フリーランス記者。消費者メディア専門として10年以上、企業・サービスの第三者取材を継続。</p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROMISE BAR -->
+    <div class="promise-bar" role="complementary" aria-label="メディアの約束">
+      <div class="container">
+        <ul class="promise-list">
+          <li>第三者記者が直接取材</li>
+          <li>利用者へのインタビュー実施</li>
+          <li>不都合な情報も掲載</li>
+          <li>会社へ直撃取材</li>
+          <li>PR記事として記事内に明示</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- FEATURED ARTICLE -->
+    <section class="section-featured" id="featured" aria-labelledby="featured-h">
+      <div class="container">
+        <header class="section-header">
+          <h2 id="featured-h" class="section-title">注目の評判記事</h2>
+        </header>
+        <div id="featured-article-container">
+          <!-- data/articles.js の第1件目を動的レンダリング -->
+        </div>
+      </div>
+    </section>
+
+    <!-- LATEST ARTICLES -->
+    <section class="section-articles" id="articles" aria-labelledby="articles-h">
+      <div class="container">
+        <header class="section-header">
+          <h2 id="articles-h" class="section-title">最新の評判記事</h2>
+          <a href="articles.html" class="section-link">すべての記事を見る</a>
+        </header>
+        <div class="article-list" role="list" id="article-list-container">
+          <!-- data/articles.js の第2件目以降を動的レンダリング（最大3件、不足分は準備中で補完） -->
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORIES -->
+    <section class="section-categories" id="categories" aria-labelledby="categories-h">
+      <div class="container">
+        <h2 id="categories-h" class="section-title">カテゴリから探す</h2>
+        <nav class="category-nav" aria-label="記事カテゴリ">
+          <a href="#" class="category-tag category-tag--active">すべて</a>
+          <a href="#" class="category-tag">キャリア・転職</a>
+          <a href="#" class="category-tag">美容・健康</a>
+          <a href="#" class="category-tag">語学・スキル</a>
+          <a href="#" class="category-tag">マネー・投資</a>
+          <a href="#" class="category-tag">ライフスタイル</a>
+        </nav>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section-about" id="about" aria-labelledby="about-h">
+      <div class="container">
+        <div class="about-layout">
+          <div class="about-intro">
+            <h2 id="about-h" class="about-title">このメディアについて</h2>
+            <p>企業の良さを自社で発信しても、消費者になかなか信頼してもらえない——そんな声を持つ企業と、本当に良いサービスを探している消費者の双方を繋ぎたいという想いで、このメディアを立ち上げました。</p>
+            <p>フリーランス記者として10年以上、累計500件以上の評判記事を執筆してきた漆沢が、<strong>PR記事であることを明示した上で</strong>、利用者への直接インタビュー・運営会社への直撃取材・記者自身の率直な見解をすべて掲載します。</p>
+          </div>
+          <div class="about-promise">
+            <h3 class="promise-title">みんなの評判.com の5つの約束</h3>
+            <ol class="promise-items">
+              <li>PR記事であることを記事冒頭に必ず明記する</li>
+              <li>利用者への直接インタビューを必ず実施する</li>
+              <li>ネガティブな情報も掲載する（削除要求には応じない）</li>
+              <li>成功率・評価スコアの定義を明示する</li>
+              <li>記者名・取材日を全記事に記載する</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT / INQUIRY -->
+    <section class="section-contact" id="contact" aria-labelledby="contact-h">
+      <div class="container">
+        <div class="contact-inner">
+          <h2 id="contact-h" class="contact-title">取材・掲載のご依頼</h2>
+          <p class="contact-lead">自社サービスの評判記事を、第三者記者の視点で執筆・掲載することをご希望の企業様は、以下よりお問い合わせください。</p>
+          <ul class="contact-notes">
+            <li>第三者目線での公正な取材・執筆となります</li>
+            <li>ネガティブな内容の削除要求にはお応えできません</li>
+            <li>掲載後の記事内容を特定の方向で保証するものではありません</li>
+          </ul>
+          <a href="mailto:info@minnano-hyouban.com" class="contact-btn">取材依頼・お問い合わせ</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <p class="footer-logo">みんなの評判<span>.com</span></p>
+        <p class="footer-desc">第三者が届ける、信頼の評判メディア</p>
+      </div>
+      <nav class="footer-nav" aria-label="フッターナビゲーション">
+        <ul>
+          <li><a href="#articles">記事一覧</a></li>
+          <li><a href="#categories">カテゴリ</a></li>
+          <li><a href="#about">取材について</a></li>
+          <li><a href="#contact">取材依頼</a></li>
+          <li><a href="#">プライバシーポリシー</a></li>
+          <li><a href="#">免責事項</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>&copy; 2024 みんなの評判.com All Rights Reserved.</p>
+        <p class="footer-pr-note">本サイトに掲載している記事は、広告・PR記事を含みます。</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="data/articles.js"></script>
+  <script>
+    'use strict';
+
+    /* ─── ユーティリティ ─────────────────────────────────────── */
+
+    // レビューの平均スコアを計算（小数第1位）
+    function avgScore(reviews) {
+      if (!reviews || reviews.length === 0) return null;
+      const sum = reviews.reduce((a, r) => a + (r.stars || 0), 0);
+      return (sum / reviews.length).toFixed(1);
+    }
+
+    // 日付フォーマット "YYYY-MM-DD" → "YYYY.MM.DD"
+    function fmtDate(d) {
+      return (d || '').replace(/-/g, '.');
+    }
+
+    // 表示用タイトル（サイト名サフィックス・<br>タグを除去）
+    function displayTitle(t) {
+      return (t || '').replace(/ \| みんなの評判\.com$/i, '').replace(/<br\s*\/?>/gi, '');
+    }
+
+    // 記者名から「記者：」プレフィックスを除去
+    function editorShortName(name) {
+      return (name || '').replace(/^記者[：:]\s*/, '');
+    }
+
+    // カテゴリ名 → CSS クラス
+    function catClass(cat) {
+      const map = {
+        '美容・健康':   'cat-beauty',
+        '美容・エステ': 'cat-beauty',
+        '語学・スキル': 'cat-study',
+        'マネー・投資': 'cat-money',
+        'キャリア・転職': 'cat-career',
+        'ライフスタイル': 'cat-lifestyle',
+      };
+      return map[cat] || 'cat-career';
+    }
+
+    /* ─── 注目記事（Featured）レンダリング ──────────────────── */
+    function renderFeatured(art) {
+      const score  = avgScore(art.reviews);
+      const thumb  = art.ogImage || ('https://placehold.co/680x420/eef2ff/1c3d8a?text=' + encodeURIComponent(art.company || '評判記事'));
+      const heroT  = art.heroTitle || art.title || '';
+      const scoreH = score ? `<span class="featured-score" aria-label="評価スコア${score}">★ ${score} <em>/ 5.0</em></span>` : '';
+      const cntH   = art.reviews && art.reviews.length
+                     ? `<span class="featured-count">口コミ ${art.reviews.length}件を取材</span>` : '';
+      return `
+        <article class="featured-card anim-up">
+          <a href="article.html?id=${art.slug}" class="featured-link" aria-label="${art.company || ''}の評判記事を読む">
+            <figure class="featured-img-wrap">
+              <img src="${thumb}" alt="${art.company || ''}の取材現場" loading="lazy">
+              <figcaption class="featured-category">${art.category || ''}</figcaption>
+            </figure>
+            <div class="featured-body">
+              <div class="featured-meta">
+                <span class="meta-pr">PR</span>
+                <span class="meta-sep" aria-hidden="true">|</span>
+                <span class="meta-author">${editorShortName(art.editorName)}</span>
+                <span class="meta-sep" aria-hidden="true">|</span>
+                <time datetime="${art.publishedAt}">${fmtDate(art.publishedAt)}</time>
+              </div>
+              <h3 class="featured-title">${heroT}</h3>
+              <p class="featured-excerpt">${art.heroSub || ''}</p>
+              <div class="featured-footer">
+                ${scoreH}${cntH}
+                <span class="featured-read-more">記事を読む</span>
+              </div>
+            </div>
+          </a>
+        </article>`;
+    }
+
+    // 注目記事が無い場合のプレースホルダー
+    function renderFeaturedPlaceholder() {
+      return `
+        <article class="featured-card featured-card--upcoming anim-up" aria-label="準備中の注目記事">
+          <div class="featured-placeholder">
+            <p class="featured-placeholder-head">取材進行中</p>
+            <p class="featured-placeholder-body">記者・漆沢が複数の企業を現在取材中です。<br>近日、注目の評判記事を公開予定です。</p>
+          </div>
+        </article>`;
+    }
+
+    /* ─── 記事リスト（Article List）レンダリング ────────────── */
+    function renderArticleItem(art) {
+      const score = avgScore(art.reviews);
+      const thumb = art.ogImage || ('https://placehold.co/240x160/f0f0f0/888?text=' + encodeURIComponent(art.company || '評判'));
+      const cc    = catClass(art.category);
+      const scoreH = score ? `<span class="meta-score">★ ${score}</span>` : '';
+      return `
+        <article class="article-item anim-up" role="listitem">
+          <a href="article.html?id=${art.slug}" class="article-item-link">
+            <figure class="article-thumb">
+              <img src="${thumb}" alt="${art.company || ''}の評判" loading="lazy">
+            </figure>
+            <div class="article-body">
+              <span class="article-category ${cc}">${art.category || ''}</span>
+              <h3 class="article-title">${displayTitle(art.heroTitle || art.title)}</h3>
+              <p class="article-excerpt">${art.heroSub || ''}</p>
+              <div class="article-meta">
+                <span class="meta-pr">PR</span>
+                <span class="meta-author">${editorShortName(art.editorName)}</span>
+                <time datetime="${art.publishedAt}">${fmtDate(art.publishedAt)}</time>
+                ${scoreH}
+              </div>
+            </div>
+          </a>
+        </article>`;
+    }
+
+    // 準備中アイテム（記事不足時の補完用）
+    const UPCOMING_CATS = ['キャリア・転職', '美容・健康', 'マネー・投資'];
+    function renderUpcoming(idx) {
+      const cat = UPCOMING_CATS[idx % UPCOMING_CATS.length];
+      return `
+        <article class="article-item article-item--upcoming anim-up" role="listitem" aria-label="準備中の記事">
+          <div class="article-item-link">
+            <figure class="article-thumb article-thumb--blank">
+              <span>取材中</span>
+            </figure>
+            <div class="article-body">
+              <span class="article-category ${catClass(cat)}">${cat}</span>
+              <h3 class="article-title article-title--upcoming">評判記事（取材準備中）</h3>
+              <p class="article-excerpt">現在、利用者へのインタビューおよび運営会社への取材を進めています。公開までしばらくお待ちください。</p>
+              <div class="article-meta">
+                <span class="meta-author">漆沢 祐樹</span>
+                <span class="upcoming-label">近日公開予定</span>
+              </div>
+            </div>
+          </div>
+        </article>`;
+    }
+
+    /* ─── 記事描画 ───────────────────────────────────────────── */
+    (function renderArticles() {
+      const articles = (typeof window.ARTICLES !== 'undefined') ? window.ARTICLES : [];
+
+      // 注目記事
+      const featuredEl = document.getElementById('featured-article-container');
+      if (featuredEl) {
+        featuredEl.innerHTML = articles.length > 0
+          ? renderFeatured(articles[0])
+          : renderFeaturedPlaceholder();
+      }
+
+      // 記事リスト（2件目以降、最大3件 + 準備中で補完）
+      const listEl = document.getElementById('article-list-container');
+      if (listEl) {
+        const listArts  = articles.slice(1, 4);
+        const needed    = Math.max(0, 3 - listArts.length);
+        const listItems = listArts.map(a => renderArticleItem(a)).join('');
+        const upcoming  = Array.from({ length: needed }, (_, i) => renderUpcoming(i)).join('');
+        listEl.innerHTML = listItems + upcoming;
+      }
+    })();
+
+    /* ─── ハンバーガーメニュー ──────────────────────────────── */
+    const btn = document.querySelector('.hamburger');
+    const nav = document.getElementById('nav-mobile');
+    if(btn && nav){
+      btn.addEventListener('click', () => {
+        const open = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!open));
+        nav.hidden = open;
+      });
+      document.addEventListener('click', e => {
+        if(!btn.contains(e.target) && !nav.contains(e.target)){
+          btn.setAttribute('aria-expanded','false');
+          nav.hidden = true;
+        }
+      });
+    }
+
+    /* ─── スムーススクロール ─────────────────────────────────── */
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href').slice(1);
+        const t = document.getElementById(id);
+        if(!t) return;
+        e.preventDefault();
+        const h = document.querySelector('.site-header')?.offsetHeight || 62;
+        window.scrollTo({ top: t.getBoundingClientRect().top + scrollY - h - 12, behavior: 'smooth' });
+      });
+    });
+
+    /* ─── スクロールアニメーション ──────────────────────────── */
+    if('IntersectionObserver' in window){
+      const ob = new IntersectionObserver(entries => {
+        entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); ob.unobserve(e.target); } });
+      }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('.anim-up').forEach(el => ob.observe(el));
+    } else {
+      document.querySelectorAll('.anim-up').forEach(el => el.classList.add('visible'));
+    }
+  </script>
+</body>
+</html>

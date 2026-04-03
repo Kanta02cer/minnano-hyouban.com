@@ -1,0 +1,13 @@
+{
+  "name": "minnano-hyouban",
+  "version": "1.0.0",
+  "description": "みんなの評判.com — 第三者記者が書く企業評判メディア",
+  "private": true,
+  "scripts": {
+    "add-article": "node scripts/add-article.js",
+    "validate":    "node scripts/validate-articles.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

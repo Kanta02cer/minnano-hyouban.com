@@ -1,0 +1,20 @@
+セクション,要素名,役割・目的,コンテンツ内容,CSS クラス,備考
+HEADER,ロゴ,サイト識別,みんなの評判.com,.logo / .logo-serif,トゥルーブラック背景
+HEADER,ライブデータバッジ,常時表示スコアとLIVEインジケーター,LIVE DATA / ★ 4.7,.header-badge / .badge-dot,pulseアニメーション
+HEADER,ナビゲーション,スコア / 口コミ / 公式サイトへの誘導,3リンク,.nav-desktop,—
+HERO,メタ行,記事タグ・PR表示・更新日,INTELLIGENCE REPORT / PR / 日付,.hero-meta-row / .hero-tag,JS動的日付
+HERO,ヒーロータイトル,記事の主張を数値ドリブンで提示,データで証明する。,.hero-title,Noto Serif JP
+HERO,SVGゲージ,総合スコアを円形ゲージでアニメ表示,4.7 / 5.0,.gauge / .gauge-svg / .gauge-fill,stroke-dashoffset / circumference 502.65 / IntersectionObserver
+HERO,データパネル,5つのKPIを横並びで表示,REVIEWS / SATISFACTION / RECOMMEND / VERIFIED / DATE,.hero-data-panel / .data-row,JetBrains Mono
+HERO,CTAボタン2種,スコア分析 / 公式サイトへの誘導,2ボタン,.btn-primary / .btn-ghost,—
+TERMINAL,ターミナルカード,分析レポートをタイプライター演出で表示,7行のコンソール風テキスト,.terminal-card / .terminal-body / .t-cursor,setInterval 28ms/char
+SCORE MATRIX,ミニゲージ4本,5軸スコアを小型円形ゲージで表示,効果実感 / 信頼性 / コスパ / 対応品質,.score-matrix / .matrix-gauge / .mg-fill,150msステガー / IntersectionObserver
+GALLERY 1,サービス取材映像,サービス雰囲気を写真で伝える,Swiperスライダー3枚,.swiper-service,Swiper.js v11
+REVIEWS,口コミグリッド,取材済み口コミをカード表示,JS動的生成 / 5件,.reviews-grid,CSS Grid / 2カラム
+GALLERY 2,ビフォーアフター,変化を視覚的に見せる,Swiperスライダー2枚,.swiper-ba,BEFORE / AFTER
+SERVICE,サービス詳細カード,料金・エリア・内容・実績を整理,4カード / 数字アイコン(01〜04),.service-grid / .service-card / .s-icon,絵文字なし
+SERVICE,利用ステップ,申し込みから開始までの流れ,3ステップ,.steps-list / .step,01/02/03
+FAQ,よくある質問,利用前の疑問を解消,JS動的生成,.faq-list,accordion
+MEDIA,掲載メディアロゴ,外部メディア掲載で信頼性強化,FEATURED IN / 4ロゴ,.media-logos,暗色背景
+CTA,最終行動喚起,データ訴求による最終誘導,スコア4.7 + ボタン2種,.cta-section,DATA-DRIVEN CONCLUSION
+FOOTER,フッター,法的表示・ナビゲーション・SNS,ブランド / ナビ / SNS / PR注記,.site-footer,暗色背景
