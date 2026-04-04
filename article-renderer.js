@@ -142,8 +142,10 @@ function setMeta(name, content, attr = 'name') {
 ============================================================ */
 function buildArticleHTML(a) {
   const cta = resolveOfficialUrl(a.officialUrl);
+  const hasOfficial = cta.source === 'official_url';
   const isMailto = String(cta.href).startsWith('mailto:');
   const ctaLinkAttrs = isMailto ? '' : ' target="_blank" rel="noopener noreferrer"';
+  const mailInquiry = `${CONTACT_MAILTO}?subject=${encodeURIComponent(`お問い合わせ（${a.company || '記事'}）`)}`;
 
   // Service cards
   const serviceCardsHTML = (a.serviceCards || []).map(c => `
@@ -434,7 +436,12 @@ function buildArticleHTML(a) {
     <section class="cta-section animate-on-scroll" id="contact" aria-labelledby="cta-heading">
       <div class="container">
         <h2 class="cta-title" id="cta-heading">${esc(a.ctaTitle || 'この評判記事が気になった方へ')}</h2>
-        <p class="cta-sub">${esc(a.ctaSub || 'まずは公式サイトで詳細をご確認ください。')}</p>
+        <p class="cta-sub">${esc(
+          hasOfficial
+            ? (a.ctaSub || 'まずは公式サイトで詳細をご確認ください。')
+            : (a.ctaSub || '公式サイトの案内URLが未登録のため、メディアへのお問い合わせからご案内します。')
+        )}</p>
+        ${hasOfficial ? `
         <a href="${esc(cta.href)}"
            class="btn btn--cta"
            ${ctaLinkAttrs}
@@ -451,6 +458,22 @@ function buildArticleHTML(a) {
            data-company="${esc(a.company || '')}"
            data-cta-source="${esc(cta.source)}"
         >無料相談・お問い合わせはこちら</a>
+        ` : `
+        <p class="cta-fallback-note" role="note">※ 公式サイトの公開URLが未設定です。メディア経由でのご案内となります。</p>
+        <a href="${esc(mailInquiry)}"
+           class="btn btn--cta"
+           data-cta-kind="article_official"
+           data-article-slug="${esc(a.slug || '')}"
+           data-company="${esc(a.company || '')}"
+           data-cta-source="fallback_mailto"
+        >メディアへのお問い合わせ</a>
+        <a href="index.html#contact"
+           class="btn-text-link"
+           data-cta-kind="article_media_inquiry"
+           data-article-slug="${esc(a.slug || '')}"
+           data-company="${esc(a.company || '')}"
+        >取材・掲載のご依頼（メディア）</a>
+        `}
       </div>
     </section>
   `;

@@ -1,0 +1,18 @@
+# みんなの評判.com — robots.txt
+# https://minnano-hyouban.com/
+
+User-agent: *
+Allow: /
+
+# 管理・デザイン検証・内部用ページはクロール不要
+Disallow: /scripts/
+Disallow: /_drafts/
+Disallow: /admin.html
+Disallow: /article-format.html
+Disallow: /design-1/
+Disallow: /design-2/
+Disallow: /design-3/
+Disallow: /top.html
+
+# Sitemap
+Sitemap: https://minnano-hyouban.com/sitemap.xml

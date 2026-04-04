@@ -4,10 +4,77 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>みんなの評判.com | 第三者記者が書く、企業評判メディア</title>
-  <meta name="description" content="フリーランス記者・漆沢祐樹が実際に取材・検証した企業評判レポートを掲載。広告でなく、リアルな調査結果をお届けするメディアです。">
+  <meta name="description" content="フリーランス記者・漆沢祐樹が実際に取材・検証した企業評判レポートを掲載。PR記事であることを明示した上で、利用者インタビューと運営会社への直撃取材を行う第三者メディアです。">
+  <meta name="author" content="漆沢 祐樹">
   <meta property="og:title" content="みんなの評判.com | 第三者記者が書く、企業評判メディア">
-  <meta property="og:description" content="記者が直接取材・検証した評判レポートを掲載。不都合な情報も、正直に書きます。">
+  <meta property="og:description" content="記者・漆沢祐樹が直接取材・検証した評判レポートを掲載。不都合な情報も、正直に書きます。PR記事として明示した上で、第三者視点での評判記事を提供。">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://minnano-hyouban.com/">
+  <meta property="og:site_name" content="みんなの評判.com">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="みんなの評判.com | 第三者記者が書く、企業評判メディア">
+  <meta name="twitter:description" content="記者・漆沢祐樹が直接取材・検証した評判レポートを掲載。不都合な情報も、正直に書きます。">
+  <link rel="canonical" href="https://minnano-hyouban.com/">
+
+  <!-- JSON-LD: WebSite + Organization + Person -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://minnano-hyouban.com/#website",
+        "url": "https://minnano-hyouban.com/",
+        "name": "みんなの評判.com",
+        "description": "フリーランス記者・漆沢祐樹が取材・検証した企業評判レポートメディア",
+        "inLanguage": "ja",
+        "publisher": {
+          "@id": "https://minnano-hyouban.com/#organization"
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://minnano-hyouban.com/articles.html?q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/#organization",
+        "name": "みんなの評判.com",
+        "url": "https://minnano-hyouban.com/",
+        "description": "企業・サービスの第三者評判取材を専門とする個人メディア。PR記事であることを明示した上で、利用者インタビューと運営会社への直撃取材を行う。",
+        "founder": {
+          "@id": "https://minnano-hyouban.com/#person-urushizawa"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "editorial inquiries",
+          "email": "info@minnano-hyouban.com",
+          "availableLanguage": "Japanese"
+        }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/#person-urushizawa",
+        "name": "漆沢 祐樹",
+        "alternateName": "うるしざわ ゆうき",
+        "jobTitle": "フリーランス記者",
+        "description": "企業・サービスの第三者評判取材を専門とするフリーランス記者。10年以上・累計500件超の取材実績。みんなの評判.com 代表。",
+        "url": "https://minnano-hyouban.com/editor.html",
+        "email": "info@minnano-hyouban.com",
+        "worksFor": {
+          "@id": "https://minnano-hyouban.com/#organization"
+        },
+        "knowsAbout": ["企業評判", "消費者メディア", "サービスレビュー", "インタビュー取材", "PR記事"]
+      }
+    ]
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
@@ -22,8 +89,8 @@
       </a>
       <nav class="nav-desktop" aria-label="サイトナビゲーション">
         <ul>
-          <li><a href="#articles">記事一覧</a></li>
-          <li><a href="#categories">カテゴリ</a></li>
+          <li><a href="articles.html">記事一覧</a></li>
+          <li><a href="editor.html">記者紹介</a></li>
           <li><a href="#about">取材について</a></li>
           <li><a href="#contact" class="nav-inquiry">取材依頼</a></li>
         </ul>
@@ -35,8 +102,8 @@
     <nav class="nav-mobile" id="nav-mobile" hidden aria-label="モバイルナビゲーション">
       <div class="container">
         <ul>
-          <li><a href="#articles">記事一覧</a></li>
-          <li><a href="#categories">カテゴリ</a></li>
+          <li><a href="articles.html">記事一覧</a></li>
+          <li><a href="editor.html">記者紹介</a></li>
           <li><a href="#about">取材について</a></li>
           <li><a href="#contact">取材依頼</a></li>
         </ul>
@@ -186,8 +253,8 @@
       </div>
       <nav class="footer-nav" aria-label="フッターナビゲーション">
         <ul>
-          <li><a href="#articles">記事一覧</a></li>
-          <li><a href="#categories">カテゴリ</a></li>
+          <li><a href="articles.html">記事一覧</a></li>
+          <li><a href="editor.html">記者紹介</a></li>
           <li><a href="#about">取材について</a></li>
           <li><a href="#contact">取材依頼</a></li>
           <li><a href="privacy.html">プライバシーポリシー</a></li>
@@ -197,7 +264,7 @@
     </div>
     <div class="footer-bottom">
       <div class="container footer-bottom-inner">
-        <p>&copy; 2024 みんなの評判.com All Rights Reserved.</p>
+        <p>&copy; 2024–2026 みんなの評判.com All Rights Reserved.</p>
         <p class="footer-pr-note">本サイトに掲載している記事は、広告・PR記事を含みます。</p>
       </div>
     </div>

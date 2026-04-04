@@ -510,9 +510,9 @@
         </div>
 
         <div id="preview-area" style="display:none;margin-top:16px;">
-          <a id="preview-link" href="#" target="_blank" class="btn-admin" style="text-decoration:none;display:inline-flex;align-items:center;gap:8px;">
+          <button type="button" id="preview-btn" class="btn-admin" style="display:inline-flex;align-items:center;gap:8px;">
             プレビューを開く →
-          </a>
+          </button>
           <span style="font-size:0.78rem;color:var(--color-muted);margin-left:10px;">（data/articles.js を差し替えた後に確認してください）</span>
         </div>
       </div>
@@ -1040,10 +1040,12 @@ window.ARTICLES = ${json};
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
 
-    // Show preview link
+    // Show preview button（href 未設定のプレースホルダを避ける）
     const previewArea = document.getElementById('preview-area');
-    const previewLink = document.getElementById('preview-link');
-    previewLink.href   = `article.html?id=${encodeURIComponent(data.slug)}`;
+    const previewBtn = document.getElementById('preview-btn');
+    previewBtn.onclick = () => {
+      window.open(`article.html?id=${encodeURIComponent(data.slug)}`, '_blank', 'noopener,noreferrer');
+    };
     previewArea.style.display = 'block';
 
     showToast('✓ articles.js をダウンロードしました！');

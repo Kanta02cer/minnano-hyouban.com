@@ -35,6 +35,19 @@
 
 サーバーサイド処理は一切なく、全てクライアントサイドで完結します。
 
+### 公開ページとナビの統一
+
+| ページ | 役割 |
+|---|---|
+| `index.html` | 正規トップ（ヒーロー・記事抜粋・取材依頼 `#contact`） |
+| `articles.html` | 記事一覧（キーワード検索 `?q=`・カテゴリ `?cat=` で絞り込み可能） |
+| `article.html`（`?id=` 付き） | 記事詳細（データ駆動） |
+| `editor.html` | 記者紹介 |
+| `privacy.html` / `disclaimer.html` | 法務 |
+| `top.html` | `index.html` へリダイレクト（旧URL互換） |
+
+グローバルナビ（本番系）は **記事一覧 → `articles.html`、記者紹介 → `editor.html`、取材依頼 → `index.html#contact`** で統一しています。`admin.html`・`article-format.html`・`design-1`〜`3` は運用・内部用であり、`robots.txt` でインデックス対象外です。
+
 ---
 
 ## 2. セットアップ
@@ -224,10 +237,10 @@ minnano-hyouban/
 │
 ├── images/                     # 記事用画像（実際の画像をここに格納）
 │
-├── index.html                  # トップページ（記事一覧・ヒーロー）
+├── index.html                  # トップページ（正規トップ・ヒーロー・記事抜粋）
 ├── index.css                   # トップページ CSS
-├── top.html                    # 別デザインのトップページ
-├── top.css                     # 別デザイン CSS
+├── top.html                    # index.html へリダイレクト（旧URL・ブックマーク互換）
+├── top.css                     # 旧トップデザイン用 CSS（参照用に残置）
 ├── articles.html               # 記事一覧ページ
 ├── article.html                # 記事個別ページ（?id=<slug> で動的描画）
 ├── article-renderer.js         # 記事個別ページのレンダリングエンジン
