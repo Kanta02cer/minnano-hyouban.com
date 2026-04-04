@@ -235,7 +235,7 @@ minnano-hyouban/
 │   ├── add-article.js          # 記事追加 CLI スクリプト
 │   └── validate-articles.js    # 記事データ検証スクリプト
 │
-├── images/                     # 記事用画像（実際の画像をここに格納）
+├── images/                     # 記事用画像（`images/README.md` に必要素材の一覧あり）
 │
 ├── index.html                  # トップページ（正規トップ・ヒーロー・記事抜粋）
 ├── index.css                   # トップページ CSS
