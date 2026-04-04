@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>ページが見つかりません | みんなの評判.com</title>
+  <meta name="description" content="お探しのページは存在しないか、URLが変更された可能性があります。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <a href="index.html" class="logo" aria-label="みんなの評判.com トップへ">
+        <span class="logo-text">みんなの評判<span class="logo-com">.com</span></span>
+      </a>
+      <nav class="nav-desktop" aria-label="メインナビゲーション">
+        <ul role="list">
+          <li><a href="articles.html">記事一覧</a></li>
+          <li><a href="editor.html">記者紹介</a></li>
+          <li><a href="index.html#contact">取材依頼</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav-mobile-404">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </button>
+    </div>
+    <nav class="nav-mobile" id="nav-mobile-404" aria-label="モバイルナビゲーション" hidden>
+      <ul role="list">
+        <li><a href="articles.html">記事一覧</a></li>
+        <li><a href="editor.html">記者紹介</a></li>
+        <li><a href="index.html#contact">取材依頼</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <div class="article-not-found container" role="main">
+      <div class="not-found-code" aria-hidden="true">404</div>
+      <h1 class="not-found-title">ページが見つかりませんでした</h1>
+      <p class="not-found-lead">
+        お探しのページは存在しないか、URLが変更・削除された可能性があります。<br>
+        記事をお探しの場合は、記事一覧からご確認ください。
+      </p>
+      <div class="not-found-actions">
+        <a href="articles.html" class="btn btn--primary">記事一覧を見る</a>
+        <a href="index.html" class="btn btn--secondary">トップへ戻る</a>
+      </div>
+
+      <!-- 記事一覧への誘導カード -->
+      <div class="not-found-suggestions" style="margin-top: 0;">
+        <p class="not-found-suggestions-title">よく見られているページ</p>
+        <ul class="not-found-suggestions-list">
+          <li>
+            <a href="articles.html" class="not-found-suggestion-link">
+              <span class="not-found-suggestion-cat">一覧</span>評判記事一覧
+            </a>
+          </li>
+          <li>
+            <a href="editor.html" class="not-found-suggestion-link">
+              <span class="not-found-suggestion-cat">記者</span>記者紹介 — 漆沢 祐樹
+            </a>
+          </li>
+          <li>
+            <a href="index.html#contact" class="not-found-suggestion-link">
+              <span class="not-found-suggestion-cat">依頼</span>取材・掲載のご依頼
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <p class="footer-logo">みんなの評判<span class="footer-com">.com</span></p>
+        <p class="footer-tagline">第三者が届ける、信頼の評判メディア</p>
+      </div>
+      <nav class="footer-nav" aria-label="フッターナビゲーション">
+        <ul role="list">
+          <li><a href="articles.html">記事一覧</a></li>
+          <li><a href="editor.html">記者紹介</a></li>
+          <li><a href="index.html#contact">取材依頼</a></li>
+          <li><a href="privacy.html">プライバシーポリシー</a></li>
+          <li><a href="disclaimer.html">免責事項</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <p class="copyright">© 2024–2026 みんなの評判.com All Rights Reserved.</p>
+      <p class="pr-footer-note">本サイトに掲載している記事は、広告・PR記事を含みます。</p>
+    </div>
+  </footer>
+
+  <script>
+    // ハンバーガーメニュー（最小限 inline）
+    (function () {
+      const btn = document.querySelector('.hamburger');
+      const nav = document.getElementById('nav-mobile-404');
+      if (!btn || !nav) return;
+      btn.addEventListener('click', function () {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        nav.hidden = expanded;
+      });
+    }());
+  </script>
+</body>
+</html>

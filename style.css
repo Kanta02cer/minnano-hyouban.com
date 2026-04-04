@@ -1388,15 +1388,106 @@ ul, ol {
   to { transform: rotate(360deg); }
 }
 
+/* ── 404 / Error state ─────────────────────────────────────── */
 .article-not-found {
   text-align: center;
-  padding: 80px 20px;
+  padding: 80px 20px 100px;
 }
 
+.not-found-code {
+  font-family: var(--font-heading);
+  font-size: clamp(4rem, 16vw, 7rem);
+  font-weight: 700;
+  color: var(--color-border);
+  line-height: 1;
+  margin-bottom: 16px;
+  letter-spacing: -2px;
+}
+
+.not-found-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  color: var(--color-text);
+  margin-bottom: 12px;
+}
+
+.not-found-lead {
+  font-size: 0.95rem;
+  color: var(--color-muted);
+  max-width: 440px;
+  margin: 0 auto 32px;
+  line-height: 1.7;
+}
+
+.not-found-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+
+/* 旧 h2 スタイルの後方互換（既存記事ではなく JS 生成に合わせるが念のため残す） */
 .article-not-found h2 {
   font-family: var(--font-heading);
   font-size: 1.5rem;
   margin-bottom: 12px;
+}
+
+.not-found-suggestions {
+  max-width: 480px;
+  margin: 0 auto;
+  text-align: left;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+}
+
+.not-found-suggestions-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+}
+
+.not-found-suggestions-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.not-found-suggestion-link {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--color-primary);
+  text-decoration: none;
+  line-height: 1.5;
+}
+
+.not-found-suggestion-link:hover {
+  text-decoration: underline;
+}
+
+.not-found-suggestion-cat {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 1px 6px;
+  color: var(--color-muted);
+}
+
+/* data-load-error 用 */
+.not-found-reload-btn {
+  cursor: pointer;
 }
 
 /* ============================================================
@@ -2055,12 +2146,13 @@ ul, ol {
 }
 
 .cutting-summary {
-  background: var(--color-text);
-  color: rgba(255,255,255,.9);
+  background: var(--color-white);
+  color: var(--color-text);
   border-radius: var(--radius-lg);
   padding: 36px;
   margin-top: 40px;
-  box-shadow: 0 8px 32px rgba(0,0,0,.2);
+  box-shadow: 0 8px 32px rgba(0,0,0,.08);
+  border: 1px solid var(--color-border);
   position: relative;
   overflow: hidden;
 }
@@ -2080,7 +2172,7 @@ ul, ol {
   text-align: center;
   margin-bottom: 16px;
   padding-bottom: 12px;
-  border-bottom: 1px solid rgba(255,255,255,.15);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .cutting-summary p {
@@ -2089,7 +2181,7 @@ ul, ol {
 }
 
 .cutting-summary strong {
-  color: #fff;
+  color: var(--color-text);
   background: linear-gradient(transparent 60%, rgba(201,168,76,.4) 60%);
 }
 

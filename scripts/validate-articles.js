@@ -20,7 +20,32 @@ const REQUIRED_FIELDS = ['slug', 'company', 'heroTitle'];
 
 const OPTIONAL_BUT_WARN_FIELDS = [
   'title', 'metaDesc', 'category', 'publishedAt',
-  'heroSub', 'editorName', 'officialUrl',
+  'heroSub', 'editorName', 'editorImg', 'officialUrl',
+];
+
+// 5本柱（商品・どんな人か・想い・評判・遷移）の推奨フィールド
+// 欠落は警告のみ（エラーにはしない）
+const FIVE_PILLARS_WARN = [
+  {
+    pillar: '商品',
+    check: a => (a.featureBoxes?.length > 0) || (a.serviceCards?.length > 0),
+    message: '「商品」柱: featureBoxes または serviceCards が未設定です（サービス内容が伝わりません）。',
+  },
+  {
+    pillar: 'どんな人か',
+    check: a => (a.interviews?.length > 0) || (a.cuttingQA?.length > 0),
+    message: '「どんな人か」柱: interviews または cuttingQA が未設定です（人物像・代表プロフィールが伝わりません）。',
+  },
+  {
+    pillar: '想い',
+    check: a => Array.isArray(a.storyText) && a.storyText.some(t => t && t.trim()),
+    message: '「想い」柱: storyText が未設定です（設立背景・ストーリーが伝わりません）。',
+  },
+  {
+    pillar: '遷移（CTA）',
+    check: a => a.officialUrl && a.officialUrl !== '#',
+    message: '「遷移（CTA）」柱: officialUrl が "#" のままです（公式サイトへの遷移が計測できません）。',
+  },
 ];
 
 const VALID_CATEGORIES = [
@@ -122,6 +147,13 @@ function validate(articles) {
     for (const field of OPTIONAL_BUT_WARN_FIELDS) {
       if (!article[field] || String(article[field]).trim() === '') {
         warnings.push(`${label}: フィールド "${field}" が未設定です（推奨）。`);
+      }
+    }
+
+    // 5本柱チェック（推奨フィールド）
+    for (const { check, message } of FIVE_PILLARS_WARN) {
+      if (!check(article)) {
+        warnings.push(`${label}: ${message}`);
       }
     }
 

@@ -19,8 +19,8 @@ function esc(str) {
 
 /** 記事データに画像URLが無い場合の仮画像（images/placeholders/） */
 const PLACEHOLDER_IMG = {
-  editor: 'images/placeholders/avatar-reporter.svg',
-  story: 'images/placeholders/story-portrait.svg',
+  editor: 'images/urushizawa-avatar.jpg',
+  story: 'images/urushizawa-story.jpg',
   gallery: 'images/placeholders/gallery-photo.svg',
   before: 'images/placeholders/gallery-before.svg',
   after: 'images/placeholders/gallery-after.svg',
@@ -215,10 +215,10 @@ function buildArticleHTML(a) {
   const scoreBarsHTML = (a.scoreDetails || []).map(s => {
     const pct = Math.round((s.score / (s.max || 5)) * 100);
     return `
-      <div class="score-bar-row">
+      <div class="score-bar-row" style="--bar-pct:${pct}%">
         <span class="bar-label">${esc(s.label)}</span>
         <div class="bar-track" role="progressbar" aria-valuenow="${s.score}" aria-valuemin="0" aria-valuemax="${s.max || 5}">
-          <div class="bar-fill bar-animated" style="--bar-width:${pct}%"></div>
+          <div class="bar-fill"></div>
         </div>
         <span class="bar-value">${s.score}<small>/${s.max || 5}</small></span>
       </div>
@@ -600,6 +600,31 @@ function initSmoothScroll() {
 }
 
 /* ============================================================
+   SCORE BAR ANIMATION
+============================================================ */
+function initScoreBars() {
+  const rows = document.querySelectorAll('.score-bar-row[style]');
+  if (!rows.length) return;
+
+  if (!('IntersectionObserver' in window)) {
+    rows.forEach(row => row.classList.add('bar-animated'));
+    return;
+  }
+
+  const ob = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const row = e.target;
+      const idx = Array.from(rows).indexOf(row);
+      setTimeout(() => row.classList.add('bar-animated'), idx * 120);
+      ob.unobserve(row);
+    });
+  }, { threshold: 0.2, rootMargin: '0px 0px -30px 0px' });
+
+  rows.forEach(row => ob.observe(row));
+}
+
+/* ============================================================
    INTERSECTION OBSERVER
 ============================================================ */
 function initScrollAnimations() {
@@ -647,32 +672,119 @@ function initSwipers() {
 /* ============================================================
    MAIN ENTRY POINT
 ============================================================ */
+/* ============================================================
+   404 / ERROR HELPERS
+============================================================ */
+
+/** ページを noindex に切り替える */
+function setNoIndex() {
+  let el = document.querySelector('meta[name="robots"]');
+  if (!el) {
+    el = document.createElement('meta');
+    el.setAttribute('name', 'robots');
+    document.head.appendChild(el);
+  }
+  el.setAttribute('content', 'noindex, nofollow');
+}
+
+/** 最近の記事（最大 n 件）の HTML を返す。候補がない場合は空文字 */
+function buildSuggestionsHTML(articles, currentSlug, n = 3) {
+  const candidates = (Array.isArray(articles) ? articles : [])
+    .filter(a => a.slug && a.slug !== currentSlug && a.heroTitle)
+    .sort((a, b) => (b.publishedAt || '').localeCompare(a.publishedAt || ''))
+    .slice(0, n);
+
+  if (!candidates.length) return '';
+
+  const items = candidates.map(s => `
+    <li>
+      <a href="article.html?id=${esc(s.slug)}" class="not-found-suggestion-link">
+        <span class="not-found-suggestion-cat">${esc(s.category || '')}</span>${esc(s.company || s.title || '')}
+      </a>
+    </li>
+  `).join('');
+
+  return `
+    <div class="not-found-suggestions">
+      <p class="not-found-suggestions-title">最近の記事</p>
+      <ul class="not-found-suggestions-list">${items}</ul>
+    </div>
+  `;
+}
+
+/** 記事が見つからない場合の UI を描画する */
+function renderArticleNotFound(main, articles, slug) {
+  document.title = '記事が見つかりません | みんなの評判.com';
+  setNoIndex();
+
+  main.innerHTML = `
+    <div class="article-not-found container" role="alert" aria-live="assertive">
+      <div class="not-found-code" aria-hidden="true">404</div>
+      <h1 class="not-found-title">記事が見つかりませんでした</h1>
+      <p class="not-found-lead">
+        お探しの記事（<code>${esc(slug)}</code>）は存在しないか、<br>
+        URLが間違っている可能性があります。
+      </p>
+      <div class="not-found-actions">
+        <a href="articles.html" class="btn btn--primary">記事一覧を見る</a>
+        <a href="index.html" class="btn btn--secondary">トップへ戻る</a>
+      </div>
+      ${buildSuggestionsHTML(articles, slug)}
+    </div>
+  `;
+}
+
+/** データファイル読み込み失敗時の UI を描画する */
+function renderDataLoadError(main) {
+  document.title = '読み込みエラー | みんなの評判.com';
+  setNoIndex();
+
+  main.innerHTML = `
+    <div class="article-not-found container" role="alert" aria-live="assertive">
+      <div class="not-found-code" aria-hidden="true">エラー</div>
+      <h1 class="not-found-title">記事データを読み込めませんでした</h1>
+      <p class="not-found-lead">
+        ネットワーク障害または一時的なエラーが発生しました。<br>
+        ページを再読み込みするか、しばらく経ってから再度お試しください。
+      </p>
+      <div class="not-found-actions">
+        <button class="btn btn--primary not-found-reload-btn" onclick="window.location.reload()">再読み込み</button>
+        <a href="articles.html" class="btn btn--secondary">記事一覧へ</a>
+      </div>
+    </div>
+  `;
+}
+
+/* ============================================================
+   MAIN ENTRY POINT
+============================================================ */
 document.addEventListener('DOMContentLoaded', () => {
   initHamburger();
 
-  // Get article slug from URL
-  const params = new URLSearchParams(window.location.search);
-  const slug = params.get('id');
-
   const main = document.getElementById('article-main');
-  const articles = window.ARTICLES || [];
 
-  if (!slug) {
-    // No slug → redirect to listing
-    window.location.href = 'articles.html';
+  // ── シナリオ①: data/articles.js が未定義または非配列（スクリプト読み込みエラー）
+  if (!Array.isArray(window.ARTICLES)) {
+    renderDataLoadError(main);
     return;
   }
 
+  const articles = window.ARTICLES;
+
+  // ── シナリオ②: ?id= パラメータなし → 記事一覧へリダイレクト
+  const params = new URLSearchParams(window.location.search);
+  const slug = (params.get('id') || '').trim();
+
+  if (!slug) {
+    window.location.replace('articles.html');
+    return;
+  }
+
+  // ── シナリオ③: slug が見つからない（記事 404）
   const article = articles.find(a => a.slug === slug);
 
   if (!article) {
-    main.innerHTML = `
-      <div class="article-not-found container" role="alert">
-        <h2>記事が見つかりませんでした</h2>
-        <p style="color:var(--color-muted);margin-top:8px;">お探しの記事は存在しないか、URLが間違っている可能性があります。</p>
-        <a href="articles.html" class="btn" style="margin-top:24px;background:var(--color-primary);color:white;">記事一覧へ戻る</a>
-      </div>
-    `;
+    renderArticleNotFound(main, articles, slug);
     return;
   }
 
@@ -804,6 +916,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderReviewsInArticle(article.reviews || []);
   renderFAQInArticle(article.faqs || []);
   initSmoothScroll();
+  initScoreBars();
   initScrollAnimations();
   requestAnimationFrame(() => initSwipers());
 });
