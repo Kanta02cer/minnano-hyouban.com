@@ -390,6 +390,14 @@ ul, ol {
   letter-spacing: 0.03em;
 }
 
+/* 大手ニュース掲載企業バッジ — ゴールド強調 */
+.hero-badges li.badge-media {
+  background: rgba(201,168,76,0.25);
+  border-color: rgba(201,168,76,0.7);
+  color: #fde68a;
+  order: -1;  /* 先頭に表示 */
+}
+
 .hero-pr-note {
   margin-top: 16px;
   font-size: 0.72rem;
@@ -1163,10 +1171,25 @@ ul, ol {
 }
 
 .articles-hero {
-  background: var(--color-primary);
-  padding: 64px 20px;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 100%, rgba(201,168,76,.12) 0%, transparent 70%),
+    var(--color-primary);
+  padding: 56px 20px 52px;
   text-align: center;
   color: var(--color-white);
+}
+
+.articles-hero-eyebrow {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #fde68a;
+  border: 1px solid rgba(253,230,138,.4);
+  border-radius: 999px;
+  padding: 4px 16px;
+  margin-bottom: 16px;
 }
 
 .articles-hero h1 {
@@ -1179,6 +1202,43 @@ ul, ol {
 .articles-hero p {
   opacity: 0.85;
   font-size: 0.95rem;
+  max-width: 600px;
+  margin: 0 auto 24px;
+  line-height: 1.8;
+}
+
+/* 記事一覧ヒーロー内のメディア名一覧 */
+.articles-hero-media-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.articles-hero-media-strip > span {
+  font-size: 0.72rem;
+  opacity: .7;
+  white-space: nowrap;
+}
+
+.articles-hero-media-strip ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+}
+
+.articles-hero-media-strip li {
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 4px;
+  padding: 3px 10px;
+  white-space: nowrap;
+  letter-spacing: .03em;
 }
 
 .articles-toolbar {

@@ -273,6 +273,7 @@ function buildArticleHTML(a) {
         <h1 class="hero-title" id="hero-heading">${a.heroTitle || esc(a.company) + 'の評判を<br>徹底調査しました'}</h1>
         <p class="hero-sub">${esc(a.heroSub || '')}</p>
         <ul class="hero-badges" role="list" aria-label="記事の特徴">
+          <li class="badge-media">大手ニュース掲載企業</li>
           <li>第三者取材</li>
           <li>記者執筆</li>
           <li>口コミ多数掲載</li>
@@ -292,7 +293,7 @@ function buildArticleHTML(a) {
                  alt="${esc(a.editorName || '記者')}の顔写真" class="editor-avatar" loading="lazy" width="64" height="64">
             <div>
               <p class="editor-name">${esc(a.editorName || '記者：漆沢 祐樹')}</p>
-              <p class="editor-title">${esc(a.editorTitle || 'フリーランス記者 / 消費者メディア専門')}</p>
+              <p class="editor-title">${esc(a.editorTitle || 'パーソナルナビHD 代表取締役社長／みんなの評判.com 担当記者')}</p>
             </div>
           </div>
           <div class="note-checklist">
