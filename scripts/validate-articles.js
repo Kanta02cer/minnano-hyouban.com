@@ -20,7 +20,32 @@ const REQUIRED_FIELDS = ['slug', 'company', 'heroTitle'];
 
 const OPTIONAL_BUT_WARN_FIELDS = [
   'title', 'metaDesc', 'category', 'publishedAt',
-  'heroSub', 'editorName', 'officialUrl',
+  'heroSub', 'editorName', 'editorImg', 'officialUrl',
+];
+
+// 5本柱（商品・どんな人か・想い・評判・遷移）の推奨フィールド
+// 欠落は警告のみ（エラーにはしない）
+const FIVE_PILLARS_WARN = [
+  {
+    pillar: '商品',
+    check: a => (a.featureBoxes?.length > 0) || (a.serviceCards?.length > 0),
+    message: '「商品」柱: featureBoxes または serviceCards が未設定です（サービス内容が伝わりません）。',
+  },
+  {
+    pillar: 'どんな人か',
+    check: a => (a.interviews?.length > 0) || (a.cuttingQA?.length > 0),
+    message: '「どんな人か」柱: interviews または cuttingQA が未設定です（人物像・代表プロフィールが伝わりません）。',
+  },
+  {
+    pillar: '想い',
+    check: a => Array.isArray(a.storyText) && a.storyText.some(t => t && t.trim()),
+    message: '「想い」柱: storyText が未設定です（設立背景・ストーリーが伝わりません）。',
+  },
+  {
+    pillar: '遷移（CTA）',
+    check: a => a.officialUrl && a.officialUrl !== '#',
+    message: '「遷移（CTA）」柱: officialUrl が "#" のままです（公式サイトへの遷移が計測できません）。',
+  },
 ];
 
 const VALID_CATEGORIES = [
@@ -30,6 +55,12 @@ const VALID_CATEGORIES = [
   'マネー・投資',
   'ライフスタイル',
 ];
+
+function expectedIdPrefixForCategory(category) {
+  const n = VALID_CATEGORIES.indexOf(category) + 1; // 0 => not found
+  if (!n) return null;
+  return String(n).repeat(n);
+}
 
 // ── ロード ──────────────────────────────────────────────────────
 function loadArticles() {
@@ -81,6 +112,16 @@ function validate(articles) {
         errors.push(`${label}: slug "${article.slug}" が重複しています。`);
       }
       slugSeen.add(article.slug);
+
+      // 16桁・カテゴリ接頭（暫定ID規則）の整合性チェック（警告）
+      if (/^\d{16}$/.test(String(article.slug))) {
+        const expectedPrefix = expectedIdPrefixForCategory(article.category);
+        if (expectedPrefix && !String(article.slug).startsWith(expectedPrefix)) {
+          warnings.push(`${label}: slug "${article.slug}" の接頭がカテゴリ "${article.category}" と一致しません（期待: ${expectedPrefix}…）。`);
+        }
+      } else {
+        warnings.push(`${label}: slug "${article.slug}" は16桁数値ではありません（暫定ID規則未適用の可能性）。`);
+      }
     }
 
     // カテゴリチェック
@@ -106,6 +147,13 @@ function validate(articles) {
     for (const field of OPTIONAL_BUT_WARN_FIELDS) {
       if (!article[field] || String(article[field]).trim() === '') {
         warnings.push(`${label}: フィールド "${field}" が未設定です（推奨）。`);
+      }
+    }
+
+    // 5本柱チェック（推奨フィールド）
+    for (const { check, message } of FIVE_PILLARS_WARN) {
+      if (!check(article)) {
+        warnings.push(`${label}: ${message}`);
       }
     }
 

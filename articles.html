@@ -13,6 +13,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <!-- GA4: 本番で測定IDを設定（コメントを外す） -->
+  <!-- <meta name="ga4-measurement-id" content="G-XXXXXXXXXX"> -->
 </head>
 <body class="articles-page">
 
@@ -24,8 +26,8 @@
       </a>
       <nav class="nav-desktop" aria-label="メインナビゲーション">
         <ul role="list">
-          <li><a href="articles.html" aria-current="page">評判カテゴリ</a></li>
-          <li><a href="articles.html">記事一覧</a></li>
+          <li><a href="articles.html" aria-current="page">記事一覧</a></li>
+          <li><a href="editor.html">記者紹介</a></li>
           <li><a href="index.html#contact">取材依頼</a></li>
         </ul>
       </nav>
@@ -35,10 +37,17 @@
         <span aria-hidden="true"></span>
       </button>
     </div>
+    <div class="header-quick-nav" aria-label="クイックナビゲーション">
+      <div class="header-quick-inner">
+        <a href="articles.html" aria-current="page">記事一覧</a>
+        <a href="editor.html" class="header-quick-nav--editor">記者紹介</a>
+        <a href="index.html#contact">取材依頼</a>
+      </div>
+    </div>
     <nav class="nav-mobile" id="nav-mobile" aria-label="モバイルナビゲーション" hidden>
       <ul role="list">
-        <li><a href="articles.html">評判カテゴリ</a></li>
         <li><a href="articles.html">記事一覧</a></li>
+        <li><a href="editor.html">記者紹介</a></li>
         <li><a href="index.html#contact">取材依頼</a></li>
       </ul>
     </nav>
@@ -48,8 +57,20 @@
     <!-- Hero -->
     <div class="articles-hero">
       <div class="container">
+        <p class="articles-hero-eyebrow">大手ネットニュース掲載企業のみを厳選取材</p>
         <h1>評判記事一覧</h1>
-        <p>第三者記者が取材・執筆した、信頼性の高い評判記事をご覧いただけます。</p>
+        <p>楽天・ニコニコ・エキサイトなど大手ネットニュースで話題の企業を、第三者記者が利用者取材・直撃インタビューで徹底検証した評判レポートです。</p>
+        <div class="articles-hero-media-strip" aria-label="掲載メディア例">
+          <span>掲載媒体例：</span>
+          <ul>
+            <li>楽天ニュース</li>
+            <li>ニコニコニュース</li>
+            <li>エキサイトニュース</li>
+            <li>Yahoo!ニュース</li>
+            <li>goo ニュース</li>
+            <li>livedoor ニュース</li>
+          </ul>
+        </div>
       </div>
     </div>
 
@@ -57,8 +78,23 @@
     <section class="articles-list-section" aria-labelledby="articles-list-heading">
       <div class="container">
         <h2 class="section-title" id="articles-list-heading">掲載中の記事</h2>
-        <div class="articles-grid" id="articles-grid" role="list" aria-label="記事一覧">
-          <!-- JS で生成 -->
+
+        <div class="articles-toolbar" aria-label="記事の検索と絞り込み">
+          <form class="articles-search" id="articles-search-form" role="search" action="articles.html" method="get">
+            <label for="articles-q">キーワード</label>
+            <input type="search" id="articles-q" name="q" placeholder="サービス名・企業名など" autocomplete="off" enterkeyhint="search">
+            <button type="submit" class="btn btn--cta" style="padding:10px 20px;font-size:0.9rem;min-height:44px;">検索</button>
+          </form>
+          <div class="articles-filter-chips" id="articles-chips" role="group" aria-label="カテゴリで絞り込み"></div>
+        </div>
+
+        <div id="articles-results" aria-live="polite" aria-relevant="additions removals">
+          <div class="articles-grid" id="articles-grid" role="list" aria-label="記事一覧">
+            <!-- JS で生成 -->
+          </div>
+          <div id="articles-no-results" role="status">
+            <p>条件に一致する記事がありません。キーワードやカテゴリを変えてお試しください。</p>
+          </div>
         </div>
         <div id="articles-empty" style="display:none;text-align:center;padding:48px 0;color:var(--color-muted);">
           <p>現在掲載中の記事はありません。</p>
@@ -76,22 +112,28 @@
       </div>
       <nav class="footer-nav" aria-label="フッターナビゲーション">
         <ul role="list">
-          <li><a href="articles.html">評判カテゴリ</a></li>
           <li><a href="articles.html">記事一覧</a></li>
+          <li><a href="editor.html">記者紹介</a></li>
           <li><a href="index.html#contact">取材依頼</a></li>
-          <li><a href="#">プライバシーポリシー</a></li>
+          <li><a href="privacy.html">プライバシーポリシー</a></li>
+          <li><a href="disclaimer.html">免責事項</a></li>
         </ul>
       </nav>
       <div class="footer-sns" aria-label="SNSでシェア">
-        <a href="https://twitter.com/share" class="sns-btn" aria-label="X（旧Twitter）でシェア" target="_blank" rel="noopener noreferrer">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fminnano-hyouban.com%2Farticles.html&amp;text=%E3%81%BF%E3%82%93%E3%81%AA%E3%81%AE%E8%A9%95%E5%88%A4.com%20%E8%A8%98%E4%BA%8B%E4%B8%80%E8%A6%A7" class="sns-btn" aria-label="X（旧Twitter）でシェア" target="_blank" rel="noopener noreferrer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
             <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.74l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+        </a>
+        <a href="https://line.me/R/share?url=https%3A%2F%2Fminnano-hyouban.com%2Farticles.html" class="sns-btn" aria-label="LINEでシェア" target="_blank" rel="noopener noreferrer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+            <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
           </svg>
         </a>
       </div>
     </div>
     <div class="footer-bottom">
-      <p class="copyright">© 2024 みんなの評判.com All Rights Reserved.</p>
+      <p class="copyright">© 2024–2026 みんなの評判.com All Rights Reserved.</p>
       <p class="pr-footer-note">本サイトに掲載している記事は、広告・PR記事を含みます。</p>
     </div>
   </footer>
@@ -109,42 +151,145 @@
       });
     }
 
-    /* ── Article Listing ── */
+    /* ── Article Listing（検索・カテゴリ・URL同期） ── */
+    function normalizeCategory(c) {
+      return (c && String(c).trim()) ? String(c).trim() : 'その他';
+    }
+
+    function collectCategories(list) {
+      const set = new Set();
+      list.forEach((a) => set.add(normalizeCategory(a.category)));
+      return Array.from(set).sort((x, y) => x.localeCompare(y, 'ja'));
+    }
+
+    function articleMatches(a, q, cat) {
+      const catNorm = cat && cat !== '__all__' ? cat : null;
+      if (catNorm && normalizeCategory(a.category) !== catNorm) return false;
+      const qq = (q || '').trim().toLowerCase();
+      if (!qq) return true;
+      const plainTitle = a.heroTitle ? a.heroTitle.replace(/<br\s*\/?>/gi, ' ') : '';
+      const hay = [a.company, a.title, plainTitle, a.heroSub, a.category, a.slug]
+        .filter(Boolean)
+        .join(' ')
+        .toLowerCase();
+      return hay.includes(qq);
+    }
+
+    function buildCard(a) {
+      const thumb = (a.galleries && a.galleries.service && a.galleries.service[0] && a.galleries.service[0].src)
+        || 'images/placeholders/card-thumb-generic.svg';
+      const card = document.createElement('a');
+      card.href = `article.html?id=${encodeURIComponent(a.slug)}`;
+      card.className = 'article-card';
+      card.setAttribute('role', 'listitem');
+      card.setAttribute('aria-label', `${a.company || a.slug}の評判記事を読む`);
+      card.innerHTML = `
+        <img src="${thumb}" alt="${a.company || ''}のサムネイル" class="article-card-thumb" loading="lazy">
+        <div class="article-card-body">
+          <span class="article-card-tag">${normalizeCategory(a.category)}</span>
+          <h2 class="article-card-title">${a.heroTitle ? a.heroTitle.replace(/<br\s*\/?>/gi, '') : (a.company || '') + 'の評判を徹底調査'}</h2>
+          <div class="article-card-meta">
+            <span>記者：${a.editorName ? a.editorName.replace('記者：', '') : '漆沢 祐樹'}</span>
+            <span>${a.publishedAt || ''}</span>
+          </div>
+          <p class="article-card-link">記事を読む</p>
+        </div>
+      `;
+      return card;
+    }
+
+    function syncUrl(q, cat) {
+      const url = new URL(window.location.href);
+      const qq = (q || '').trim();
+      if (qq) url.searchParams.set('q', qq);
+      else url.searchParams.delete('q');
+      if (cat && cat !== '__all__') url.searchParams.set('cat', cat);
+      else url.searchParams.delete('cat');
+      window.history.replaceState({}, '', url.pathname + url.search);
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
       const grid = document.getElementById('articles-grid');
       const empty = document.getElementById('articles-empty');
+      const noResults = document.getElementById('articles-no-results');
+      const chipsWrap = document.getElementById('articles-chips');
+      const form = document.getElementById('articles-search-form');
+      const qInput = document.getElementById('articles-q');
       const articles = window.ARTICLES || [];
 
       if (articles.length === 0) {
         empty.style.display = 'block';
+        const tb = document.querySelector('.articles-toolbar');
+        if (tb) tb.hidden = true;
         return;
       }
 
-      articles.forEach(a => {
-        const thumb = (a.galleries?.service?.[0]?.src) || 'images/placeholders/card-thumb-generic.svg';
+      const params = new URLSearchParams(window.location.search);
+      let qVal = params.get('q') || '';
+      qInput.value = qVal;
 
-        const card = document.createElement('a');
-        card.href = `article.html?id=${encodeURIComponent(a.slug)}`;
-        card.className = 'article-card';
-        card.setAttribute('role', 'listitem');
-        card.setAttribute('aria-label', `${a.company || a.slug}の評判記事を読む`);
+      const categories = collectCategories(articles);
+      let activeCat = params.get('cat') || '__all__';
+      if (activeCat !== '__all__' && !categories.includes(activeCat)) {
+        activeCat = '__all__';
+      }
 
-        card.innerHTML = `
-          <img src="${thumb}" alt="${a.company || ''}のサムネイル" class="article-card-thumb" loading="lazy">
-          <div class="article-card-body">
-            <span class="article-card-tag">${a.category || 'その他'}</span>
-            <h2 class="article-card-title">${a.heroTitle ? a.heroTitle.replace('<br>', '') : (a.company || '') + 'の評判を徹底調査'}</h2>
-            <div class="article-card-meta">
-              <span>記者：${a.editorName ? a.editorName.replace('記者：', '') : '漆沢 祐樹'}</span>
-              <span>${a.publishedAt || ''}</span>
-            </div>
-            <p class="article-card-link">記事を読む</p>
-          </div>
-        `;
+      function renderChips(cats) {
+        chipsWrap.innerHTML = '';
+        const label = document.createElement('span');
+        label.className = 'articles-filter-label';
+        label.textContent = 'カテゴリ';
+        chipsWrap.appendChild(label);
 
-        grid.appendChild(card);
+        const allBtn = document.createElement('button');
+        allBtn.type = 'button';
+        allBtn.className = 'articles-chip' + (activeCat === '__all__' ? ' is-active' : '');
+        allBtn.setAttribute('aria-pressed', activeCat === '__all__' ? 'true' : 'false');
+        allBtn.dataset.category = '__all__';
+        allBtn.textContent = 'すべて';
+        chipsWrap.appendChild(allBtn);
+
+        cats.forEach((c) => {
+          const b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'articles-chip' + (activeCat === c ? ' is-active' : '');
+          b.setAttribute('aria-pressed', activeCat === c ? 'true' : 'false');
+          b.dataset.category = c;
+          b.textContent = c;
+          chipsWrap.appendChild(b);
+        });
+
+        chipsWrap.querySelectorAll('.articles-chip').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            activeCat = btn.dataset.category || '__all__';
+            chipsWrap.querySelectorAll('.articles-chip').forEach((x) => {
+              const on = x.dataset.category === activeCat;
+              x.classList.toggle('is-active', on);
+              x.setAttribute('aria-pressed', on ? 'true' : 'false');
+            });
+            applyFilter();
+          });
+        });
+      }
+
+      function applyFilter() {
+        qVal = qInput.value;
+        const filtered = articles.filter((a) => articleMatches(a, qVal, activeCat));
+        grid.innerHTML = '';
+        filtered.forEach((a) => grid.appendChild(buildCard(a)));
+        noResults.style.display = filtered.length === 0 ? 'block' : 'none';
+        syncUrl(qVal, activeCat);
+      }
+
+      renderChips(categories);
+      applyFilter();
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        applyFilter();
       });
     });
   </script>
+  <script src="js/site-analytics.js"></script>
 </body>
 </html>

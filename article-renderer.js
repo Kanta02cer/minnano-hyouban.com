@@ -19,14 +19,114 @@ function esc(str) {
 
 /** 記事データに画像URLが無い場合の仮画像（images/placeholders/） */
 const PLACEHOLDER_IMG = {
-  editor: 'images/placeholders/avatar-reporter.svg',
-  story: 'images/placeholders/story-portrait.svg',
+  editor: 'images/urushizawa-avatar.jpg',
+  story: 'images/urushizawa-story.jpg',
   gallery: 'images/placeholders/gallery-photo.svg',
   before: 'images/placeholders/gallery-before.svg',
   after: 'images/placeholders/gallery-after.svg',
   media: 'images/placeholders/media-logo.svg',
   og: 'images/placeholders/og-career.svg',
 };
+
+const CONTACT_MAILTO = 'mailto:info@minnano-hyouban.com';
+
+function resolveOfficialUrl(u) {
+  const raw = String(u || '').trim();
+  if (!raw || raw === '#') return { href: CONTACT_MAILTO, source: 'fallback_mailto' };
+  try {
+    // Normalize to absolute URL (relative is allowed).
+    const abs = new URL(raw, window.location.href).href;
+    return { href: abs, source: 'official_url' };
+  } catch {
+    return { href: CONTACT_MAILTO, source: 'fallback_mailto' };
+  }
+}
+
+/** GA4 測定IDの形式チェック（誤設定で gtag を読み込まない） */
+function validGa4MeasurementId(id) {
+  return typeof id === 'string' && /^G-[A-Z0-9]{6,}$/.test(id.trim());
+}
+
+/**
+ * 公式サイトCTA用に UTM をマージ（docs/outbound-tracking-guide.md）
+ * window.__OFFICIAL_LINK_UTM__ === false で無効化。
+ * オブジェクトで { utm_campaign: 'review_2026' } など上書き可能。
+ */
+function applyOfficialUtm(absHref, article) {
+  const flag = window.__OFFICIAL_LINK_UTM__;
+  if (flag === false) return absHref;
+
+  const defaults = {
+    utm_source: 'minnano-hyouban',
+    utm_medium: 'referral',
+    utm_campaign: 'review_article',
+    utm_content: String(article?.slug || '').trim() || undefined,
+  };
+  const overrides = flag && typeof flag === 'object' ? flag : {};
+
+  try {
+    const u = new URL(absHref);
+    const params = new URLSearchParams(u.search);
+    const merged = { ...defaults, ...overrides };
+    Object.entries(merged).forEach(([k, v]) => {
+      if (v != null && String(v).trim() !== '') params.set(k, String(v).trim());
+    });
+    u.search = params.toString();
+    return u.href;
+  } catch {
+    return absHref;
+  }
+}
+
+function analyticsConsentEnabled() {
+  // CMPがないため、明示設定がなければ許可扱いにして計測が止まらないようにする
+  // （必要なら localStorage('analytics_consent') を 'false' にして停止可能）
+  try {
+    const v = localStorage.getItem('analytics_consent');
+    return v === null ? true : v === 'true';
+  } catch {
+    return true;
+  }
+}
+
+function trackEvent(eventName, params = {}) {
+  if (!analyticsConsentEnabled()) return;
+  try {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: eventName, ...params });
+  } catch {
+    // dataLayer が使えない環境でも落とさない
+  }
+
+  // 将来GA4（gtag.js）を後から差し込む場合にも互換を持たせる
+  if (typeof window.gtag === 'function') {
+    try { window.gtag('event', eventName, params); } catch {}
+  }
+}
+
+let ga4InitOnce = false;
+function maybeInitGA4() {
+  if (ga4InitOnce) return;
+  ga4InitOnce = true;
+
+  if (!analyticsConsentEnabled()) return;
+
+  const idFromGlobal = window.__GA4_MEASUREMENT_ID__;
+  const idFromMeta = document.querySelector('meta[name="ga4-measurement-id"]')?.content;
+  const measurementId = (idFromGlobal || idFromMeta || '').trim();
+  if (!validGa4MeasurementId(measurementId)) return;
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+
+  const script = document.createElement('script');
+  script.async = true;
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`;
+  document.head.appendChild(script);
+
+  window.gtag('js', new Date());
+  window.gtag('config', measurementId, { send_page_view: false });
+}
 
 function galleryServiceForArticle(a) {
   const g = a.galleries?.service;
@@ -73,10 +173,32 @@ function setMeta(name, content, attr = 'name') {
   el.setAttribute('content', content);
 }
 
+/** フッター SNS（X / LINE）を現在のページURL・タイトルに合わせる */
+function updateFooterShareLinks() {
+  const wrap = document.querySelector('.footer-sns');
+  if (!wrap) return;
+  const u = encodeURIComponent(window.location.href);
+  const t = encodeURIComponent(document.title);
+  const tw = wrap.querySelector('a[aria-label*="X"]') || wrap.querySelector('a');
+  const line = wrap.querySelector('a[aria-label*="LINE"]');
+  if (tw) tw.href = `https://twitter.com/intent/tweet?url=${u}&text=${t}`;
+  if (line) line.href = `https://line.me/R/share?url=${u}`;
+}
+
 /* ============================================================
    BUILD ARTICLE HTML
 ============================================================ */
 function buildArticleHTML(a) {
+  const resolved = resolveOfficialUrl(a.officialUrl);
+  const cta =
+    resolved.source === 'official_url'
+      ? { href: applyOfficialUtm(resolved.href, a), source: resolved.source }
+      : resolved;
+  const hasOfficial = cta.source === 'official_url';
+  const isMailto = String(cta.href).startsWith('mailto:');
+  const ctaLinkAttrs = isMailto ? '' : ' target="_blank" rel="noopener noreferrer"';
+  const mailInquiry = `${CONTACT_MAILTO}?subject=${encodeURIComponent(`お問い合わせ（${a.company || '記事'}）`)}`;
+
   // Service cards
   const serviceCardsHTML = (a.serviceCards || []).map(c => `
     <div class="service-card" role="listitem">
@@ -145,10 +267,10 @@ function buildArticleHTML(a) {
   const scoreBarsHTML = (a.scoreDetails || []).map(s => {
     const pct = Math.round((s.score / (s.max || 5)) * 100);
     return `
-      <div class="score-bar-row">
+      <div class="score-bar-row" style="--bar-pct:${pct}%">
         <span class="bar-label">${esc(s.label)}</span>
         <div class="bar-track" role="progressbar" aria-valuenow="${s.score}" aria-valuemin="0" aria-valuemax="${s.max || 5}">
-          <div class="bar-fill bar-animated" style="--bar-width:${pct}%"></div>
+          <div class="bar-fill"></div>
         </div>
         <span class="bar-value">${s.score}<small>/${s.max || 5}</small></span>
       </div>
@@ -203,6 +325,7 @@ function buildArticleHTML(a) {
         <h1 class="hero-title" id="hero-heading">${a.heroTitle || esc(a.company) + 'の評判を<br>徹底調査しました'}</h1>
         <p class="hero-sub">${esc(a.heroSub || '')}</p>
         <ul class="hero-badges" role="list" aria-label="記事の特徴">
+          <li class="badge-media">大手ニュース掲載企業</li>
           <li>第三者取材</li>
           <li>記者執筆</li>
           <li>口コミ多数掲載</li>
@@ -222,7 +345,7 @@ function buildArticleHTML(a) {
                  alt="${esc(a.editorName || '記者')}の顔写真" class="editor-avatar" loading="lazy" width="64" height="64">
             <div>
               <p class="editor-name">${esc(a.editorName || '記者：漆沢 祐樹')}</p>
-              <p class="editor-title">${esc(a.editorTitle || 'フリーランス記者 / 消費者メディア専門')}</p>
+              <p class="editor-title">${esc(a.editorTitle || 'パーソナルナビHD 代表取締役社長／みんなの評判.com 担当記者')}</p>
             </div>
           </div>
           <div class="note-checklist">
@@ -366,9 +489,44 @@ function buildArticleHTML(a) {
     <section class="cta-section animate-on-scroll" id="contact" aria-labelledby="cta-heading">
       <div class="container">
         <h2 class="cta-title" id="cta-heading">${esc(a.ctaTitle || 'この評判記事が気になった方へ')}</h2>
-        <p class="cta-sub">${esc(a.ctaSub || 'まずは公式サイトで詳細をご確認ください。')}</p>
-        <a href="${esc(a.officialUrl || '#')}" class="btn btn--cta" target="_blank" rel="noopener noreferrer">${esc(a.ctaBtn || '公式サイトを確認する →')}</a>
-        <a href="${esc(a.officialUrl || '#')}" class="btn-text-link" target="_blank" rel="noopener noreferrer">無料相談・お問い合わせはこちら</a>
+        <p class="cta-sub">${esc(
+          hasOfficial
+            ? (a.ctaSub || 'まずは公式サイトで詳細をご確認ください。')
+            : (a.ctaSub || '公式サイトの案内URLが未登録のため、メディアへのお問い合わせからご案内します。')
+        )}</p>
+        ${hasOfficial ? `
+        <a href="${esc(cta.href)}"
+           class="btn btn--cta"
+           ${ctaLinkAttrs}
+           data-cta-kind="article_official"
+           data-article-slug="${esc(a.slug || '')}"
+           data-company="${esc(a.company || '')}"
+           data-cta-source="${esc(cta.source)}"
+        >${esc(a.ctaBtn || '公式サイトを確認する →')}</a>
+        <a href="${esc(cta.href)}"
+           class="btn-text-link"
+           ${ctaLinkAttrs}
+           data-cta-kind="article_contact"
+           data-article-slug="${esc(a.slug || '')}"
+           data-company="${esc(a.company || '')}"
+           data-cta-source="${esc(cta.source)}"
+        >無料相談・お問い合わせはこちら</a>
+        ` : `
+        <p class="cta-fallback-note" role="note">※ 公式サイトの公開URLが未設定です。メディア経由でのご案内となります。</p>
+        <a href="${esc(mailInquiry)}"
+           class="btn btn--cta"
+           data-cta-kind="article_official"
+           data-article-slug="${esc(a.slug || '')}"
+           data-company="${esc(a.company || '')}"
+           data-cta-source="fallback_mailto"
+        >メディアへのお問い合わせ</a>
+        <a href="index.html#contact"
+           class="btn-text-link"
+           data-cta-kind="article_media_inquiry"
+           data-article-slug="${esc(a.slug || '')}"
+           data-company="${esc(a.company || '')}"
+        >取材・掲載のご依頼（メディア）</a>
+        `}
       </div>
     </section>
   `;
@@ -495,6 +653,31 @@ function initSmoothScroll() {
 }
 
 /* ============================================================
+   SCORE BAR ANIMATION
+============================================================ */
+function initScoreBars() {
+  const rows = document.querySelectorAll('.score-bar-row[style]');
+  if (!rows.length) return;
+
+  if (!('IntersectionObserver' in window)) {
+    rows.forEach(row => row.classList.add('bar-animated'));
+    return;
+  }
+
+  const ob = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const row = e.target;
+      const idx = Array.from(rows).indexOf(row);
+      setTimeout(() => row.classList.add('bar-animated'), idx * 120);
+      ob.unobserve(row);
+    });
+  }, { threshold: 0.2, rootMargin: '0px 0px -30px 0px' });
+
+  rows.forEach(row => ob.observe(row));
+}
+
+/* ============================================================
    INTERSECTION OBSERVER
 ============================================================ */
 function initScrollAnimations() {
@@ -542,32 +725,121 @@ function initSwipers() {
 /* ============================================================
    MAIN ENTRY POINT
 ============================================================ */
+/* ============================================================
+   404 / ERROR HELPERS
+============================================================ */
+
+/** ページを noindex に切り替える */
+function setNoIndex() {
+  let el = document.querySelector('meta[name="robots"]');
+  if (!el) {
+    el = document.createElement('meta');
+    el.setAttribute('name', 'robots');
+    document.head.appendChild(el);
+  }
+  el.setAttribute('content', 'noindex, nofollow');
+}
+
+/** 最近の記事（最大 n 件）の HTML を返す。候補がない場合は空文字 */
+function buildSuggestionsHTML(articles, currentSlug, n = 3) {
+  const candidates = (Array.isArray(articles) ? articles : [])
+    .filter(a => a.slug && a.slug !== currentSlug && a.heroTitle)
+    .sort((a, b) => (b.publishedAt || '').localeCompare(a.publishedAt || ''))
+    .slice(0, n);
+
+  if (!candidates.length) return '';
+
+  const items = candidates.map(s => `
+    <li>
+      <a href="article.html?id=${esc(s.slug)}" class="not-found-suggestion-link">
+        <span class="not-found-suggestion-cat">${esc(s.category || '')}</span>${esc(s.company || s.title || '')}
+      </a>
+    </li>
+  `).join('');
+
+  return `
+    <div class="not-found-suggestions">
+      <p class="not-found-suggestions-title">最近の記事</p>
+      <ul class="not-found-suggestions-list">${items}</ul>
+    </div>
+  `;
+}
+
+/** 記事が見つからない場合の UI を描画する */
+function renderArticleNotFound(main, articles, slug) {
+  document.title = '記事が見つかりません | みんなの評判.com';
+  setNoIndex();
+
+  main.innerHTML = `
+    <div class="article-not-found container" role="alert" aria-live="assertive">
+      <div class="not-found-code" aria-hidden="true">404</div>
+      <h1 class="not-found-title">記事が見つかりませんでした</h1>
+      <p class="not-found-lead">
+        お探しの記事（<code>${esc(slug)}</code>）は存在しないか、<br>
+        URLが間違っている可能性があります。
+      </p>
+      <div class="not-found-actions">
+        <a href="articles.html" class="btn btn--primary">記事一覧を見る</a>
+        <a href="index.html" class="btn btn--secondary">トップへ戻る</a>
+      </div>
+      ${buildSuggestionsHTML(articles, slug)}
+    </div>
+  `;
+  updateFooterShareLinks();
+}
+
+/** データファイル読み込み失敗時の UI を描画する */
+function renderDataLoadError(main) {
+  document.title = '読み込みエラー | みんなの評判.com';
+  setNoIndex();
+
+  main.innerHTML = `
+    <div class="article-not-found container" role="alert" aria-live="assertive">
+      <div class="not-found-code" aria-hidden="true">エラー</div>
+      <h1 class="not-found-title">記事データを読み込めませんでした</h1>
+      <p class="not-found-lead">
+        ネットワーク障害または一時的なエラーが発生しました。<br>
+        ページを再読み込みするか、しばらく経ってから再度お試しください。
+      </p>
+      <div class="not-found-actions">
+        <button class="btn btn--primary not-found-reload-btn" onclick="window.location.reload()">再読み込み</button>
+        <a href="articles.html" class="btn btn--secondary">記事一覧へ</a>
+      </div>
+    </div>
+  `;
+  updateFooterShareLinks();
+}
+
+/* ============================================================
+   MAIN ENTRY POINT
+============================================================ */
 document.addEventListener('DOMContentLoaded', () => {
   initHamburger();
 
-  // Get article slug from URL
-  const params = new URLSearchParams(window.location.search);
-  const slug = params.get('id');
-
   const main = document.getElementById('article-main');
-  const articles = window.ARTICLES || [];
 
-  if (!slug) {
-    // No slug → redirect to listing
-    window.location.href = 'articles.html';
+  // ── シナリオ①: data/articles.js が未定義または非配列（スクリプト読み込みエラー）
+  if (!Array.isArray(window.ARTICLES)) {
+    renderDataLoadError(main);
     return;
   }
 
+  const articles = window.ARTICLES;
+
+  // ── シナリオ②: ?id= パラメータなし → 記事一覧へリダイレクト
+  const params = new URLSearchParams(window.location.search);
+  const slug = (params.get('id') || '').trim();
+
+  if (!slug) {
+    window.location.replace('articles.html');
+    return;
+  }
+
+  // ── シナリオ③: slug が見つからない（記事 404）
   const article = articles.find(a => a.slug === slug);
 
   if (!article) {
-    main.innerHTML = `
-      <div class="article-not-found container" role="alert">
-        <h2>記事が見つかりませんでした</h2>
-        <p style="color:var(--color-muted);margin-top:8px;">お探しの記事は存在しないか、URLが間違っている可能性があります。</p>
-        <a href="articles.html" class="btn" style="margin-top:24px;background:var(--color-primary);color:white;">記事一覧へ戻る</a>
-      </div>
-    `;
+    renderArticleNotFound(main, articles, slug);
     return;
   }
 
@@ -586,13 +858,121 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   setMeta('og:image', ogImageAbsolute(article.ogImage), 'property');
 
+  /* ============================================================
+     JSON-LD（構造化データ）
+     - 記事ページに Article / BreadcrumbList / FAQPage を付与
+     - 記者（漆沢祐樹）は「公開前提（要ファクトチェック）」で最小限の項目のみ反映
+  ============================================================ */
+  function upsertJSONLD(id, obj) {
+    const json = JSON.stringify(obj);
+    let el = document.getElementById(id);
+    if (!el) {
+      el = document.createElement('script');
+      el.type = 'application/ld+json';
+      el.id = id;
+      document.head.appendChild(el);
+    }
+    el.textContent = json;
+  }
+
+  function stripHTML(str) {
+    return String(str || '').replace(/<[^>]*>/g, '');
+  }
+
+  const pageUrl = new URL(window.location.href).href;
+  const siteOrigin = window.location.origin;
+
+  // TODO: 公開可能項目の最終ファクトチェック（schemaに入れる項目は最小限）
+  const authorPerson = {
+    '@type': 'Person',
+    name: '漆沢 祐樹',
+    jobTitle: '株式会社パーソナルナビ 代表取締役社長',
+    worksFor: { '@type': 'Organization', name: '株式会社パーソナルナビ' },
+    sameAs: ['https://thecareer.jp', 'https://humanstory.jp'],
+    knowsAbout: [
+      'キャリア教育',
+      '人材紹介',
+      '企業研修',
+      '浮世絵外交',
+      '国際芸術文化協会'
+    ]
+  };
+
+  const publisherOrg = {
+    '@type': 'Organization',
+    name: 'みんなの評判.com',
+    url: new URL('./', siteOrigin).href
+  };
+
+  const ogImgAbs = ogImageAbsolute(article.ogImage);
+  const breadcrumbLD = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'トップ', item: new URL('/index.html', siteOrigin).href },
+      { '@type': 'ListItem', position: 2, name: '記事一覧', item: new URL('/articles.html', siteOrigin).href },
+      { '@type': 'ListItem', position: 3, name: stripHTML(article.company || article.title || ''), item: pageUrl }
+    ]
+  };
+
+  const articleLD = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    url: pageUrl,
+    mainEntityOfPage: pageUrl,
+    headline: stripHTML(article.heroTitle || article.title || ''),
+    description: article.metaDesc || '',
+    image: ogImgAbs,
+    articleSection: article.category || undefined,
+    inLanguage: 'ja-JP',
+    datePublished: article.publishedAt || undefined,
+    dateModified: article.updatedAt || article.publishedAt || undefined,
+    author: authorPerson,
+    publisher: publisherOrg
+  };
+
+  upsertJSONLD('jsonld-breadcrumb', breadcrumbLD);
+  upsertJSONLD('jsonld-article', articleLD);
+
+  if (Array.isArray(article.faqs) && article.faqs.length > 0) {
+    const faqLD = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: article.faqs.slice(0, 10).map(item => ({
+        '@type': 'Question',
+        name: stripHTML(item.q || ''),
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: stripHTML(item.a || '')
+        }
+      }))
+    };
+    upsertJSONLD('jsonld-faq', faqLD);
+  }
+
   // Render article
   main.innerHTML = buildArticleHTML(article);
+  updateFooterShareLinks();
+
+  // CTA click tracking（指名検索→記事→公式遷移の計測を想定）
+  maybeInitGA4();
+  main.querySelectorAll('a[data-cta-kind]').forEach((a) => {
+    a.addEventListener('click', () => {
+      trackEvent('article_cta_click', {
+        cta_kind: a.dataset.ctaKind,
+        article_slug: a.dataset.articleSlug,
+        company: a.dataset.company,
+        cta_source: a.dataset.ctaSource,
+        page_url: window.location.href,
+      });
+    }, { capture: true, passive: true });
+  });
 
   // Post-render: reviews, FAQ, animations, swipers
   renderReviewsInArticle(article.reviews || []);
   renderFAQInArticle(article.faqs || []);
   initSmoothScroll();
+  initScoreBars();
   initScrollAnimations();
   requestAnimationFrame(() => initSwipers());
 });

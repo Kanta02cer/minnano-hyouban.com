@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
   <title>記事投稿フォーマット — みんなの評判.com</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -115,6 +116,7 @@
       <h2>目次</h2>
       <ol>
         <li><a href="#sec-order">セクション構成図</a></li>
+        <li><a href="#sec-pillars">5本柱 対応表</a></li>
         <li><a href="#sec-01">01 ヒーロー</a></li>
         <li><a href="#sec-02">02 記者紹介</a></li>
         <li><a href="#sec-03">03 記事本文</a></li>
@@ -131,6 +133,18 @@
         <li><a href="#sec-11">11 CTA</a></li>
         <li><a href="#sec-flow">投稿フロー</a></li>
       </ol>
+
+      <div class="flow-box" style="margin-bottom: 16px;">
+        <h3>関連ドキュメント（リポジトリ内）</h3>
+        <p style="font-size: 11px; line-height: 1.6; margin-bottom: 8px;">議事録の取材項目と <code>data/articles.js</code> の対応、ヒアリングシート、AIプロンプト型、計測・法務チェックは次を参照。</p>
+        <ul style="padding-left: 16px; font-size: 11px; line-height: 1.7;">
+          <li><code>docs/article-field-mapping.md</code></li>
+          <li><code>docs/hearing-sheet.md</code></li>
+          <li><code>docs/prompts/article-ai-prompt-template.md</code></li>
+          <li><code>docs/outbound-tracking-guide.md</code>（GA4・UTM）</li>
+          <li><code>docs/legal-ga-utm-checklist.md</code> / <code>docs/operations-runbook.md</code></li>
+        </ul>
+      </div>
 
       <div class="flow-box">
         <h3>クイック投稿フロー</h3>
@@ -185,6 +199,76 @@
         </div>
         <div class="hint-box" style="margin-top:14px">
           <strong>セクション順は固定です。</strong> セクション単体の省略は可能ですが、順序の変更は禁止。省略する場合は該当フィールドを空文字・空配列にしてください（セクション自体が非表示になります）。
+        </div>
+      </div>
+    </div>
+
+    <!-- 5本柱 対応表 -->
+    <div class="section-block" id="sec-pillars">
+      <div class="section-block-header">
+        <span class="sec-num">概念</span>
+        <span class="sec-title">コンセプト5本柱 ─ セクション対応表</span>
+      </div>
+      <div class="section-block-body">
+        <p style="font-size:12px;color:var(--muted);margin-bottom:10px">
+          各記事は「商品・どんな人か・想い・評判・遷移」の5本柱が揃うことで、<br>
+          顕在層の信用づくりと公式サイト遷移（CVR計測）を両立します。<br>
+          <strong>validate-articles.js</strong> がこの表のフィールドを自動チェックします。
+        </p>
+        <table>
+          <tr>
+            <th style="width:90px">柱</th>
+            <th>目的</th>
+            <th>対応セクション</th>
+            <th style="width:160px">対応フィールド（主要）</th>
+            <th style="width:60px">検証</th>
+          </tr>
+          <tr>
+            <td><strong>商品</strong></td>
+            <td>サービス内容・強みの具体的な説明</td>
+            <td>03 記事本文 / 08 サービス詳細</td>
+            <td class="field-name">featureBoxes, serviceCards, steps</td>
+            <td><span class="badge-w">警告</span></td>
+          </tr>
+          <tr>
+            <td><strong>どんな人か</strong></td>
+            <td>代表・人物の見える化。氏名検索で「誰がやっているか」が伝わる</td>
+            <td>02 記者紹介 / 05 インタビュー / 07 切り込みQ&amp;A</td>
+            <td class="field-name">editorImg, editorName, interviews, cuttingQA</td>
+            <td><span class="badge-w">警告</span></td>
+          </tr>
+          <tr>
+            <td><strong>想い</strong></td>
+            <td>設立背景・ストーリー性・意外性の描写</td>
+            <td>10 創業ストーリー</td>
+            <td class="field-name">storyText</td>
+            <td><span class="badge-w">警告</span></td>
+          </tr>
+          <tr>
+            <td><strong>評判</strong></td>
+            <td>口コミ閲覧欲・第三者性。ネガ口コミも公平に扱う</td>
+            <td>05 インタビュー / 06 口コミ・レビュー / 04 スコア評価</td>
+            <td class="field-name">reviews, interviews, scoreDetails</td>
+            <td><span class="badge-w">警告</span></td>
+          </tr>
+          <tr>
+            <td><strong>遷移（CTA）</strong></td>
+            <td>顕在層を公式サイトへ誘導。CVRとして計測する</td>
+            <td>11 CTA（全セクション内のボタン）</td>
+            <td class="field-name">officialUrl, ctaBtn</td>
+            <td><span class="badge-w">警告</span></td>
+          </tr>
+        </table>
+        <div class="hint-box" style="margin-top:10px">
+          <strong>取材ヒアリング雛形：</strong>
+          <code>_prompts/article-draft.md</code> に5本柱に対応したヒアリングシートと AI プロンプトが格納されています。
+          取材前に印刷またはコピーして活用してください。
+        </div>
+        <div class="warn-box" style="margin-top:8px">
+          <strong>CVR計測について：</strong>
+          公式サイトへの遷移は UTM パラメータ付きで計測してください。設定方法は
+          <code>docs/outbound-tracking-guide.md</code> を参照。<br>
+          <code>officialUrl</code> が <code>#</code> のままだと計測できません（validate で警告が出ます）。
         </div>
       </div>
     </div>
@@ -524,7 +608,7 @@
           <tr><th>フィールド名</th><th>説明</th><th>推奨文字数</th><th>必須</th></tr>
           <tr><td class="field-name">ctaTitle</td><td>CTAセクション見出し（例: "〇〇が気になった方へ"）</td><td class="char-count">〜25字</td><td><span class="badge-r">必須</span></td></tr>
           <tr><td class="field-name">ctaSub</td><td>CTAサブテキスト（背中を押すコピー）</td><td class="char-count">〜50字</td><td><span class="badge-r">必須</span></td></tr>
-          <tr><td class="field-name">officialUrl</td><td>公式サイトURL（ボタンのリンク先）。準備中の場合は <code>"#"</code></td><td class="char-count">URL</td><td><span class="badge-r">必須</span></td></tr>
+          <tr><td class="field-name">officialUrl</td><td>公式サイトURL（主ボタンのリンク先）。未入力・<code>"#"</code>・無効なURLのときは、記事ページのCTAが「メディアへのお問い合わせ」と「取材依頼（トップ）」に切り替わります。</td><td class="char-count">URL</td><td><span class="badge-r">必須</span></td></tr>
           <tr><td class="field-name">ctaBtn</td><td>ボタンラベル（例: "公式サイトで無料相談を予約する →"）</td><td class="char-count">〜25字</td><td><span class="badge-r">必須</span></td></tr>
         </table>
       </div>

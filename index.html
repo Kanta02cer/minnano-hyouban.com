@@ -3,11 +3,80 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>みんなの評判.com | 第三者記者が書く、企業評判メディア</title>
-  <meta name="description" content="フリーランス記者・漆沢祐樹が実際に取材・検証した企業評判レポートを掲載。広告でなく、リアルな調査結果をお届けするメディアです。">
+  <title>みんなの評判.com | 楽天・ニコニコ・エキサイト掲載企業を第三者記者が徹底取材</title>
+  <meta name="description" content="楽天・ニコニコ・エキサイトなど大手ネットニュースで話題の注目企業だけを厳選。フリーランス記者・漆沢祐樹が利用者インタビューと直撃取材で書いた第三者評判メディアです。">
+  <meta name="author" content="漆沢 祐樹">
   <meta property="og:title" content="みんなの評判.com | 第三者記者が書く、企業評判メディア">
-  <meta property="og:description" content="記者が直接取材・検証した評判レポートを掲載。不都合な情報も、正直に書きます。">
+  <meta property="og:description" content="記者・漆沢祐樹が直接取材・検証した評判レポートを掲載。不都合な情報も、正直に書きます。PR記事として明示した上で、第三者視点での評判記事を提供。">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://minnano-hyouban.com/">
+  <meta property="og:site_name" content="みんなの評判.com">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="みんなの評判.com | 第三者記者が書く、企業評判メディア">
+  <meta name="twitter:description" content="記者・漆沢祐樹が直接取材・検証した評判レポートを掲載。不都合な情報も、正直に書きます。">
+  <link rel="canonical" href="https://minnano-hyouban.com/">
+  <!-- GA4: 本番で測定IDを設定（コメントを外すか、js/site-analytics.js より前に window.__GA4_MEASUREMENT_ID__） -->
+  <!-- <meta name="ga4-measurement-id" content="G-XXXXXXXXXX"> -->
+
+  <!-- JSON-LD: WebSite + Organization + Person -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://minnano-hyouban.com/#website",
+        "url": "https://minnano-hyouban.com/",
+        "name": "みんなの評判.com",
+        "description": "フリーランス記者・漆沢祐樹が取材・検証した企業評判レポートメディア",
+        "inLanguage": "ja",
+        "publisher": {
+          "@id": "https://minnano-hyouban.com/#organization"
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://minnano-hyouban.com/articles.html?q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/#organization",
+        "name": "みんなの評判.com",
+        "url": "https://minnano-hyouban.com/",
+        "description": "企業・サービスの第三者評判取材を専門とする個人メディア。PR記事であることを明示した上で、利用者インタビューと運営会社への直撃取材を行う。",
+        "founder": {
+          "@id": "https://minnano-hyouban.com/#person-urushizawa"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "editorial inquiries",
+          "email": "info@minnano-hyouban.com",
+          "availableLanguage": "Japanese"
+        }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/#person-urushizawa",
+        "name": "漆沢 祐樹",
+        "alternateName": "うるしざわ ゆうき",
+        "jobTitle": "代表取締役社長 / 担当記者",
+        "description": "株式会社パーソナルナビHD 代表取締役社長。起業家・キャリア教育者としての実務に加え、みんなの評判.com 代表として第三者評判取材を専門とする。",
+        "url": "https://minnano-hyouban.com/editor.html",
+        "email": "info@minnano-hyouban.com",
+        "worksFor": {
+          "@id": "https://minnano-hyouban.com/#organization"
+        },
+        "knowsAbout": ["企業評判", "消費者メディア", "サービスレビュー", "インタビュー取材", "PR記事"]
+      }
+    ]
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
@@ -22,8 +91,8 @@
       </a>
       <nav class="nav-desktop" aria-label="サイトナビゲーション">
         <ul>
-          <li><a href="#articles">記事一覧</a></li>
-          <li><a href="#categories">カテゴリ</a></li>
+          <li><a href="articles.html">記事一覧</a></li>
+          <li><a href="editor.html">記者紹介</a></li>
           <li><a href="#about">取材について</a></li>
           <li><a href="#contact" class="nav-inquiry">取材依頼</a></li>
         </ul>
@@ -32,11 +101,18 @@
         <span></span><span></span><span></span>
       </button>
     </div>
+    <div class="header-quick-nav" aria-label="クイックナビゲーション">
+      <div class="container header-quick-inner">
+        <a href="articles.html">記事一覧</a>
+        <a href="editor.html" class="header-quick-nav--editor">記者紹介</a>
+        <a href="#contact" class="header-quick-nav--cta">取材依頼</a>
+      </div>
+    </div>
     <nav class="nav-mobile" id="nav-mobile" hidden aria-label="モバイルナビゲーション">
       <div class="container">
         <ul>
-          <li><a href="#articles">記事一覧</a></li>
-          <li><a href="#categories">カテゴリ</a></li>
+          <li><a href="articles.html">記事一覧</a></li>
+          <li><a href="editor.html">記者紹介</a></li>
           <li><a href="#about">取材について</a></li>
           <li><a href="#contact">取材依頼</a></li>
         </ul>
@@ -51,9 +127,9 @@
       <div class="container">
         <div class="hero-inner">
           <div class="hero-text">
-            <p class="hero-eyebrow">評判レポートメディア — 第三者取材</p>
-            <h1 id="hero-h" class="hero-title">企業の<span class="hero-accent">本音</span>を、<br>あなたに届ける。</h1>
-            <p class="hero-lead">フリーランス記者・漆沢祐樹が、利用者への直接インタビューと運営会社への直撃取材を経て書いた評判レポートを掲載しています。都合の良いことだけでなく、不都合な情報も正直に書きます。</p>
+            <p class="hero-eyebrow">大手ネットニュース掲載企業 × 第三者記者取材</p>
+            <h1 id="hero-h" class="hero-title">注目企業の<span class="hero-accent">評判</span>を、<br>第三者が正直に届ける。</h1>
+            <p class="hero-lead">楽天・ニコニコ・エキサイトなど<strong>大手ネットニュースで話題の企業のみ</strong>を取材対象に厳選。フリーランス記者・漆沢祐樹が利用者への直接インタビューと運営会社への直撃取材を通じて、都合の良いことも悪いことも正直に書きます。</p>
             <div class="hero-stats" aria-label="メディア実績">
               <div class="hero-stat">
                 <strong>127<span>件+</span></strong>
@@ -73,11 +149,11 @@
             <a href="#featured" class="hero-cta">最新の評判記事を読む</a>
           </div>
           <aside class="hero-editor" aria-label="担当記者プロフィール">
-            <img src="images/placeholders/editor-portrait.svg" alt="記者・漆沢祐樹" class="editor-photo" width="180" height="220" loading="lazy">
+            <img src="images/urushizawa-face-close.jpg" alt="記者・漆沢祐樹" class="editor-photo" width="180" height="220" loading="lazy">
             <div class="editor-meta">
               <p class="editor-role">担当記者</p>
               <p class="editor-name">漆沢 祐樹</p>
-              <p class="editor-note">フリーランス記者。消費者メディア専門として10年以上、企業・サービスの第三者取材を継続。</p>
+              <p class="editor-note">株式会社パーソナルナビHD 代表取締役社長。経営・キャリア教育の現場を知る視点で、企業・サービスの第三者取材を継続しています。</p>
             </div>
           </aside>
         </div>
@@ -88,12 +164,34 @@
     <div class="promise-bar" role="complementary" aria-label="メディアの約束">
       <div class="container">
         <ul class="promise-list">
+          <li>大手ネットニュース掲載企業のみ記事化</li>
           <li>第三者記者が直接取材</li>
           <li>利用者へのインタビュー実施</li>
           <li>不都合な情報も掲載</li>
           <li>会社へ直撃取材</li>
           <li>PR記事として記事内に明示</li>
         </ul>
+      </div>
+    </div>
+
+    <!-- MEDIA SELECTION STRIP -->
+    <div class="media-selection-strip" aria-label="取材対象の選定基準">
+      <div class="container">
+        <div class="media-selection-inner">
+          <div class="media-selection-label">
+            <span class="media-selection-check" aria-hidden="true">✓</span>
+            <span>取材対象の<strong>選定基準</strong></span>
+          </div>
+          <p class="media-selection-desc">みん評で紹介するサービス・企業は、以下の大手ネットニュースメディアで取り上げられた最近の注目企業のみです。</p>
+          <ul class="media-name-list" aria-label="掲載実績のある大手ネットニュース">
+            <li>楽天ニュース</li>
+            <li>ニコニコニュース</li>
+            <li>エキサイトニュース</li>
+            <li>Yahoo!ニュース</li>
+            <li>goo ニュース</li>
+            <li>livedoor ニュース</li>
+          </ul>
+        </div>
       </div>
     </div>
 
@@ -127,12 +225,12 @@
       <div class="container">
         <h2 id="categories-h" class="section-title">カテゴリから探す</h2>
         <nav class="category-nav" aria-label="記事カテゴリ">
-          <a href="#" class="category-tag category-tag--active">すべて</a>
-          <a href="#" class="category-tag">キャリア・転職</a>
-          <a href="#" class="category-tag">美容・健康</a>
-          <a href="#" class="category-tag">語学・スキル</a>
-          <a href="#" class="category-tag">マネー・投資</a>
-          <a href="#" class="category-tag">ライフスタイル</a>
+          <a href="articles.html" class="category-tag category-tag--active">すべて</a>
+          <a href="articles.html" class="category-tag">キャリア・転職</a>
+          <a href="articles.html" class="category-tag">美容・健康</a>
+          <a href="articles.html" class="category-tag">語学・スキル</a>
+          <a href="articles.html" class="category-tag">マネー・投資</a>
+          <a href="articles.html" class="category-tag">ライフスタイル</a>
         </nav>
       </div>
     </section>
@@ -143,16 +241,16 @@
         <div class="about-layout">
           <div class="about-intro">
             <h2 id="about-h" class="about-title">このメディアについて</h2>
-            <p>企業の良さを自社で発信しても、消費者になかなか信頼してもらえない——そんな声を持つ企業と、本当に良いサービスを探している消費者の双方を繋ぎたいという想いで、このメディアを立ち上げました。</p>
-            <p>フリーランス記者として10年以上、累計500件以上の評判記事を執筆してきた漆沢が、<strong>PR記事であることを明示した上で</strong>、利用者への直接インタビュー・運営会社への直撃取材・記者自身の率直な見解をすべて掲載します。</p>
+            <p>みんなの評判.comが取材対象とするのは、<strong>楽天・ニコニコ・エキサイトなど大手ネットニュースで紹介された最近の注目企業のみ</strong>です。すでに社会的に注目されている企業だからこそ、第三者が取材することで「信用の裏付け」が生まれます。</p>
+            <p>フリーランス記者として10年以上、累計500件以上の評判記事を執筆してきた漆沢が、<strong>PR記事であることを明示した上で</strong>、利用者への直接インタビュー・運営会社への直撃取材・記者自身の率直な見解をすべて掲載します。掲載基準の高さが、このメディアの信頼性の根拠です。</p>
           </div>
           <div class="about-promise">
             <h3 class="promise-title">みんなの評判.com の5つの約束</h3>
             <ol class="promise-items">
+              <li>大手ネットニュース掲載企業のみを取材対象とする</li>
               <li>PR記事であることを記事冒頭に必ず明記する</li>
               <li>利用者への直接インタビューを必ず実施する</li>
               <li>ネガティブな情報も掲載する（削除要求には応じない）</li>
-              <li>成功率・評価スコアの定義を明示する</li>
               <li>記者名・取材日を全記事に記載する</li>
             </ol>
           </div>
@@ -186,18 +284,18 @@
       </div>
       <nav class="footer-nav" aria-label="フッターナビゲーション">
         <ul>
-          <li><a href="#articles">記事一覧</a></li>
-          <li><a href="#categories">カテゴリ</a></li>
+          <li><a href="articles.html">記事一覧</a></li>
+          <li><a href="editor.html">記者紹介</a></li>
           <li><a href="#about">取材について</a></li>
           <li><a href="#contact">取材依頼</a></li>
-          <li><a href="#">プライバシーポリシー</a></li>
-          <li><a href="#">免責事項</a></li>
+          <li><a href="privacy.html">プライバシーポリシー</a></li>
+          <li><a href="disclaimer.html">免責事項</a></li>
         </ul>
       </nav>
     </div>
     <div class="footer-bottom">
       <div class="container footer-bottom-inner">
-        <p>&copy; 2024 みんなの評判.com All Rights Reserved.</p>
+        <p>&copy; 2024–2026 みんなの評判.com All Rights Reserved.</p>
         <p class="footer-pr-note">本サイトに掲載している記事は、広告・PR記事を含みます。</p>
       </div>
     </div>
@@ -410,5 +508,6 @@
       document.querySelectorAll('.anim-up').forEach(el => el.classList.add('visible'));
     }
   </script>
+  <script src="js/site-analytics.js"></script>
 </body>
 </html>

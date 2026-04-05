@@ -35,6 +35,19 @@
 
 サーバーサイド処理は一切なく、全てクライアントサイドで完結します。
 
+### 公開ページとナビの統一
+
+| ページ | 役割 |
+|---|---|
+| `index.html` | 正規トップ（ヒーロー・記事抜粋・取材依頼 `#contact`） |
+| `articles.html` | 記事一覧（キーワード検索 `?q=`・カテゴリ `?cat=` で絞り込み可能） |
+| `article.html`（`?id=` 付き） | 記事詳細（データ駆動） |
+| `editor.html` | 記者紹介 |
+| `privacy.html` / `disclaimer.html` | 法務 |
+| `top.html` | `index.html` へリダイレクト（旧URL互換） |
+
+グローバルナビ（本番系）は **記事一覧 → `articles.html`、記者紹介 → `editor.html`、取材依頼 → `index.html#contact`** で統一しています。`admin.html`・`article-format.html`・`design-1`〜`3` は運用・内部用であり、`robots.txt` でインデックス対象外です。
+
 ---
 
 ## 2. セットアップ
@@ -185,6 +198,32 @@ GitHub Pages へアップロード
 
 ---
 
+## 4-1. CMS不要の運用フロー（記事月10本想定）
+
+月10本程度であれば、重いCMSは不要です。`data/articles.js` を Git（mainブランチ）で更新し、公開前に必ず検証を通します。
+
+### 基本フロー
+- 記事追加/編集（`admin.html` / CLI / 直接編集）
+- `npm run validate` を実行して、検証エラーが無いことを確認
+- `git add data/articles.js` → `git commit` → `git push origin main`
+- GitHub Actions が完了するのを待って、サイト反映を確認
+
+### 運用ルール（編集者向け）
+- `slug` は公開後、原則変更しない（URLが固定されるため）
+- `officialUrl` は記事ごとに管理する（準備中は `"#"`、公開済みは有効URL）
+- 事実（氏名・肩書・所属・団体名等）はファクトチェック前提で反映し、誇張・推測表現は避ける
+- `metaDesc` / `heroTitle` / `faqs` は AI 概要・検索の要約対象になりやすいため、欠落が無い状態で登録する
+
+### 推奨（PR運用）
+実運用では `content/*` ブランチで PR を作り、差分レビューしてから `main` へマージすると安全です（公開前の第三者確認も可能になります）。
+
+### GA4・公式リンクのUTM（本番）
+
+- **測定ID**（`G-` で始まる文字列）を、各HTMLの `<meta name="ga4-measurement-id" content="...">` に設定するか、ページ読み込み前に `window.__GA4_MEASUREMENT_ID__` を設定する。プレースホルダのままでは `js/site-analytics.js` / `article-renderer.js` は読み込みません。
+- **記事の公式CTA** は `article-renderer.js` が `officialUrl` に UTM をマージする（`docs/outbound-tracking-guide.md`）。無効化は `article.html` 内のコメント例どおり `window.__OFFICIAL_LINK_UTM__ = false;`（`article-renderer.js` より前）。
+
+---
+
 ## 5. ファイル構成
 
 ```
@@ -201,15 +240,26 @@ minnano-hyouban/
 │   ├── add-article.js          # 記事追加 CLI スクリプト
 │   └── validate-articles.js    # 記事データ検証スクリプト
 │
-├── images/                     # 記事用画像（実際の画像をここに格納）
+├── docs/
+│   ├── outbound-tracking-guide.md   # 公式サイト遷移の計測（GA4・UTM）
+│   ├── article-field-mapping.md     # 取材項目 ↔ articles.js 対応表
+│   ├── hearing-sheet.md             # ヒアリングシート（1枚）
+│   ├── prompts/
+│   │   └── article-ai-prompt-template.md  # AIドラフト用プロンプト型
+│   ├── operations-runbook.md        # 公開・請求・運用契約メモ
+│   ├── legal-ga-utm-checklist.md    # PR・GA・UTM・クレーム表示チェック
+│   └── next-steps-from-meeting.md   # 議事録ベースの次タスクガイド
+├── js/
+│   └── site-analytics.js            # トップ等の GA4 読み込み（記事は article-renderer.js）
+├── images/                     # 記事用画像（`images/README.md` に必要素材の一覧あり）
 │
-├── index.html                  # トップページ（記事一覧・ヒーロー）
+├── index.html                  # トップページ（正規トップ・ヒーロー・記事抜粋）
 ├── index.css                   # トップページ CSS
-├── top.html                    # 別デザインのトップページ
-├── top.css                     # 別デザイン CSS
+├── top.html                    # index.html へリダイレクト（旧URL・ブックマーク互換）
+├── top.css                     # 旧トップデザイン用 CSS（参照用に残置）
 ├── articles.html               # 記事一覧ページ
 ├── article.html                # 記事個別ページ（?id=<slug> で動的描画）
-├── article-renderer.js         # 記事個別ページのレンダリングエンジン
+├── article-renderer.js         # 記事個別ページのレンダリング・GA4・公式URLのUTM
 ├── admin.html                  # 記事管理画面（ブラウザで開いて使用）
 ├── style.css                   # articles.html / article.html / admin.html 共通 CSS
 ├── main.js                     # メイン JS（レビュー・FAQ 等）
