@@ -470,7 +470,9 @@
       <div class="container">
         <div class="editor-hero-inner">
           <div class="editor-hero-photo">
-            <img src="images/placeholders/editor-portrait.svg" alt="記者・漆沢祐樹" width="160" height="200" loading="eager">
+            <!-- 本番: images/urushizawa-portrait.jpg を配置（長辺720px目安）。未配置時は SVG に自動フォールバック -->
+            <img src="images/urushizawa-portrait.jpg" alt="記者・漆沢祐樹" width="160" height="200" loading="eager"
+              onerror="this.onerror=null;this.src='images/placeholders/editor-portrait.svg'">
           </div>
           <div class="editor-hero-info">
             <span class="editor-hero-label">株式会社パーソナルナビ/ 株式会社メディくる 代表取締役／みんなの評判.com 代表・担当記者</span>

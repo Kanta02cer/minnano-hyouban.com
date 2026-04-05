@@ -142,7 +142,9 @@
             <a href="#featured" class="hero-cta">最新の評判記事を読む</a>
           </div>
           <aside class="hero-editor" aria-label="担当記者プロフィール">
-            <img src="images/placeholders/editor-portrait.svg" alt="記者・漆沢祐樹" class="editor-photo" width="180" height="220" loading="lazy">
+            <!-- 本番: images/urushizawa-portrait.jpg（記者紹介ページと共通）。未配置時は SVG にフォールバック -->
+            <img src="images/urushizawa-portrait.jpg" alt="記者・漆沢祐樹" class="editor-photo" width="180" height="220" loading="lazy"
+              onerror="this.onerror=null;this.src='images/placeholders/editor-portrait.svg'">
             <div class="editor-meta">
               <p class="editor-role">担当記者</p>
               <p class="editor-name">漆沢 祐樹</p>
