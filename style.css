@@ -214,9 +214,10 @@ ul, ol {
 .site-header {
   position: sticky;
   top: 0;
-  z-index: 100;
-  background: var(--color-primary);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  z-index: 200;
+  background: #fff;
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07);
 }
 
 .header-inner {
@@ -238,12 +239,12 @@ ul, ol {
   font-family: var(--font-heading);
   font-size: 1.1rem;
   font-weight: 700;
-  color: var(--color-white);
+  color: var(--color-text);
   letter-spacing: 0.02em;
 }
 
 .logo-com {
-  color: var(--color-accent);
+  color: var(--color-primary);
 }
 
 /* Desktop nav */
@@ -253,7 +254,7 @@ ul, ol {
 }
 
 .nav-desktop a {
-  color: rgba(255,255,255,0.9);
+  color: #444;
   font-size: 0.9rem;
   font-weight: 500;
   transition: color 0.2s;
@@ -261,7 +262,20 @@ ul, ol {
 }
 
 .nav-desktop a:hover {
-  color: var(--color-accent);
+  color: var(--color-primary);
+}
+
+.nav-inquiry {
+  padding: 7px 18px;
+  background: var(--color-primary);
+  color: #fff !important;
+  border-radius: 4px;
+  font-size: 0.8125rem !important;
+  transition: background 0.2s !important;
+}
+
+.nav-inquiry:hover {
+  background: #154e8c !important;
 }
 
 /* Hamburger */
@@ -283,7 +297,7 @@ ul, ol {
   display: block;
   width: 24px;
   height: 2px;
-  background: var(--color-white);
+  background: var(--color-text);
   border-radius: 2px;
   transition: transform 0.3s, opacity 0.3s;
 }
@@ -324,43 +338,6 @@ ul, ol {
   background: rgba(255,255,255,0.08);
 }
 
-/* モバイルのみ：ヘッダー直下クイックナビ（記者紹介・主要導線） */
-.header-quick-nav {
-  display: none;
-}
-@media (max-width: 767px) {
-  .header-quick-nav {
-    display: block;
-    background: rgba(0, 0, 0, 0.18);
-    border-top: 1px solid rgba(255, 255, 255, 0.12);
-  }
-  .header-quick-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 8px 20px 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px 18px;
-    flex-wrap: wrap;
-    min-height: 44px;
-  }
-  .header-quick-inner a {
-    color: rgba(255, 255, 255, 0.92);
-    font-size: 0.8125rem;
-    font-weight: 600;
-  }
-  .header-quick-inner a.header-quick-nav--editor {
-    color: var(--color-accent);
-    border: 1px solid rgba(201, 168, 76, 0.55);
-    border-radius: 4px;
-    padding: 5px 12px;
-  }
-  .header-quick-inner a[aria-current="page"] {
-    opacity: 0.85;
-    font-weight: 700;
-  }
-}
 
 /* ============================================================
    01 HERO
@@ -1192,7 +1169,7 @@ ul, ol {
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .nav-desktop { display: none; }
   .hamburger { display: flex; }
 
