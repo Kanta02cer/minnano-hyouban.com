@@ -345,7 +345,7 @@ function buildArticleHTML(a) {
                  alt="${esc(a.editorName || '記者')}の顔写真" class="editor-avatar" loading="lazy" width="64" height="64">
             <div>
               <p class="editor-name">${esc(a.editorName || '記者：漆沢 祐樹')}</p>
-              <p class="editor-title">${esc(a.editorTitle || 'パーソナルナビHD 代表取締役社長／みんなの評判.com 担当記者')}</p>
+              <p class="editor-title">${esc(a.editorTitle || '株式会社パーソナルナビ/ 株式会社メディくる 代表取締役／みんなの評判.com 担当記者')}</p>
             </div>
           </div>
           <div class="note-checklist">
@@ -886,7 +886,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const authorPerson = {
     '@type': 'Person',
     name: '漆沢 祐樹',
-    jobTitle: '株式会社パーソナルナビ 代表取締役社長',
+    jobTitle: '株式会社パーソナルナビ／株式会社メディくる 代表取締役',
     worksFor: { '@type': 'Organization', name: '株式会社パーソナルナビ' },
     sameAs: ['https://thecareer.jp', 'https://humanstory.jp'],
     knowsAbout: [

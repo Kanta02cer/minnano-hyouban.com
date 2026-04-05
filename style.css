@@ -494,6 +494,7 @@ ul, ol {
   font-size: 0.8rem;
   color: var(--color-muted);
   margin-top: 2px;
+  line-height: 1.55;
 }
 
 .checklist-heading {

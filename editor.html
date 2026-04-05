@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>漆沢祐樹 — 記者プロフィール | みんなの評判.com</title>
-  <meta name="description" content="株式会社パーソナルナビHD 代表取締役社長・漆沢祐樹（うるしざわゆうき）。起業家・キャリア教育者としての実務に加え、みんなの評判.com 代表として第三者評判取材を継続。プロフィール・経歴はこちら。">
+  <meta name="description" content="株式会社パーソナルナビ／株式会社メディくる 代表取締役・漆沢祐樹（うるしざわ ゆうき）。みんなの評判.com 代表・担当記者として第三者評判取材を継続。経歴・役職はこちら。">
   <meta property="og:title" content="漆沢祐樹 — 記者プロフィール | みんなの評判.com">
-  <meta property="og:description" content="パーソナルナビHD 代表取締役社長。DATAコンサル・グループ経営の傍ら、第三者評判メディアのみんなの評判.com を運営。取材依頼はinfo@minnano-hyouban.comへ。">
+  <meta property="og:description" content="株式会社パーソナルナビ／株式会社メディくる 代表取締役。グループ経営とメディア取材の傍ら、みんなの評判.com を運営。取材依頼は info@minnano-hyouban.com へ。">
   <meta property="og:type" content="profile">
   <meta property="og:url" content="https://minnano-hyouban.com/editor.html">
   <meta property="og:site_name" content="みんなの評判.com">
@@ -21,8 +21,8 @@
     "@type": "Person",
     "name": "漆沢 祐樹",
     "alternateName": "うるしざわ ゆうき",
-    "jobTitle": "代表取締役社長 / 担当記者",
-    "description": "株式会社パーソナルナビHD 代表取締役社長。起業家・キャリア教育者として経営の現場に加え、みんなの評判.com 代表として企業・サービスの第三者評判取材を専門とする。",
+    "jobTitle": "代表取締役／みんなの評判.com 代表・担当記者",
+    "description": "株式会社パーソナルナビ／株式会社メディくる 代表取締役。グループ経営の傍ら、みんなの評判.com 代表・担当記者として企業・サービスの第三者評判取材を専門とする。",
     "url": "https://minnano-hyouban.com/editor.html",
     "worksFor": {
       "@type": "Organization",
@@ -67,12 +67,14 @@
       background: rgba(200,169,110,.2);
       border: 1px solid rgba(200,169,110,.5);
       color: #c8a96e;
-      font-size: .75rem;
+      font-size: .72rem;
       font-weight: 700;
-      letter-spacing: .08em;
-      padding: 3px 12px;
+      letter-spacing: .06em;
+      padding: 8px 14px;
       border-radius: 3px;
       margin-bottom: 14px;
+      line-height: 1.55;
+      max-width: 100%;
     }
     .editor-hero-name {
       font-family: 'Shippori Mincho', serif;
@@ -170,13 +172,14 @@
     }
     .tl-year {
       flex-shrink: 0;
-      width: 64px;
+      min-width: 76px;
       font-size: .78rem;
       font-weight: 700;
       color: #c8a96e;
       text-align: right;
       padding-top: 2px;
       line-height: 1.35;
+      white-space: nowrap;
     }
     .tl-dot {
       flex-shrink: 0;
@@ -200,6 +203,32 @@
       color: var(--color-muted);
       line-height: 1.7;
       margin: 0;
+    }
+    .tl-title--only {
+      margin-bottom: 0;
+      font-weight: 600;
+      font-size: .88rem;
+      line-height: 1.65;
+      color: var(--color-text);
+    }
+
+    /* 現在の主な役職 */
+    .editor-roles-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .editor-role-card {
+      padding: 14px 16px;
+      background: #f9f7f4;
+      border-radius: 8px;
+      border-left: 3px solid #c8a96e;
+      font-size: .9rem;
+      color: var(--color-text);
+      line-height: 1.65;
     }
 
     /* ─── Stats / Achievement Grid ─── */
@@ -382,6 +411,12 @@
 
     /* ─── Responsive ─── */
     @media (max-width: 680px) {
+      .editor-hero-label {
+        font-size: .65rem;
+        text-align: center;
+        display: block;
+        max-width: 100%;
+      }
       .editor-hero-inner {
         flex-direction: column;
         text-align: center;
@@ -435,15 +470,15 @@
       <div class="container">
         <div class="editor-hero-inner">
           <div class="editor-hero-photo">
-            <img src="images/urushizawa-face-wide.jpg" alt="フリーランス記者・漆沢祐樹" width="160" height="200" loading="eager">
+            <img src="images/placeholders/editor-portrait.svg" alt="記者・漆沢祐樹" width="160" height="200" loading="eager">
           </div>
           <div class="editor-hero-info">
-            <span class="editor-hero-label">株式会社パーソナルナビHD 代表取締役社長／みんなの評判.com 代表・担当記者</span>
+            <span class="editor-hero-label">株式会社パーソナルナビ/ 株式会社メディくる 代表取締役／みんなの評判.com 代表・担当記者</span>
             <h1 class="editor-hero-name">漆沢 祐樹</h1>
             <p class="editor-hero-name-kana">うるしざわ ゆうき</p>
             <p class="editor-hero-title">
               起業家・経営者・キャリア教育者として経営の現場に立つ傍ら、第三者評判メディア「みんなの評判.com」では<br>
-              「誰が、どんな想いで、どんな価値を提供しているのか」を丁寧に取材し、読者に信頼できる情報を届けています。
+              PR記事であることを明示した上で、第三者取材による評判レポートを通じて、読者に信頼できる情報を届けています。
             </p>
             <div class="editor-hero-stats" aria-label="実績">
               <div class="editor-hero-stat">
@@ -455,8 +490,8 @@
                 <span>取材・検証済み口コミ</span>
               </div>
               <div class="editor-hero-stat">
-                <strong>10<em>年+</em></strong>
-                <span>フリーランス記者歴</span>
+                <strong>2026</strong>
+                <span>みんなの評判.com 開設</span>
               </div>
             </div>
           </div>
@@ -478,8 +513,8 @@
             <span class="label">取材・検証済み口コミ数</span>
           </div>
           <div class="editor-stat-card" role="listitem">
-            <span class="num">10<em>年+</em></span>
-            <span class="label">フリーランス記者歴</span>
+            <span class="num">2026</span>
+            <span class="label">みんなの評判.com 開設</span>
           </div>
         </div>
 
@@ -525,7 +560,7 @@
         <!-- 経歴（タイムライン） -->
         <div class="editor-career" role="region" aria-labelledby="career-h">
           <h2 id="career-h">経歴の要約（タイムライン）</h2>
-          <p style="font-size:.85rem;color:var(--color-muted);margin:0 0 18px;line-height:1.75;">株式会社パーソナルナビHD 代表取締役である漆沢 祐樹（うるしざわ ゆうき）のキャリアを時系列でまとめています。</p>
+          <p style="font-size:.85rem;color:var(--color-muted);margin:0 0 18px;line-height:1.75;">漆沢 祐樹（うるしざわ ゆうき）のキャリアを時系列でまとめています。</p>
           <ul class="timeline" aria-label="キャリアタイムライン">
             <li>
               <span class="tl-year">2007–09</span>
@@ -544,7 +579,7 @@
               </div>
             </li>
             <li>
-              <span class="tl-year">2021–</span>
+              <span class="tl-year">2021</span>
               <span class="tl-dot" aria-hidden="true"></span>
               <div class="tl-body">
                 <p class="tl-title">グループ経営と次世代育成</p>
@@ -553,6 +588,27 @@
             </li>
             <li>
               <span class="tl-year">2022</span>
+              <span class="tl-dot" aria-hidden="true"></span>
+              <div class="tl-body">
+                <p class="tl-title tl-title--only">スタンダード市場上場　株式会社ウェルディッシュ（旧 石垣食品）　社外取締役に就任</p>
+              </div>
+            </li>
+            <li>
+              <span class="tl-year">2024</span>
+              <span class="tl-dot" aria-hidden="true"></span>
+              <div class="tl-body">
+                <p class="tl-title tl-title--only">スタンダード市場上場　株式会社AIストーム（旧 ジェクシード）　執行役員に就任</p>
+              </div>
+            </li>
+            <li>
+              <span class="tl-year">2025</span>
+              <span class="tl-dot" aria-hidden="true"></span>
+              <div class="tl-body">
+                <p class="tl-title tl-title--only">スタンダード市場上場　株式会社エルアイイーエイチ　取締役に就任</p>
+              </div>
+            </li>
+            <li>
+              <span class="tl-year">2026</span>
               <span class="tl-dot" aria-hidden="true"></span>
               <div class="tl-body">
                 <p class="tl-title">みんなの評判.com を開設</p>
@@ -573,11 +629,10 @@
         <!-- 現在の主な役職 -->
         <div class="editor-career" role="region" aria-labelledby="roles-h">
           <h2 id="roles-h">現在の主な役職</h2>
-          <ul class="editor-role-list" style="margin:0;padding-left:1.2rem;color:var(--color-muted);font-size:.9rem;line-height:1.85;">
-            <li>株式会社パーソナルナビHD　代表取締役社長</li>
-            <li>株式会社i3experiance　顧問</li>
-            <li>石垣食品株式会社　社外取締役</li>
-            <li>イギリス国立大学　海外MBA candidate</li>
+          <ul class="editor-roles-grid">
+            <li class="editor-role-card">株式会社パーソナルナビ　代表取締役</li>
+            <li class="editor-role-card">株式会社メディくる　代表取締役</li>
+            <li class="editor-role-card">イギリス国立大学　海外MBA candidate</li>
           </ul>
         </div>
 
