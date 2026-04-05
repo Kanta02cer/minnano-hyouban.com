@@ -173,6 +173,18 @@ function setMeta(name, content, attr = 'name') {
   el.setAttribute('content', content);
 }
 
+/** フッター SNS（X / LINE）を現在のページURL・タイトルに合わせる */
+function updateFooterShareLinks() {
+  const wrap = document.querySelector('.footer-sns');
+  if (!wrap) return;
+  const u = encodeURIComponent(window.location.href);
+  const t = encodeURIComponent(document.title);
+  const tw = wrap.querySelector('a[aria-label*="X"]') || wrap.querySelector('a');
+  const line = wrap.querySelector('a[aria-label*="LINE"]');
+  if (tw) tw.href = `https://twitter.com/intent/tweet?url=${u}&text=${t}`;
+  if (line) line.href = `https://line.me/R/share?url=${u}`;
+}
+
 /* ============================================================
    BUILD ARTICLE HTML
 ============================================================ */
@@ -773,6 +785,7 @@ function renderArticleNotFound(main, articles, slug) {
       ${buildSuggestionsHTML(articles, slug)}
     </div>
   `;
+  updateFooterShareLinks();
 }
 
 /** データファイル読み込み失敗時の UI を描画する */
@@ -794,6 +807,7 @@ function renderDataLoadError(main) {
       </div>
     </div>
   `;
+  updateFooterShareLinks();
 }
 
 /* ============================================================
@@ -938,6 +952,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Render article
   main.innerHTML = buildArticleHTML(article);
+  updateFooterShareLinks();
 
   // CTA click tracking（指名検索→記事→公式遷移の計測を想定）
   maybeInitGA4();
