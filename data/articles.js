@@ -42,7 +42,7 @@ window.ARTICLES = [
 
     editorName:  "記者：漆沢 祐樹",
     editorTitle: "パーソナルナビHD 代表取締役社長／みんなの評判.com 担当記者",
-    editorImg:   "images/urushizawa-avatar.jpg",
+    editorImg:   "images/placeholders/avatar-reporter.svg",
     checkItems: [
       "転職成功率87%の算出方法と信頼性",
       "料金が高いと言われる理由と価値の検証",
@@ -94,7 +94,7 @@ window.ARTICLES = [
       { q: "この記事は広告ですか？",            a: "本記事はPR記事です。第三者の記者が取材・編集していますが、掲載費用を企業からいただいています。" }
     ],
 
-    storyImg:  "images/urushizawa-story.jpg",
+    storyImg:  "images/placeholders/story-portrait.svg",
     storyAlt:  "代表取締役の写真",
     storyText: [
       "「求人を大量に紹介して、どこかに転職させる」エージェントモデルに疑問を持ったことが起業のきっかけです。転職は手段であり、本当の目的はキャリアの充実にあるはずです。",
@@ -192,7 +192,7 @@ window.ARTICLES = [
 
     editorName:  "記者：漆沢 祐樹",
     editorTitle: "パーソナルナビHD 代表取締役社長／みんなの評判.com 担当記者",
-    editorImg:   "images/urushizawa-avatar.jpg",
+    editorImg:   "images/placeholders/avatar-reporter.svg",
     checkItems: [
       "93%満足という数字の根拠と信頼性",
       "施術効果の実態（利用者への直接インタビュー）",
@@ -244,7 +244,7 @@ window.ARTICLES = [
       { q: "この記事は広告ですか？",         a: "本記事はPR記事です。第三者の記者が取材・編集していますが、掲載費用を企業からいただいています。" }
     ],
 
-    storyImg:  "images/urushizawa-story.jpg",
+    storyImg:  "images/placeholders/story-portrait.svg",
     storyAlt:  "代表の写真",
     storyText: [
       "「エステに通いたいけど、効果があるか不安」「しつこい勧誘が嫌だ」という声を多く聞き、そのイメージを変えたいと思いこのサロンを立ち上げました。",

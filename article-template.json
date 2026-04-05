@@ -12,7 +12,7 @@
   "heroSub": "",
   "editorName": "記者：漆沢 祐樹",
   "editorTitle": "パーソナルナビHD 代表取締役社長／みんなの評判.com 担当記者",
-  "editorImg": "images/urushizawa-avatar.jpg",
+  "editorImg": "images/placeholders/avatar-reporter.svg",
   "checkItems": [
     "実際の利用者から集めたリアルな評判",
     "サービスの詳細と料金の概要",
@@ -59,7 +59,7 @@
     { "q": "解約・キャンセルはできますか？",    "a": "所定の手続きにより解約が可能です。詳細は公式サイトをご確認ください。" },
     { "q": "この記事は広告ですか？",           "a": "本記事はPR記事です。第三者の記者が取材・編集していますが、掲載費用を企業からいただいています。" }
   ],
-  "storyImg":  "images/urushizawa-story.jpg",
+  "storyImg":  "images/placeholders/story-portrait.svg",
   "storyAlt":  "代表者の写真",
   "storyText": [
     "企業の良さを自ら伝えても、なかなか信頼してもらえない。そんな悩みを持つ企業と、本当に良いサービスを探している消費者の双方を繋ぎたい——そんな想いでこのメディアを立ち上げました。",

@@ -324,6 +324,44 @@ ul, ol {
   background: rgba(255,255,255,0.08);
 }
 
+/* モバイルのみ：ヘッダー直下クイックナビ（記者紹介・主要導線） */
+.header-quick-nav {
+  display: none;
+}
+@media (max-width: 767px) {
+  .header-quick-nav {
+    display: block;
+    background: rgba(0, 0, 0, 0.18);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  .header-quick-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 8px 20px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px 18px;
+    flex-wrap: wrap;
+    min-height: 44px;
+  }
+  .header-quick-inner a {
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 0.8125rem;
+    font-weight: 600;
+  }
+  .header-quick-inner a.header-quick-nav--editor {
+    color: var(--color-accent);
+    border: 1px solid rgba(201, 168, 76, 0.55);
+    border-radius: 4px;
+    padding: 5px 12px;
+  }
+  .header-quick-inner a[aria-current="page"] {
+    opacity: 0.85;
+    font-weight: 700;
+  }
+}
+
 /* ============================================================
    01 HERO
 ============================================================ */
@@ -1565,6 +1603,45 @@ ul, ol {
   display: flex;
   align-items: center;
   gap: 12px;
+}
+
+.admin-header-nav {
+  display: flex;
+  align-items: center;
+  gap: 14px 18px;
+  flex-wrap: wrap;
+}
+
+.admin-header-nav a {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.85rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.admin-header-nav a:hover {
+  color: #fff;
+}
+
+.admin-header-nav .admin-header-editor {
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.95);
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.admin-header-nav .admin-header-editor:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.admin-header-nav .admin-header-back {
+  opacity: 0.72;
+}
+
+.admin-header-nav .admin-header-back:hover {
+  opacity: 1;
 }
 
 .admin-header h1 {
