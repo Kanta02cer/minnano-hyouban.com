@@ -19,8 +19,8 @@ function esc(str) {
 
 /** 記事データに画像URLが無い場合の仮画像（images/placeholders/） */
 const PLACEHOLDER_IMG = {
-  editor: 'images/urushizawa-avatar.jpg',
-  story: 'images/urushizawa-story.jpg',
+  editor: 'images/placeholders/avatar-reporter.svg',
+  story: 'images/placeholders/story-portrait.svg',
   gallery: 'images/placeholders/gallery-photo.svg',
   before: 'images/placeholders/gallery-before.svg',
   after: 'images/placeholders/gallery-after.svg',
