@@ -2,22 +2,28 @@
    CSS DESIGN TOKENS
 ============================================================ */
 :root {
-  --color-primary:   #1a5fa8;
+  --color-primary:   #1c3d8a;
+  --color-primary-d: #132c6a;
+  --color-primary-l: #e8eef8;
   --color-accent:    #c9a84c;
-  --color-cta:       #e85d24;
-  --color-text:      #1a1a1a;
+  --color-accent-l:  #fdf6e3;
+  --color-text:      #0f0f0f;
+  --color-text-soft: #444;
+  --color-text-mute: #888;
   --color-muted:     #666666;
-  --color-bg:        #f5f8fc;
+  --color-bg:        #ffffff;
+  --color-bg-wash:   #f7f7f5;
   --color-white:     #ffffff;
-  --color-border:    #e2e8f0;
+  --color-border:    #e0e0e0;
   --color-review:    #0a7c5c;
   --color-gallery:   #7c3aed;
   --font-main:       'Zen Maru Gothic', sans-serif;
   --font-heading:    'Shippori Mincho', serif;
-  --radius-sm:       6px;
-  --radius-md:       10px;
+  --radius-sm:       4px;
+  --radius-md:       8px;
   --radius-lg:       16px;
-  --shadow-card:     0 2px 12px rgba(0,0,0,0.08);
+  --shadow-card:     0 1px 4px rgba(0,0,0,.07);
+  --shadow-card-m:   0 4px 20px rgba(0,0,0,.09);
   --max-width:       860px;
 }
 
@@ -175,21 +181,32 @@ ul, ol {
 }
 
 .btn--hero {
-  background: var(--color-accent);
+  background: var(--color-primary);
   color: var(--color-white);
   font-size: 1.1rem;
   padding: 16px 40px;
-  border-radius: var(--radius-lg);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 4px 16px rgba(28,61,138,0.25);
+}
+
+.btn--hero:hover {
+  background: var(--color-primary-d);
+  opacity: 1;
 }
 
 .btn--cta {
   background: var(--color-white);
-  color: var(--color-cta);
+  color: var(--color-primary);
   font-size: 1.1rem;
   padding: 16px 40px;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-sm);
   box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  font-weight: 700;
+}
+
+.btn--cta:hover {
+  background: var(--color-primary-l);
+  opacity: 1;
 }
 
 .btn-text-link {
@@ -275,7 +292,7 @@ ul, ol {
 }
 
 .nav-inquiry:hover {
-  background: #154e8c !important;
+  background: var(--color-primary-d) !important;
 }
 
 /* Hamburger */
@@ -980,7 +997,7 @@ ul, ol {
    07 CTA
 ============================================================ */
 .cta-section {
-  background: var(--color-cta);
+  background: var(--color-primary);
   padding: 72px 20px;
   text-align: center;
 }
@@ -1003,8 +1020,9 @@ ul, ol {
    FOOTER
 ============================================================ */
 .site-footer {
-  background: #1e293b;
-  color: #94a3b8;
+  background: #fff;
+  color: var(--color-text-soft);
+  border-top: 1px solid var(--color-border);
 }
 
 .footer-inner {
@@ -1020,17 +1038,17 @@ ul, ol {
   font-family: var(--font-heading);
   font-size: 1.2rem;
   font-weight: 700;
-  color: var(--color-white);
+  color: var(--color-text);
   margin-bottom: 8px;
 }
 
 .footer-com {
-  color: var(--color-accent);
+  color: var(--color-primary);
 }
 
 .footer-tagline {
   font-size: 0.8rem;
-  opacity: 0.7;
+  color: var(--color-text-mute);
 }
 
 .footer-nav ul {
@@ -1041,7 +1059,7 @@ ul, ol {
 
 .footer-nav a {
   font-size: 0.85rem;
-  color: #94a3b8;
+  color: var(--color-text-soft);
   transition: color 0.2s;
   min-height: 44px;
   line-height: 44px;
@@ -1049,7 +1067,7 @@ ul, ol {
 }
 
 .footer-nav a:hover {
-  color: var(--color-white);
+  color: var(--color-primary);
 }
 
 .footer-sns {
@@ -1064,9 +1082,9 @@ ul, ol {
   justify-content: center;
   width: 44px;
   height: 44px;
-  background: rgba(255,255,255,0.08);
+  background: rgba(0,0,0,0.06);
   border-radius: 50%;
-  color: #94a3b8;
+  color: var(--color-text-soft);
   transition: background 0.2s, color 0.2s;
 }
 
@@ -1076,11 +1094,12 @@ ul, ol {
 }
 
 .footer-bottom {
-  background: rgba(0,0,0,0.2);
+  background: var(--color-bg-wash);
+  border-top: 1px solid var(--color-border);
   padding: 16px 20px;
   text-align: center;
   font-size: 0.75rem;
-  color: #64748b;
+  color: var(--color-text-mute);
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -1088,7 +1107,8 @@ ul, ol {
 }
 
 .pr-footer-note {
-  color: #f59e0b;
+  font-style: italic;
+  color: var(--color-text-mute);
 }
 
 /* ============================================================
