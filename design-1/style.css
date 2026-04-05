@@ -131,26 +131,24 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
   gap: 16px;
 }
 .logo { flex-shrink: 0; display: flex; align-items: baseline; gap: 1px; }
-.logo-serif { font-family: var(--serif); font-size: 1.15rem; font-weight: 700; color: var(--cobalt); }
+.logo-serif,
+.logo-text { font-family: var(--serif); font-size: 1.15rem; font-weight: 700; color: var(--cobalt); }
 .logo-com { font-size: .85rem; color: var(--ink-3); }
 
-.header-center { flex: 1; text-align: center; }
-.header-score { font-size: .82rem; color: var(--cobalt); font-weight: 700; }
-.header-score-count { font-weight: 400; color: var(--ink-3); }
-
-.nav-desktop { flex-shrink: 0; }
+.nav-desktop { flex-shrink: 0; margin-left: auto; }
 .nav-desktop ul { display: flex; align-items: center; gap: 20px; }
 .nav-desktop a { font-size: .875rem; color: var(--ink-2); transition: color .15s; }
 .nav-desktop a:hover { color: var(--cobalt); }
-.nav-desktop .nav-cta {
+.nav-desktop .nav-inquiry {
+  padding: 7px 18px;
   background: var(--cobalt);
-  color: #fff;
-  padding: .45em 1.2em;
-  border-radius: 20px;
+  color: #fff !important;
+  border-radius: 4px;
+  font-size: 0.8125rem !important;
   font-weight: 700;
-  transition: background .2s;
+  transition: background 0.2s !important;
 }
-.nav-desktop .nav-cta:hover { background: var(--cobalt-l); }
+.nav-desktop .nav-inquiry:hover { background: var(--cobalt-l) !important; }
 
 .hamburger {
   display: none;
@@ -189,7 +187,6 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 @media (max-width: 767px) {
   .nav-desktop { display: none; }
   .hamburger { display: flex; }
-  .header-center { display: none; }
 }
 
 /* ============================================================

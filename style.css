@@ -1634,6 +1634,19 @@ ul, ol {
   color: #fff;
 }
 
+.admin-header-nav .admin-header-inquiry {
+  font-weight: 700;
+  color: #fff !important;
+  padding: 5px 12px;
+  border-radius: 4px;
+  background: var(--color-primary);
+}
+
+.admin-header-nav .admin-header-inquiry:hover {
+  background: var(--color-primary-d);
+  color: #fff !important;
+}
+
 .admin-header-nav .admin-header-back {
   opacity: 0.72;
 }

@@ -20,29 +20,31 @@
 </head>
 <body>
   <header class="site-header" role="banner">
-    <div class="header-inner">
+    <div class="container header-inner">
       <a href="index.html" class="logo" aria-label="みんなの評判.com トップへ">
-        <span class="logo-text">みんなの評判<span class="logo-com">.com</span></span>
+        <span class="logo-text">みんなの評判</span><span class="logo-com">.com</span>
       </a>
-      <nav class="nav-desktop" aria-label="メインナビゲーション">
-        <ul role="list">
+      <nav class="nav-desktop" aria-label="サイトナビゲーション">
+        <ul>
           <li><a href="articles.html">記事一覧</a></li>
           <li><a href="editor.html">記者紹介</a></li>
-          <li><a href="index.html#contact">取材依頼</a></li>
+          <li><a href="index.html#about">取材について</a></li>
+          <li><a href="index.html#contact" class="nav-inquiry">取材依頼</a></li>
         </ul>
       </nav>
       <button class="hamburger" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav-mobile">
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
+        <span></span><span></span><span></span>
       </button>
     </div>
-    <nav class="nav-mobile" id="nav-mobile" aria-label="モバイルナビゲーション" hidden>
-      <ul role="list">
-        <li><a href="articles.html">記事一覧</a></li>
-        <li><a href="editor.html">記者紹介</a></li>
-        <li><a href="index.html#contact">取材依頼</a></li>
-      </ul>
+    <nav class="nav-mobile" id="nav-mobile" hidden aria-label="モバイルナビゲーション">
+      <div class="container">
+        <ul>
+          <li><a href="articles.html">記事一覧</a></li>
+          <li><a href="editor.html">記者紹介</a></li>
+          <li><a href="index.html#about">取材について</a></li>
+          <li><a href="index.html#contact">取材依頼</a></li>
+        </ul>
+      </div>
     </nav>
   </header>
 

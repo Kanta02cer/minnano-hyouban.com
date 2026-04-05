@@ -23,33 +23,33 @@
     <button class="floating-cta-close" aria-label="閉じる" id="floating-cta-close">✕</button>
   </div>
 
-  <!-- ===== HEADER ===== -->
-  <header class="site-header">
-    <div class="header-inner">
-      <a href="../index.html" class="logo">
-        <span class="logo-mark">みんなの評判</span><span class="logo-com">.com</span>
+  <!-- ===== HEADER（本番サイトと同一ナビ） ===== -->
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a href="../index.html" class="logo" aria-label="みんなの評判.com トップへ">
+        <span class="logo-text">みんなの評判</span><span class="logo-com">.com</span>
       </a>
-      <div class="header-proof">
-        <span class="header-star">★ 4.7</span>
-        <span class="header-count">127件</span>
-      </div>
-      <nav class="nav-desktop" aria-label="メインナビゲーション">
+      <nav class="nav-desktop" aria-label="サイトナビゲーション">
         <ul>
           <li><a href="../articles.html">記事一覧</a></li>
           <li><a href="../editor.html">記者紹介</a></li>
-          <li><a href="#contact" class="nav-cta">公式サイトを見る</a></li>
+          <li><a href="../index.html#about">取材について</a></li>
+          <li><a href="../index.html#contact" class="nav-inquiry">取材依頼</a></li>
         </ul>
       </nav>
       <button class="hamburger" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav-mobile">
         <span></span><span></span><span></span>
       </button>
     </div>
-    <nav class="nav-mobile" id="nav-mobile" hidden>
-      <ul>
-        <li><a href="../articles.html">記事一覧</a></li>
-        <li><a href="../editor.html">記者紹介</a></li>
-        <li><a href="#contact">公式サイトを見る</a></li>
-      </ul>
+    <nav class="nav-mobile" id="nav-mobile" hidden aria-label="モバイルナビゲーション">
+      <div class="container">
+        <ul>
+          <li><a href="../articles.html">記事一覧</a></li>
+          <li><a href="../editor.html">記者紹介</a></li>
+          <li><a href="../index.html#about">取材について</a></li>
+          <li><a href="../index.html#contact">取材依頼</a></li>
+        </ul>
+      </div>
     </nav>
   </header>
 

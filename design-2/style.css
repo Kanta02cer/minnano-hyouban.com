@@ -190,17 +190,24 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
   gap: 14px;
 }
 .logo { flex-shrink: 0; }
-.logo-mark { font-family: var(--serif); font-size: 1.1rem; font-weight: 700; color: var(--violet); }
+.logo-mark,
+.logo-text { font-family: var(--serif); font-size: 1.1rem; font-weight: 700; color: var(--violet); }
 .logo-com { font-size: .85rem; color: var(--text-3); }
-.header-proof { flex: 1; display: flex; align-items: center; gap: 6px; }
-.header-star { font-size: .82rem; font-weight: 700; color: #f59e0b; }
-.header-count { font-size: .8rem; color: var(--text-3); }
 
+.nav-desktop { margin-left: auto; }
 .nav-desktop ul { display: flex; align-items: center; gap: 18px; }
 .nav-desktop a { font-size: .875rem; color: var(--text-2); transition: color .15s; }
 .nav-desktop a:hover { color: var(--violet); }
-.nav-desktop .nav-cta { background: var(--violet); color: #fff; padding: .45em 1.2em; border-radius: 20px; font-weight: 700; transition: background .2s; }
-.nav-desktop .nav-cta:hover { background: var(--violet-l); }
+.nav-desktop .nav-inquiry {
+  padding: 7px 18px;
+  background: var(--violet);
+  color: #fff !important;
+  border-radius: 4px;
+  font-size: 0.8125rem !important;
+  font-weight: 700;
+  transition: background 0.2s !important;
+}
+.nav-desktop .nav-inquiry:hover { background: var(--violet-l) !important; }
 
 .hamburger { display: none; flex-direction: column; gap: 5px; width: 28px; padding: 4px; margin-left: auto; }
 .hamburger span { display: block; height: 2px; background: var(--text); border-radius: 2px; transition: transform .25s, opacity .2s; }
@@ -208,7 +215,8 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 .hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
 .hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-.nav-mobile { background: var(--violet-soft); border-top: 1px solid var(--border); padding: 12px 20px; }
+.nav-mobile { background: var(--violet-soft); border-top: 1px solid var(--border); padding: 0; }
+.nav-mobile[hidden] { display: none; }
 .nav-mobile a { display: block; padding: 12px 0; border-bottom: 1px solid var(--border); font-size: .95rem; color: var(--text); }
 .nav-mobile li:last-child a { border-bottom: none; }
 
