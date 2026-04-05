@@ -12,6 +12,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <!-- GA4: 本番で測定IDを設定（コメントを外す） -->
+  <!-- <meta name="ga4-measurement-id" content="G-XXXXXXXXXX"> -->
 </head>
 <body>
   <header class="site-header" role="banner">
@@ -63,6 +65,9 @@
           <h2 style="font-size: 1.05rem; font-weight: 700; margin: 18px 0 10px; color: var(--color-text);">3. 外部リンクについて</h2>
           <p style="color: var(--color-muted); line-height: 1.9;">
             当サイトからリンクする公式サイト等の外部ページの内容について、当サイトは責任を負いません。外部ページの利用にあたっては、各サイトの利用条件・表示をご確認ください。
+          </p>
+          <p style="color: var(--color-muted); line-height: 1.9; margin-top: 10px;">
+            外部へのリンクURLには、参照元の把握のためクエリパラメータ（UTM等）が付く場合があります。数値の解釈・契約上のKPIには、計測の限界（広告ブロック等）がある点も併せてご留意ください（詳細はサイト内ドキュメントおよびプライバシーポリシーをご参照ください）。
           </p>
 
           <h2 style="font-size: 1.05rem; font-weight: 700; margin: 18px 0 10px; color: var(--color-text);">4. 免責</h2>
@@ -116,5 +121,6 @@
       });
     }
   </script>
+  <script src="js/site-analytics.js"></script>
 </body>
 </html>

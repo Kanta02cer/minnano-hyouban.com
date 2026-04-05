@@ -41,8 +41,8 @@ window.ARTICLES = [
     heroSub:   "転職成功率87%の裏側に何があるのか。実際に利用した127名に直接取材し、「費用が高い」「合わないコーチ」といったネガティブ口コミの真相も含めて、第三者記者が正直に書いた評判レポート。",
 
     editorName:  "記者：漆沢 祐樹",
-    editorTitle: "フリーランス記者 / 消費者メディア専門",
-    editorImg:   "images/placeholders/avatar-reporter.svg",
+    editorTitle: "パーソナルナビHD 代表取締役社長／みんなの評判.com 担当記者",
+    editorImg:   "images/urushizawa-avatar.jpg",
     checkItems: [
       "転職成功率87%の算出方法と信頼性",
       "料金が高いと言われる理由と価値の検証",
@@ -94,7 +94,7 @@ window.ARTICLES = [
       { q: "この記事は広告ですか？",            a: "本記事はPR記事です。第三者の記者が取材・編集していますが、掲載費用を企業からいただいています。" }
     ],
 
-    storyImg:  "images/placeholders/story-portrait.svg",
+    storyImg:  "images/urushizawa-story.jpg",
     storyAlt:  "代表取締役の写真",
     storyText: [
       "「求人を大量に紹介して、どこかに転職させる」エージェントモデルに疑問を持ったことが起業のきっかけです。転職は手段であり、本当の目的はキャリアの充実にあるはずです。",
@@ -191,8 +191,8 @@ window.ARTICLES = [
     heroSub:   "93%の利用者が「効果あり」と回答した話題のエステサロン。記者・漆沢が93名への独自取材を通じ、本当の効果と、ネット上のネガティブな口コミの真相を明らかにします。",
 
     editorName:  "記者：漆沢 祐樹",
-    editorTitle: "フリーランス記者 / 消費者メディア専門",
-    editorImg:   "images/placeholders/avatar-reporter.svg",
+    editorTitle: "パーソナルナビHD 代表取締役社長／みんなの評判.com 担当記者",
+    editorImg:   "images/urushizawa-avatar.jpg",
     checkItems: [
       "93%満足という数字の根拠と信頼性",
       "施術効果の実態（利用者への直接インタビュー）",
@@ -244,7 +244,7 @@ window.ARTICLES = [
       { q: "この記事は広告ですか？",         a: "本記事はPR記事です。第三者の記者が取材・編集していますが、掲載費用を企業からいただいています。" }
     ],
 
-    storyImg:  "images/placeholders/story-portrait.svg",
+    storyImg:  "images/urushizawa-story.jpg",
     storyAlt:  "代表の写真",
     storyText: [
       "「エステに通いたいけど、効果があるか不安」「しつこい勧誘が嫌だ」という声を多く聞き、そのイメージを変えたいと思いこのサロンを立ち上げました。",

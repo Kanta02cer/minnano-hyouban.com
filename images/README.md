@@ -74,7 +74,7 @@
 
 - **記者ポートレート**
   - 縦長ポートレート想定（表示上 **約 180 × 220 px** 相当）
-  - 既定は `images/placeholders/editor-portrait.svg` を実写真等に差し替え
+  - 本番用: `images/urushizawa-portrait.jpg`（長辺 720px にリサイズ済み）
 - **注目記事（1件目）**
   - 横長ワイド。**記事データのサムネ**（例: `galleries.service[0]`）を利用
   - 記事がない場合は `featured-upcoming-wide.svg` 相当のプレースホルダー
@@ -86,7 +86,7 @@
 
 - **プロフィール写真**
   - ポートレート（表示 **160 × 200** 前後の想定）
-  - 既定 `editor-portrait.svg` を差し替え推奨
+  - 本番用: `images/urushizawa-portrait.jpg`（トップと共通）
 
 ### 記事一覧（`articles.html`）
 
@@ -96,13 +96,27 @@
 
 ---
 
+## 記者写真（本番・`images/` 直下）
+
+漆沢記者の顔写真用に、次を生成・参照しています（元画像は `images/` に格納された写真から `sips` で作成）。
+
+- **`urushizawa-portrait.jpg`** — ヒーロー・記者ページ用（長辺 720px）
+- **`urushizawa-avatar.jpg`** — 記事内記者欄・一覧メタ用の **正方形 256×256px**（表示は 64px 相当＋高解像度ディスプレイ向け）
+- **`urushizawa-story.jpg`** — 創業ストーリー欄用 **200×200px**（`storyImg` デフォルト）
+
+差し替え時は元JPEGを差し替え、同じファイル名で上書きするか、パスを `articles.js` / テンプレート側で更新してください。
+
+※ `images/` に **横長の元JPEG**（例: 3240×2160）が別途ある場合は、OG画像（1200×630）など別用途に利用できます。記事の `ogImage` は現状カテゴリ別SVGのままです。
+
+---
+
 ## プレースホルダー（`images/placeholders/`）
 
 実素材がないとき参照される **SVG**。本番では実画像・公式ロゴへの差し替えを推奨。
 
-- **`avatar-reporter.svg`** — 記者アイコン（`editorImg` 等）
-- **`editor-portrait.svg`** — トップ・記者ページのポートレート
-- **`story-portrait.svg`** — ストーリー代表写真（`storyImg`）
+- **`avatar-reporter.svg`** — 記者アイコン（`editorImg` 未設定時のフォールバック。本番は `urushizawa-avatar.jpg` を使用）
+- **`editor-portrait.svg`** — トップ・記者ページ（本番は `urushizawa-portrait.jpg`）
+- **`story-portrait.svg`** — ストーリー（本番は `urushizawa-story.jpg`）
 - **`gallery-photo.svg`** — G1 サービス画像
 - **`gallery-before.svg`** / **`gallery-after.svg`** — G2 Before / After
 - **`media-logo.svg`** — G3 メディアロゴ

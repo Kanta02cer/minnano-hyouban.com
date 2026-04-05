@@ -15,6 +15,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <!-- GA4: 本番で測定IDを設定（コメントを外す） -->
+  <!-- <meta name="ga4-measurement-id" content="G-XXXXXXXXXX"> -->
 </head>
 <body>
   <header class="site-header" role="banner">
@@ -145,6 +147,9 @@
           <p style="color: var(--color-muted); line-height: 1.9;">
             当サイトは、外部サイト（取材先企業の公式サイト等）へのリンクを含む場合があります。これらの外部サイトにおける個人情報の取扱いについては、各サイトのプライバシーポリシーをご確認ください。当サイトは外部サイトの個人情報取扱いについて責任を負いません。
           </p>
+          <p style="color: var(--color-muted); line-height: 1.9; margin-top: 10px;">
+            なお、記事から公式サイト等へ遷移するリンクには、流入元の把握のため <strong style="color: var(--color-text);">URLに計測用のクエリパラメータ（例: UTM）</strong>を付与する場合があります。付与の有無・内容は <code style="background: #f0f4fa; padding: 1px 5px; border-radius: 3px;">docs/outbound-tracking-guide.md</code> の運用ルールに従います。
+          </p>
 
           <h2 style="font-size: 1.05rem; font-weight: 700; margin: 22px 0 10px; color: var(--color-text);">第9条　お問い合わせ先</h2>
           <p style="color: var(--color-muted); line-height: 1.9;">
@@ -160,7 +165,7 @@
           </p>
 
           <p style="margin-top: 28px; font-size: .85rem; color: var(--color-muted); text-align: right;">
-            施行日：2024年1月1日<br>最終更新：2026年4月3日<br>みんなの評判.com　代表　漆沢 祐樹
+            施行日：2024年1月1日<br>最終更新：2026年4月4日<br>みんなの評判.com　代表　漆沢 祐樹
           </p>
         </div>
       </div>
@@ -209,5 +214,6 @@
       });
     }
   </script>
+  <script src="js/site-analytics.js"></script>
 </body>
 </html>

@@ -217,6 +217,11 @@ GitHub Pages へアップロード
 ### 推奨（PR運用）
 実運用では `content/*` ブランチで PR を作り、差分レビューしてから `main` へマージすると安全です（公開前の第三者確認も可能になります）。
 
+### GA4・公式リンクのUTM（本番）
+
+- **測定ID**（`G-` で始まる文字列）を、各HTMLの `<meta name="ga4-measurement-id" content="...">` に設定するか、ページ読み込み前に `window.__GA4_MEASUREMENT_ID__` を設定する。プレースホルダのままでは `js/site-analytics.js` / `article-renderer.js` は読み込みません。
+- **記事の公式CTA** は `article-renderer.js` が `officialUrl` に UTM をマージする（`docs/outbound-tracking-guide.md`）。無効化は `article.html` 内のコメント例どおり `window.__OFFICIAL_LINK_UTM__ = false;`（`article-renderer.js` より前）。
+
 ---
 
 ## 5. ファイル構成
@@ -235,6 +240,17 @@ minnano-hyouban/
 │   ├── add-article.js          # 記事追加 CLI スクリプト
 │   └── validate-articles.js    # 記事データ検証スクリプト
 │
+├── docs/
+│   ├── outbound-tracking-guide.md   # 公式サイト遷移の計測（GA4・UTM）
+│   ├── article-field-mapping.md     # 取材項目 ↔ articles.js 対応表
+│   ├── hearing-sheet.md             # ヒアリングシート（1枚）
+│   ├── prompts/
+│   │   └── article-ai-prompt-template.md  # AIドラフト用プロンプト型
+│   ├── operations-runbook.md        # 公開・請求・運用契約メモ
+│   ├── legal-ga-utm-checklist.md    # PR・GA・UTM・クレーム表示チェック
+│   └── next-steps-from-meeting.md   # 議事録ベースの次タスクガイド
+├── js/
+│   └── site-analytics.js            # トップ等の GA4 読み込み（記事は article-renderer.js）
 ├── images/                     # 記事用画像（`images/README.md` に必要素材の一覧あり）
 │
 ├── index.html                  # トップページ（正規トップ・ヒーロー・記事抜粋）
@@ -243,7 +259,7 @@ minnano-hyouban/
 ├── top.css                     # 旧トップデザイン用 CSS（参照用に残置）
 ├── articles.html               # 記事一覧ページ
 ├── article.html                # 記事個別ページ（?id=<slug> で動的描画）
-├── article-renderer.js         # 記事個別ページのレンダリングエンジン
+├── article-renderer.js         # 記事個別ページのレンダリング・GA4・公式URLのUTM
 ├── admin.html                  # 記事管理画面（ブラウザで開いて使用）
 ├── style.css                   # articles.html / article.html / admin.html 共通 CSS
 ├── main.js                     # メイン JS（レビュー・FAQ 等）

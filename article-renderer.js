@@ -42,6 +42,42 @@ function resolveOfficialUrl(u) {
   }
 }
 
+/** GA4 測定IDの形式チェック（誤設定で gtag を読み込まない） */
+function validGa4MeasurementId(id) {
+  return typeof id === 'string' && /^G-[A-Z0-9]{6,}$/.test(id.trim());
+}
+
+/**
+ * 公式サイトCTA用に UTM をマージ（docs/outbound-tracking-guide.md）
+ * window.__OFFICIAL_LINK_UTM__ === false で無効化。
+ * オブジェクトで { utm_campaign: 'review_2026' } など上書き可能。
+ */
+function applyOfficialUtm(absHref, article) {
+  const flag = window.__OFFICIAL_LINK_UTM__;
+  if (flag === false) return absHref;
+
+  const defaults = {
+    utm_source: 'minnano-hyouban',
+    utm_medium: 'referral',
+    utm_campaign: 'review_article',
+    utm_content: String(article?.slug || '').trim() || undefined,
+  };
+  const overrides = flag && typeof flag === 'object' ? flag : {};
+
+  try {
+    const u = new URL(absHref);
+    const params = new URLSearchParams(u.search);
+    const merged = { ...defaults, ...overrides };
+    Object.entries(merged).forEach(([k, v]) => {
+      if (v != null && String(v).trim() !== '') params.set(k, String(v).trim());
+    });
+    u.search = params.toString();
+    return u.href;
+  } catch {
+    return absHref;
+  }
+}
+
 function analyticsConsentEnabled() {
   // CMPがないため、明示設定がなければ許可扱いにして計測が止まらないようにする
   // （必要なら localStorage('analytics_consent') を 'false' にして停止可能）
@@ -77,8 +113,8 @@ function maybeInitGA4() {
 
   const idFromGlobal = window.__GA4_MEASUREMENT_ID__;
   const idFromMeta = document.querySelector('meta[name="ga4-measurement-id"]')?.content;
-  const measurementId = idFromGlobal || idFromMeta;
-  if (!measurementId) return;
+  const measurementId = (idFromGlobal || idFromMeta || '').trim();
+  if (!validGa4MeasurementId(measurementId)) return;
 
   window.dataLayer = window.dataLayer || [];
   window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
@@ -141,7 +177,11 @@ function setMeta(name, content, attr = 'name') {
    BUILD ARTICLE HTML
 ============================================================ */
 function buildArticleHTML(a) {
-  const cta = resolveOfficialUrl(a.officialUrl);
+  const resolved = resolveOfficialUrl(a.officialUrl);
+  const cta =
+    resolved.source === 'official_url'
+      ? { href: applyOfficialUtm(resolved.href, a), source: resolved.source }
+      : resolved;
   const hasOfficial = cta.source === 'official_url';
   const isMailto = String(cta.href).startsWith('mailto:');
   const ctaLinkAttrs = isMailto ? '' : ' target="_blank" rel="noopener noreferrer"';
