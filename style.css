@@ -2,22 +2,22 @@
    CSS DESIGN TOKENS
 ============================================================ */
 :root {
-  --color-primary:   #1c3d8a;
-  --color-primary-d: #132c6a;
-  --color-primary-l: #e8eef8;
-  --color-accent:    #c9a84c;
-  --color-accent-l:  #fdf6e3;
-  --color-text:      #0f0f0f;
-  --color-text-soft: #444;
-  --color-text-mute: #888;
-  --color-muted:     #666666;
-  --color-bg:        #ffffff;
-  --color-bg-wash:   #f7f7f5;
+  --color-primary:   #0d1b3e;
+  --color-primary-d: #1a3060;
+  --color-primary-l: #eaeff8;
+  --color-accent:    #b8974a;
+  --color-accent-l:  #f6f0e2;
+  --color-text:      #1a1a1a;
+  --color-text-soft: #4a4a4a;
+  --color-text-mute: #8a8a8a;
+  --color-muted:     #6a6a6a;
+  --color-bg:        #faf8f4;
+  --color-bg-wash:   #f2efe7;
   --color-white:     #ffffff;
-  --color-border:    #e0e0e0;
+  --color-border:    #ddd9d0;
   --color-review:    #0a7c5c;
   --color-gallery:   #7c3aed;
-  --font-main:       'Zen Maru Gothic', sans-serif;
+  --font-main:       'Noto Sans JP', sans-serif;
   --font-heading:    'Shippori Mincho', serif;
   --radius-sm:       4px;
   --radius-md:       8px;
@@ -43,9 +43,11 @@ html {
 
 body {
   font-family: var(--font-main);
+  font-feature-settings: "palt" 1;
+  letter-spacing: 0.02em;
   color: var(--color-text);
   background: var(--color-bg);
-  line-height: 1.7;
+  line-height: 1.8;
   -webkit-font-smoothing: antialiased;
 }
 
