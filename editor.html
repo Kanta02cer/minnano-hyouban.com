@@ -30,6 +30,7 @@
       "url": "https://minnano-hyouban.com"
     },
     "email": "info@minnano-hyouban.com",
+    "sameAs": ["https://x.com/uru_navi"],
     "knowsAbout": ["企業評判", "第三者取材", "キャリア教育", "人材育成", "グループ経営", "インタビュー取材"]
   }
   </script>
@@ -423,6 +424,7 @@
         gap: 28px;
       }
       .editor-hero-stats { justify-content: center; }
+      .editor-hero-sns   { justify-content: center; }
       .editor-stats-grid { grid-template-columns: 1fr 1fr; }
       .policy-grid { grid-template-columns: 1fr; }
       .editor-cta .cta-notes { flex-direction: column; align-items: center; gap: 10px; }
@@ -430,6 +432,83 @@
     }
     @media (max-width: 420px) {
       .editor-stats-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ─── SNS リンク（ヒーロー） ─── */
+    .editor-hero-sns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+    .editor-sns-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 18px;
+      border-radius: 6px;
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-decoration: none;
+      transition: opacity .2s, transform .2s;
+    }
+    .editor-sns-btn:hover { opacity: .82; transform: translateY(-2px); }
+    .editor-sns-btn--x {
+      background: #000;
+      color: #fff;
+    }
+    .editor-sns-icon {
+      width: 15px;
+      height: 15px;
+      flex-shrink: 0;
+    }
+
+    /* ─── SNS カード（著書・メディアセクション内） ─── */
+    .editor-sns-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .editor-sns-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      background: #fff;
+      text-decoration: none;
+      color: var(--color-text);
+      transition: box-shadow .25s, transform .25s, border-color .25s;
+    }
+    .editor-sns-card:hover {
+      box-shadow: 0 6px 24px rgba(0,0,0,.08);
+      transform: translateY(-2px);
+      border-color: #000;
+    }
+    .editor-sns-card svg { flex-shrink: 0; color: #000; }
+    .editor-sns-card-body {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      flex: 1;
+    }
+    .editor-sns-card-handle {
+      font-size: .88rem;
+      font-weight: 700;
+      color: #000;
+      letter-spacing: .02em;
+    }
+    .editor-sns-card-label {
+      font-size: .78rem;
+      color: var(--color-muted);
+      line-height: 1.5;
+    }
+    .editor-sns-card-arrow {
+      font-size: 1rem;
+      color: var(--color-muted);
+      flex-shrink: 0;
     }
   </style>
   <!-- GA4: 本番で測定IDを設定（コメントを外す） -->
@@ -500,6 +579,16 @@
                 <strong>2026</strong>
                 <span>みんなの評判.com 開設</span>
               </div>
+            </div>
+
+            <!-- SNS リンク -->
+            <div class="editor-hero-sns">
+              <a href="https://x.com/uru_navi" target="_blank" rel="noopener noreferrer" class="editor-sns-btn editor-sns-btn--x" aria-label="漆沢祐樹のXアカウント（新しいタブで開く）">
+                <svg class="editor-sns-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.736-8.847L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+                <span>@uru_navi</span>
+              </a>
             </div>
           </div>
         </div>
@@ -662,7 +751,21 @@
             <li>『100番目のメッセージ』私たちを元気にする先輩たちからの魔法のコトバ（2011年2月）</li>
           </ul>
           <p style="font-size:.82rem;font-weight:700;color:var(--color-text);margin:0 0 8px;">メディア掲載</p>
-          <p style="margin:0;font-size:.88rem;color:var(--color-muted);line-height:1.75;">THE CAREER、Rakuten News、覚悟の瞬間、HUMAN STORY など</p>
+          <p style="margin:0 0 22px;font-size:.88rem;color:var(--color-muted);line-height:1.75;">THE CAREER、Rakuten News、覚悟の瞬間、HUMAN STORY など</p>
+
+          <p style="font-size:.82rem;font-weight:700;color:var(--color-text);margin:0 0 12px;">SNS・外部リンク</p>
+          <div class="editor-sns-list">
+            <a href="https://x.com/uru_navi" target="_blank" rel="noopener noreferrer" class="editor-sns-card">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" width="18" height="18">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.736-8.847L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+              <div class="editor-sns-card-body">
+                <span class="editor-sns-card-handle">@uru_navi</span>
+                <span class="editor-sns-card-label">X（旧Twitter）― 経営・キャリア・メディア活動の発信</span>
+              </div>
+              <span class="editor-sns-card-arrow" aria-hidden="true">&#8599;</span>
+            </a>
+          </div>
         </div>
 
         <!-- よくある質問 -->
