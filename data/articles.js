@@ -51,13 +51,13 @@ window.ARTICLES = [
 
     galleries: {
       service: [
-        { src: "images/placeholders/gallery-photo.svg", alt: "オンラインコーチング", caption: "専任コーチとのオンライン面談（週1回60分）" },
-        { src: "images/placeholders/gallery-photo.svg", alt: "自己分析ツール",     caption: "独自アセスメントで強みを可視化" },
-        { src: "images/placeholders/gallery-photo.svg", alt: "チャットサポート",   caption: "面談外でも相談できるチャット対応" }
+        { src: "images/photos/4.jpg", alt: "専任コーチとのオンライン面談", caption: "専任コーチとのオンライン面談（週1回60分）" },
+        { src: "images/photos/1.jpg", alt: "自己分析アセスメント",         caption: "独自アセスメントで強みを可視化" },
+        { src: "images/photos/2.jpg", alt: "チャットサポート",             caption: "面談外でも相談できるチャット対応" }
       ],
       beforeAfter: [
-        { src: "images/placeholders/gallery-before.svg", alt: "受講前：方向性が定まらない",  label: "受講前" },
-        { src: "images/placeholders/gallery-after.svg",  alt: "受講後：自信を持って転職活動", label: "受講3ヶ月後" }
+        { src: "images/photos/3.jpg", alt: "受講前：方向性が定まらない状態",  label: "受講前" },
+        { src: "images/photos/8.jpg", alt: "受講後：自信を持って転職活動",    label: "受講3ヶ月後" }
       ],
       media: [
         { src: "images/placeholders/media-logo.svg", alt: "ビジネスニュース" },
@@ -94,8 +94,8 @@ window.ARTICLES = [
       { q: "この記事は広告ですか？",            a: "本記事はPR記事です。第三者の記者が取材・編集していますが、掲載費用を企業からいただいています。" }
     ],
 
-    storyImg:  "images/placeholders/story-portrait.svg",
-    storyAlt:  "代表取締役の写真",
+    storyImg:  "images/photos/4.jpg",
+    storyAlt:  "代表取締役インタビュー",
     storyText: [
       "「求人を大量に紹介して、どこかに転職させる」エージェントモデルに疑問を持ったことが起業のきっかけです。転職は手段であり、本当の目的はキャリアの充実にあるはずです。",
       "利用者が対価を支払うからこそ、私たちは100%利用者の方を向いたアドバイスができる。そのビジネスモデルの誠実さが、87%という転職成功率に結実していると自負しています。"
@@ -201,13 +201,13 @@ window.ARTICLES = [
 
     galleries: {
       service: [
-        { src: "images/placeholders/gallery-photo.svg", alt: "施術ルーム",     caption: "プライバシーに配慮した個室の施術ルーム" },
-        { src: "images/placeholders/gallery-photo.svg", alt: "カウンセリング", caption: "入会前の丁寧な無料カウンセリング" },
-        { src: "images/placeholders/gallery-photo.svg", alt: "最新美容機器",   caption: "医療グレードの最新美容機器を使用" }
+        { src: "images/photos/8.jpg", alt: "個室施術ルーム",   caption: "プライバシーに配慮した個室の施術ルーム" },
+        { src: "images/photos/5.jpg", alt: "カウンセリング",   caption: "入会前の丁寧な無料カウンセリング" },
+        { src: "images/photos/6.jpg", alt: "最新美容機器",     caption: "医療グレードの最新美容機器を使用" }
       ],
       beforeAfter: [
-        { src: "images/placeholders/gallery-before.svg", alt: "施術前",    label: "施術前" },
-        { src: "images/placeholders/gallery-after.svg",  alt: "3回施術後", label: "3回施術後" }
+        { src: "images/photos/3.jpg", alt: "施術前の状態",     label: "施術前" },
+        { src: "images/photos/4.jpg", alt: "3回施術後の変化",  label: "3回施術後" }
       ],
       media: [
         { src: "images/placeholders/media-logo.svg", alt: "ビューティ誌" },
@@ -244,8 +244,8 @@ window.ARTICLES = [
       { q: "この記事は広告ですか？",         a: "本記事はPR記事です。第三者の記者が取材・編集していますが、掲載費用を企業からいただいています。" }
     ],
 
-    storyImg:  "images/placeholders/story-portrait.svg",
-    storyAlt:  "代表の写真",
+    storyImg:  "images/photos/6.jpg",
+    storyAlt:  "代表インタビュー",
     storyText: [
       "「エステに通いたいけど、効果があるか不安」「しつこい勧誘が嫌だ」という声を多く聞き、そのイメージを変えたいと思いこのサロンを立ち上げました。",
       "全スタッフが国家資格を取得し、施術の技術だけでなく接客品質も徹底的にトレーニングしています。利用者に「また来たい」と思っていただけるサロンであり続けることが、私たちの使命です。"
