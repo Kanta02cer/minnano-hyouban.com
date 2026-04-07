@@ -522,13 +522,26 @@
     function renderFeaturedPlaceholder() {
       return `
         <article class="featured-card featured-card--upcoming anim-up" aria-label="準備中の注目記事">
-          <div class="featured-upcoming-grid">
-            <figure class="featured-img-wrap featured-img-wrap--placeholder" aria-hidden="true">
-              <img src="images/placeholders/featured-upcoming-wide.svg" alt="" width="680" height="420" loading="lazy">
-            </figure>
-            <div class="featured-placeholder">
-              <p class="featured-placeholder-head">取材進行中</p>
-              <p class="featured-placeholder-body">記者・漆沢が複数の企業を現在取材中です。<br>近日、注目の評判記事を公開予定です。</p>
+          <div class="upcoming-hero">
+            <img src="images/photos/5.jpg" alt="" class="upcoming-hero-bg" aria-hidden="true" loading="lazy">
+            <div class="upcoming-hero-overlay" aria-hidden="true">
+              <div class="upcoming-scan-line"></div>
+            </div>
+            <div class="upcoming-hero-body">
+              <div class="upcoming-live-badge">
+                <span class="upcoming-live-dot"></span>REPORTING
+              </div>
+              <p class="upcoming-hero-title">注目記事を取材中</p>
+              <p class="upcoming-hero-sub">記者・漆沢が現在複数の企業を直接取材中です。<br>近日、第三者評判レポートを公開予定。</p>
+              <div class="upcoming-progress-wrap" aria-label="取材進捗">
+                <div class="upcoming-progress-label">
+                  <span>取材進捗</span><span class="upcoming-progress-pct">取材中…</span>
+                </div>
+                <div class="upcoming-progress-bar"><div class="upcoming-progress-fill"></div></div>
+              </div>
+              <div class="upcoming-dots" aria-hidden="true">
+                <span></span><span></span><span></span>
+              </div>
             </div>
           </div>
         </article>`;
@@ -561,23 +574,37 @@
         </article>`;
     }
 
-    const UPCOMING_CATS = ['キャリア・転職', '美容・健康', 'マネー・投資'];
+    const UPCOMING_CATS  = ['キャリア・転職', '美容・健康', 'マネー・投資'];
+    const UPCOMING_IMGS  = ['images/photos/6.jpg', 'images/photos/3.jpg', 'images/photos/8.jpg'];
+    const UPCOMING_TEXTS = [
+      '転職・キャリア系サービスの評判を取材中',
+      '美容・健康サービスの評判を取材中',
+      '資産運用・投資サービスの評判を取材中',
+    ];
     function renderUpcoming(idx) {
-      const cat = UPCOMING_CATS[idx % UPCOMING_CATS.length];
+      const cat  = UPCOMING_CATS[idx % UPCOMING_CATS.length];
+      const img  = UPCOMING_IMGS[idx % UPCOMING_IMGS.length];
+      const text = UPCOMING_TEXTS[idx % UPCOMING_TEXTS.length];
       return `
-        <article class="article-item article-item--upcoming anim-up" role="listitem" aria-label="準備中の記事">
-          <div class="article-item-link">
-            <figure class="article-thumb article-thumb--blank">
-              <img src="images/placeholders/thumb-upcoming.svg" alt="" width="240" height="160" loading="lazy">
-              <span class="article-thumb-label">取材中</span>
+        <article class="article-item article-item--upcoming anim-up" role="listitem" aria-label="取材進行中の記事">
+          <div class="article-item-link article-upcoming-inner">
+            <figure class="article-thumb article-thumb--upcoming-photo">
+              <img src="${img}" alt="" loading="lazy">
+              <div class="article-thumb-upcoming-overlay" aria-hidden="true">
+                <div class="aup-scan"></div>
+              </div>
+              <span class="aup-badge"><span class="aup-pulse"></span>取材中</span>
             </figure>
             <div class="article-body">
               <span class="article-category ${catClass(cat)}">${cat}</span>
-              <h3 class="article-title article-title--upcoming">評判記事（取材準備中）</h3>
-              <p class="article-excerpt">現在、利用者へのインタビューおよび運営会社への取材を進めています。公開までしばらくお待ちください。</p>
+              <h3 class="article-title aup-title">${text}</h3>
+              <div class="aup-progress-wrap">
+                <div class="aup-progress-bar"><div class="aup-progress-fill"></div></div>
+                <span class="aup-progress-text">取材進行中</span>
+              </div>
               <div class="article-meta">
                 <span class="meta-author">漆沢 祐樹</span>
-                <span class="upcoming-label">近日公開予定</span>
+                <span class="aup-soon-label">近日公開</span>
               </div>
             </div>
           </div>
