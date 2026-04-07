@@ -15,6 +15,23 @@ body {
   line-height: 1.8;
   -webkit-font-smoothing: antialiased;
 }
+
+/* ── Global animated dot background ──────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(13,27,62,.06) 1.5px, transparent 1.5px);
+  background-size: 32px 32px;
+  pointer-events: none;
+  z-index: -1;
+  animation: dot-drift 24s linear infinite;
+  will-change: background-position;
+}
+@keyframes dot-drift {
+  0%   { background-position: 0 0; }
+  100% { background-position: 32px 32px; }
+}
 img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; text-decoration: none; }
 ul, ol { list-style: none; }
@@ -208,22 +225,91 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; transform: scaleX(0); }
 .hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
 
-/* Mobile nav */
-.nav-mobile {
-  border-top: 1px solid var(--border);
-  background: var(--bg-card);
+/* Side nav drawer */
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(13,27,62,.48);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  z-index: 299;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .35s ease;
 }
-.nav-mobile ul { display: flex; flex-direction: column; }
-.nav-mobile a {
+.nav-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.nav-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(320px, 88vw);
+  height: 100%;
+  background: var(--bg-card);
+  z-index: 300;
+  transform: translateX(100%);
+  transition: transform .38s cubic-bezier(.4,0,.2,1);
+  box-shadow: -8px 0 48px rgba(13,27,62,.22);
+  display: flex;
+  flex-direction: column;
+  padding: 80px 0 48px;
+  overflow-y: auto;
+}
+.nav-drawer.open {
+  transform: translateX(0);
+}
+.nav-drawer-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--ink);
+  background: var(--bg-warm);
+  border-radius: 50%;
+  transition: background .2s, transform .25s ease;
+}
+.nav-drawer-close:hover {
+  background: var(--border);
+  transform: rotate(90deg);
+}
+.nav-drawer-logo {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--navy);
+  padding: 0 28px 24px;
+  border-bottom: 1px solid var(--border-l);
+  margin-bottom: 8px;
+}
+.nav-drawer-logo span { color: var(--gold); }
+.nav-drawer ul {
+  display: flex;
+  flex-direction: column;
+  padding: 0 28px;
+}
+.nav-drawer a {
   display: block;
-  padding: 15px 0;
-  font-size: .9375rem;
+  padding: 18px 0;
+  font-size: 1rem;
   font-weight: 500;
   color: var(--ink);
   border-bottom: 1px solid var(--border-l);
   transition: color .2s, padding-left .2s;
+  letter-spacing: .04em;
 }
-.nav-mobile a:hover { color: var(--navy); padding-left: 8px; }
+.nav-drawer a:hover {
+  color: var(--navy);
+  padding-left: 10px;
+}
 
 /* =============================================================
    HERO — 3-layer parallax + floating portrait
@@ -250,6 +336,25 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   background-image: radial-gradient(circle, rgba(13,27,62,.038) 1.5px, transparent 1.5px);
   background-size: 28px 28px;
   will-change: transform;
+}
+
+/* Brand name tiled diagonally across the hero */
+.hero-brand-bg {
+  position: absolute;
+  inset: -60% -10%;
+  font-family: 'Shippori Mincho', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: rgba(13,27,62,.055);
+  letter-spacing: .06em;
+  line-height: 4;
+  white-space: pre-line;
+  word-spacing: 2em;
+  transform: rotate(-14deg);
+  transform-origin: center center;
+  pointer-events: none;
+  user-select: none;
+  overflow: hidden;
 }
 
 /* Giant watermark — deepest layer behind title text */
@@ -1505,16 +1610,42 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 /* =============================================================
-   SCROLL REVEAL
+   SCROLL REVEAL — 3D perspective animations
    ============================================================= */
 .anim-up {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity .55s ease, transform .55s ease;
+  transform: perspective(900px) translateY(48px) rotateX(9deg);
+  transition: opacity .6s ease, transform .6s ease;
+  transform-origin: top center;
+  backface-visibility: hidden;
 }
 .anim-up.visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: perspective(900px) translateY(0) rotateX(0);
+}
+
+.anim-left {
+  opacity: 0;
+  transform: perspective(900px) translateX(-64px) rotateY(12deg);
+  transition: opacity .65s ease, transform .65s ease;
+  transform-origin: right center;
+  backface-visibility: hidden;
+}
+.anim-left.visible {
+  opacity: 1;
+  transform: perspective(900px) translateX(0) rotateY(0);
+}
+
+.anim-right {
+  opacity: 0;
+  transform: perspective(900px) translateX(64px) rotateY(-12deg);
+  transition: opacity .65s ease, transform .65s ease;
+  transform-origin: left center;
+  backface-visibility: hidden;
+}
+.anim-right.visible {
+  opacity: 1;
+  transform: perspective(900px) translateX(0) rotateY(0);
 }
 
 /* =============================================================

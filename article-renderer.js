@@ -19,7 +19,7 @@ function esc(str) {
 
 /** 記事データに画像URLが無い場合の仮画像（images/placeholders/） */
 const PLACEHOLDER_IMG = {
-  editor: 'images/placeholders/avatar-reporter.svg',
+  editor: 'images/urushizawa-avatar.jpg',
   story: 'images/placeholders/story-portrait.svg',
   gallery: 'images/placeholders/gallery-photo.svg',
   before: 'images/placeholders/gallery-before.svg',
@@ -607,30 +607,34 @@ function renderFAQInArticle(list) {
    HAMBURGER
 ============================================================ */
 function initHamburger() {
-  const btn = document.querySelector('.hamburger');
-  const nav = document.getElementById('nav-mobile');
-  if (!btn || !nav) return;
+  const btn     = document.querySelector('.hamburger');
+  const drawer  = document.getElementById('nav-drawer');
+  const overlay = document.getElementById('nav-overlay');
+  if (!btn || !drawer) return;
+
+  function openDrawer() {
+    drawer.classList.add('open');
+    overlay?.classList.add('open');
+    drawer.setAttribute('aria-hidden', 'false');
+    btn.setAttribute('aria-expanded', 'true');
+    btn.setAttribute('aria-label', 'メニューを閉じる');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDrawer() {
+    drawer.classList.remove('open');
+    overlay?.classList.remove('open');
+    drawer.setAttribute('aria-hidden', 'true');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-label', 'メニューを開く');
+    document.body.style.overflow = '';
+  }
 
   btn.addEventListener('click', () => {
-    const isOpen = btn.getAttribute('aria-expanded') === 'true';
-    btn.setAttribute('aria-expanded', String(!isOpen));
-    btn.setAttribute('aria-label', isOpen ? 'メニューを開く' : 'メニューを閉じる');
-    nav.hidden = isOpen;
+    btn.getAttribute('aria-expanded') === 'true' ? closeDrawer() : openDrawer();
   });
-
-  nav.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      btn.setAttribute('aria-expanded', 'false');
-      nav.hidden = true;
-    });
-  });
-
-  document.addEventListener('click', (e) => {
-    if (!btn.contains(e.target) && !nav.contains(e.target)) {
-      btn.setAttribute('aria-expanded', 'false');
-      nav.hidden = true;
-    }
-  });
+  overlay?.addEventListener('click', closeDrawer);
+  document.getElementById('nav-drawer-close')?.addEventListener('click', closeDrawer);
+  drawer.querySelectorAll('a').forEach(link => link.addEventListener('click', closeDrawer));
 }
 
 /* ============================================================

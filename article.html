@@ -45,17 +45,20 @@
         <span></span><span></span><span></span>
       </button>
     </div>
-    <nav class="nav-mobile" id="nav-mobile" hidden aria-label="モバイルナビゲーション">
-      <div class="container">
-        <ul>
-          <li><a href="articles.html">記事一覧</a></li>
-          <li><a href="editor.html">記者紹介</a></li>
-          <li><a href="index.html#about">取材について</a></li>
-          <li><a href="index.html#contact">取材依頼</a></li>
-        </ul>
-      </div>
-    </nav>
   </header>
+
+  <!-- Side nav overlay + drawer -->
+  <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+  <nav class="nav-drawer" id="nav-drawer" aria-label="モバイルナビゲーション" aria-hidden="true">
+    <button class="nav-drawer-close" id="nav-drawer-close" aria-label="メニューを閉じる">&times;</button>
+    <div class="nav-drawer-logo">みんなの評判<span>.com</span></div>
+    <ul>
+      <li><a href="articles.html">記事一覧</a></li>
+      <li><a href="editor.html">記者紹介</a></li>
+      <li><a href="index.html#about">取材について</a></li>
+      <li><a href="index.html#contact">取材依頼</a></li>
+    </ul>
+  </nav>
 
   <!-- ============================================================
        MAIN CONTENT（JS で動的に生成）

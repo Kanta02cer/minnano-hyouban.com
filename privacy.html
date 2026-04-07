@@ -36,17 +36,19 @@
         <span></span><span></span><span></span>
       </button>
     </div>
-    <nav class="nav-mobile" id="nav-mobile" hidden aria-label="モバイルナビゲーション">
-      <div class="container">
-        <ul>
-          <li><a href="articles.html">記事一覧</a></li>
-          <li><a href="editor.html">記者紹介</a></li>
-          <li><a href="index.html#about">取材について</a></li>
-          <li><a href="index.html#contact">取材依頼</a></li>
-        </ul>
-      </div>
-    </nav>
   </header>
+
+  <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+  <nav class="nav-drawer" id="nav-drawer" aria-label="モバイルナビゲーション" aria-hidden="true">
+    <button class="nav-drawer-close" id="nav-drawer-close" aria-label="メニューを閉じる">&times;</button>
+    <div class="nav-drawer-logo">みんなの評判<span>.com</span></div>
+    <ul>
+      <li><a href="articles.html">記事一覧</a></li>
+      <li><a href="editor.html">記者紹介</a></li>
+      <li><a href="index.html#about">取材について</a></li>
+      <li><a href="index.html#contact">取材依頼</a></li>
+    </ul>
+  </nav>
 
   <main>
     <section class="articles-page" style="padding: 56px 0 80px;">
@@ -200,21 +202,17 @@
 
   <script>
     'use strict';
-    const btn = document.querySelector('.hamburger');
-    const nav = document.getElementById('nav-mobile');
-    if (btn && nav) {
-      btn.addEventListener('click', () => {
-        const open = btn.getAttribute('aria-expanded') === 'true';
-        btn.setAttribute('aria-expanded', String(!open));
-        nav.hidden = open;
-      });
-      nav.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          btn.setAttribute('aria-expanded', 'false');
-          nav.hidden = true;
-        });
-      });
-    }
+    (function() {
+      const btn = document.querySelector('.hamburger');
+      const drawer = document.getElementById('nav-drawer');
+      const overlay = document.getElementById('nav-overlay');
+      function open() { drawer?.classList.add('open'); overlay?.classList.add('open'); drawer?.setAttribute('aria-hidden','false'); btn?.setAttribute('aria-expanded','true'); btn?.setAttribute('aria-label','メニューを閉じる'); document.body.style.overflow='hidden'; }
+      function close() { drawer?.classList.remove('open'); overlay?.classList.remove('open'); drawer?.setAttribute('aria-hidden','true'); btn?.setAttribute('aria-expanded','false'); btn?.setAttribute('aria-label','メニューを開く'); document.body.style.overflow=''; }
+      btn?.addEventListener('click', () => btn.getAttribute('aria-expanded')==='true' ? close() : open());
+      overlay?.addEventListener('click', close);
+      document.getElementById('nav-drawer-close')?.addEventListener('click', close);
+      drawer?.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+    })();
   </script>
   <script src="js/site-analytics.js"></script>
 </body>

@@ -36,17 +36,20 @@
         <span></span><span></span><span></span>
       </button>
     </div>
-    <nav class="nav-mobile" id="nav-mobile" hidden aria-label="モバイルナビゲーション">
-      <div class="container">
-        <ul>
-          <li><a href="articles.html">記事一覧</a></li>
-          <li><a href="editor.html">記者紹介</a></li>
-          <li><a href="index.html#about">取材について</a></li>
-          <li><a href="index.html#contact">取材依頼</a></li>
-        </ul>
-      </div>
-    </nav>
   </header>
+
+  <!-- Side nav overlay + drawer -->
+  <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+  <nav class="nav-drawer" id="nav-drawer" aria-label="モバイルナビゲーション" aria-hidden="true">
+    <button class="nav-drawer-close" id="nav-drawer-close" aria-label="メニューを閉じる">&times;</button>
+    <div class="nav-drawer-logo">みんなの評判<span>.com</span></div>
+    <ul>
+      <li><a href="articles.html">記事一覧</a></li>
+      <li><a href="editor.html">記者紹介</a></li>
+      <li><a href="index.html#about">取材について</a></li>
+      <li><a href="index.html#contact">取材依頼</a></li>
+    </ul>
+  </nav>
 
   <main>
     <!-- Hero -->
@@ -135,16 +138,26 @@
 
   <script src="data/articles.js"></script>
   <script>
-    /* ── Hamburger ── */
-    const hamburger = document.querySelector('.hamburger');
-    const navMobile = document.getElementById('nav-mobile');
-    if (hamburger && navMobile) {
-      hamburger.addEventListener('click', () => {
-        const isOpen = hamburger.getAttribute('aria-expanded') === 'true';
-        hamburger.setAttribute('aria-expanded', String(!isOpen));
-        navMobile.hidden = isOpen;
-      });
-    }
+    /* ── Side Drawer ── */
+    (function() {
+      const btn     = document.querySelector('.hamburger');
+      const drawer  = document.getElementById('nav-drawer');
+      const overlay = document.getElementById('nav-overlay');
+      function openDrawer() {
+        drawer?.classList.add('open'); overlay?.classList.add('open');
+        drawer?.setAttribute('aria-hidden','false'); btn?.setAttribute('aria-expanded','true');
+        btn?.setAttribute('aria-label','メニューを閉じる'); document.body.style.overflow='hidden';
+      }
+      function closeDrawer() {
+        drawer?.classList.remove('open'); overlay?.classList.remove('open');
+        drawer?.setAttribute('aria-hidden','true'); btn?.setAttribute('aria-expanded','false');
+        btn?.setAttribute('aria-label','メニューを開く'); document.body.style.overflow='';
+      }
+      btn?.addEventListener('click', () => btn.getAttribute('aria-expanded')==='true' ? closeDrawer() : openDrawer());
+      overlay?.addEventListener('click', closeDrawer);
+      document.getElementById('nav-drawer-close')?.addEventListener('click', closeDrawer);
+      drawer?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDrawer));
+    })();
 
     /* ── Article Listing（検索・カテゴリ・URL同期） ── */
     function normalizeCategory(c) {

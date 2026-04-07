@@ -42,7 +42,7 @@ window.ARTICLES = [
 
     editorName:  "記者：漆沢 祐樹",
     editorTitle: "株式会社パーソナルナビ/ 株式会社メディくる 代表取締役／みんなの評判.com 担当記者",
-    editorImg:   "images/placeholders/avatar-reporter.svg",
+    editorImg:   "images/urushizawa-avatar.jpg",
     checkItems: [
       "転職成功率87%の算出方法と信頼性",
       "料金が高いと言われる理由と価値の検証",
@@ -192,7 +192,7 @@ window.ARTICLES = [
 
     editorName:  "記者：漆沢 祐樹",
     editorTitle: "株式会社パーソナルナビ/ 株式会社メディくる 代表取締役／みんなの評判.com 担当記者",
-    editorImg:   "images/placeholders/avatar-reporter.svg",
+    editorImg:   "images/urushizawa-avatar.jpg",
     checkItems: [
       "93%満足という数字の根拠と信頼性",
       "施術効果の実態（利用者への直接インタビュー）",
