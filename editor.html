@@ -434,6 +434,71 @@
       .editor-stats-grid { grid-template-columns: 1fr; }
     }
 
+    /* ─── 取材フィールド ギャラリー ─── */
+    .editor-gallery {
+      background: #fff;
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: 32px 36px 36px;
+      margin-bottom: 28px;
+    }
+    .editor-gallery h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--color-text);
+      margin: 0 0 6px;
+      letter-spacing: .04em;
+    }
+    .editor-gallery-lead {
+      font-size: .82rem;
+      color: var(--color-muted);
+      margin: 0 0 20px;
+    }
+    .editor-gallery-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 10px;
+    }
+    .editor-gallery-item {
+      margin: 0;
+      overflow: hidden;
+      border-radius: 8px;
+      position: relative;
+    }
+    .editor-gallery-item--wide {
+      grid-column: 1 / -1;
+    }
+    .editor-gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      aspect-ratio: 16/9;
+      transition: transform .45s ease, filter .45s ease;
+      filter: brightness(.93);
+    }
+    .editor-gallery-item:hover img {
+      transform: scale(1.04);
+      filter: brightness(1);
+    }
+    .editor-gallery-item figcaption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 20px 14px 10px;
+      font-size: .73rem;
+      color: #fff;
+      letter-spacing: .06em;
+      background: linear-gradient(to top, rgba(0,0,0,.55) 0%, transparent 100%);
+    }
+    @media (max-width: 600px) {
+      .editor-gallery-grid { grid-template-columns: 1fr; }
+      .editor-gallery-item--wide { grid-column: auto; }
+      .editor-gallery { padding: 24px 20px 28px; }
+    }
+
     /* ─── SNS リンク（ヒーロー） ─── */
     .editor-hero-sns {
       display: flex;
@@ -765,6 +830,34 @@
               </div>
               <span class="editor-sns-card-arrow" aria-hidden="true">&#8599;</span>
             </a>
+          </div>
+        </div>
+
+        <!-- 取材フィールド ギャラリー -->
+        <div class="editor-gallery anim-up" role="region" aria-labelledby="gallery-h">
+          <h2 id="gallery-h">取材フィールド</h2>
+          <p class="editor-gallery-lead">取材・インタビュー・執筆の現場から</p>
+          <div class="editor-gallery-grid">
+            <figure class="editor-gallery-item editor-gallery-item--wide">
+              <img src="images/photos/4.jpg" alt="取材インタビュー会議室" loading="lazy" width="800" height="450">
+              <figcaption>取材・インタビュー</figcaption>
+            </figure>
+            <figure class="editor-gallery-item">
+              <img src="images/photos/5.jpg" alt="ミーティングルーム" loading="lazy" width="400" height="225">
+              <figcaption>対面取材の現場</figcaption>
+            </figure>
+            <figure class="editor-gallery-item">
+              <img src="images/photos/3.jpg" alt="取材オフィス" loading="lazy" width="400" height="225">
+              <figcaption>企業オフィス取材</figcaption>
+            </figure>
+            <figure class="editor-gallery-item">
+              <img src="images/photos/6.jpg" alt="取材先オフィス環境" loading="lazy" width="400" height="225">
+              <figcaption>取材先の執務環境</figcaption>
+            </figure>
+            <figure class="editor-gallery-item">
+              <img src="images/photos/8.jpg" alt="記者の執筆スペース" loading="lazy" width="400" height="225">
+              <figcaption>執筆・編集スペース</figcaption>
+            </figure>
           </div>
         </div>
 

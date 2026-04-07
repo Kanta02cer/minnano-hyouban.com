@@ -1232,12 +1232,42 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   overflow: hidden;
 }
 .howto-step {
-  padding: 40px 36px;
+  padding: 0;
   background: var(--bg-card);
   position: relative;
   transition: background .3s;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
+
+/* Photo thumbnail at top of each howto step */
+.howto-step-img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.howto-step-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .5s ease;
+  filter: brightness(.92);
+}
+.howto-step:hover .howto-step-img img {
+  transform: scale(1.04);
+  filter: brightness(1);
+}
+
+/* Push text content below the photo */
+.howto-step .howto-num,
+.howto-step .howto-content {
+  padding-left: 36px;
+  padding-right: 36px;
+}
+.howto-step .howto-num { margin-top: 28px; }
 .howto-step::before {
   content: '';
   position: absolute;
@@ -1281,6 +1311,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-size: .875rem;
   line-height: 1.95;
   color: var(--ink-soft);
+  padding-bottom: 36px;
 }
 
 /* =============================================================
@@ -1754,7 +1785,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .category-nav { gap: 8px; }
   .category-tag { padding: 6px 14px; font-size: .775rem; }
 
-  .howto-step { padding: 30px 24px; }
+  .howto-step .howto-num,
+  .howto-step .howto-content { padding-left: 24px; padding-right: 24px; }
   .howto-num  { font-size: 2rem; }
 
   .article-item { flex: 0 0 86vw; }

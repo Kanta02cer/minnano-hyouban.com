@@ -30,7 +30,7 @@ window.ARTICLES = [
 
     title:    "サンプルコーチングの評判を徹底調査しました | みんなの評判.com",
     metaDesc: "記者・漆沢が実際の利用者127名の声をもとに独自取材。サンプルコーチングのリアルな評判・料金・効果を第三者目線でレポート。",
-    ogImage:  "images/placeholders/og-career.svg",
+    ogImage:  "images/photos/1.jpg",
     company:  "サンプルコーチング",
     category: "キャリア・転職",
     publishedAt: "2025-01-15",
@@ -180,7 +180,7 @@ window.ARTICLES = [
 
     title:    "サンプルエステサロンの評判を徹底調査しました | みんなの評判.com",
     metaDesc: "記者・漆沢が実際の利用者93名の声をもとに独自取材。サンプルエステサロンの効果・料金・スタッフ対応を第三者目線でレポート。",
-    ogImage:  "images/placeholders/og-beauty.svg",
+    ogImage:  "images/photos/2.jpg",
     company:  "サンプルエステサロン",
     category: "美容・健康",
     publishedAt: "2025-01-08",
