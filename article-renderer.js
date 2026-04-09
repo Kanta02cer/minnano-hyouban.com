@@ -321,16 +321,25 @@ function buildArticleHTML(a) {
     <!-- 01 HERO -->
     <section class="hero" aria-labelledby="hero-heading">
       <div class="hero-inner">
-        <span class="hero-tag" aria-label="注目情報">${esc(a.heroTag || '大手ネットニュースでも話題！')}</span>
+        <div class="hero-news-label">楽天・ニコニコ・エキサイトなど大手ネットニュースで話題の企業を第三者記者が取材</div>
+        <span class="hero-tag" aria-label="注目情報">${esc(a.heroTag || '第三者記者が直接取材しました')}</span>
         <h1 class="hero-title" id="hero-heading">${a.heroTitle || esc(a.company) + 'の評判を<br>徹底調査しました'}</h1>
         <p class="hero-sub">${esc(a.heroSub || '')}</p>
+        <div class="hero-trust" aria-label="取材の特徴">
+          <span>✓ 利用者へ直接取材</span>
+          <span>✓ 第三者の視点</span>
+          <span>✓ PR記事として明記</span>
+        </div>
         <ul class="hero-badges" role="list" aria-label="記事の特徴">
-          <li class="badge-media">大手ニュース掲載企業</li>
-          <li>第三者取材</li>
-          <li>記者執筆</li>
+          <li class="badge-media">大手ネットニュース掲載企業</li>
+          <li>第三者記者が取材</li>
+          <li>利用者インタビュー掲載</li>
           <li>口コミ多数掲載</li>
         </ul>
-        <a href="#reviews" class="btn btn--hero">お客様の声を読む</a>
+        <div class="hero-cta-group">
+          ${hasOfficial ? `<a href="${esc(cta.href)}" class="btn btn--hero" ${ctaLinkAttrs} data-cta-kind="hero_official" data-article-slug="${esc(a.slug || '')}" data-company="${esc(a.company || '')}">公式サイトを見る →</a>` : ''}
+          <a href="#reviews" class="btn btn--hero-outline">口コミを先に読む</a>
+        </div>
         <p class="hero-pr-note">※本記事はPR・広告を含みます</p>
       </div>
     </section>
@@ -345,7 +354,7 @@ function buildArticleHTML(a) {
                  alt="${esc(a.editorName || '記者')}の顔写真" class="editor-avatar" loading="lazy" width="64" height="64">
             <div>
               <p class="editor-name">${esc(a.editorName || '記者：漆沢 祐樹')}</p>
-              <p class="editor-title">${esc(a.editorTitle || '株式会社パーソナルナビ/ 株式会社メディくる 代表取締役／みんなの評判.com 担当記者')}</p>
+              <p class="editor-title">${esc(a.editorTitle || 'みんなの評判.com 代表記者 / 元上場企業役員・２社の代表取締役')}</p>
             </div>
           </div>
           <div class="note-checklist">
@@ -356,7 +365,7 @@ function buildArticleHTML(a) {
       </div>
     </section>
 
-    <!-- 03 ARTICLE BODY: reporter note + feature boxes + journalist take -->
+    <!-- 03 REPORTER NOTE -->
     ${a.reporterNote ? `
     <section class="body-section animate-on-scroll" aria-label="記者コメント">
       <div class="container">
@@ -366,6 +375,27 @@ function buildArticleHTML(a) {
       </div>
     </section>` : ''}
 
+    <!-- 04 SCORE BREAKDOWN（早期に社会的証明を提示） -->
+    ${scoreBarsHTML ? `
+    <section class="score-breakdown animate-on-scroll" aria-labelledby="score-heading">
+      <div class="container">
+        <h2 class="section-title" id="score-heading">記者が評価した5つの指標</h2>
+        <div class="score-bars">${scoreBarsHTML}</div>
+        ${a.scoreNote ? `<p class="score-note">${esc(a.scoreNote)}</p>` : ''}
+      </div>
+    </section>` : ''}
+
+    <!-- 05 INTERVIEWS（深い社会的証明） -->
+    ${interviewsHTML ? `
+    <section class="interview-section animate-on-scroll" aria-labelledby="interview-heading">
+      <div class="container">
+        <h2 class="section-title" id="interview-heading">取材協力者のリアルな声</h2>
+        <p class="section-sub">記者が直接インタビューした利用者の証言です</p>
+        ${interviewsHTML}
+      </div>
+    </section>` : ''}
+
+    <!-- FEATURE BOXES + JOURNALIST TAKE -->
     ${featureBoxesHTML ? `
     <section class="body-section animate-on-scroll" aria-labelledby="features-heading">
       <div class="container">
@@ -394,26 +424,6 @@ function buildArticleHTML(a) {
       </div>
     </section>
 
-    <!-- 04 SCORE BREAKDOWN -->
-    ${scoreBarsHTML ? `
-    <section class="score-breakdown animate-on-scroll" aria-labelledby="score-heading">
-      <div class="container">
-        <h2 class="section-title" id="score-heading">記者が評価した5つの指標</h2>
-        <div class="score-bars">${scoreBarsHTML}</div>
-        ${a.scoreNote ? `<p class="score-note">${esc(a.scoreNote)}</p>` : ''}
-      </div>
-    </section>` : ''}
-
-    <!-- 05 INTERVIEWS -->
-    ${interviewsHTML ? `
-    <section class="interview-section animate-on-scroll" aria-labelledby="interview-heading">
-      <div class="container">
-        <h2 class="section-title" id="interview-heading">取材協力者のリアルな声</h2>
-        <p class="section-sub">記者が直接インタビューした利用者の証言です</p>
-        ${interviewsHTML}
-      </div>
-    </section>` : ''}
-
     <!-- 06 REVIEWS -->
     <section class="reviews-section animate-on-scroll" id="reviews" aria-labelledby="reviews-heading">
       <div class="container">
@@ -434,6 +444,17 @@ function buildArticleHTML(a) {
         </div>
       </div>
     </section>
+
+    <!-- MID CTA（口コミ後の自然な誘導） -->
+    ${hasOfficial ? `
+    <section class="mid-cta animate-on-scroll" aria-label="公式サイト誘導">
+      <div class="container">
+        <p class="mid-cta-eyebrow">ここまで読んで気になった方へ</p>
+        <h3 class="mid-cta-title">まず公式サイトで無料相談・詳細確認から始めませんか？</h3>
+        <p class="mid-cta-note">申込みの義務はありません。気軽に内容を確認してみてください。</p>
+        <a href="${esc(cta.href)}" class="btn btn--mid-cta" ${ctaLinkAttrs} data-cta-kind="mid_official" data-article-slug="${esc(a.slug || '')}" data-company="${esc(a.company || '')}">公式サイトで詳細を確認する →</a>
+      </div>
+    </section>` : ''}
 
     <!-- 07 JOURNALIST CUT-IN Q&A -->
     ${cuttingQAHTML ? `
@@ -485,15 +506,21 @@ function buildArticleHTML(a) {
       </div>
     </section>
 
-    <!-- 11 CTA -->
+    <!-- 11 CTA（強化版） -->
     <section class="cta-section animate-on-scroll" id="contact" aria-labelledby="cta-heading">
       <div class="container">
-        <h2 class="cta-title" id="cta-heading">${esc(a.ctaTitle || 'この評判記事が気になった方へ')}</h2>
+        <div class="cta-verdict">第三者記者が取材・検証した上で、自信を持ってご紹介しています</div>
+        <h2 class="cta-title" id="cta-heading">${esc(a.ctaTitle || 'この記事を読んで気になった方へ')}</h2>
         <p class="cta-sub">${esc(
           hasOfficial
-            ? (a.ctaSub || 'まずは公式サイトで詳細をご確認ください。')
+            ? (a.ctaSub || '利用者の声・記者の取材を経て、まずは公式サイトで詳細を確認してみてください。')
             : (a.ctaSub || '公式サイトの案内URLが未登録のため、メディアへのお問い合わせからご案内します。')
         )}</p>
+        <div class="cta-trust">
+          <span>✓ 第三者取材済み</span>
+          <span>✓ PR記事として明記</span>
+          <span>✓ 申込み義務なし</span>
+        </div>
         ${hasOfficial ? `
         <a href="${esc(cta.href)}"
            class="btn btn--cta"
@@ -502,7 +529,7 @@ function buildArticleHTML(a) {
            data-article-slug="${esc(a.slug || '')}"
            data-company="${esc(a.company || '')}"
            data-cta-source="${esc(cta.source)}"
-        >${esc(a.ctaBtn || '公式サイトを確認する →')}</a>
+        >${esc(a.ctaBtn || '公式サイトで詳細を確認する →')}</a>
         <a href="${esc(cta.href)}"
            class="btn-text-link"
            ${ctaLinkAttrs}

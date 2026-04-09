@@ -41,7 +41,7 @@ window.ARTICLES = [
     heroSub:   "転職成功率87%の裏側に何があるのか。実際に利用した127名に直接取材し、「費用が高い」「合わないコーチ」といったネガティブ口コミの真相も含めて、第三者記者が正直に書いた評判レポート。",
 
     editorName:  "記者：漆沢 祐樹",
-    editorTitle: "株式会社パーソナルナビ/ 株式会社メディくる 代表取締役／みんなの評判.com 担当記者",
+    editorTitle: "みんなの評判.com 代表記者 / 元上場企業役員・２社の代表取締役",
     editorImg:   "images/urushizawa-avatar.jpg",
     checkItems: [
       "転職成功率87%の算出方法と信頼性",
@@ -191,7 +191,7 @@ window.ARTICLES = [
     heroSub:   "93%の利用者が「効果あり」と回答した話題のエステサロン。記者・漆沢が93名への独自取材を通じ、本当の効果と、ネット上のネガティブな口コミの真相を明らかにします。",
 
     editorName:  "記者：漆沢 祐樹",
-    editorTitle: "株式会社パーソナルナビ/ 株式会社メディくる 代表取締役／みんなの評判.com 担当記者",
+    editorTitle: "みんなの評判.com 代表記者 / 元上場企業役員・２社の代表取締役",
     editorImg:   "images/urushizawa-avatar.jpg",
     checkItems: [
       "93%満足という数字の根拠と信頼性",
