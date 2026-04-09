@@ -4,9 +4,9 @@
 
 | 項目 | 内容 | 状態 |
 |------|------|------|
-| 本番URL | 例: `https://minnano-hyouban.com/` | 要記入 |
-| DNS / ホスト | GitHub Pages 等、設定済みか | 要確認 |
-| 素材反映完了 | 写真・記事データの最終確認 | 要確認 |
+| 本番URL | `https://minnano-hyouban.com/` | 完了 |
+| DNS / ホスト | GitHub Pages + Xserver DNS（xdomain.ne.jp）+ HTTPS有効 | 完了 |
+| 素材反映完了 | 写真（photos/1〜8.jpg）・プロフィール・favicon 反映済み | 完了 |
 | **請求タイミング** | 例: サイト公開日／検収完了日／月末 など | **当事者間で一文合意** |
 | 請求書送付先 | メール・住所 | 要記入 |
 
