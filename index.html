@@ -62,6 +62,7 @@
   }
   </script>
 
+  <link rel="preload" as="image" href="images/urushizawa-face-close.jpg" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@400;600;700&display=swap">
@@ -459,8 +460,9 @@
     </div>
   </footer>
 
-  <script src="data/articles.js"></script>
-  <script>
+  <script src="data/articles.js" defer></script>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', function() {
     'use strict';
 
     /* ─── ヒーロー背景ブランドテキスト ─────────────────────── */
@@ -834,7 +836,9 @@
       document.querySelectorAll('.anim-up, .anim-left, .anim-right').forEach(el => el.classList.add('visible'));
     }
 
+
+    }); // DOMContentLoaded
   </script>
-  <script src="js/site-analytics.js"></script>
+  <script src="js/site-analytics.js" defer></script>
 </body>
 </html>
