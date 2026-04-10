@@ -42,4 +42,20 @@
     <priority>0.3</priority>
   </url>
 
+  <!-- 個別記事: SenoRich（Nジェネレーション株式会社） -->
+  <url>
+    <loc>https://minnano-hyouban.com/article.html?id=1794482170414453</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 個別記事: TASKUL -->
+  <url>
+    <loc>https://minnano-hyouban.com/article.html?id=2252563132716439</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
