@@ -53,9 +53,9 @@ window.ARTICLES = [
 
     galleries: {
       service: [
-        { src: "images/placeholders/gallery-photo.svg", alt: "SenoRich商品イメージ",     caption: "SENOX25・NMN・HIF-1・5-ALAの4素材を独自バランスで配合" },
-        { src: "images/placeholders/gallery-photo.svg", alt: "細胞ケアの仕組み",          caption: "老化細胞の除去に着目した「細胞レベルのコンディションづくり」" },
-        { src: "images/placeholders/gallery-photo.svg", alt: "Nジェネレーションの世界観", caption: "TIME・WEALTH・HEALTHの3バランスを掲げる企業理念" }
+        { src: "images/photos/1.jpg", alt: "デスクで資料を確認する女性",   caption: "健康と仕事のバランスを大切にする現代のライフスタイル" },
+        { src: "images/photos/4.jpg", alt: "開放感のあるモダンな会議室",   caption: "TIME・WEALTH・HEALTHのバランスを重視した企業理念" },
+        { src: "images/photos/8.jpg", alt: "整理されたホームオフィス空間", caption: "自分らしいライフスタイルを実現する環境づくり" }
       ],
       beforeAfter: [
         { src: "images/placeholders/gallery-before.svg", alt: "ケア前：エイジングサインが気になる状態", label: "ケア前" },
@@ -96,8 +96,8 @@ window.ARTICLES = [
       { q: "この記事は広告ですか？",                   a: "本記事はPR記事です。第三者の記者が取材・編集していますが、掲載費用を企業からいただいています。" }
     ],
 
-    storyImg:  "images/placeholders/story-portrait.svg",
-    storyAlt:  "Nジェネレーション代表インタビュー",
+    storyImg:  "images/photos/7.jpg",
+    storyAlt:  "Nジェネレーション代表インタビューイメージ",
     storyText: [
       "Nジェネレーション株式会社は、「自分の人生を持つ」という考え方を大切にしている会社です。健康・時間・お金の3つのバランスが取れた生活を目指すという理念が、SenoRichという商品にも反映されています。",
       "「売って終わり」ではなく、「買った人に本当に良くなってほしい」という姿勢が、成分の説明や研究背景の公開につながっています。購入前にしっかり調べてから選べる環境を作っている点は、信頼できるポイントだと感じます。"
@@ -205,13 +205,13 @@ window.ARTICLES = [
 
     galleries: {
       service: [
-        { src: "images/placeholders/gallery-photo.svg", alt: "案件ダッシュボード",     caption: "全案件の進捗が一画面で把握できるダッシュボード" },
-        { src: "images/placeholders/gallery-photo.svg", alt: "AI依頼文解析",           caption: "依頼文を貼るだけでAIがタスクに自動分解" },
-        { src: "images/placeholders/gallery-photo.svg", alt: "Slack・カレンダー連携",  caption: "Slack・LINE・Googleカレンダーと連携して見落とし防止" }
+        { src: "images/photos/2.jpg", alt: "ノートパソコンで作業するクリエイター",         caption: "どこでも使えるクラウドベースのタスク管理" },
+        { src: "images/photos/3.jpg", alt: "コンピューターとホワイトボードのあるオフィス", caption: "チームの制作フローをTASKULで一元管理" },
+        { src: "images/photos/5.jpg", alt: "会議室でのミーティングイメージ",               caption: "クライアントとの確認・連携もスムーズに" }
       ],
       beforeAfter: [
-        { src: "images/placeholders/gallery-before.svg", alt: "導入前：スプレッドシートと付箋で管理", label: "導入前" },
-        { src: "images/placeholders/gallery-after.svg",  alt: "導入後：TASKULで全案件を一元管理",    label: "導入1ヶ月後" }
+        { src: "images/photos/6.jpg", alt: "複数のデスクが並ぶオープンオフィス", label: "導入前" },
+        { src: "images/photos/8.jpg", alt: "整理されたホームオフィス空間",       label: "導入1ヶ月後" }
       ],
       media: [
         { src: "images/placeholders/media-logo.svg", alt: "クリエイター系メディア" },
@@ -248,8 +248,8 @@ window.ARTICLES = [
       { q: "この記事は広告ですか？",                                a: "本記事はPR記事です。第三者の記者が取材・編集していますが、掲載費用を企業からいただいています。" }
     ],
 
-    storyImg:  "images/placeholders/story-portrait.svg",
-    storyAlt:  "山田萌子（TASKULプロダクトマネージャー / クリエイティブディレクター）インタビュー",
+    storyImg:  "images/photos/7.jpg",
+    storyAlt:  "山田萌子（TASKULプロダクトマネージャー / クリエイティブディレクター）インタビューイメージ",
     storyText: [
       "TASKULを展開する株式会社フリーカンパニーは、自社でフリーランスを抱える制作事業も手がけており、その現場の一つがKUROCO CREATIONです。外向けに開発したツールを現場に押しつけるのではなく、自分たちが日々使いながら改善を重ねてきた点が、このサービスの一番の信頼材料です。",
       "「タスク管理ツールを作りたいから作った」ではなく、「自分たちが現場で本当に使いたいものを作った結果、外にも価値が出た」——プロダクトマネージャーの山田萌子さんのこの言葉が、TASKULの設計思想をそのまま表しています。使い始めてすぐに「あ、これ現場が分かってる人が作ったな」と感じられるのが、このツールの強みです。"
