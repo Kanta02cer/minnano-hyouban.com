@@ -344,6 +344,17 @@ function buildArticleHTML(a) {
       </div>
     </section>
 
+    <!-- 01.5 ONE-LINER VERDICT -->
+    ${a.oneliner ? `
+    <section class="oneliner-verdict animate-on-scroll" aria-label="記者の一言結論">
+      <div class="container">
+        <div class="oneliner-inner">
+          <span class="oneliner-label">記者・漆沢の結論</span>
+          <p class="oneliner-text">${esc(a.oneliner)}</p>
+        </div>
+      </div>
+    </section>` : ''}
+
     <!-- 02 EDITOR'S NOTE -->
     <section class="editors-note animate-on-scroll" aria-labelledby="note-heading">
       <div class="container">

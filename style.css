@@ -581,6 +581,75 @@ ul, ol {
 }
 
 /* ============================================================
+   01.5 ONE-LINER VERDICT
+============================================================ */
+.oneliner-verdict {
+  background: var(--color-primary);
+  padding: 40px 0;
+}
+.oneliner-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+}
+.oneliner-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+.oneliner-label::before,
+.oneliner-label::after {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--color-accent);
+  opacity: 0.6;
+}
+.oneliner-text {
+  font-family: var(--font-heading);
+  font-size: clamp(1.05rem, 2.8vw, 1.3rem);
+  font-weight: 600;
+  line-height: 1.8;
+  color: var(--color-white);
+  position: relative;
+  padding: 0 2rem;
+  max-width: 640px;
+}
+.oneliner-text::before {
+  content: '\201C';
+  position: absolute;
+  left: 0;
+  top: -0.15em;
+  font-size: 2.2em;
+  line-height: 1;
+  color: var(--color-accent);
+  font-family: Georgia, serif;
+  opacity: 0.8;
+}
+.oneliner-text::after {
+  content: '\201D';
+  position: absolute;
+  right: 0;
+  bottom: -0.35em;
+  font-size: 2.2em;
+  line-height: 1;
+  color: var(--color-accent);
+  font-family: Georgia, serif;
+  opacity: 0.8;
+}
+
+/* ============================================================
    02 EDITOR'S NOTE
 ============================================================ */
 .editors-note {
