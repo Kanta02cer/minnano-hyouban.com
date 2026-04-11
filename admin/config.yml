@@ -1,0 +1,104 @@
+# ================================================================
+#  Decap CMS 設定ファイル
+#  管理画面URL: https://minnano-hyouban.com/admin/
+#
+#  事前準備（1回だけ）:
+#    1. GitHub → Settings → Developer settings → OAuth Apps
+#    2. 新規OAuth App を作成
+#       - Homepage URL: https://minnano-hyouban.com
+#       - Callback URL: https://minnano-hyouban.com/admin/
+#    3. Client ID をメモ（下の client_id に設定）
+# ================================================================
+
+backend:
+  name: github
+  repo: Kanta02cer/minnano-hyouban.com
+  branch: main
+  # PKCE認証: サーバー不要でGitHub Pagesから直接認証
+  auth_type: pkce
+  # ↓ GitHub OAuth App の Client ID に置き換える
+  app_id: Ov23liSpzG3L4F4bsUPr
+
+# 画像アップロード先
+media_folder: images/photos
+public_folder: /images/photos
+
+# 日本語UI
+locale: ja
+
+# ================================================================
+#  コレクション定義
+# ================================================================
+collections:
+
+  # ── 記事下書き（_drafts/*.md）────────────────────────────────
+  - name: articles
+    label: 記事
+    label_singular: 記事
+    folder: _drafts
+    create: true
+    delete: true
+    slug: "{{fields.company}}"
+    extension: md
+    format: frontmatter
+    summary: "{{company}} — {{category}} — {{status}}"
+    sortable_fields: ["publishedAt", "company", "status"]
+    view_filters:
+      - label: 公開待ち
+        field: status
+        pattern: publish
+      - label: 下書き
+        field: status
+        pattern: draft
+    fields:
+
+      # ── 基本情報 ──────────────────────────────────────────
+      - label: "企業・サービス名"
+        name: company
+        widget: string
+        hint: "例: SenoRich（Nジェネレーション株式会社）"
+
+      - label: "カテゴリ"
+        name: category
+        widget: select
+        options:
+          - "キャリア・転職"
+          - "美容・健康"
+          - "語学・スキル"
+          - "マネー・投資"
+          - "ライフスタイル"
+
+      - label: "公開日"
+        name: publishedAt
+        widget: date
+        format: "YYYY-MM-DD"
+        date_format: "YYYY-MM-DD"
+
+      - label: "公式サイトURL"
+        name: officialUrl
+        widget: string
+        default: "#"
+        hint: "未確定の場合は # のままで可"
+
+      - label: "ステータス"
+        name: status
+        widget: select
+        options:
+          - label: "下書き（サイト非反映）"
+            value: draft
+          - label: "公開（次のデプロイで反映）"
+            value: publish
+        default: draft
+        hint: "publishに変更すると次のGitHub Actionsデプロイ時にサイトへ反映されます"
+
+      # ── 記事本文（自然言語）──────────────────────────────
+      - label: "記事本文"
+        name: body
+        widget: markdown
+        hint: |
+          自然言語でそのまま書いてください。
+          AIが自動的に構造化（reviews / interviews / FAQ / cuttingQA など）します。
+          入稿シートの各セクション（##1〜##14）に沿って記述すると精度が上がります。
+        modes:
+          - rich_text
+          - raw

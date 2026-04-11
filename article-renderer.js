@@ -976,6 +976,46 @@ document.addEventListener('DOMContentLoaded', () => {
   upsertJSONLD('jsonld-breadcrumb', breadcrumbLD);
   upsertJSONLD('jsonld-article', articleLD);
 
+  /* ── 口コミ・評価スキーマ（指名検索でスター表示のために必須） ──
+     AggregateRating: Googleの検索結果に星評価を表示するためのスキーマ
+     Review: 個別口コミをクローラーに伝えるためのスキーマ
+  ── */
+  const reviews = Array.isArray(article.reviews) ? article.reviews : [];
+  if (reviews.length > 0) {
+    const totalStars = reviews.reduce((sum, r) => sum + (Number(r.stars) || 0), 0);
+    const avgRating  = Math.round((totalStars / reviews.length) * 10) / 10;
+
+    const serviceLD = {
+      '@context': 'https://schema.org',
+      '@type': 'Product',
+      name: stripHTML(article.company || ''),
+      description: article.metaDesc || '',
+      url: pageUrl,
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: String(avgRating),
+        reviewCount: String(reviews.length),
+        bestRating: '5',
+        worstRating: '1'
+      },
+      review: reviews.map(r => ({
+        '@type': 'Review',
+        author: {
+          '@type': 'Person',
+          name: stripHTML(r.name || '匿名')
+        },
+        reviewRating: {
+          '@type': 'Rating',
+          ratingValue: String(Number(r.stars) || 3),
+          bestRating: '5',
+          worstRating: '1'
+        },
+        reviewBody: stripHTML(r.text || '')
+      }))
+    };
+    upsertJSONLD('jsonld-service', serviceLD);
+  }
+
   if (Array.isArray(article.faqs) && article.faqs.length > 0) {
     const faqLD = {
       '@context': 'https://schema.org',
