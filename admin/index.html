@@ -4,9 +4,21 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>みんなの評判.com CMS</title>
-  <!-- robots: noindexはrobots.txtで制御 -->
 </head>
 <body>
+  <!-- Netlify Identity ウィジェット（Google・メールログインに必要） -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    // GitHub Pages（minnano-hyouban.com）から Netlify Identity を使うために
+    // Netlify サイトの Identity API URL を明示的に指定する
+    // ★ 下記 YOUR_NETLIFY_SITE_NAME をNetlifyのサイト名に置き換えてください
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.init({
+        APIUrl: "https://YOUR_NETLIFY_SITE_NAME.netlify.app/.netlify/identity"
+      });
+    }
+  </script>
+  <!-- Decap CMS 本体 -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 </body>
 </html>
