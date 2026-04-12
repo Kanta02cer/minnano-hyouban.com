@@ -24,7 +24,7 @@
       --ne-danger: #ef4444;
       --ne-sidebar-width: 240px;
       --ne-settings-width: 300px;
-      --ne-header-h: 56px;
+      --ne-header-h: 52px;
     }
 
     /* ══════════════════════════════════════════
@@ -42,17 +42,19 @@
       -webkit-font-smoothing: antialiased;
     }
 
+    a { color: inherit; text-decoration: none; }
+
     /* ══════════════════════════════════════════
-       Toast
+       Toast (global overlay layer)
     ══════════════════════════════════════════ */
     .ne-toast {
       position: fixed;
       bottom: 28px;
       left: 50%;
       transform: translateX(-50%) translateY(20px);
-      background: var(--ne-text);
+      background: #1a1a1a;
       color: #fff;
-      padding: 10px 20px;
+      padding: 10px 22px;
       border-radius: 100px;
       font-size: 13px;
       font-weight: 500;
@@ -61,116 +63,318 @@
       transition: opacity .25s, transform .25s;
       z-index: 9999;
       white-space: nowrap;
-      box-shadow: 0 4px 16px rgba(0,0,0,.18);
     }
     .ne-toast.show {
       opacity: 1;
       transform: translateX(-50%) translateY(0);
     }
-    .ne-toast.error { background: var(--ne-danger); }
-    .ne-toast.warning { background: var(--ne-warning); }
+    .ne-toast.error { background: #ef4444; }
 
     /* ══════════════════════════════════════════
-       Header
+       ─── DASHBOARD VIEW ────────────────────
     ══════════════════════════════════════════ */
+    #view-dashboard {
+      min-height: 100vh;
+      background: var(--ne-bg);
+    }
+
+    /* Dashboard header */
+    .db-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: 56px;
+      background: var(--ne-white);
+      border-bottom: 1px solid var(--ne-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      box-shadow: 0 1px 3px rgba(0,0,0,.04);
+    }
+    .db-header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .db-header-left a {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ne-text);
+      text-decoration: none;
+    }
+    .db-header-left a:hover { color: var(--ne-accent); }
+    .db-admin-badge {
+      font-size: 10px;
+      font-weight: 700;
+      background: var(--ne-accent);
+      color: #fff;
+      border-radius: 4px;
+      padding: 2px 7px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    /* Dashboard main */
+    .db-main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+    .db-section {
+      margin-bottom: 52px;
+    }
+    .db-section-heading {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ne-text);
+      margin: 0 0 4px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .db-count {
+      background: var(--ne-accent);
+      color: #fff;
+      border-radius: 100px;
+      padding: 2px 9px;
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.6;
+    }
+    .db-section-desc {
+      font-size: 13px;
+      color: var(--ne-muted);
+      margin: 0 0 16px;
+    }
+    .db-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .db-card {
+      background: var(--ne-white);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 1px 4px rgba(0,0,0,.06);
+      border: 1px solid var(--ne-border);
+      display: flex;
+      flex-direction: column;
+    }
+    .db-card--draft {
+      border-top: 3px solid var(--ne-warning);
+    }
+    .db-card--published {
+      border-top: 3px solid var(--ne-accent);
+    }
+    .db-card-badge {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--ne-warning);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: 8px;
+    }
+    .db-card-category {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--ne-accent);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: 8px;
+    }
+    .db-card-title {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      line-height: 1.4;
+      flex: 1;
+    }
+    .db-card-meta {
+      font-size: 12px;
+      color: var(--ne-muted);
+      margin-bottom: 16px;
+    }
+    .db-card-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .db-btn-primary {
+      background: var(--ne-accent);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 7px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background .15s;
+    }
+    .db-btn-primary:hover { background: var(--ne-accent-hover); }
+    .db-btn-ghost {
+      background: none;
+      color: #555;
+      border: 1px solid var(--ne-border);
+      border-radius: 6px;
+      padding: 7px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      font-family: inherit;
+      transition: border-color .15s, color .15s;
+    }
+    .db-btn-ghost:hover { border-color: #aaa; color: var(--ne-text); }
+    .db-btn-danger {
+      background: none;
+      color: var(--ne-danger);
+      border: 1px solid #fca5a5;
+      border-radius: 6px;
+      padding: 7px 14px;
+      font-size: 13px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background .15s;
+    }
+    .db-btn-danger:hover { background: #fff5f5; }
+    .db-empty {
+      color: #bbb;
+      font-size: 13px;
+      padding: 20px 0 8px;
+    }
+
+    /* New article button in header */
+    #new-article-btn {
+      background: var(--ne-accent);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 9px 20px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background .15s;
+      white-space: nowrap;
+    }
+    #new-article-btn:hover { background: var(--ne-accent-hover); }
+
+    /* ══════════════════════════════════════════
+       ─── EDITOR VIEW ───────────────────────
+    ══════════════════════════════════════════ */
+    #view-editor {
+      min-height: 100vh;
+      background: var(--ne-bg);
+    }
+
+    /* Editor sticky header */
     .ne-header {
+      position: sticky;
+      top: 0;
+      z-index: 200;
       height: var(--ne-header-h);
       background: var(--ne-white);
       border-bottom: 1px solid var(--ne-border);
       display: flex;
       align-items: center;
+      justify-content: space-between;
       padding: 0 20px;
       gap: 12px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 1px 0 var(--ne-border);
+      box-shadow: 0 1px 4px rgba(0,0,0,.05);
     }
+    .ne-header-left { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    .ne-header-center { flex: 1; text-align: center; overflow: hidden; }
+    .ne-header-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 
-    .ne-header-left {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-shrink: 0;
-    }
-
-    a.ne-logo {
+    #back-to-list-btn {
+      background: none;
+      border: 1px solid var(--ne-border);
+      border-radius: 6px;
+      padding: 6px 13px;
       font-size: 13px;
-      font-weight: 700;
+      font-weight: 600;
+      cursor: pointer;
       color: var(--ne-text);
-      text-decoration: none;
-      letter-spacing: -.01em;
+      font-family: inherit;
+      transition: border-color .15s;
+      white-space: nowrap;
     }
-    a.ne-logo:hover { color: var(--ne-accent); }
-
-    .ne-admin-badge {
-      background: var(--ne-accent);
-      color: #fff;
-      font-size: 10px;
-      font-weight: 700;
-      padding: 2px 7px;
-      border-radius: 100px;
-      letter-spacing: .04em;
-    }
-
-    .ne-header-center {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+    #back-to-list-btn:hover { border-color: #aaa; }
 
     #ne-title-hint {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--ne-muted);
-      max-width: 300px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ne-text);
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-    }
-
-    .ne-header-right {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-shrink: 0;
+      display: block;
     }
 
     #ne-save-status {
       font-size: 12px;
-      color: var(--ne-muted);
+      color: var(--ne-success);
+      white-space: nowrap;
     }
 
-    /* Header buttons */
+    /* Editor header buttons */
     .ne-hbtn {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      padding: 6px 14px;
-      border-radius: 6px;
-      font-size: 13px;
-      font-weight: 500;
-      cursor: pointer;
+      background: none;
       border: 1px solid var(--ne-border);
-      background: var(--ne-white);
+      border-radius: 6px;
+      padding: 6px 13px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
       color: var(--ne-text);
+      font-family: inherit;
       transition: background .15s, border-color .15s;
-      text-decoration: none;
+      white-space: nowrap;
     }
-    .ne-hbtn:hover { background: #f0f0f0; border-color: #d0d0d0; }
-
+    .ne-hbtn:hover { background: var(--ne-bg); border-color: #bbb; }
     .ne-hbtn-primary {
       background: var(--ne-accent);
       color: #fff;
       border-color: var(--ne-accent);
-      font-weight: 700;
     }
     .ne-hbtn-primary:hover { background: var(--ne-accent-hover); border-color: var(--ne-accent-hover); }
+    .ne-hbtn:disabled, .ne-hbtn-primary:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+    }
 
-    /* ══════════════════════════════════════════
-       3-Panel Layout
-    ══════════════════════════════════════════ */
+    /* Edit mode banner */
+    #edit-mode-banner {
+      display: none;
+      background: #fffbeb;
+      border-bottom: 1px solid #fde68a;
+      padding: 10px 24px;
+      font-size: 13px;
+      color: #92400e;
+      align-items: center;
+      gap: 12px;
+    }
+    #edit-mode-banner.show { display: flex; }
+    #edit-mode-banner strong { font-weight: 700; }
+    #cancel-edit-btn {
+      margin-left: auto;
+      background: none;
+      border: 1px solid #f59e0b;
+      border-radius: 5px;
+      padding: 4px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #92400e;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    #cancel-edit-btn:hover { background: #fef3c7; }
+
+    /* 3-column editor layout */
     .ne-layout {
       display: grid;
       grid-template-columns: var(--ne-sidebar-width) 1fr var(--ne-settings-width);
@@ -178,182 +382,99 @@
       overflow: hidden;
     }
 
-    /* ── Left Sidebar ── */
+    /* Left sidebar */
     .ne-sidebar-left {
       background: var(--ne-white);
       border-right: 1px solid var(--ne-border);
       overflow-y: auto;
-      padding: 16px 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
+      padding: 20px 16px;
     }
-
-    #new-article-btn {
-      width: 100%;
-      padding: 10px;
-      border: 1.5px dashed var(--ne-accent);
-      border-radius: 6px;
-      color: var(--ne-accent);
-      background: none;
-      font-size: 13px;
-      font-weight: 700;
-      cursor: pointer;
-      margin-bottom: 12px;
-      transition: background .15s;
-      font-family: inherit;
-    }
-    #new-article-btn:hover { background: #eff6ff; }
 
     /* GitHub settings panel */
     #github-settings-panel {
+      background: #f9f9f9;
       border: 1px solid var(--ne-border);
       border-radius: 8px;
-      margin-bottom: 12px;
       overflow: hidden;
     }
     #github-settings-panel > summary {
+      padding: 10px 14px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      user-select: none;
       list-style: none;
       display: flex;
       align-items: center;
       gap: 6px;
-      padding: 10px 12px;
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--ne-muted);
-      cursor: pointer;
-      user-select: none;
-      background: #fafafa;
+      color: var(--ne-text);
     }
     #github-settings-panel > summary::-webkit-details-marker { display: none; }
-    #github-settings-panel[open] > summary { color: var(--ne-accent); background: #eff6ff; }
-
-    .gh-settings-body {
-      padding: 12px;
+    #github-settings-panel > summary::after { content: '▾'; margin-left: auto; font-size: 11px; color: var(--ne-muted); }
+    #github-settings-panel[open] > summary::after { content: '▴'; }
+    .gh-panel-body {
+      padding: 12px 14px 14px;
+      border-top: 1px solid var(--ne-border);
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      border-top: 1px solid var(--ne-border);
+      gap: 10px;
     }
-    .gh-settings-body label {
+    .gh-panel-body label {
       font-size: 11px;
+      font-weight: 700;
       color: var(--ne-muted);
-      font-weight: 600;
       display: block;
-      margin-bottom: 3px;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
     }
-    .gh-settings-body input {
+    .gh-panel-body input {
       width: 100%;
       border: 1px solid var(--ne-border);
       border-radius: 5px;
-      padding: 6px 10px;
-      font-size: 12px;
-      outline: none;
+      padding: 6px 9px;
+      font-size: 13px;
       font-family: inherit;
-      transition: border-color .15s;
+      background: var(--ne-white);
     }
-    .gh-settings-body input:focus { border-color: var(--ne-accent); }
-
+    .gh-panel-body input:focus { outline: none; border-color: var(--ne-accent); }
+    .gh-panel-footer {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
     #gh-save-settings {
-      width: 100%;
-      padding: 7px;
       background: var(--ne-accent);
       color: #fff;
       border: none;
       border-radius: 5px;
-      font-size: 12px;
-      font-weight: 700;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 600;
       cursor: pointer;
       font-family: inherit;
-      transition: background .15s;
     }
     #gh-save-settings:hover { background: var(--ne-accent-hover); }
-
     #gh-settings-status {
-      font-size: 11px;
+      font-size: 12px;
       color: var(--ne-success);
-      font-weight: 600;
-      text-align: center;
     }
 
-    .ne-sidebar-list-heading {
-      font-size: 10px;
-      font-weight: 700;
-      color: var(--ne-muted);
-      text-transform: uppercase;
-      letter-spacing: .08em;
-      padding: 4px 4px 6px;
-      border-bottom: 1px solid var(--ne-border);
-      margin-bottom: 4px;
-    }
-
-    #admin-articles-list { flex: 1; }
-
-    .ne-article-item {
-      padding: 10px 12px;
-      border-radius: 6px;
-      cursor: pointer;
-      margin-bottom: 2px;
-      font-size: 13px;
-      transition: background .1s;
-    }
-    .ne-article-item:hover { background: #f0f0f0; }
-    .ne-article-item.active { background: #eff6ff; color: var(--ne-accent); }
-
-    /* ── Center Editor ── */
+    /* Center editor (scrollable) */
     .ne-editor {
       overflow-y: auto;
-      padding: 40px 0;
       background: var(--ne-bg);
     }
-
     .ne-editor-canvas {
       max-width: 720px;
       margin: 0 auto;
-      background: var(--ne-white);
-      border-radius: 8px;
-      box-shadow: 0 1px 4px rgba(0,0,0,.06);
-      padding: 48px 56px;
-      min-height: calc(100vh - var(--ne-header-h) - 80px);
+      padding: 28px 24px 80px;
     }
 
-    /* Edit mode banner */
-    .ne-edit-banner {
-      display: none;
-      align-items: center;
-      gap: 10px;
-      background: #fef3c7;
-      border: 1px solid #fbbf24;
-      border-radius: 8px;
-      padding: 10px 16px;
-      font-size: 13px;
-      font-weight: 500;
-      color: #92400e;
-      margin-bottom: 24px;
-    }
-    .ne-edit-banner.show { display: flex; }
-    .ne-edit-banner strong { font-weight: 700; }
-
-    #cancel-edit-btn {
-      margin-left: auto;
-      padding: 5px 12px;
-      background: #fff;
-      border: 1px solid #fbbf24;
-      border-radius: 5px;
-      font-size: 12px;
-      font-weight: 700;
-      color: #92400e;
-      cursor: pointer;
-      font-family: inherit;
-      transition: background .15s;
-      white-space: nowrap;
-    }
-    #cancel-edit-btn:hover { background: #fef9c3; }
-
-    /* Validation error box */
+    /* Validation error */
     .ne-validation-error {
       display: none;
-      background: #fef2f2;
+      background: #fff5f5;
       border: 1px solid #fca5a5;
       border-radius: 8px;
       padding: 14px 18px;
@@ -362,158 +483,150 @@
     .ne-validation-error ul {
       margin: 0;
       padding-left: 18px;
-    }
-    .ne-validation-error li {
       font-size: 13px;
-      color: var(--ne-danger);
-      font-weight: 500;
-      margin-bottom: 4px;
+      color: #b91c1c;
     }
-    .ne-validation-error li:last-child { margin-bottom: 0; }
+    .ne-validation-error ul li { margin-bottom: 4px; }
 
-    /* ── Title Block ── */
-    .ne-title-block {
-      margin-bottom: 32px;
-      padding-bottom: 24px;
-      border-bottom: 1px solid var(--ne-border);
-    }
-
+    /* Title block */
     .ne-main-title {
       width: 100%;
-      border: none;
-      outline: none;
-      font-size: 28px;
+      font-size: 22px;
       font-weight: 700;
-      color: var(--ne-text);
-      line-height: 1.4;
-      padding: 0;
-      margin-bottom: 12px;
+      border: none;
+      border-bottom: 2px solid var(--ne-border);
+      border-radius: 0;
       background: transparent;
+      padding: 8px 0;
       font-family: inherit;
-      resize: none;
+      color: var(--ne-text);
+      margin-bottom: 12px;
+      transition: border-color .15s;
     }
+    .ne-main-title:focus { outline: none; border-bottom-color: var(--ne-accent); }
     .ne-main-title::placeholder { color: #ccc; }
 
     .ne-subtitle {
       width: 100%;
+      font-size: 14px;
       border: none;
-      outline: none;
-      font-size: 15px;
-      color: #555;
-      line-height: 1.8;
-      padding: 0;
+      border-bottom: 1px solid var(--ne-border);
       background: transparent;
-      resize: vertical;
+      padding: 6px 0;
       font-family: inherit;
+      color: var(--ne-text);
+      resize: none;
+      line-height: 1.6;
+      transition: border-color .15s;
     }
+    .ne-subtitle:focus { outline: none; border-bottom-color: var(--ne-accent); }
     .ne-subtitle::placeholder { color: #ccc; }
 
-    /* ── Sections ── */
+    /* Sections */
     .ne-section {
-      margin-bottom: 4px;
+      margin-top: 24px;
     }
-
-    .ne-section > details > summary.ne-section-title {
+    .ne-section details {
+      background: var(--ne-white);
+      border: 1px solid var(--ne-border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .ne-section details > summary {
+      padding: 13px 18px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      user-select: none;
       list-style: none;
       display: flex;
       align-items: center;
       gap: 8px;
-      padding: 14px 0;
-      border-top: 1px solid var(--ne-border);
-      font-size: 11px;
+      color: var(--ne-text);
+      border-bottom: 1px solid transparent;
+      transition: background .1s;
+    }
+    .ne-section details[open] > summary { border-bottom-color: var(--ne-border); background: #fafafa; }
+    .ne-section details > summary::-webkit-details-marker { display: none; }
+    .ne-section details > summary::after { content: '＋'; margin-left: auto; font-size: 16px; color: var(--ne-muted); font-weight: 400; }
+    .ne-section details[open] > summary::after { content: '－'; }
+    .ne-section details > summary:hover { background: #fafafa; }
+    .ne-section-body {
+      padding: 18px;
+    }
+    .ne-section-sublabel {
+      font-size: 12px;
       font-weight: 700;
       color: var(--ne-muted);
       text-transform: uppercase;
-      letter-spacing: .06em;
-      cursor: pointer;
-      user-select: none;
-      transition: color .15s;
+      letter-spacing: .05em;
+      margin: 16px 0 8px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid var(--ne-border);
     }
-    .ne-section > details > summary.ne-section-title::-webkit-details-marker { display: none; }
-    .ne-section > details[open] > summary.ne-section-title { color: var(--ne-accent); }
+    .ne-section-sublabel:first-child { margin-top: 0; }
 
-    .ne-section-chevron {
-      margin-left: auto;
-      font-size: 10px;
-      transition: transform .2s;
+    /* Section header row (heading + badge/button) */
+    .ne-section-hdr {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
-    .ne-section > details[open] .ne-section-chevron { transform: rotate(180deg); }
-
-    .ne-section-body {
-      padding: 16px 0 24px;
-    }
-
-    /* Field styles within sections */
-    .ne-field {
-      margin-bottom: 10px;
-    }
-    .ne-field label {
+    .ne-section-badge {
+      background: var(--ne-bg);
+      border: 1px solid var(--ne-border);
+      border-radius: 100px;
       font-size: 11px;
+      padding: 2px 9px;
       color: var(--ne-muted);
       font-weight: 600;
-      margin-bottom: 4px;
-      display: block;
-      text-transform: uppercase;
-      letter-spacing: .04em;
     }
-    .ne-field input,
-    .ne-field textarea,
-    .ne-field select {
-      width: 100%;
-      border: 1px solid var(--ne-border);
+    .ne-section-add-btn {
+      margin-left: auto;
+      background: none;
+      border: 1.5px dashed var(--ne-accent);
+      color: var(--ne-accent);
       border-radius: 6px;
-      padding: 8px 12px;
-      font-size: 14px;
-      outline: none;
-      transition: border-color .15s, box-shadow .15s;
-      box-sizing: border-box;
+      padding: 4px 13px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
       font-family: inherit;
-      background: var(--ne-white);
-      color: var(--ne-text);
+      transition: background .15s;
     }
-    .ne-field input:focus,
-    .ne-field textarea:focus,
-    .ne-field select:focus {
-      border-color: var(--ne-accent);
-      box-shadow: 0 0 0 3px rgba(26,108,255,.08);
-    }
-    .ne-field textarea { resize: vertical; line-height: 1.6; }
+    .ne-section-add-btn:hover { background: #eff5ff; }
 
-    /* Dynamic rows */
+    /* Row items */
     .ne-row {
+      position: relative;
       background: #fafafa;
       border: 1px solid var(--ne-border);
       border-radius: 8px;
-      padding: 16px;
-      margin-bottom: 8px;
-      position: relative;
+      padding: 14px;
+      margin-bottom: 10px;
     }
-
+    .ne-row:last-child { margin-bottom: 0; }
     .ne-row-num {
       position: absolute;
-      top: 12px;
-      right: 14px;
+      top: 10px;
+      left: 14px;
       font-size: 10px;
       font-weight: 700;
       color: var(--ne-muted);
       text-transform: uppercase;
       letter-spacing: .04em;
     }
-
     .ne-row-delete {
-      padding: 4px 10px;
-      background: #fff;
+      background: none;
       border: 1px solid #fca5a5;
       border-radius: 5px;
+      padding: 3px 10px;
       font-size: 12px;
       color: var(--ne-danger);
       cursor: pointer;
       font-family: inherit;
-      font-weight: 600;
-      transition: background .15s;
     }
-    .ne-row-delete:hover { background: #fef2f2; }
-
+    .ne-row-delete:hover { background: #fff5f5; }
     .ne-row-grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -525,90 +638,64 @@
       gap: 10px;
     }
 
-    /* Gallery sub-section labels */
-    .ne-gallery-sub {
+    /* Fields */
+    .ne-field { display: flex; flex-direction: column; }
+    .ne-field label {
       font-size: 11px;
       font-weight: 700;
       color: var(--ne-muted);
+      margin-bottom: 4px;
       text-transform: uppercase;
-      letter-spacing: .05em;
-      margin: 16px 0 8px;
-      padding-bottom: 6px;
-      border-bottom: 1px dashed var(--ne-border);
+      letter-spacing: .04em;
     }
-    .ne-gallery-sub:first-child { margin-top: 0; }
-
-    /* Add row buttons */
-    .ne-add-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 8px 14px;
-      border: 1.5px dashed var(--ne-border);
+    .ne-field input,
+    .ne-field textarea,
+    .ne-field select {
+      border: 1px solid var(--ne-border);
       border-radius: 6px;
-      background: none;
+      padding: 7px 10px;
       font-size: 13px;
-      color: var(--ne-muted);
-      cursor: pointer;
       font-family: inherit;
-      font-weight: 500;
-      transition: border-color .15s, color .15s;
-      margin-top: 8px;
+      color: var(--ne-text);
+      background: var(--ne-white);
+      transition: border-color .15s;
     }
-    .ne-add-btn:hover {
+    .ne-field input:focus,
+    .ne-field textarea:focus,
+    .ne-field select:focus {
+      outline: none;
       border-color: var(--ne-accent);
-      color: var(--ne-accent);
     }
-
-    .ne-count-badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 20px;
-      height: 20px;
-      background: var(--ne-accent);
-      color: #fff;
-      border-radius: 100px;
-      font-size: 11px;
-      font-weight: 700;
-      padding: 0 5px;
-      margin-left: 6px;
-    }
+    .ne-field textarea { resize: vertical; line-height: 1.5; }
 
     /* Preview area */
     #preview-area {
-      display: none;
-      margin-top: 32px;
+      margin-top: 28px;
+      background: var(--ne-white);
+      border: 1px solid var(--ne-border);
+      border-radius: 10px;
       padding: 20px;
-      background: #f0fdf4;
-      border: 1px solid #86efac;
-      border-radius: 8px;
       text-align: center;
     }
     #preview-area p {
-      font-size: 13px;
-      color: #15803d;
-      font-weight: 500;
-      margin: 0 0 12px;
+      margin: 0 0 14px;
+      font-size: 14px;
+      color: #555;
     }
     #preview-btn-inline {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 8px 20px;
-      background: #16a34a;
+      background: var(--ne-accent);
       color: #fff;
       border: none;
-      border-radius: 6px;
-      font-size: 13px;
+      border-radius: 8px;
+      padding: 10px 24px;
+      font-size: 14px;
       font-weight: 700;
       cursor: pointer;
       font-family: inherit;
-      transition: background .15s;
     }
-    #preview-btn-inline:hover { background: #15803d; }
+    #preview-btn-inline:hover { background: var(--ne-accent-hover); }
 
-    /* ── Right Sidebar ── */
+    /* Right sidebar */
     .ne-sidebar-right {
       background: var(--ne-white);
       border-left: 1px solid var(--ne-border);
@@ -616,529 +703,617 @@
       padding: 20px 16px;
     }
 
-    .ne-settings-group {
-      margin-bottom: 28px;
+    /* Sidebar groups */
+    .ne-sidebar-group {
+      margin-bottom: 24px;
     }
-
-    .ne-settings-group-heading {
-      font-size: 10px;
+    .ne-sidebar-group-title {
+      font-size: 11px;
       font-weight: 700;
       color: var(--ne-muted);
       text-transform: uppercase;
-      letter-spacing: .08em;
-      margin: 0 0 12px;
-      padding-bottom: 8px;
+      letter-spacing: .06em;
+      margin: 0 0 10px;
+      padding-bottom: 6px;
       border-bottom: 1px solid var(--ne-border);
     }
-
-    .ne-settings-field {
+    .ne-sidebar-field {
       margin-bottom: 12px;
     }
-    .ne-settings-field label {
-      font-size: 11px;
-      color: var(--ne-muted);
-      font-weight: 600;
-      margin-bottom: 4px;
+    .ne-sidebar-field label {
       display: block;
+      font-size: 11px;
+      font-weight: 700;
+      color: #888;
+      margin-bottom: 4px;
       text-transform: uppercase;
       letter-spacing: .04em;
     }
-    .ne-settings-field input,
-    .ne-settings-field textarea {
+    .ne-sidebar-field input,
+    .ne-sidebar-field textarea,
+    .ne-sidebar-field select {
       width: 100%;
       border: 1px solid var(--ne-border);
       border-radius: 6px;
-      padding: 8px 12px;
+      padding: 7px 10px;
       font-size: 13px;
-      outline: none;
-      transition: border-color .15s, box-shadow .15s;
-      box-sizing: border-box;
       font-family: inherit;
-      background: var(--ne-white);
       color: var(--ne-text);
+      background: var(--ne-white);
+      transition: border-color .15s;
     }
-    .ne-settings-field input:focus,
-    .ne-settings-field textarea:focus {
+    .ne-sidebar-field input:focus,
+    .ne-sidebar-field textarea:focus,
+    .ne-sidebar-field select:focus {
+      outline: none;
       border-color: var(--ne-accent);
-      box-shadow: 0 0 0 3px rgba(26,108,255,.08);
     }
-    .ne-settings-field textarea { resize: vertical; line-height: 1.6; }
+    .ne-sidebar-field textarea { resize: vertical; line-height: 1.5; }
 
-    /* Publish group */
-    .ne-publish-group {
-      border-top: 1px solid var(--ne-border);
-      padding-top: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+    /* Draft / publish buttons in sidebar */
+    .ne-draft-btn {
+      width: 100%;
+      border: 1.5px solid var(--ne-success);
+      color: var(--ne-success);
+      background: none;
+      border-radius: 6px;
+      padding: 9px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background .15s;
+      margin-bottom: 8px;
     }
-
+    .ne-draft-btn:hover { background: #f0fdf9; }
     .ne-publish-btn {
       width: 100%;
       background: var(--ne-accent);
       color: #fff;
       border: none;
       border-radius: 6px;
-      padding: 12px;
-      font-size: 14px;
+      padding: 10px 16px;
+      font-size: 13px;
       font-weight: 700;
       cursor: pointer;
-      transition: background .15s;
       font-family: inherit;
+      transition: background .15s;
+      margin-bottom: 8px;
     }
     .ne-publish-btn:hover { background: var(--ne-accent-hover); }
-    .ne-publish-btn:disabled { opacity: .6; cursor: not-allowed; }
-
+    .ne-publish-btn:disabled { opacity: .5; cursor: not-allowed; }
     .ne-publish-note {
       font-size: 11px;
       color: var(--ne-muted);
-      text-align: center;
-      line-height: 1.5;
       margin: 0;
+      line-height: 1.5;
     }
 
     /* ══════════════════════════════════════════
-       Mobile Responsive (≤900px)
+       Responsive — 768px breakpoint
     ══════════════════════════════════════════ */
-    @media (max-width: 900px) {
+    @media (max-width: 768px) {
+      /* Dashboard */
+      .db-header { padding: 0 16px; }
+      .db-main { padding: 24px 16px 60px; }
+      .db-grid { grid-template-columns: 1fr; }
+      #new-article-btn { padding: 8px 14px; font-size: 13px; }
+
+      /* Editor header */
+      .ne-header { padding: 0 12px; gap: 6px; }
+      #ne-title-hint { display: none; }
+      .ne-hbtn { padding: 5px 10px; font-size: 12px; }
+
+      /* Editor layout: collapse to single column stack */
       .ne-layout {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto;
+        display: flex;
+        flex-direction: column;
         height: auto;
         overflow: visible;
       }
-
-      .ne-sidebar-left {
-        border-right: none;
-        border-bottom: 1px solid var(--ne-border);
-        padding: 12px;
-        max-height: 220px;
-      }
-
-      .ne-editor {
-        padding: 20px 12px;
-      }
-
-      .ne-editor-canvas {
-        padding: 28px 20px;
-      }
-
+      .ne-sidebar-left,
       .ne-sidebar-right {
-        border-left: none;
-        border-top: 1px solid var(--ne-border);
-        padding: 16px 12px;
+        overflow-y: visible;
+        border: none;
+        border-bottom: 1px solid var(--ne-border);
+        padding: 16px;
       }
-
-      .ne-header-center { display: none; }
-
-      .ne-row-grid-2,
-      .ne-row-grid-3 {
-        grid-template-columns: 1fr;
+      .ne-editor {
+        overflow-y: visible;
       }
+      .ne-editor-canvas { padding: 20px 16px 40px; }
+      .ne-row-grid-3 { grid-template-columns: 1fr; }
+      .ne-row-grid-2 { grid-template-columns: 1fr; }
 
-      .ne-hbtn span { display: none; }
+      /* Banner */
+      #edit-mode-banner { flex-wrap: wrap; gap: 8px; }
+      #cancel-edit-btn { margin-left: 0; }
     }
 
-    @media (max-width: 600px) {
-      .ne-main-title { font-size: 20px; }
-      .ne-editor-canvas { padding: 20px 14px; }
-    }
-
-    /* ══════════════════════════════════════════
-       Scrollbar Styling
-    ══════════════════════════════════════════ */
-    .ne-sidebar-left::-webkit-scrollbar,
-    .ne-sidebar-right::-webkit-scrollbar,
-    .ne-editor::-webkit-scrollbar {
-      width: 4px;
-    }
-    .ne-sidebar-left::-webkit-scrollbar-track,
-    .ne-sidebar-right::-webkit-scrollbar-track,
-    .ne-editor::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    .ne-sidebar-left::-webkit-scrollbar-thumb,
-    .ne-sidebar-right::-webkit-scrollbar-thumb,
-    .ne-editor::-webkit-scrollbar-thumb {
-      background: #ddd;
-      border-radius: 4px;
+    @media (max-width: 480px) {
+      .db-card-actions { flex-direction: column; }
+      .db-btn-primary,
+      .db-btn-ghost,
+      .db-btn-danger { width: 100%; text-align: center; }
     }
   </style>
 </head>
 <body>
 
-<!-- ══════════════════════════════════════════
-     Toast
-══════════════════════════════════════════ -->
-<div id="toast" class="ne-toast"></div>
+<!-- ─── Toast (global, always on top) ─── -->
+<div id="toast" class="ne-toast" role="status" aria-live="polite"></div>
 
-<!-- ══════════════════════════════════════════
-     Header
-══════════════════════════════════════════ -->
-<header class="ne-header">
-  <div class="ne-header-left">
-    <a href="index.html" class="ne-logo">みんなの評判.com Admin</a>
-    <span class="ne-admin-badge">管理</span>
-  </div>
+<!-- ════════════════════════════════════════════════════════════
+     VIEW 1: DASHBOARD
+════════════════════════════════════════════════════════════ -->
+<div id="view-dashboard">
 
-  <div class="ne-header-center">
-    <span id="ne-title-hint">新規記事</span>
-  </div>
+  <!-- Dashboard header -->
+  <header class="db-header">
+    <div class="db-header-left">
+      <a href="index.html">みんなの評判.com</a>
+      <span class="db-admin-badge">Admin</span>
+    </div>
+    <button id="new-article-btn">＋ 新規記事を投稿</button>
+  </header>
 
-  <div class="ne-header-right">
-    <span id="ne-save-status"></span>
-    <button class="ne-hbtn" id="preview-btn" type="button">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-      <span>プレビュー</span>
-    </button>
-    <button class="ne-hbtn ne-hbtn-primary" id="github-push-btn" type="button">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-      公開する
-    </button>
-  </div>
-</header>
+  <!-- Dashboard main content -->
+  <main class="db-main">
 
-<!-- ══════════════════════════════════════════
-     3-Panel Layout
-══════════════════════════════════════════ -->
-<div class="ne-layout">
-
-  <!-- ── Left Sidebar ── -->
-  <aside class="ne-sidebar-left">
-    <button id="new-article-btn" type="button">＋ 新規記事</button>
-
-    <details id="github-settings-panel">
-      <summary>⚙ GitHub 設定</summary>
-      <div class="gh-settings-body">
-        <div>
-          <label for="gh-token">Personal Access Token</label>
-          <input type="password" id="gh-token" placeholder="ghp_...">
-        </div>
-        <div>
-          <label for="gh-branch">ブランチ</label>
-          <input type="text" id="gh-branch" value="main">
-        </div>
-        <button type="button" id="gh-save-settings">保存</button>
-        <span id="gh-settings-status"></span>
+    <!-- Section A: 編集中 (Drafts) -->
+    <section class="db-section" id="section-drafts">
+      <h2 class="db-section-heading">
+        編集中
+        <span class="db-count" id="draft-count">0</span>
+      </h2>
+      <p class="db-section-desc">下書き保存された記事です。編集を続けるか、削除できます。</p>
+      <div class="db-grid" id="drafts-grid">
+        <p class="db-empty">下書きはありません</p>
       </div>
-    </details>
+    </section>
 
-    <div class="ne-sidebar-list-heading">記事一覧</div>
-    <div id="admin-articles-list"></div>
-  </aside>
-
-  <!-- ── Center Editor ── -->
-  <main class="ne-editor">
-    <div class="ne-editor-canvas">
-
-      <!-- Edit mode banner -->
-      <div id="edit-mode-banner" class="ne-edit-banner">
-        <span>編集中: <strong id="edit-mode-slug"></strong></span>
-        <button type="button" id="cancel-edit-btn">新規作成に戻る</button>
+    <!-- Section B: 投稿済み (Published) -->
+    <section class="db-section" id="section-published">
+      <h2 class="db-section-heading">
+        投稿済み
+        <span class="db-count" id="published-count">0</span>
+      </h2>
+      <p class="db-section-desc">GitHubに公開済みの記事です。編集して再公開できます。</p>
+      <div class="db-grid" id="published-grid">
+        <p class="db-empty">投稿済みの記事はありません</p>
       </div>
+    </section>
 
-      <!-- Validation error -->
-      <div id="validation-error" class="ne-validation-error">
-        <ul id="error-list"></ul>
-      </div>
-
-      <!-- Title Block -->
-      <div class="ne-title-block">
-        <input
-          type="text"
-          id="f-hero-title"
-          class="ne-main-title"
-          placeholder="タイトルを入力..."
-        >
-        <textarea
-          id="f-hero-sub"
-          class="ne-subtitle"
-          placeholder="サブコピー..."
-          rows="3"
-        ></textarea>
-      </div>
-
-      <!-- ── Section 1: ヒーロー設定 ── -->
-      <div class="ne-section">
-        <details open>
-          <summary class="ne-section-title">
-            ヒーロー設定
-            <span class="ne-section-chevron">▾</span>
-          </summary>
-          <div class="ne-section-body">
-            <div class="ne-field">
-              <label for="f-hero-tag">ヒーロータグ（ピル表示）</label>
-              <input type="text" id="f-hero-tag" placeholder="大手ネットニュースでも話題！">
-            </div>
-          </div>
-        </details>
-      </div>
-
-      <!-- ── Section 2: ギャラリー画像 ── -->
-      <div class="ne-section">
-        <details open>
-          <summary class="ne-section-title">
-            ギャラリー画像
-            <span class="ne-section-chevron">▾</span>
-          </summary>
-          <div class="ne-section-body">
-            <div class="ne-gallery-sub">G1 サービス画像</div>
-            <div id="gallery-service-rows"></div>
-
-            <div class="ne-gallery-sub">G2 ビフォーアフター</div>
-            <div id="gallery-ba-rows"></div>
-
-            <div class="ne-gallery-sub">G3 メディアロゴ</div>
-            <div id="gallery-media-rows"></div>
-          </div>
-        </details>
-      </div>
-
-      <!-- ── Section 3: お客様の声 ── -->
-      <div class="ne-section">
-        <details>
-          <summary class="ne-section-title">
-            お客様の声
-            <span class="ne-count-badge" id="review-count">0</span>
-            <span class="ne-section-chevron">▾</span>
-          </summary>
-          <div class="ne-section-body">
-            <div id="reviews-rows"></div>
-            <button type="button" id="add-review-btn" class="ne-add-btn">
-              ＋ レビューを追加
-            </button>
-          </div>
-        </details>
-      </div>
-
-      <!-- ── Section 4: サービス概要カード ── -->
-      <div class="ne-section">
-        <details>
-          <summary class="ne-section-title">
-            サービス概要カード
-            <span class="ne-section-chevron">▾</span>
-          </summary>
-          <div class="ne-section-body">
-            <div id="service-card-rows"></div>
-          </div>
-        </details>
-      </div>
-
-      <!-- ── Section 5: ご利用の流れ ── -->
-      <div class="ne-section">
-        <details>
-          <summary class="ne-section-title">
-            ご利用の流れ
-            <span class="ne-section-chevron">▾</span>
-          </summary>
-          <div class="ne-section-body">
-            <div id="steps-rows"></div>
-          </div>
-        </details>
-      </div>
-
-      <!-- ── Section 6: よくある疑問 FAQ ── -->
-      <div class="ne-section">
-        <details>
-          <summary class="ne-section-title">
-            よくある疑問 FAQ
-            <span class="ne-count-badge" id="faq-count">0</span>
-            <span class="ne-section-chevron">▾</span>
-          </summary>
-          <div class="ne-section-body">
-            <div id="faqs-rows"></div>
-            <button type="button" id="add-faq-btn" class="ne-add-btn">
-              ＋ FAQ を追加
-            </button>
-          </div>
-        </details>
-      </div>
-
-      <!-- ── Section 7: 創業ストーリー ── -->
-      <div class="ne-section">
-        <details>
-          <summary class="ne-section-title">
-            創業ストーリー
-            <span class="ne-section-chevron">▾</span>
-          </summary>
-          <div class="ne-section-body">
-            <div class="ne-field">
-              <label for="f-story-img">ストーリー画像 URL</label>
-              <input type="url" id="f-story-img" placeholder="images/placeholders/story-portrait.svg">
-            </div>
-            <div class="ne-field">
-              <label for="f-story">ストーリー本文（段落を空行で区切る）</label>
-              <textarea id="f-story" rows="6" placeholder="企業の良さを自ら伝えても、なかなか信頼してもらえない..."></textarea>
-            </div>
-          </div>
-        </details>
-      </div>
-
-      <!-- Preview area (shown after publish) -->
-      <div id="preview-area">
-        <p>GitHub へのプッシュが完了しました。GitHub Actions のデプロイ完了後にプレビューを確認できます。</p>
-        <button type="button" id="preview-btn-inline">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-          記事プレビューを開く
-        </button>
-      </div>
-
-    </div><!-- /ne-editor-canvas -->
   </main>
+</div><!-- /#view-dashboard -->
 
-  <!-- ── Right Sidebar ── -->
-  <aside class="ne-sidebar-right">
 
-    <!-- 基本情報 -->
-    <div class="ne-settings-group">
-      <h3 class="ne-settings-group-heading">基本情報</h3>
+<!-- ════════════════════════════════════════════════════════════
+     VIEW 2: EDITOR
+════════════════════════════════════════════════════════════ -->
+<div id="view-editor" style="display:none">
 
-      <div class="ne-settings-field">
-        <label for="f-slug">スラッグ / URL識別子</label>
-        <input type="text" id="f-slug" placeholder="example-company">
-      </div>
-
-      <div class="ne-settings-field">
-        <label for="f-company">企業・サービス名</label>
-        <input type="text" id="f-company" placeholder="株式会社〇〇">
-      </div>
-
-      <div class="ne-settings-field">
-        <label for="f-category">カテゴリ</label>
-        <input type="text" id="f-category" value="美容・健康">
-      </div>
-
-      <div class="ne-settings-field">
-        <label for="f-published">公開日</label>
-        <input type="date" id="f-published">
-      </div>
-
-      <div class="ne-settings-field">
-        <label for="f-official-url">公式サイト URL</label>
-        <input type="url" id="f-official-url" placeholder="https://example.com">
-      </div>
+  <!-- Editor sticky header -->
+  <header class="ne-header">
+    <div class="ne-header-left">
+      <button id="back-to-list-btn">← 一覧</button>
     </div>
-
-    <!-- SEO設定 -->
-    <div class="ne-settings-group">
-      <h3 class="ne-settings-group-heading">SEO設定</h3>
-
-      <div class="ne-settings-field">
-        <label for="f-meta-desc">メタディスクリプション</label>
-        <textarea id="f-meta-desc" rows="3" placeholder="検索結果に表示される説明文..."></textarea>
-      </div>
+    <div class="ne-header-center">
+      <span id="ne-title-hint">新規記事</span>
     </div>
-
-    <!-- CTA設定 -->
-    <div class="ne-settings-group">
-      <h3 class="ne-settings-group-heading">CTA設定</h3>
-
-      <div class="ne-settings-field">
-        <label for="f-cta-title">CTAタイトル</label>
-        <input type="text" id="f-cta-title" value="この評判記事が気になった方へ">
-      </div>
-
-      <div class="ne-settings-field">
-        <label for="f-cta-sub">CTAサブコピー</label>
-        <input type="text" id="f-cta-sub" value="まずは公式サイトで詳細をご確認ください。">
-      </div>
-
-      <div class="ne-settings-field">
-        <label for="f-cta-btn">CTAボタンテキスト</label>
-        <input type="text" id="f-cta-btn" value="公式サイトを確認する →">
-      </div>
+    <div class="ne-header-right">
+      <span id="ne-save-status"></span>
+      <button id="draft-save-btn" class="ne-hbtn">下書き保存</button>
+      <button id="preview-btn" class="ne-hbtn">プレビュー</button>
+      <button id="github-push-btn" class="ne-hbtn ne-hbtn-primary">GitHubに公開</button>
     </div>
+  </header>
 
-    <!-- 保存・公開 -->
-    <div class="ne-settings-group ne-publish-group">
-      <h3 class="ne-settings-group-heading">保存・公開</h3>
+  <!-- Edit mode amber banner (hidden by default) -->
+  <div id="edit-mode-banner">
+    編集中: <strong id="edit-mode-slug"></strong>
+    <button id="cancel-edit-btn">新規作成に戻る</button>
+  </div>
 
-      <button type="button" class="ne-publish-btn" id="github-push-btn-side">
-        GitHubに公開してデプロイ
-      </button>
+  <!-- 3-column layout -->
+  <div class="ne-layout">
 
-      <p class="ne-publish-note">
-        公開後、GitHub Actions が自動で本番デプロイします。<br>PAT は左サイドバーの GitHub 設定で入力してください。
-      </p>
-    </div>
+    <!-- ─── Left sidebar: GitHub settings ─── -->
+    <aside class="ne-sidebar-left">
+      <details id="github-settings-panel">
+        <summary>⚙ GitHub 設定</summary>
+        <div class="gh-panel-body">
+          <div>
+            <label for="gh-token">Personal Access Token</label>
+            <input id="gh-token" type="password" placeholder="ghp_..." autocomplete="off">
+          </div>
+          <div>
+            <label for="gh-branch">ブランチ</label>
+            <input id="gh-branch" value="main">
+          </div>
+          <div class="gh-panel-footer">
+            <button id="gh-save-settings">保存</button>
+            <span id="gh-settings-status"></span>
+          </div>
+        </div>
+      </details>
+    </aside>
 
-  </aside>
+    <!-- ─── Center: Editor canvas ─── -->
+    <main class="ne-editor">
+      <div class="ne-editor-canvas">
 
-</div><!-- /ne-layout -->
+        <!-- Validation error box -->
+        <div id="validation-error" class="ne-validation-error" role="alert">
+          <ul id="error-list"></ul>
+        </div>
 
+        <!-- Title block -->
+        <input id="f-hero-title" class="ne-main-title" type="text" placeholder="タイトルを入力...">
+        <textarea id="f-hero-sub" class="ne-subtitle" rows="3" placeholder="サブコピー（リード文）..."></textarea>
+
+        <!-- Section 1: ヒーロー設定 (open) -->
+        <div class="ne-section">
+          <details open>
+            <summary>ヒーロー設定</summary>
+            <div class="ne-section-body">
+              <div class="ne-field">
+                <label for="f-hero-tag">ヒーロータグ（例: PR・広告）</label>
+                <input id="f-hero-tag" type="text" placeholder="PR">
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <!-- Section 2: ギャラリー画像 (open) -->
+        <div class="ne-section">
+          <details open>
+            <summary>ギャラリー画像</summary>
+            <div class="ne-section-body">
+
+              <p class="ne-section-sublabel">サービス画像（3枚）</p>
+              <div id="gallery-service-rows"></div>
+
+              <p class="ne-section-sublabel">ビフォー・アフター画像</p>
+              <div id="gallery-ba-rows"></div>
+
+              <p class="ne-section-sublabel">メディア掲載ロゴ</p>
+              <div id="gallery-media-rows"></div>
+
+            </div>
+          </details>
+        </div>
+
+        <!-- Section 3: お客様の声 (closed) -->
+        <div class="ne-section">
+          <details>
+            <summary>
+              <div class="ne-section-hdr">
+                お客様の声
+                <span class="ne-section-badge" id="review-count">0</span>
+                <button type="button" id="add-review-btn" class="ne-section-add-btn">＋ 追加</button>
+              </div>
+            </summary>
+            <div class="ne-section-body">
+              <div id="reviews-rows"></div>
+            </div>
+          </details>
+        </div>
+
+        <!-- Section 4: サービス概要カード (closed) -->
+        <div class="ne-section">
+          <details>
+            <summary>サービス概要カード</summary>
+            <div class="ne-section-body">
+              <div id="service-card-rows"></div>
+            </div>
+          </details>
+        </div>
+
+        <!-- Section 5: ご利用の流れ (closed) -->
+        <div class="ne-section">
+          <details>
+            <summary>ご利用の流れ</summary>
+            <div class="ne-section-body">
+              <div id="steps-rows"></div>
+            </div>
+          </details>
+        </div>
+
+        <!-- Section 6: よくある疑問 FAQ (closed) -->
+        <div class="ne-section">
+          <details>
+            <summary>
+              <div class="ne-section-hdr">
+                よくある疑問 FAQ
+                <span class="ne-section-badge" id="faq-count">0</span>
+                <button type="button" id="add-faq-btn" class="ne-section-add-btn">＋ 追加</button>
+              </div>
+            </summary>
+            <div class="ne-section-body">
+              <div id="faqs-rows"></div>
+            </div>
+          </details>
+        </div>
+
+        <!-- Section 7: 創業ストーリー (closed) -->
+        <div class="ne-section">
+          <details>
+            <summary>創業ストーリー</summary>
+            <div class="ne-section-body">
+              <div class="ne-field" style="margin-bottom:12px;">
+                <label for="f-story-img">ストーリー画像URL</label>
+                <input id="f-story-img" type="url" placeholder="images/placeholders/story-portrait.svg">
+              </div>
+              <div class="ne-field">
+                <label for="f-story">本文（段落を空行で区切る）</label>
+                <textarea id="f-story" rows="8" placeholder="創業ストーリーや代表メッセージを入力&#10;&#10;段落は空行で区切ります"></textarea>
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <!-- Preview area (shown after successful publish) -->
+        <div id="preview-area" style="display:none">
+          <p>GitHubへのプッシュが完了しました。デプロイ後に記事を確認できます。</p>
+          <button id="preview-btn-inline">記事をプレビュー →</button>
+        </div>
+
+      </div><!-- /.ne-editor-canvas -->
+    </main><!-- /.ne-editor -->
+
+    <!-- ─── Right sidebar: metadata & publish ─── -->
+    <aside class="ne-sidebar-right">
+
+      <!-- 基本情報 -->
+      <div class="ne-sidebar-group">
+        <h3 class="ne-sidebar-group-title">基本情報</h3>
+        <div class="ne-sidebar-field">
+          <label for="f-slug">スラッグ（URL）</label>
+          <input id="f-slug" type="text" placeholder="example-company">
+        </div>
+        <div class="ne-sidebar-field">
+          <label for="f-company">企業・サービス名</label>
+          <input id="f-company" type="text" placeholder="株式会社〇〇">
+        </div>
+        <div class="ne-sidebar-field">
+          <label for="f-category">カテゴリ</label>
+          <select id="f-category">
+            <option value="美容・健康">美容・健康</option>
+            <option value="キャリア・転職">キャリア・転職</option>
+            <option value="金融・投資">金融・投資</option>
+            <option value="教育・学習">教育・学習</option>
+            <option value="不動産">不動産</option>
+            <option value="保険">保険</option>
+            <option value="その他">その他</option>
+          </select>
+        </div>
+        <div class="ne-sidebar-field">
+          <label for="f-published">公開日</label>
+          <input id="f-published" type="date">
+        </div>
+        <div class="ne-sidebar-field">
+          <label for="f-official-url">公式サイトURL</label>
+          <input id="f-official-url" type="url" placeholder="https://example.com">
+        </div>
+      </div>
+
+      <!-- SEO設定 -->
+      <div class="ne-sidebar-group">
+        <h3 class="ne-sidebar-group-title">SEO設定</h3>
+        <div class="ne-sidebar-field">
+          <label for="f-meta-desc">メタディスクリプション</label>
+          <textarea id="f-meta-desc" rows="3" placeholder="検索結果に表示される説明文（120文字程度）"></textarea>
+        </div>
+      </div>
+
+      <!-- CTA設定 -->
+      <div class="ne-sidebar-group">
+        <h3 class="ne-sidebar-group-title">CTA設定</h3>
+        <div class="ne-sidebar-field">
+          <label for="f-cta-title">CTAタイトル</label>
+          <input id="f-cta-title" type="text" placeholder="この評判記事が気になった方へ">
+        </div>
+        <div class="ne-sidebar-field">
+          <label for="f-cta-sub">CTAサブコピー</label>
+          <input id="f-cta-sub" type="text" placeholder="まずは公式サイトで詳細をご確認ください。">
+        </div>
+        <div class="ne-sidebar-field">
+          <label for="f-cta-btn">CTAボタンテキスト</label>
+          <input id="f-cta-btn" type="text" placeholder="公式サイトを確認する →">
+        </div>
+      </div>
+
+      <!-- 保存・公開 -->
+      <div class="ne-sidebar-group">
+        <h3 class="ne-sidebar-group-title">保存・公開</h3>
+        <button id="draft-save-btn-side" class="ne-draft-btn">下書き保存</button>
+        <button id="github-push-btn-side" class="ne-publish-btn">GitHubに公開してデプロイ</button>
+        <p class="ne-publish-note">公開後、GitHub Actions が自動で本番デプロイします。</p>
+      </div>
+
+    </aside><!-- /.ne-sidebar-right -->
+
+  </div><!-- /.ne-layout -->
+
+</div><!-- /#view-editor -->
+
+
+<!-- ─── Data + Main Script ─── -->
 <script src="data/articles.js"></script>
 <script>
 'use strict';
 
-/* ── Utilities ── */
+/* ─── Utilities ─── */
 function esc(s) {
   return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
-
 function showToast(msg, type = 'success') {
   const t = document.getElementById('toast');
   t.textContent = msg;
   t.className = `ne-toast show ${type}`;
-  setTimeout(() => t.classList.remove('show'), 3500);
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+function val(id) { return document.getElementById(id)?.value.trim() ?? ''; }
+
+/* ─── View switching ─── */
+function showDashboard() {
+  document.getElementById('view-dashboard').style.display = '';
+  document.getElementById('view-editor').style.display = 'none';
+  renderDashboard();
+}
+function showEditor() {
+  document.getElementById('view-dashboard').style.display = 'none';
+  document.getElementById('view-editor').style.display = '';
 }
 
-function val(id) {
-  return document.getElementById(id)?.value.trim() ?? '';
+/* ─── Draft storage ─── */
+function getDrafts() {
+  try { return JSON.parse(localStorage.getItem('minnano_drafts') || '[]'); }
+  catch { return []; }
+}
+function saveDrafts(drafts) {
+  localStorage.setItem('minnano_drafts', JSON.stringify(drafts));
+}
+function deleteDraft(id) {
+  saveDrafts(getDrafts().filter(d => d.id !== id));
 }
 
-/* ── Edit mode state ── */
+/* ─── State ─── */
 let editingSlug = null;
+let currentDraftId = null;
 
 function enterEditMode(slug) {
   editingSlug = slug;
   document.getElementById('edit-mode-slug').textContent = slug;
   document.getElementById('edit-mode-banner').classList.add('show');
-  document.getElementById('ne-title-hint').textContent = slug;
   const slugInput = document.getElementById('f-slug');
   slugInput.readOnly = true;
   slugInput.style.background = '#f5f5f5';
   slugInput.style.color = '#888';
 }
-
 function exitEditMode() {
   editingSlug = null;
+  currentDraftId = null;
   document.getElementById('edit-mode-banner').classList.remove('show');
-  document.getElementById('ne-title-hint').textContent = '新規記事';
   const slugInput = document.getElementById('f-slug');
   slugInput.readOnly = false;
   slugInput.style.background = '';
   slugInput.style.color = '';
-  resetForm();
 }
 
-/* ── Articles list rendering ── */
-function renderAdminList() {
-  const list = document.getElementById('admin-articles-list');
-  const articles = window.ARTICLES || [];
-  if (articles.length === 0) {
-    list.innerHTML = '<p style="font-size:12px;color:#aaa;text-align:center;padding:20px 0;">記事がありません</p>';
-    return;
+/* ─── Dashboard rendering ─── */
+function renderDashboard() {
+  const drafts = getDrafts();
+  const published = window.ARTICLES || [];
+
+  // Drafts
+  document.getElementById('draft-count').textContent = drafts.length;
+  const draftGrid = document.getElementById('drafts-grid');
+  if (drafts.length === 0) {
+    draftGrid.innerHTML = '<p class="db-empty">下書きはありません</p>';
+  } else {
+    draftGrid.innerHTML = drafts.map(d => `
+      <div class="db-card db-card--draft">
+        <div class="db-card-badge">編集中</div>
+        <div class="db-card-title">${esc(d.company || '無題')}</div>
+        <div class="db-card-meta">最終更新: ${esc(d.updatedAt || '')}</div>
+        <div class="db-card-actions">
+          <button class="db-btn-primary" data-action="open-draft" data-id="${esc(d.id)}">編集を続ける</button>
+          <button class="db-btn-danger" data-action="delete-draft" data-id="${esc(d.id)}">削除</button>
+        </div>
+      </div>`).join('');
   }
-  list.innerHTML = articles.map(a => `
-    <div class="ne-article-item" data-slug="${esc(a.slug)}">
-      <div style="font-weight:600;font-size:13px;margin-bottom:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${esc(a.company || a.slug)}</div>
-      <div style="font-size:11px;color:#aaa;">${esc(a.category || '')} · ${esc(a.publishedAt || '')}</div>
-    </div>
-  `).join('');
-  list.querySelectorAll('.ne-article-item').forEach(item => {
-    item.addEventListener('click', () => {
-      const slug = item.getAttribute('data-slug');
-      const article = (window.ARTICLES || []).find(a => a.slug === slug);
-      if (article) {
-        list.querySelectorAll('.ne-article-item').forEach(el => el.classList.remove('active'));
-        item.classList.add('active');
-        loadArticleForEdit(article);
+
+  // Published
+  document.getElementById('published-count').textContent = published.length;
+  const pubGrid = document.getElementById('published-grid');
+  if (published.length === 0) {
+    pubGrid.innerHTML = '<p class="db-empty">投稿済みの記事はありません</p>';
+  } else {
+    pubGrid.innerHTML = published.map(a => `
+      <div class="db-card db-card--published">
+        <div class="db-card-category">${esc(a.category || '未分類')}</div>
+        <div class="db-card-title">${esc(a.company || a.slug)}</div>
+        <div class="db-card-meta">公開日: ${esc(a.publishedAt || '')}</div>
+        <div class="db-card-actions">
+          <a class="db-btn-ghost" href="article.html?id=${encodeURIComponent(a.slug)}" target="_blank" rel="noopener">記事を見る</a>
+          <button class="db-btn-primary" data-action="edit-published" data-slug="${esc(a.slug)}">編集する</button>
+        </div>
+      </div>`).join('');
+  }
+
+  // Event delegation
+  [draftGrid, pubGrid].forEach(grid => {
+    grid.onclick = e => {
+      const btn = e.target.closest('[data-action]');
+      if (!btn) return;
+      const action = btn.dataset.action;
+      if (action === 'open-draft') {
+        const draft = getDrafts().find(d => d.id === btn.dataset.id);
+        if (draft) openDraft(draft);
+      } else if (action === 'delete-draft') {
+        if (confirm('この下書きを削除しますか？')) {
+          deleteDraft(btn.dataset.id);
+          renderDashboard();
+        }
+      } else if (action === 'edit-published') {
+        const article = (window.ARTICLES || []).find(a => a.slug === btn.dataset.slug);
+        if (article) {
+          resetForm();
+          exitEditMode();
+          currentDraftId = null;
+          loadArticleForEdit(article);
+          enterEditMode(article.slug);
+          showEditor();
+        }
       }
-    });
+    };
   });
 }
 
-/* ── Default data ── */
+/* ─── Open draft ─── */
+function openDraft(draft) {
+  resetForm();
+  exitEditMode();
+  currentDraftId = draft.id;
+  loadArticleForEdit(draft.formData);
+  if (draft.editingSlug) enterEditMode(draft.editingSlug);
+  document.getElementById('ne-title-hint').textContent = draft.company || draft.formData?.company || '新規記事';
+  showEditor();
+}
+
+/* ─── Save draft ─── */
+function handleDraftSave() {
+  const data = collectFormData();
+  const today = new Date().toISOString().split('T')[0];
+  const drafts = getDrafts();
+
+  if (currentDraftId) {
+    const idx = drafts.findIndex(d => d.id === currentDraftId);
+    if (idx !== -1) {
+      drafts[idx] = { ...drafts[idx], company: data.company, heroTitle: data.heroTitle, updatedAt: today, formData: data };
+      saveDrafts(drafts);
+    } else {
+      // draft was deleted externally, create new
+      currentDraftId = `draft_${Date.now()}`;
+      drafts.push({ id: currentDraftId, editingSlug, company: data.company, heroTitle: data.heroTitle, updatedAt: today, formData: data });
+      saveDrafts(drafts);
+    }
+  } else {
+    currentDraftId = `draft_${Date.now()}`;
+    drafts.push({ id: currentDraftId, editingSlug, company: data.company, heroTitle: data.heroTitle, updatedAt: today, formData: data });
+    saveDrafts(drafts);
+  }
+
+  const status = document.getElementById('ne-save-status');
+  status.textContent = '下書き保存済み';
+  status.style.color = '#41c9a2';
+  setTimeout(() => { status.textContent = ''; }, 3000);
+  showToast('✓ 下書きを保存しました');
+}
+
+/* ─── Default data ─── */
 const defaultReviewData = [
   { name: '田中 M様', age: '32歳・女性', stars: 5, tag: '効果実感', text: '最初は半信半疑でしたが、使ってみて本当によかったです。' },
   { name: '佐藤 K様', age: '45歳・男性', stars: 5, tag: '信頼性', text: '企業の広告では分からないリアルな情報が載っていて参考になりました。' },
@@ -1153,220 +1328,186 @@ const defaultFaqData = [
   { q: '解約・キャンセルはできますか？', a: '所定の手続きにより解約が可能です。詳細は公式サイトをご確認ください。' },
   { q: 'この記事は広告ですか？', a: '本記事はPR記事です。第三者の記者が取材・編集していますが、掲載費用を企業からいただいています。' }
 ];
-
 let reviewCount = 0, faqCount = 0;
 
-/* ── Dynamic row builders ── */
+/* ─── Row builders ─── */
 function buildGalleryServiceRows(data) {
-  const defaults = [
+  const def = [
     { src: 'images/placeholders/gallery-photo.svg', alt: 'サービス画像1', caption: '充実したサービス環境' },
     { src: 'images/placeholders/gallery-photo.svg', alt: 'サービス画像2', caption: '専門スタッフによる丁寧な対応' },
     { src: 'images/placeholders/gallery-photo.svg', alt: 'サービス画像3', caption: '快適な利用環境を整えています' }
   ];
-  const rows = data || defaults;
-  document.getElementById('gallery-service-rows').innerHTML = rows.map((d, i) => `
+  const rows = (data && data.length) ? data : def;
+  document.getElementById('gallery-service-rows').innerHTML = rows.map((d,i) => `
     <div class="ne-row">
       <span class="ne-row-num">画像 ${i+1}</span>
-      <div class="ne-row-grid-3">
-        <div class="ne-field"><label>画像URL</label><input type="url" class="gs-src" value="${esc(d.src||'')}" placeholder="https://..."></div>
-        <div class="ne-field"><label>alt テキスト</label><input type="text" class="gs-alt" value="${esc(d.alt||'')}" placeholder="画像の説明"></div>
-        <div class="ne-field"><label>キャプション</label><input type="text" class="gs-caption" value="${esc(d.caption||'')}" placeholder="キャプション"></div>
+      <div class="ne-row-grid-3" style="margin-top:22px;">
+        <div class="ne-field"><label>画像URL</label><input type="url" class="gs-src" value="${esc(d.src||'')}"></div>
+        <div class="ne-field"><label>alt</label><input type="text" class="gs-alt" value="${esc(d.alt||'')}"></div>
+        <div class="ne-field"><label>キャプション</label><input type="text" class="gs-caption" value="${esc(d.caption||'')}"></div>
       </div>
     </div>`).join('');
 }
-
 function buildGalleryBARows(data) {
-  const defaults = [
+  const def = [
     { src: 'images/placeholders/gallery-before.svg', alt: '利用前', label: '利用前' },
     { src: 'images/placeholders/gallery-after.svg', alt: '利用3ヶ月後', label: '利用3ヶ月後' }
   ];
-  const rows = data || defaults;
-  document.getElementById('gallery-ba-rows').innerHTML = rows.map((d, i) => `
+  const rows = (data && data.length) ? data : def;
+  document.getElementById('gallery-ba-rows').innerHTML = rows.map((d,i) => `
     <div class="ne-row">
       <span class="ne-row-num">${i===0?'Before':'After'}</span>
-      <div class="ne-row-grid-3">
-        <div class="ne-field"><label>画像URL</label><input type="url" class="gba-src" value="${esc(d.src||'')}" placeholder="https://..."></div>
-        <div class="ne-field"><label>alt テキスト</label><input type="text" class="gba-alt" value="${esc(d.alt||'')}" placeholder="画像の説明"></div>
-        <div class="ne-field"><label>ラベル</label><input type="text" class="gba-label" value="${esc(d.label||'')}" placeholder="利用前 / 利用後"></div>
+      <div class="ne-row-grid-3" style="margin-top:22px;">
+        <div class="ne-field"><label>画像URL</label><input type="url" class="gba-src" value="${esc(d.src||'')}"></div>
+        <div class="ne-field"><label>alt</label><input type="text" class="gba-alt" value="${esc(d.alt||'')}"></div>
+        <div class="ne-field"><label>ラベル</label><input type="text" class="gba-label" value="${esc(d.label||'')}"></div>
       </div>
     </div>`).join('');
 }
-
 function buildGalleryMediaRows(data) {
-  const defaults = [
+  const def = [
     { src: 'images/placeholders/media-logo.svg', alt: 'メディアA' },
     { src: 'images/placeholders/media-logo.svg', alt: 'メディアB' },
     { src: 'images/placeholders/media-logo.svg', alt: 'メディアC' }
   ];
-  const rows = data || defaults;
-  document.getElementById('gallery-media-rows').innerHTML = rows.map((d, i) => `
+  const rows = (data && data.length) ? data : def;
+  document.getElementById('gallery-media-rows').innerHTML = rows.map((d,i) => `
     <div class="ne-row">
       <span class="ne-row-num">ロゴ ${i+1}</span>
-      <div class="ne-row-grid-2">
-        <div class="ne-field"><label>ロゴ画像URL</label><input type="url" class="gm-src" value="${esc(d.src||'')}" placeholder="https://..."></div>
-        <div class="ne-field"><label>メディア名 (alt)</label><input type="text" class="gm-alt" value="${esc(d.alt||'')}" placeholder="メディア名"></div>
+      <div class="ne-row-grid-2" style="margin-top:22px;">
+        <div class="ne-field"><label>ロゴURL</label><input type="url" class="gm-src" value="${esc(d.src||'')}"></div>
+        <div class="ne-field"><label>メディア名</label><input type="text" class="gm-alt" value="${esc(d.alt||'')}"></div>
       </div>
     </div>`).join('');
 }
-
 function buildServiceCardRows(data) {
-  const defaults = [
+  const def = [
     { icon: '📋', title: 'サービス内容', text: '専門家による個別相談から継続サポートまで幅広く対応しています。' },
     { icon: '💰', title: '料金プラン', text: 'お問い合わせください' },
     { icon: '📍', title: '対応エリア', text: '全国対応' },
     { icon: '📈', title: '利用実績', text: '累計10,000件以上' }
   ];
-  const rows = data || defaults;
-  document.getElementById('service-card-rows').innerHTML = rows.map((d, i) => `
+  const rows = (data && data.length) ? data : def;
+  document.getElementById('service-card-rows').innerHTML = rows.map((d,i) => `
     <div class="ne-row">
       <span class="ne-row-num">カード ${i+1}</span>
-      <div class="ne-row-grid-3">
-        <div class="ne-field"><label>アイコン</label><input type="text" class="sc-icon" value="${esc(d.icon||'')}" placeholder="📋"></div>
-        <div class="ne-field"><label>タイトル</label><input type="text" class="sc-title" value="${esc(d.title||'')}" placeholder="サービス内容"></div>
-        <div class="ne-field"><label>説明文</label><input type="text" class="sc-text" value="${esc(d.text||'')}" placeholder="説明テキスト"></div>
+      <div class="ne-row-grid-3" style="margin-top:22px;">
+        <div class="ne-field"><label>アイコン</label><input type="text" class="sc-icon" value="${esc(d.icon||'')}"></div>
+        <div class="ne-field"><label>タイトル</label><input type="text" class="sc-title" value="${esc(d.title||'')}"></div>
+        <div class="ne-field"><label>説明文</label><input type="text" class="sc-text" value="${esc(d.text||'')}"></div>
       </div>
     </div>`).join('');
 }
-
 function buildStepsRows(data) {
-  const defaults = [
+  const def = [
     { title: 'お問い合わせ', text: '公式サイトのフォームまたはお電話でお気軽にご相談ください。' },
     { title: 'ヒアリング', text: '専門スタッフがお客様のご要望を丁寧にヒアリングします。' },
     { title: 'サービス開始', text: 'ご要望に合わせたプランでサービスをご提供します。' }
   ];
-  const rows = data || defaults;
-  document.getElementById('steps-rows').innerHTML = rows.map((d, i) => `
+  const rows = (data && data.length) ? data : def;
+  document.getElementById('steps-rows').innerHTML = rows.map((d,i) => `
     <div class="ne-row">
       <span class="ne-row-num">STEP ${i+1}</span>
-      <div class="ne-row-grid-2">
-        <div class="ne-field"><label>ステップ名</label><input type="text" class="step-title" value="${esc(d.title||'')}" placeholder="お問い合わせ"></div>
-        <div class="ne-field"><label>説明文</label><input type="text" class="step-text" value="${esc(d.text||'')}" placeholder="説明テキスト"></div>
+      <div class="ne-row-grid-2" style="margin-top:22px;">
+        <div class="ne-field"><label>ステップ名</label><input type="text" class="step-title" value="${esc(d.title||'')}"></div>
+        <div class="ne-field"><label>説明文</label><input type="text" class="step-text" value="${esc(d.text||'')}"></div>
       </div>
     </div>`).join('');
 }
-
 function addReviewRow(data = {}) {
   reviewCount++;
   const id = `rv-${Date.now()}-${reviewCount}`;
   const wrap = document.getElementById('reviews-rows');
   const row = document.createElement('div');
-  row.className = 'ne-row';
-  row.id = id;
+  row.className = 'ne-row'; row.id = id;
   const stars = data.stars || 5;
-  const starsOpts = [5,4,3,2,1].map(v =>
-    `<option value="${v}" ${v===stars?'selected':''}>${'★'.repeat(v)}${'☆'.repeat(5-v)}</option>`
-  ).join('');
+  const opts = [5,4,3,2,1].map(v => `<option value="${v}" ${v===stars?'selected':''}>${'★'.repeat(v)}${'☆'.repeat(5-v)}</option>`).join('');
   row.innerHTML = `
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
       <span class="ne-row-num" style="position:static;">レビュー ${reviewCount}</span>
-      <button type="button" class="ne-row-delete" data-target="${id}">削除</button>
+      <button type="button" class="ne-row-delete">削除</button>
     </div>
     <div class="ne-row-grid-2" style="margin-bottom:8px;">
-      <div class="ne-field"><label>お名前</label><input type="text" class="rv-name" value="${esc(data.name||'')}" placeholder="田中 M様"></div>
-      <div class="ne-field"><label>属性</label><input type="text" class="rv-age" value="${esc(data.age||'')}" placeholder="32歳・女性"></div>
+      <div class="ne-field"><label>お名前</label><input type="text" class="rv-name" value="${esc(data.name||'')}"></div>
+      <div class="ne-field"><label>属性</label><input type="text" class="rv-age" value="${esc(data.age||'')}"></div>
     </div>
     <div class="ne-row-grid-2" style="margin-bottom:8px;">
-      <div class="ne-field"><label>星評価</label><select class="rv-stars">${starsOpts}</select></div>
-      <div class="ne-field"><label>タグ</label><input type="text" class="rv-tag" value="${esc(data.tag||'')}" placeholder="効果実感"></div>
+      <div class="ne-field"><label>星評価</label><select class="rv-stars">${opts}</select></div>
+      <div class="ne-field"><label>タグ</label><input type="text" class="rv-tag" value="${esc(data.tag||'')}"></div>
     </div>
-    <div class="ne-field"><label>レビュー本文</label><textarea class="rv-text" rows="2">${esc(data.text||'')}</textarea></div>
-  `;
+    <div class="ne-field"><label>レビュー本文</label><textarea class="rv-text" rows="2">${esc(data.text||'')}</textarea></div>`;
   wrap.appendChild(row);
   row.querySelector('.ne-row-delete').addEventListener('click', () => { row.remove(); updateCounts(); });
   updateCounts();
 }
-
 function addFaqRow(data = {}) {
   faqCount++;
   const id = `faq-${Date.now()}-${faqCount}`;
   const wrap = document.getElementById('faqs-rows');
   const row = document.createElement('div');
-  row.className = 'ne-row';
-  row.id = id;
+  row.className = 'ne-row'; row.id = id;
   row.innerHTML = `
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
       <span class="ne-row-num" style="position:static;">Q${faqCount}</span>
-      <button type="button" class="ne-row-delete" data-target="${id}">削除</button>
+      <button type="button" class="ne-row-delete">削除</button>
     </div>
-    <div class="ne-field" style="margin-bottom:8px;"><label>質問（Q）</label><input type="text" class="faq-q" value="${esc(data.q||'')}" placeholder="例: 料金はどのくらいかかりますか？"></div>
-    <div class="ne-field"><label>回答（A）</label><textarea class="faq-a" rows="2">${esc(data.a||'')}</textarea></div>
-  `;
+    <div class="ne-field" style="margin-bottom:8px;"><label>質問（Q）</label><input type="text" class="faq-q" value="${esc(data.q||'')}"></div>
+    <div class="ne-field"><label>回答（A）</label><textarea class="faq-a" rows="2">${esc(data.a||'')}</textarea></div>`;
   wrap.appendChild(row);
   row.querySelector('.ne-row-delete').addEventListener('click', () => { row.remove(); updateCounts(); });
   updateCounts();
 }
-
 function updateCounts() {
   document.getElementById('review-count').textContent = document.getElementById('reviews-rows').children.length;
   document.getElementById('faq-count').textContent = document.getElementById('faqs-rows').children.length;
 }
 
-/* ── Collect form data ── */
+/* ─── Collect form data ─── */
 function collectFormData() {
   const slug = val('f-slug');
   const company = val('f-company');
   const serviceImgs = [...document.querySelectorAll('#gallery-service-rows .ne-row')].map(r => ({
-    src: r.querySelector('.gs-src').value.trim(),
-    alt: r.querySelector('.gs-alt').value.trim(),
-    caption: r.querySelector('.gs-caption').value.trim()
+    src: r.querySelector('.gs-src').value.trim(), alt: r.querySelector('.gs-alt').value.trim(), caption: r.querySelector('.gs-caption').value.trim()
   }));
   const baImgs = [...document.querySelectorAll('#gallery-ba-rows .ne-row')].map(r => ({
-    src: r.querySelector('.gba-src').value.trim(),
-    alt: r.querySelector('.gba-alt').value.trim(),
-    label: r.querySelector('.gba-label').value.trim()
+    src: r.querySelector('.gba-src').value.trim(), alt: r.querySelector('.gba-alt').value.trim(), label: r.querySelector('.gba-label').value.trim()
   }));
   const mediaImgs = [...document.querySelectorAll('#gallery-media-rows .ne-row')].map(r => ({
-    src: r.querySelector('.gm-src').value.trim(),
-    alt: r.querySelector('.gm-alt').value.trim()
+    src: r.querySelector('.gm-src').value.trim(), alt: r.querySelector('.gm-alt').value.trim()
   }));
-  const reviews = [...document.querySelectorAll('#reviews-rows .ne-row')].map((r, i) => ({
-    id: i + 1,
-    name: r.querySelector('.rv-name').value.trim(),
-    age: r.querySelector('.rv-age').value.trim(),
-    stars: parseInt(r.querySelector('.rv-stars').value, 10),
-    tag: r.querySelector('.rv-tag').value.trim(),
-    text: r.querySelector('.rv-text').value.trim()
+  const reviews = [...document.querySelectorAll('#reviews-rows .ne-row')].map((r,i) => ({
+    id: i+1, name: r.querySelector('.rv-name').value.trim(), age: r.querySelector('.rv-age').value.trim(),
+    stars: parseInt(r.querySelector('.rv-stars').value,10), tag: r.querySelector('.rv-tag').value.trim(), text: r.querySelector('.rv-text').value.trim()
   }));
   const serviceCards = [...document.querySelectorAll('#service-card-rows .ne-row')].map(r => ({
-    icon: r.querySelector('.sc-icon').value.trim(),
-    title: r.querySelector('.sc-title').value.trim(),
-    text: r.querySelector('.sc-text').value.trim()
+    icon: r.querySelector('.sc-icon').value.trim(), title: r.querySelector('.sc-title').value.trim(), text: r.querySelector('.sc-text').value.trim()
   }));
   const steps = [...document.querySelectorAll('#steps-rows .ne-row')].map(r => ({
-    title: r.querySelector('.step-title').value.trim(),
-    text: r.querySelector('.step-text').value.trim()
+    title: r.querySelector('.step-title').value.trim(), text: r.querySelector('.step-text').value.trim()
   }));
   const faqs = [...document.querySelectorAll('#faqs-rows .ne-row')].map(r => ({
-    q: r.querySelector('.faq-q').value.trim(),
-    a: r.querySelector('.faq-a').value.trim()
+    q: r.querySelector('.faq-q').value.trim(), a: r.querySelector('.faq-a').value.trim()
   }));
   const storyRaw = val('f-story');
-  const storyText = storyRaw
-    ? storyRaw.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean)
-    : ['企業の良さを自ら伝えても、なかなか信頼してもらえない。そんな悩みを持つ企業と、本当に良いサービスを探している消費者の双方を繋ぎたい\u2014\u2014そんな想いでこのメディアを立ち上げました。'];
+  const storyText = storyRaw ? storyRaw.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean) : [];
   const today = new Date().toISOString().split('T')[0];
-  const heroTitle = val('f-hero-title') || `${company}の評判を<br>徹底調査しました`;
   return {
-    slug,
+    slug, company,
     title: `${company}の評判を徹底調査 | みんなの評判.com`,
     metaDesc: val('f-meta-desc') || `記者・漆沢が実際の利用者の声をもとに独自取材した、${company}の評判記事です。`,
     ogImage: serviceImgs[0]?.src || 'images/placeholders/og-career.svg',
-    company,
     category: val('f-category') || 'その他',
     publishedAt: val('f-published') || today,
     updatedAt: today,
-    heroTag: val('f-hero-tag') || '大手ネットニュースでも話題！',
-    heroTitle,
-    heroSub: val('f-hero-sub') || `記者・漆沢が実際の利用者の声をもとに独自取材した、${company}の信頼性の高い評判記事です。`,
+    heroTag: val('f-hero-tag'),
+    heroTitle: val('f-hero-title') || `${company}の評判を<br>徹底調査しました`,
+    heroSub: val('f-hero-sub'),
     editorName: '記者：漆沢 祐樹',
     editorTitle: '株式会社パーソナルナビ / みんなの評判.com 担当記者',
     editorImg: 'images/placeholders/avatar-reporter.svg',
     checkItems: ['実際の利用者から集めたリアルな評判', 'サービスの詳細と料金の概要', '購入前に知っておくべき注意点'],
     galleries: { service: serviceImgs, beforeAfter: baImgs, media: mediaImgs },
-    reviews,
-    serviceCards,
-    steps,
-    faqs,
+    reviews, serviceCards, steps, faqs,
     storyImg: val('f-story-img') || 'images/placeholders/story-portrait.svg',
     storyAlt: '代表者の写真',
     storyText,
@@ -1377,34 +1518,19 @@ function collectFormData() {
   };
 }
 
-/* ── Validation ── */
+/* ─── Validation ─── */
 function validate(data) {
   const errors = [];
   if (!data.slug) errors.push('スラッグは必須です');
-  if (data.slug && !/^[a-z0-9\-_]+$/.test(data.slug)) errors.push('スラッグは英小文字・数字・ハイフン・アンダースコアのみ使用できます');
+  if (data.slug && !/^[a-z0-9\-_]+$/.test(data.slug)) errors.push('スラッグは英小文字・数字・ハイフン・アンダースコアのみ');
   if (!data.company) errors.push('企業・サービス名は必須です');
   if (!editingSlug) {
-    const existing = window.ARTICLES || [];
-    if (existing.some(a => a.slug === data.slug)) errors.push(`スラッグ「${data.slug}」はすでに存在します`);
+    if ((window.ARTICLES||[]).some(a => a.slug === data.slug)) errors.push(`スラッグ「${data.slug}」はすでに存在します`);
   }
   if (data.reviews.length === 0) errors.push('レビューを1件以上追加してください');
   if (data.faqs.length === 0) errors.push('FAQを1件以上追加してください');
   return errors;
 }
-
-/* ── Generate articles.js ── */
-function generateArticlesJS(articles) {
-  return `/**\n * ================================================================\n *  みんなの評判.com — 記事データストア\n * ================================================================\n *\n * ■ 最終更新: ${new Date().toISOString().replace('T',' ').slice(0,16)}\n * ================================================================\n */\n\nwindow.ARTICLES = ${JSON.stringify(articles, null, 2)};\n`;
-}
-
-/* ── Build merged articles ── */
-function buildMergedArticles(data) {
-  const existing = window.ARTICLES || [];
-  if (editingSlug) return existing.map(a => a.slug === editingSlug ? data : a);
-  return [...existing, data];
-}
-
-/* ── Validate and collect ── */
 function validateAndCollect() {
   const data = collectFormData();
   const errors = validate(data);
@@ -1420,18 +1546,21 @@ function validateAndCollect() {
   return data;
 }
 
-/* ── GitHub Push ── */
-const GH_OWNER = 'Kanta02cer';
-const GH_REPO = 'minnano-hyouban.com';
-const GH_FILE = 'data/articles.js';
-
-function getGitHubSettings() {
-  return {
-    token: localStorage.getItem('gh_token') || '',
-    branch: localStorage.getItem('gh_branch') || 'main'
-  };
+/* ─── Generate articles.js ─── */
+function generateArticlesJS(articles) {
+  return `/**\n * みんなの評判.com — 記事データストア\n * 最終更新: ${new Date().toISOString().replace('T',' ').slice(0,16)}\n */\n\nwindow.ARTICLES = ${JSON.stringify(articles, null, 2)};\n`;
+}
+function buildMergedArticles(data) {
+  const existing = window.ARTICLES || [];
+  if (editingSlug) return existing.map(a => a.slug === editingSlug ? data : a);
+  return [...existing, data];
 }
 
+/* ─── GitHub push ─── */
+const GH_OWNER = 'Kanta02cer', GH_REPO = 'minnano-hyouban.com', GH_FILE = 'data/articles.js';
+function getGitHubSettings() {
+  return { token: localStorage.getItem('gh_token') || '', branch: localStorage.getItem('gh_branch') || 'main' };
+}
 async function pushToGitHub(content) {
   const { token, branch } = getGitHubSettings();
   if (!token) {
@@ -1440,58 +1569,52 @@ async function pushToGitHub(content) {
     return false;
   }
   const apiBase = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_FILE}`;
-  const headers = {
-    'Authorization': `Bearer ${token}`,
-    'Accept': 'application/vnd.github+json',
-    'X-GitHub-Api-Version': '2022-11-28'
-  };
+  const headers = { 'Authorization': `Bearer ${token}`, 'Accept': 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' };
   let sha = null;
   try {
     const res = await fetch(`${apiBase}?ref=${encodeURIComponent(branch)}`, { headers });
     if (res.ok) { sha = (await res.json()).sha; }
-    else if (res.status !== 404) { const err = await res.json(); throw new Error(err.message || `HTTP ${res.status}`); }
-  } catch(e) { alert(`GitHub API エラー（ファイル取得）:\n${e.message}`); return false; }
+    else if (res.status !== 404) { const err = await res.json(); throw new Error(err.message||`HTTP ${res.status}`); }
+  } catch(e) { alert(`GitHub API エラー（取得）:\n${e.message}`); return false; }
   const body = {
-    message: editingSlug ? `feat: 記事を更新 — ${editingSlug}` : `feat: 記事を追加 — ${document.getElementById('f-slug').value.trim()}`,
-    content: btoa(unescape(encodeURIComponent(content))),
-    branch
+    message: editingSlug ? `feat: 記事を更新 — ${editingSlug}` : `feat: 記事を追加 — ${val('f-slug')}`,
+    content: btoa(unescape(encodeURIComponent(content))), branch
   };
   if (sha) body.sha = sha;
   try {
-    const res = await fetch(apiBase, { method: 'PUT', headers: { ...headers, 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
-    if (!res.ok) { const err = await res.json(); throw new Error(err.message || `HTTP ${res.status}`); }
+    const res = await fetch(apiBase, { method:'PUT', headers:{...headers,'Content-Type':'application/json'}, body:JSON.stringify(body) });
+    if (!res.ok) { const err = await res.json(); throw new Error(err.message||`HTTP ${res.status}`); }
   } catch(e) { alert(`GitHub API エラー（プッシュ）:\n${e.message}`); return false; }
   return true;
 }
 
-/* ── GitHub push handler ── */
+/* ─── GitHub push handler ─── */
 async function handleGitHubPush() {
   const data = validateAndCollect();
   if (!data) return;
-  const btns = ['github-push-btn', 'github-push-btn-side'].map(id => document.getElementById(id)).filter(Boolean);
-  btns.forEach(b => { b.disabled = true; b.textContent = '保存中…'; });
-  const merged = buildMergedArticles(data);
-  const content = generateArticlesJS(merged);
-  const ok = await pushToGitHub(content);
+  const btns = ['github-push-btn','github-push-btn-side'].map(id => document.getElementById(id)).filter(Boolean);
+  btns.forEach(b => { b.disabled = true; b.textContent = '公開中…'; });
+  const ok = await pushToGitHub(generateArticlesJS(buildMergedArticles(data)));
   btns.forEach(b => { b.disabled = false; });
-  document.getElementById('github-push-btn').innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> 公開する`;
+  document.getElementById('github-push-btn').textContent = 'GitHubに公開';
   const sidePush = document.getElementById('github-push-btn-side');
   if (sidePush) sidePush.textContent = 'GitHubに公開してデプロイ';
   if (ok) {
+    if (currentDraftId) { deleteDraft(currentDraftId); currentDraftId = null; }
     document.getElementById('preview-area').style.display = 'block';
-    const previewHandlerGH = () => window.open(`article.html?id=${encodeURIComponent(data.slug)}`, '_blank', 'noopener,noreferrer');
-    document.getElementById('preview-btn').onclick = previewHandlerGH;
-    const inlineBtnGH = document.getElementById('preview-btn-inline');
-    if (inlineBtnGH) inlineBtnGH.onclick = previewHandlerGH;
-    showToast('✓ GitHub にプッシュ完了！GitHub Actions でデプロイ中…');
+    const handler = () => window.open(`article.html?id=${encodeURIComponent(data.slug)}`, '_blank', 'noopener,noreferrer');
+    document.getElementById('preview-btn').onclick = handler;
+    const inlineBtn = document.getElementById('preview-btn-inline');
+    if (inlineBtn) inlineBtn.onclick = handler;
+    showToast('✓ GitHub にプッシュ完了！デプロイ中…');
+    document.getElementById('ne-save-status').textContent = '公開済み';
   }
 }
 
-/* ── Reset form ── */
+/* ─── Reset form ─── */
 function resetForm() {
   ['f-slug','f-company','f-official-url','f-meta-desc','f-hero-tag','f-hero-title','f-hero-sub','f-story'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.value = '';
+    const el = document.getElementById(id); if (el) el.value = '';
   });
   document.getElementById('f-category').value = '美容・健康';
   document.getElementById('f-published').value = new Date().toISOString().split('T')[0];
@@ -1501,18 +1624,17 @@ function resetForm() {
   document.getElementById('f-cta-btn').value = '公式サイトを確認する →';
   buildGalleryServiceRows(); buildGalleryBARows(); buildGalleryMediaRows();
   buildServiceCardRows(); buildStepsRows();
-  document.getElementById('reviews-rows').innerHTML = ''; reviewCount = 0;
-  defaultReviewData.forEach(r => addReviewRow(r));
-  document.getElementById('faqs-rows').innerHTML = ''; faqCount = 0;
-  defaultFaqData.forEach(f => addFaqRow(f));
+  document.getElementById('reviews-rows').innerHTML = ''; reviewCount = 0; defaultReviewData.forEach(r => addReviewRow(r));
+  document.getElementById('faqs-rows').innerHTML = ''; faqCount = 0; defaultFaqData.forEach(f => addFaqRow(f));
   document.getElementById('preview-area').style.display = 'none';
   document.getElementById('validation-error').style.display = 'none';
   document.getElementById('ne-title-hint').textContent = '新規記事';
-  document.getElementById('admin-articles-list').querySelectorAll('.ne-article-item').forEach(el => el.classList.remove('active'));
+  document.getElementById('ne-save-status').textContent = '';
 }
 
-/* ── Load article for editing ── */
+/* ─── Load article for editing ─── */
 function loadArticleForEdit(article) {
+  if (!article) return;
   document.getElementById('f-slug').value = article.slug || '';
   document.getElementById('f-company').value = article.company || '';
   document.getElementById('f-category').value = article.category || '美容・健康';
@@ -1523,59 +1645,68 @@ function loadArticleForEdit(article) {
   document.getElementById('f-hero-title').value = article.heroTitle || '';
   document.getElementById('f-hero-sub').value = article.heroSub || '';
   document.getElementById('f-story-img').value = article.storyImg || '';
-  document.getElementById('f-story').value = Array.isArray(article.storyText) ? article.storyText.join('\n\n') : (article.storyText || '');
+  document.getElementById('f-story').value = Array.isArray(article.storyText) ? article.storyText.join('\n\n') : (article.storyText||'');
   document.getElementById('f-cta-title').value = article.ctaTitle || 'この評判記事が気になった方へ';
   document.getElementById('f-cta-sub').value = article.ctaSub || 'まずは公式サイトで詳細をご確認ください。';
   document.getElementById('f-cta-btn').value = article.ctaBtn || '公式サイトを確認する →';
-
-  function mergeArr(arr, len, def) {
-    if (!arr || arr.length === 0) return def.slice(0, len);
-    const r = [...arr];
-    while (r.length < len) r.push(def[r.length] || {});
-    return r.slice(0, Math.max(arr.length, len));
+  function pad(arr, len, def) {
+    if (!arr || !arr.length) return def.slice(0,len);
+    const r = [...arr]; while(r.length < len) r.push(def[r.length]||{}); return r;
   }
   const svcDef = [{src:'images/placeholders/gallery-photo.svg',alt:'サービス画像1',caption:'充実したサービス環境'},{src:'images/placeholders/gallery-photo.svg',alt:'サービス画像2',caption:'専門スタッフによる丁寧な対応'},{src:'images/placeholders/gallery-photo.svg',alt:'サービス画像3',caption:'快適な利用環境を整えています'}];
   const baDef = [{src:'images/placeholders/gallery-before.svg',alt:'利用前',label:'利用前'},{src:'images/placeholders/gallery-after.svg',alt:'利用3ヶ月後',label:'利用3ヶ月後'}];
   const medDef = [{src:'images/placeholders/media-logo.svg',alt:'メディアA'},{src:'images/placeholders/media-logo.svg',alt:'メディアB'},{src:'images/placeholders/media-logo.svg',alt:'メディアC'}];
-  const scDef = [{icon:'📋',title:'サービス内容',text:'専門家による個別相談から継続サポートまで幅広く対応しています。'},{icon:'💰',title:'料金プラン',text:'お問い合わせください'},{icon:'📍',title:'対応エリア',text:'全国対応'},{icon:'📈',title:'利用実績',text:'累計10,000件以上'}];
-  const stDef = [{title:'お問い合わせ',text:'公式サイトのフォームまたはお電話でお気軽にご相談ください。'},{title:'ヒアリング',text:'専門スタッフがお客様のご要望を丁寧にヒアリングします。'},{title:'サービス開始',text:'ご要望に合わせたプランでサービスをご提供します。'}];
-
-  buildGalleryServiceRows(mergeArr(article.galleries?.service, 3, svcDef));
-  buildGalleryBARows(mergeArr(article.galleries?.beforeAfter, 2, baDef));
-  buildGalleryMediaRows(mergeArr(article.galleries?.media, 3, medDef));
-  buildServiceCardRows(mergeArr(article.serviceCards, 4, scDef));
-  buildStepsRows(mergeArr(article.steps, 3, stDef));
-
+  const scDef = [{icon:'📋',title:'サービス内容',text:'専門家による相談から継続サポートまで。'},{icon:'💰',title:'料金プラン',text:'お問い合わせください'},{icon:'📍',title:'対応エリア',text:'全国対応'},{icon:'📈',title:'利用実績',text:'累計10,000件以上'}];
+  const stDef = [{title:'お問い合わせ',text:'公式サイトのフォームでお気軽にご相談ください。'},{title:'ヒアリング',text:'専門スタッフが丁寧にヒアリングします。'},{title:'サービス開始',text:'ご要望に合わせたプランでサービスをご提供します。'}];
+  buildGalleryServiceRows(pad(article.galleries?.service, 3, svcDef));
+  buildGalleryBARows(pad(article.galleries?.beforeAfter, 2, baDef));
+  buildGalleryMediaRows(pad(article.galleries?.media, 3, medDef));
+  buildServiceCardRows(pad(article.serviceCards, 4, scDef));
+  buildStepsRows(pad(article.steps, 3, stDef));
   document.getElementById('reviews-rows').innerHTML = ''; reviewCount = 0;
   (article.reviews?.length ? article.reviews : defaultReviewData).forEach(r => addReviewRow(r));
   document.getElementById('faqs-rows').innerHTML = ''; faqCount = 0;
   (article.faqs?.length ? article.faqs : defaultFaqData).forEach(f => addFaqRow(f));
-
   document.getElementById('preview-area').style.display = 'none';
   document.getElementById('validation-error').style.display = 'none';
-  enterEditMode(article.slug);
-
-  // Update title hint with company name
-  document.getElementById('ne-title-hint').textContent = article.company || article.slug;
-  document.querySelector('.ne-editor').scrollTo({ top: 0, behavior: 'smooth' });
+  document.getElementById('ne-title-hint').textContent = article.company || article.slug || '新規記事';
 }
 
-/* ── Init ── */
+/* ─── Init ─── */
 document.addEventListener('DOMContentLoaded', () => {
+  // Init form defaults
   document.getElementById('f-published').value = new Date().toISOString().split('T')[0];
   buildGalleryServiceRows(); buildGalleryBARows(); buildGalleryMediaRows();
   buildServiceCardRows(); buildStepsRows();
   defaultReviewData.forEach(r => addReviewRow(r));
   defaultFaqData.forEach(f => addFaqRow(f));
 
+  // Editor button listeners
   document.getElementById('add-review-btn').addEventListener('click', () => addReviewRow());
   document.getElementById('add-faq-btn').addEventListener('click', () => addFaqRow());
-  document.getElementById('cancel-edit-btn').addEventListener('click', () => exitEditMode());
-  document.getElementById('new-article-btn').addEventListener('click', () => exitEditMode());
-
+  document.getElementById('cancel-edit-btn').addEventListener('click', () => {
+    exitEditMode(); currentDraftId = null; resetForm();
+  });
   document.getElementById('github-push-btn').addEventListener('click', handleGitHubPush);
   const sidePush = document.getElementById('github-push-btn-side');
   if (sidePush) sidePush.addEventListener('click', handleGitHubPush);
+  ['draft-save-btn','draft-save-btn-side'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('click', handleDraftSave);
+  });
+
+  // Back to list
+  document.getElementById('back-to-list-btn').addEventListener('click', () => {
+    if (confirm('一覧に戻りますか？\n未保存の変更がある場合は下書き保存してください。')) {
+      exitEditMode(); currentDraftId = null;
+      showDashboard();
+    }
+  });
+
+  // New article
+  document.getElementById('new-article-btn').addEventListener('click', () => {
+    resetForm(); exitEditMode(); currentDraftId = null; showEditor();
+  });
 
   // GitHub settings
   const saved = getGitHubSettings();
@@ -1586,18 +1717,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const branch = document.getElementById('gh-branch').value.trim() || 'main';
     if (token) localStorage.setItem('gh_token', token); else localStorage.removeItem('gh_token');
     localStorage.setItem('gh_branch', branch);
-    const status = document.getElementById('gh-settings-status');
-    status.textContent = '✓ 保存しました';
-    setTimeout(() => { status.textContent = ''; }, 3000);
+    const s = document.getElementById('gh-settings-status');
+    s.textContent = '✓ 保存'; setTimeout(() => { s.textContent = ''; }, 2000);
   });
 
-  // Title hint: update when company changes
+  // Company → title hint
   document.getElementById('f-company').addEventListener('input', () => {
     const v = document.getElementById('f-company').value.trim();
-    if (v) document.getElementById('ne-title-hint').textContent = v;
+    document.getElementById('ne-title-hint').textContent = v || '新規記事';
   });
 
-  renderAdminList();
+  // Start on dashboard
+  showDashboard();
 });
 </script>
 </body>
