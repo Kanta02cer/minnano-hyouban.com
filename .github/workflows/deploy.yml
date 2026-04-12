@@ -7,9 +7,10 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write   # Decap CMS が _drafts/ へコミットするために必要
+  contents: write        # articles.js の自動コミットバックに必要
   pages: write
   id-token: write
+  pull-requests: write   # Decap CMS エディトリアルワークフローのPR操作に必要
 
 concurrency:
   group: "pages"
@@ -17,6 +18,8 @@ concurrency:
 
 jobs:
   deploy:
+    # ボットによる articles.js 自動コミットでは再デプロイをスキップ
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -24,6 +27,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
 
       - name: Compile published drafts (_drafts → data/articles.js)
         env:
@@ -33,6 +39,18 @@ jobs:
 
       - name: Validate articles data
         run: node scripts/validate-articles.js
+
+      - name: Commit compiled articles.js back to repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/articles.js
+          if git diff --staged --quiet; then
+            echo "articles.js に変更なし。スキップします。"
+          else
+            git commit -m "chore: articles.js を自動コンパイル [skip ci]"
+            git push origin main
+          fi
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

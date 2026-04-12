@@ -1,6 +1,6 @@
 # ================================================================
 #  Decap CMS 設定ファイル
-#  管理画面URL: https://minnano-hyouban.com/admin/
+#  管理画面URL: https://minnano-hyouban.netlify.app/admin/
 #
 #  認証方式: Netlify Identity + Git Gateway
 #  ログイン方法: Googleアカウント / メールアドレス
@@ -9,6 +9,12 @@
 backend:
   name: git-gateway
   branch: main
+
+# ================================================================
+#  エディトリアルワークフロー（下書き保存・公開ボタン）
+#  下書き → レビュー中 → 公開 の3ステップ管理
+# ================================================================
+publish_mode: editorial_workflow
 
 # 画像アップロード先
 media_folder: images/photos
@@ -22,7 +28,7 @@ locale: ja
 # ================================================================
 collections:
 
-  # ── 記事下書き（_drafts/*.md）────────────────────────────────
+  # ── 記事（_drafts/*.md）────────────────────────────────────
   - name: articles
     label: 記事
     label_singular: 記事
@@ -32,15 +38,8 @@ collections:
     slug: "{{fields.company}}"
     extension: md
     format: frontmatter
-    summary: "{{company}} — {{category}} — {{status}}"
-    sortable_fields: ["publishedAt", "company", "status"]
-    view_filters:
-      - label: 公開待ち
-        field: status
-        pattern: publish
-      - label: 下書き
-        field: status
-        pattern: draft
+    summary: "{{company}} — {{category}} — {{publishedAt}}"
+    sortable_fields: ["publishedAt", "company"]
     fields:
 
       # ── 基本情報 ──────────────────────────────────────────
@@ -70,17 +69,6 @@ collections:
         widget: string
         default: "#"
         hint: "未確定の場合は # のままで可"
-
-      - label: "ステータス"
-        name: status
-        widget: select
-        options:
-          - label: "下書き（サイト非反映）"
-            value: draft
-          - label: "公開（次のデプロイで反映）"
-            value: publish
-        default: draft
-        hint: "publishに変更すると次のGitHub Actionsデプロイ時にサイトへ反映されます"
 
       # ── 記事本文（自然言語）──────────────────────────────
       - label: "記事本文"
