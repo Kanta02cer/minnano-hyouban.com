@@ -841,19 +841,12 @@
     }); // DOMContentLoaded
   </script>
   <script src="js/site-analytics.js" defer></script>
-  <!-- Netlify Identity: メール招待リンクの確認処理に必要 -->
+  <!-- Netlify Identity: メール招待の確認リンク処理のみ（ページ遷移は行わない） -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script>
     if (window.netlifyIdentity) {
       window.netlifyIdentity.init({
         APIUrl: "https://minnano-hyouban.netlify.app/.netlify/identity"
-      });
-      window.netlifyIdentity.on("init", function(user) {
-        if (!user) {
-          window.netlifyIdentity.on("login", function() {
-            document.location.href = "/admin/";
-          });
-        }
       });
     }
   </script>
