@@ -919,7 +919,7 @@
         投稿済み
         <span class="db-count" id="published-count">0</span>
       </h2>
-      <p class="db-section-desc">GitHubに公開済みの記事です。編集して再公開できます。</p>
+      <p class="db-section-desc">投稿済みの記事です。編集して再投稿できます。</p>
       <div class="db-grid" id="published-grid">
         <p class="db-empty">投稿済みの記事はありません</p>
       </div>
@@ -949,7 +949,7 @@
       <span id="ne-save-status"></span>
       <button id="draft-save-btn" class="ne-hbtn">下書き保存</button>
       <button id="preview-btn" class="ne-hbtn">プレビュー</button>
-      <button id="github-push-btn" class="ne-hbtn ne-hbtn-primary">GitHubに公開</button>
+      <button id="github-push-btn" class="ne-hbtn ne-hbtn-primary">投稿する</button>
     </div>
   </header>
 
@@ -1103,7 +1103,7 @@
 
         <!-- Preview area (shown after successful publish) -->
         <div id="preview-area" style="display:none">
-          <p>GitHubへのプッシュが完了しました。デプロイ後に記事を確認できます。</p>
+          <p>投稿が完了しました。まもなくサイトに反映されます。</p>
           <button id="preview-btn-inline">記事をプレビュー →</button>
         </div>
 
@@ -1176,8 +1176,8 @@
       <div class="ne-sidebar-group">
         <h3 class="ne-sidebar-group-title">保存・公開</h3>
         <button id="draft-save-btn-side" class="ne-draft-btn">下書き保存</button>
-        <button id="github-push-btn-side" class="ne-publish-btn">GitHubに公開してデプロイ</button>
-        <p class="ne-publish-note">公開後、GitHub Actions が自動で本番デプロイします。</p>
+        <button id="github-push-btn-side" class="ne-publish-btn">投稿する</button>
+        <p class="ne-publish-note">投稿後、サイトに自動で反映されます。</p>
       </div>
 
     </aside><!-- /.ne-sidebar-right -->
@@ -1739,12 +1739,12 @@ async function handleGitHubPush() {
   const data = validateAndCollect();
   if (!data) return;
   const btns = ['github-push-btn','github-push-btn-side'].map(id => document.getElementById(id)).filter(Boolean);
-  btns.forEach(b => { b.disabled = true; b.textContent = '公開中…'; });
+  btns.forEach(b => { b.disabled = true; b.textContent = '投稿中…'; });
   const ok = await pushToGitHub(generateArticlesJS(buildMergedArticles(data)));
   btns.forEach(b => { b.disabled = false; });
-  document.getElementById('github-push-btn').textContent = 'GitHubに公開';
+  document.getElementById('github-push-btn').textContent = '投稿する';
   const sidePush = document.getElementById('github-push-btn-side');
-  if (sidePush) sidePush.textContent = 'GitHubに公開してデプロイ';
+  if (sidePush) sidePush.textContent = '投稿する';
   if (ok) {
     if (currentDraftId) { deleteDraft(currentDraftId); currentDraftId = null; }
     document.getElementById('preview-area').style.display = 'block';
@@ -1752,7 +1752,7 @@ async function handleGitHubPush() {
     document.getElementById('preview-btn').onclick = handler;
     const inlineBtn = document.getElementById('preview-btn-inline');
     if (inlineBtn) inlineBtn.onclick = handler;
-    showToast('✓ GitHub にプッシュ完了！デプロイ中…');
+    showToast('✓ 投稿しました！まもなくサイトに反映されます');
     document.getElementById('ne-save-status').textContent = '公開済み';
   }
 }
