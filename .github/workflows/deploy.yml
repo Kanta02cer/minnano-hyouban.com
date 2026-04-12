@@ -7,10 +7,10 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write        # articles.js の自動コミットバックに必要
+  contents: write
   pages: write
   id-token: write
-  pull-requests: write   # Decap CMS エディトリアルワークフローのPR操作に必要
+  pull-requests: write
 
 concurrency:
   group: "pages"
@@ -18,8 +18,8 @@ concurrency:
 
 jobs:
   deploy:
-    # ボットによる articles.js 自動コミットでは再デプロイをスキップ
-    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    # github-actions[bot] によるコミットバック時は実行しない（無限ループ防止）
+    if: github.actor != 'github-actions[bot]'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -48,7 +48,7 @@ jobs:
           if git diff --staged --quiet; then
             echo "articles.js に変更なし。スキップします。"
           else
-            git commit -m "chore: articles.js を自動コンパイル [skip ci]"
+            git commit -m "chore: articles.js を自動コンパイル"
             git push origin main
           fi
 
