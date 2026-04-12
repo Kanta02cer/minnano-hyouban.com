@@ -9,6 +9,7 @@ Disallow: /scripts/
 Disallow: /_drafts/
 Disallow: /admin.html
 Disallow: /admin/
+Disallow: /login.html
 Disallow: /article-format.html
 Disallow: /design-1/
 Disallow: /design-2/

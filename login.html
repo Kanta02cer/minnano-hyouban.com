@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>ログイン | みんなの評判.com 管理画面</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: #f0f2f5;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+      padding: 48px 40px 40px;
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 700;
+      color: #0d1b3e;
+      margin-bottom: 6px;
+    }
+    .logo span { color: #b8974a; }
+
+    .subtitle {
+      font-size: 13px;
+      color: #8a8a8a;
+      margin-bottom: 36px;
+    }
+
+    /* ── ログイン状態（未ログイン） ── */
+    #view-login { display: block; }
+
+    .btn-google {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 13px 20px;
+      border: 1.5px solid #dadce0;
+      border-radius: 8px;
+      background: #fff;
+      font-size: 15px;
+      font-weight: 500;
+      color: #3c4043;
+      cursor: pointer;
+      transition: background 0.15s, box-shadow 0.15s;
+      margin-bottom: 16px;
+    }
+    .btn-google:hover {
+      background: #f8f9fa;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #c0c0c0;
+      font-size: 12px;
+      margin-bottom: 16px;
+    }
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #e8e8e8;
+    }
+
+    .btn-email {
+      display: block;
+      width: 100%;
+      padding: 13px 20px;
+      border-radius: 8px;
+      background: #0d1b3e;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-email:hover { background: #1a2f5a; }
+
+    /* ── ログイン状態（ログイン済み） ── */
+    #view-loggedin { display: none; }
+
+    .user-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #eaeff8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: 700;
+      color: #0d1b3e;
+      margin: 0 auto 16px;
+    }
+
+    .user-name {
+      font-size: 17px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 4px;
+    }
+
+    .user-email {
+      font-size: 13px;
+      color: #8a8a8a;
+      margin-bottom: 28px;
+    }
+
+    .btn-cms {
+      display: block;
+      width: 100%;
+      padding: 13px 20px;
+      border-radius: 8px;
+      background: #b8974a;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      margin-bottom: 12px;
+      transition: background 0.15s;
+    }
+    .btn-cms:hover { background: #a07d3a; }
+
+    .btn-logout {
+      display: block;
+      width: 100%;
+      padding: 11px 20px;
+      border-radius: 8px;
+      background: transparent;
+      border: 1.5px solid #e0e0e0;
+      color: #8a8a8a;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-logout:hover { background: #f5f5f5; color: #333; }
+
+    .status-msg {
+      font-size: 13px;
+      color: #b8974a;
+      margin-top: 20px;
+      min-height: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="logo">みんなの評判<span>.com</span></div>
+    <div class="subtitle">管理画面ログイン</div>
+
+    <!-- 未ログイン時 -->
+    <div id="view-login">
+      <button class="btn-google" id="btn-google-login">
+        <svg width="18" height="18" viewBox="0 0 18 18">
+          <path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.875 2.684-6.615z"/>
+          <path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.184l-2.908-2.258c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18z"/>
+          <path fill="#FBBC05" d="M3.964 10.707A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.707V4.961H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.039l3.007-2.332z"/>
+          <path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.961L3.964 6.293C4.672 4.166 6.656 3.58 9 3.58z"/>
+        </svg>
+        Googleでログイン
+      </button>
+
+      <div class="divider">または</div>
+
+      <button class="btn-email" id="btn-email-login">
+        メールアドレスでログイン
+      </button>
+    </div>
+
+    <!-- ログイン済み時 -->
+    <div id="view-loggedin">
+      <div class="user-avatar" id="user-avatar">U</div>
+      <div class="user-name" id="user-name">読み込み中...</div>
+      <div class="user-email" id="user-email"></div>
+      <a href="/admin/" class="btn-cms">編集画面を開く →</a>
+      <button class="btn-logout" id="btn-logout">ログアウト</button>
+    </div>
+
+    <div class="status-msg" id="status-msg"></div>
+  </div>
+
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    const identityApiUrl = "https://minnano-hyouban.netlify.app/.netlify/identity";
+
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.init({ APIUrl: identityApiUrl });
+    }
+
+    const viewLogin    = document.getElementById('view-login');
+    const viewLoggedin = document.getElementById('view-loggedin');
+    const userAvatar   = document.getElementById('user-avatar');
+    const userName     = document.getElementById('user-name');
+    const userEmail    = document.getElementById('user-email');
+    const statusMsg    = document.getElementById('status-msg');
+
+    function showLoggedIn(user) {
+      viewLogin.style.display    = 'none';
+      viewLoggedin.style.display = 'block';
+      const name  = user.user_metadata?.full_name || user.email.split('@')[0];
+      const email = user.email || '';
+      userName.textContent  = name;
+      userEmail.textContent = email;
+      userAvatar.textContent = name.charAt(0).toUpperCase();
+    }
+
+    function showLoggedOut() {
+      viewLogin.style.display    = 'block';
+      viewLoggedin.style.display = 'none';
+    }
+
+    // 初期状態チェック
+    window.netlifyIdentity.on('init', function(user) {
+      if (user) {
+        showLoggedIn(user);
+      } else {
+        showLoggedOut();
+      }
+    });
+
+    // ログイン完了
+    window.netlifyIdentity.on('login', function(user) {
+      showLoggedIn(user);
+      statusMsg.textContent = 'ログインしました';
+      setTimeout(function() {
+        window.location.href = '/admin/';
+      }, 800);
+    });
+
+    // ログアウト完了
+    window.netlifyIdentity.on('logout', function() {
+      showLoggedOut();
+      statusMsg.textContent = 'ログアウトしました';
+    });
+
+    // ボタン操作
+    document.getElementById('btn-google-login').addEventListener('click', function() {
+      window.netlifyIdentity.open('login');
+    });
+
+    document.getElementById('btn-email-login').addEventListener('click', function() {
+      window.netlifyIdentity.open('login');
+    });
+
+    document.getElementById('btn-logout').addEventListener('click', function() {
+      window.netlifyIdentity.logout();
+    });
+  </script>
+
+</body>
+</html>
