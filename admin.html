@@ -658,9 +658,8 @@
       cursor: not-allowed;
     }
     .img-preview {
-      width: 100%;
-      max-height: 72px;
-      object-fit: cover;
+      max-width: 100%;
+      height: auto;
       border-radius: 5px;
       margin-top: 6px;
       border: 1px solid var(--ne-border);
@@ -1828,6 +1827,17 @@ document.addEventListener('DOMContentLoaded', () => {
   buildServiceCardRows(); buildStepsRows();
   defaultReviewData.forEach(r => addReviewRow(r));
   defaultFaqData.forEach(f => addFaqRow(f));
+
+  // Preview button (always available)
+  const openPreview = () => {
+    const data = collectFormData();
+    if (!data.slug) { showToast('スラッグを入力してからプレビューしてください', 'warning'); return; }
+    sessionStorage.setItem('preview_article', JSON.stringify(data));
+    window.open(`article.html?preview=1&id=${encodeURIComponent(data.slug)}`, 'preview', 'noopener,noreferrer');
+  };
+  document.getElementById('preview-btn').addEventListener('click', openPreview);
+  const inlinePreviewBtn = document.getElementById('preview-btn-inline');
+  if (inlinePreviewBtn) inlinePreviewBtn.addEventListener('click', openPreview);
 
   // Editor button listeners
   document.getElementById('add-review-btn').addEventListener('click', () => addReviewRow());

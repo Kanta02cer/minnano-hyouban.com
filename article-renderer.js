@@ -860,6 +860,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const main = document.getElementById('article-main');
 
+  // ── プレビューモード: admin.html が sessionStorage に渡したデータを注入
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('preview') === '1') {
+    try {
+      const previewData = JSON.parse(sessionStorage.getItem('preview_article') || 'null');
+      if (previewData) {
+        if (!Array.isArray(window.ARTICLES)) window.ARTICLES = [];
+        window.ARTICLES = [previewData, ...window.ARTICLES.filter(a => a.slug !== previewData.slug)];
+        // プレビューバナーを表示
+        const banner = document.createElement('div');
+        banner.style.cssText = 'position:fixed;top:0;left:0;right:0;background:#f59e0b;color:#1a1a1a;text-align:center;padding:8px;font-size:13px;font-weight:700;z-index:9999;';
+        banner.textContent = '⚠ プレビュー表示 — このページは下書きです。投稿後に正式公開されます。';
+        document.body.prepend(banner);
+      }
+    } catch {}
+  }
+
   // ── シナリオ①: data/articles.js が未定義または非配列（スクリプト読み込みエラー）
   if (!Array.isArray(window.ARTICLES)) {
     renderDataLoadError(main);
@@ -869,7 +886,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const articles = window.ARTICLES;
 
   // ── シナリオ②: ?id= パラメータなし → 記事一覧へリダイレクト
-  const params = new URLSearchParams(window.location.search);
   const slug = (params.get('id') || '').trim();
 
   if (!slug) {
