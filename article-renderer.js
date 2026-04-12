@@ -202,7 +202,6 @@ function buildArticleHTML(a) {
   // Service cards
   const serviceCardsHTML = (a.serviceCards || []).map(c => `
     <div class="service-card" role="listitem">
-      <span class="service-icon" aria-hidden="true">${esc(c.icon)}</span>
       <h3>${esc(c.title)}</h3>
       <p>${esc(c.text)}</p>
     </div>
@@ -211,8 +210,9 @@ function buildArticleHTML(a) {
   // Steps
   const stepsHTML = (a.steps || []).map((s, i) => `
     <li class="step-item">
-      <div class="step-num" aria-label="ステップ${i + 1}">STEP<br><strong>${i + 1}</strong></div>
+      <div class="step-num" aria-label="ステップ${i + 1}"><strong>${i + 1}</strong></div>
       <div class="step-content">
+        <p class="step-tag">STEP ${i + 1}</p>
         <h4>${esc(s.title)}</h4>
         <p>${esc(s.text)}</p>
       </div>
@@ -319,6 +319,58 @@ function buildArticleHTML(a) {
        </div>`
     : '';
 
+  // Before/after text comparison
+  const baTextHTML = (() => {
+    if (!a.beforeAfterItems || !a.beforeAfterItems.length) return '';
+    const rowsHTML = a.beforeAfterItems.map(item => `
+      <div class="ba-text-row">
+        <div class="ba-text-cell ba-before">
+          <span class="ba-cell-label">Before</span>
+          ${item.aspect ? `<p class="ba-aspect">${esc(item.aspect)}</p>` : ''}
+          <p class="ba-cell-text">${esc(item.before)}</p>
+        </div>
+        <div class="ba-arrow" aria-hidden="true">→</div>
+        <div class="ba-text-cell ba-after">
+          <span class="ba-cell-label">After</span>
+          <p class="ba-cell-text">${esc(item.after)}</p>
+        </div>
+      </div>
+    `).join('');
+    return `
+      <section class="ba-text-section animate-on-scroll" aria-labelledby="ba-text-heading">
+        <div class="container">
+          <h2 class="section-title" id="ba-text-heading">${esc(a.beforeAfterTitle || '利用前・利用後の変化')}</h2>
+          <p class="section-sub">実際に利用した方から聞いた、リアルな変化をお伝えします</p>
+          <div class="ba-text-list">${rowsHTML}</div>
+        </div>
+      </section>
+    `;
+  })();
+
+  // Not-for section
+  const notForHTML = (() => {
+    if (!a.notForItems || !a.notForItems.length) return '';
+    const itemsHTML = a.notForItems.map(item => `
+      <li class="not-for-item">
+        <span class="not-for-icon" aria-hidden="true">△</span>
+        <div>
+          <p class="not-for-text">${esc(typeof item === 'string' ? item : item.who)}</p>
+          ${typeof item === 'object' && item.reason ? `<p class="not-for-reason">${esc(item.reason)}</p>` : ''}
+        </div>
+      </li>
+    `).join('');
+    return `
+      <section class="not-for-section animate-on-scroll" aria-labelledby="not-for-heading">
+        <div class="container">
+          <h2 class="section-title" id="not-for-heading">記者が考える「こんな方には向かないかも？」</h2>
+          <p class="section-sub">正直にお伝えします。以下に当てはまる方はご注意ください。</p>
+          <ul class="not-for-list" role="list">${itemsHTML}</ul>
+          ${a.notForNote ? `<p class="not-for-note">${esc(a.notForNote)}</p>` : ''}
+        </div>
+      </section>
+    `;
+  })();
+
   return `
     <!-- 01 HERO -->
     <section class="hero" aria-labelledby="hero-heading">
@@ -388,7 +440,7 @@ function buildArticleHTML(a) {
       </div>
     </section>` : ''}
 
-    <!-- 04 SCORE BREAKDOWN（早期に社会的証明を提示） -->
+    <!-- 04 SCORE BREAKDOWN -->
     ${scoreBarsHTML ? `
     <section class="score-breakdown animate-on-scroll" aria-labelledby="score-heading">
       <div class="container">
@@ -398,12 +450,20 @@ function buildArticleHTML(a) {
       </div>
     </section>` : ''}
 
-    <!-- 05 INTERVIEWS（深い社会的証明） -->
+    <!-- G3 MEDIA（社会的証明として早期提示） -->
+    <section class="media-section animate-on-scroll" id="gallery-media" aria-labelledby="media-heading">
+      <div class="container">
+        <h2 class="section-title" id="media-heading">メディア掲載実績</h2>
+        <div class="media-logos" role="list" aria-label="掲載メディア一覧">${mediaLogos}</div>
+      </div>
+    </section>
+
+    <!-- 05 USER VOICES（取材・インタビュー） -->
     ${interviewsHTML ? `
     <section class="interview-section animate-on-scroll" aria-labelledby="interview-heading">
       <div class="container">
-        <h2 class="section-title" id="interview-heading">取材協力者のリアルな声</h2>
-        <p class="section-sub">記者が直接インタビューした利用者の証言です</p>
+        <h2 class="section-title" id="interview-heading">ユーザーの声</h2>
+        <p class="section-sub">記者が直接インタビューした利用者のリアルな証言です</p>
         ${interviewsHTML}
       </div>
     </section>` : ''}
@@ -437,28 +497,22 @@ function buildArticleHTML(a) {
       </div>
     </section>
 
-    <!-- 06 REVIEWS -->
+    <!-- 06 REVIEWS（口コミ・ユーザーの声） -->
     <section class="reviews-section animate-on-scroll" id="reviews" aria-labelledby="reviews-heading">
       <div class="container">
-        <h2 class="section-title" id="reviews-heading">実際に利用したお客様の声</h2>
-        <p class="section-sub">記者が直接ヒアリングした本音の声をお届けします</p>
+        <h2 class="section-title" id="reviews-heading">ユーザーの声・口コミ</h2>
+        <p class="section-sub">実際にサービスを利用した方からのリアルな口コミをお届けします</p>
         <div class="reviews-grid" id="reviews-grid" aria-label="レビュー一覧" role="list"></div>
       </div>
     </section>
 
-    <!-- G2 BEFORE/AFTER  [画像: 600×400px / 2枚スライダー] -->
-    <section class="gallery-section gallery-ba animate-on-scroll" id="gallery-before-after" aria-labelledby="gallery-ba-heading">
-      <div class="container">
-        <h2 class="section-title" id="gallery-ba-heading">利用者の変化をご覧ください</h2>
-        <div class="swiper swiper-ba" aria-label="ビフォーアフタースライダー">
-          <div class="swiper-wrapper">${baSlides}</div>
-          <div class="swiper-button-prev" aria-label="前のスライドへ"></div>
-          <div class="swiper-button-next" aria-label="次のスライドへ"></div>
-        </div>
-      </div>
-    </section>
+    <!-- 新: 利用前・利用後テキスト比較 -->
+    ${baTextHTML}
 
-    <!-- MID CTA（口コミ後の自然な誘導） -->
+    <!-- 新: こんな方には向かないかも？ -->
+    ${notForHTML}
+
+    <!-- MID CTA -->
     ${hasOfficial ? `
     <section class="mid-cta animate-on-scroll" aria-label="公式サイト誘導">
       <div class="container">
@@ -499,18 +553,10 @@ function buildArticleHTML(a) {
       </div>
     </section>
 
-    <!-- G3 MEDIA  [画像: 120×40px / ロゴ横並び] -->
-    <section class="media-section animate-on-scroll" id="gallery-media" aria-labelledby="media-heading">
-      <div class="container">
-        <h2 class="section-title" id="media-heading">メディア掲載実績</h2>
-        <div class="media-logos" role="list" aria-label="掲載メディア一覧">${mediaLogos}</div>
-      </div>
-    </section>
-
-    <!-- 10 STORY -->
+    <!-- 10 STORY（このサービスにかける想い） -->
     <section class="story-section animate-on-scroll" aria-labelledby="story-heading">
       <div class="container">
-        <h2 class="section-title" id="story-heading">このメディアを始めた理由</h2>
+        <h2 class="section-title" id="story-heading">このサービスにかける想い</h2>
         <div class="story-content">
           <img src="${esc(a.storyImg || PLACEHOLDER_IMG.story)}"
                alt="${esc(a.storyAlt || '代表者の写真')}" class="story-img" loading="lazy" width="200" height="200">
@@ -519,7 +565,7 @@ function buildArticleHTML(a) {
       </div>
     </section>
 
-    <!-- 11 CTA（強化版） -->
+    <!-- 11 CTA -->
     <section class="cta-section animate-on-scroll" id="contact" aria-labelledby="cta-heading">
       <div class="container">
         <div class="cta-verdict">第三者記者が取材・検証した上で、自信を持ってご紹介しています</div>
@@ -527,7 +573,7 @@ function buildArticleHTML(a) {
         <p class="cta-sub">${esc(
           hasOfficial
             ? (a.ctaSub || '利用者の声・記者の取材を経て、まずは公式サイトで詳細を確認してみてください。')
-            : (a.ctaSub || '公式サイトの案内URLが未登録のため、メディアへのお問い合わせからご案内します。')
+            : (a.ctaSub || '公式サイトの案内URLが未登録のため、お問い合わせからご案内します。')
         )}</p>
         <div class="cta-trust">
           <span>✓ 第三者取材済み</span>
@@ -542,7 +588,7 @@ function buildArticleHTML(a) {
            data-article-slug="${esc(a.slug || '')}"
            data-company="${esc(a.company || '')}"
            data-cta-source="${esc(cta.source)}"
-        >${esc(a.ctaBtn || '公式サイトで詳細を確認する →')}</a>
+        >${esc(a.ctaBtn || 'サービス詳細へ →')}</a>
         <a href="${esc(cta.href)}"
            class="btn-text-link"
            ${ctaLinkAttrs}
@@ -552,20 +598,14 @@ function buildArticleHTML(a) {
            data-cta-source="${esc(cta.source)}"
         >無料相談・お問い合わせはこちら</a>
         ` : `
-        <p class="cta-fallback-note" role="note">※ 公式サイトの公開URLが未設定です。メディア経由でのご案内となります。</p>
+        <p class="cta-fallback-note" role="note">※ 公式サイトの公開URLが未設定です。お問い合わせからご案内します。</p>
         <a href="${esc(mailInquiry)}"
            class="btn btn--cta"
            data-cta-kind="article_official"
            data-article-slug="${esc(a.slug || '')}"
            data-company="${esc(a.company || '')}"
            data-cta-source="fallback_mailto"
-        >メディアへのお問い合わせ</a>
-        <a href="index.html#contact"
-           class="btn-text-link"
-           data-cta-kind="article_media_inquiry"
-           data-article-slug="${esc(a.slug || '')}"
-           data-company="${esc(a.company || '')}"
-        >取材・掲載のご依頼（メディア）</a>
+        >サービス詳細へ</a>
         `}
       </div>
     </section>
@@ -904,7 +944,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Update page meta
-  document.title = article.title || `${article.company}の評判 | みんなの評判.com`;
+  document.title = `${article.company}の口コミ・評判 | みんなの評判.com`;
   setMeta('description', article.metaDesc || '');
   setMeta('og:title', article.title || '', 'property');
   setMeta('og:description', article.metaDesc || '', 'property');

@@ -1203,6 +1203,40 @@
           </details>
         </div>
 
+        <!-- Section 8: 利用前・利用後テキスト (closed) -->
+        <div class="ne-section">
+          <details>
+            <summary>
+              <div class="ne-section-hdr">
+                利用前・利用後の変化
+                <button type="button" id="add-ba-text-btn" class="ne-section-add-btn">＋ 追加</button>
+              </div>
+            </summary>
+            <div class="ne-section-body">
+              <p style="font-size:12px;color:#999;margin-bottom:12px;">利用前→利用後の変化を具体的に記載してください（画像なしのテキスト比較として表示されます）</p>
+              <div id="ba-text-rows"></div>
+            </div>
+          </details>
+        </div>
+
+        <!-- Section 9: 合わないお客様 (closed) -->
+        <div class="ne-section">
+          <details>
+            <summary>こんな方には向かないかも？</summary>
+            <div class="ne-section-body">
+              <p style="font-size:12px;color:#999;margin-bottom:12px;">1行に1つずつ、向かない方の特徴を入力してください</p>
+              <div class="ne-field">
+                <label for="f-not-for-items">向かない方（1行1項目）</label>
+                <textarea id="f-not-for-items" rows="5" placeholder="価格を最優先にしたい方&#10;すぐに結果を求める方&#10;サポートが不要な方"></textarea>
+              </div>
+              <div class="ne-field">
+                <label for="f-not-for-note">記者からの補足コメント（任意）</label>
+                <textarea id="f-not-for-note" rows="2" placeholder="なぜ向かないのかの補足説明（省略可）"></textarea>
+              </div>
+            </div>
+          </details>
+        </div>
+
         <!-- Preview area (shown after successful publish) -->
         <div id="preview-area" style="display:none">
           <p>投稿が完了しました。まもなくサイトに反映されます。</p>
@@ -1594,6 +1628,36 @@ function buildStepsRows(data) {
       </div>
     </div>`).join('');
 }
+let baTextCount = 0;
+function buildBATextRows(data) {
+  document.getElementById('ba-text-rows').innerHTML = '';
+  baTextCount = 0;
+  if (data && data.length) {
+    data.forEach(d => addBATextRow(d));
+  }
+}
+function addBATextRow(data = {}) {
+  baTextCount++;
+  const wrap = document.getElementById('ba-text-rows');
+  const row = document.createElement('div');
+  row.className = 'ne-row';
+  row.innerHTML = `
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+      <span class="ne-row-num" style="position:static;">変化 ${baTextCount}</span>
+      <button type="button" class="ne-row-delete">削除</button>
+    </div>
+    <div class="ne-field"><label>項目（例：体重・肌の状態・気分など）</label>
+      <input type="text" class="ba-aspect" placeholder="例：体重" value="${esc(data.aspect||'')}"></div>
+    <div class="ne-row-grid-2" style="margin-top:8px;">
+      <div class="ne-field"><label>利用前（Before）</label>
+        <textarea class="ba-before" rows="2" placeholder="例：毎日疲れを感じていた">${esc(data.before||'')}</textarea></div>
+      <div class="ne-field"><label>利用後（After）</label>
+        <textarea class="ba-after" rows="2" placeholder="例：朝から活動的になれた">${esc(data.after||'')}</textarea></div>
+    </div>`;
+  row.querySelector('.ne-row-delete').addEventListener('click', () => { row.remove(); });
+  wrap.appendChild(row);
+}
+
 function addReviewRow(data = {}) {
   reviewCount++;
   const id = `rv-${Date.now()}-${reviewCount}`;
@@ -1693,10 +1757,17 @@ function collectFormData() {
     storyAlt: '代表者の写真',
     storyHtml,
     storyText,
+    notForItems: (val('f-not-for-items') || '').split('\n').map(s => s.trim()).filter(Boolean),
+    notForNote: val('f-not-for-note') || '',
+    beforeAfterItems: [...document.querySelectorAll('#ba-text-rows .ne-row')].map(r => ({
+      aspect: r.querySelector('.ba-aspect')?.value.trim() || '',
+      before: r.querySelector('.ba-before')?.value.trim() || '',
+      after: r.querySelector('.ba-after')?.value.trim() || ''
+    })).filter(r => r.before && r.after),
     officialUrl: val('f-official-url') || '#',
     ctaTitle: val('f-cta-title') || 'この評判記事が気になった方へ',
     ctaSub: val('f-cta-sub') || 'まずは公式サイトで詳細をご確認ください。',
-    ctaBtn: val('f-cta-btn') || '公式サイトを確認する →'
+    ctaBtn: val('f-cta-btn') || 'サービス詳細へ →'
   };
 }
 
@@ -1873,7 +1944,10 @@ function resetForm() {
   document.getElementById('f-story-img').value = 'images/placeholders/story-portrait.svg';
   document.getElementById('f-cta-title').value = 'この評判記事が気になった方へ';
   document.getElementById('f-cta-sub').value = 'まずは公式サイトで詳細をご確認ください。';
-  document.getElementById('f-cta-btn').value = '公式サイトを確認する →';
+  document.getElementById('f-cta-btn').value = 'サービス詳細へ →';
+  const nfi = document.getElementById('f-not-for-items'); if (nfi) nfi.value = '';
+  const nfn = document.getElementById('f-not-for-note'); if (nfn) nfn.value = '';
+  buildBATextRows([]);
   buildGalleryServiceRows(); buildGalleryBARows(); buildGalleryMediaRows();
   buildServiceCardRows(); buildStepsRows();
   document.getElementById('reviews-rows').innerHTML = ''; reviewCount = 0; defaultReviewData.forEach(r => addReviewRow(r));
@@ -1910,7 +1984,12 @@ function loadArticleForEdit(article) {
   }
   document.getElementById('f-cta-title').value = article.ctaTitle || 'この評判記事が気になった方へ';
   document.getElementById('f-cta-sub').value = article.ctaSub || 'まずは公式サイトで詳細をご確認ください。';
-  document.getElementById('f-cta-btn').value = article.ctaBtn || '公式サイトを確認する →';
+  document.getElementById('f-cta-btn').value = article.ctaBtn || 'サービス詳細へ →';
+  const nfi = document.getElementById('f-not-for-items');
+  if (nfi) nfi.value = Array.isArray(article.notForItems) ? article.notForItems.join('\n') : '';
+  const nfn = document.getElementById('f-not-for-note');
+  if (nfn) nfn.value = article.notForNote || '';
+  buildBATextRows(article.beforeAfterItems || []);
   function pad(arr, len, def) {
     if (!arr || !arr.length) return def.slice(0,len);
     const r = [...arr]; while(r.length < len) r.push(def[r.length]||{}); return r;
@@ -2004,6 +2083,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Editor button listeners
   document.getElementById('add-review-btn').addEventListener('click', () => addReviewRow());
   document.getElementById('add-faq-btn').addEventListener('click', () => addFaqRow());
+  document.getElementById('add-ba-text-btn').addEventListener('click', () => addBATextRow());
+  buildBATextRows([]);
   document.getElementById('cancel-edit-btn').addEventListener('click', () => {
     exitEditMode(); currentDraftId = null; resetForm();
   });
