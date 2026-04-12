@@ -246,8 +246,10 @@ function buildArticleHTML(a) {
     </div>
   `).join('');
 
-  // Story paragraphs
-  const storyParas = (a.storyText || []).map(p => `<p>${esc(p)}</p>`).join('');
+  // Story paragraphs — prefer storyHtml (rich text) over legacy storyText array
+  const storyParas = a.storyHtml
+    ? a.storyHtml
+    : (a.storyText || []).map(p => `<p>${esc(p)}</p>`).join('');
 
   // Check items
   const checkItems = (a.checkItems || []).map(item => `

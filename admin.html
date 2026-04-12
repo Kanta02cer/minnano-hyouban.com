@@ -708,6 +708,92 @@
     }
     .ne-field textarea { resize: vertical; line-height: 1.5; }
 
+    /* ── Canvas field label (above title/sub) ── */
+    .ne-canvas-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: var(--ne-muted);
+      margin-bottom: 5px;
+      margin-top: 18px;
+    }
+    .ne-canvas-label:first-child { margin-top: 0; }
+
+    /* ── Rich Text Editor ── */
+    .rte-wrap {
+      border: 1px solid var(--ne-border);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--ne-white);
+      transition: border-color .15s, box-shadow .15s;
+    }
+    .rte-wrap:focus-within {
+      border-color: var(--ne-accent);
+      box-shadow: 0 0 0 3px rgba(26,108,255,.09);
+    }
+    .rte-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      padding: 6px 10px;
+      border-bottom: 1px solid var(--ne-border);
+      background: #f9f9f8;
+      flex-wrap: wrap;
+    }
+    .rte-btn {
+      padding: 4px 9px;
+      border: 1px solid transparent;
+      border-radius: 5px;
+      background: none;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      color: #444;
+      font-family: inherit;
+      line-height: 1.4;
+      transition: background .1s, border-color .1s, color .1s;
+      white-space: nowrap;
+    }
+    .rte-btn:hover { background: #ebebea; border-color: #ddd; }
+    .rte-btn.rte-active { background: #e4edff; border-color: var(--ne-accent); color: var(--ne-accent); }
+    .rte-btn-h2 { font-size: 13px; }
+    .rte-btn-h3 { font-size: 12px; }
+    .rte-sep { width: 1px; height: 18px; background: var(--ne-border); margin: 0 5px; flex-shrink: 0; }
+    .rte-body {
+      min-height: 220px;
+      padding: 14px 16px;
+      font-size: 14px;
+      line-height: 1.9;
+      color: var(--ne-text);
+      outline: none;
+      cursor: text;
+    }
+    .rte-body:empty::before {
+      content: attr(data-placeholder);
+      color: var(--ne-muted);
+      pointer-events: none;
+      white-space: pre-line;
+    }
+    .rte-body h2 {
+      font-size: 1.2em;
+      font-weight: 700;
+      margin: 1.1em 0 .4em;
+      padding-bottom: .3em;
+      border-bottom: 2px solid var(--ne-border);
+    }
+    .rte-body h3 {
+      font-size: 1.05em;
+      font-weight: 700;
+      margin: 1em 0 .35em;
+      color: #333;
+    }
+    .rte-body p { margin: 0 0 .75em; }
+    .rte-body p:last-child { margin-bottom: 0; }
+    .rte-body strong { font-weight: 700; }
+    .rte-body u { text-decoration: underline; }
+    .rte-body em { font-style: italic; }
+
     /* Preview area */
     #preview-area {
       margin-top: 28px;
@@ -992,8 +1078,10 @@
         </div>
 
         <!-- Title block -->
-        <input id="f-hero-title" class="ne-main-title" type="text" placeholder="タイトルを入力...">
-        <textarea id="f-hero-sub" class="ne-subtitle" rows="3" placeholder="サブコピー（リード文）..."></textarea>
+        <p class="ne-canvas-label">記事タイトル</p>
+        <input id="f-hero-title" class="ne-main-title" type="text" placeholder="例：〇〇の評判を徹底調査しました">
+        <p class="ne-canvas-label">リード文（サブコピー）</p>
+        <textarea id="f-hero-sub" class="ne-subtitle" rows="3" placeholder="記事を読む前に読者の目に入る導入文を入力してください"></textarea>
 
         <!-- Section 1: ヒーロー設定 (open) -->
         <div class="ne-section">
@@ -1093,8 +1181,23 @@
                 <img id="f-story-img-preview" class="img-preview">
               </div>
               <div class="ne-field">
-                <label for="f-story">本文（段落を空行で区切る）</label>
-                <textarea id="f-story" rows="8" placeholder="創業ストーリーや代表メッセージを入力&#10;&#10;段落は空行で区切ります"></textarea>
+                <label>本文</label>
+                <div class="rte-wrap">
+                  <div class="rte-toolbar" id="story-rte-toolbar">
+                    <button type="button" class="rte-btn rte-btn-h2" data-cmd="formatBlock" data-val="h2" title="見出し（大）">見出し</button>
+                    <button type="button" class="rte-btn rte-btn-h3" data-cmd="formatBlock" data-val="h3" title="見出し（小）">小見出し</button>
+                    <div class="rte-sep"></div>
+                    <button type="button" class="rte-btn" data-cmd="bold" title="太文字"><strong>B</strong></button>
+                    <button type="button" class="rte-btn" data-cmd="underline" title="下線"><u>U</u></button>
+                    <button type="button" class="rte-btn" data-cmd="italic" title="イタリック"><em>I</em></button>
+                    <div class="rte-sep"></div>
+                    <button type="button" class="rte-btn" data-cmd="formatBlock" data-val="p" title="通常テキスト">本文</button>
+                    <button type="button" class="rte-btn" data-cmd="removeFormat" title="書式をすべてクリア">書式クリア</button>
+                  </div>
+                  <div id="f-story-rte" class="rte-body" contenteditable="true"
+                       data-placeholder="創業ストーリーや代表メッセージを入力します。
+「見出し」ボタンで見出しを、B で太文字を適用できます。"></div>
+                </div>
               </div>
             </div>
           </details>
@@ -1565,8 +1668,9 @@ function collectFormData() {
   const faqs = [...document.querySelectorAll('#faqs-rows .ne-row')].map(r => ({
     q: r.querySelector('.faq-q').value.trim(), a: r.querySelector('.faq-a').value.trim()
   }));
-  const storyRaw = val('f-story');
-  const storyText = storyRaw ? storyRaw.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean) : [];
+  const storyRte = document.getElementById('f-story-rte');
+  const storyHtml = storyRte ? storyRte.innerHTML.trim() : '';
+  const storyText = storyHtml ? [storyHtml] : []; // backward compat placeholder
   const today = new Date().toISOString().split('T')[0];
   return {
     slug, company,
@@ -1587,6 +1691,7 @@ function collectFormData() {
     reviews, serviceCards, steps, faqs,
     storyImg: val('f-story-img') || 'images/placeholders/story-portrait.svg',
     storyAlt: '代表者の写真',
+    storyHtml,
     storyText,
     officialUrl: val('f-official-url') || '#',
     ctaTitle: val('f-cta-title') || 'この評判記事が気になった方へ',
@@ -1758,9 +1863,11 @@ async function handleGitHubPush() {
 
 /* ─── Reset form ─── */
 function resetForm() {
-  ['f-slug','f-company','f-official-url','f-meta-desc','f-hero-tag','f-hero-title','f-hero-sub','f-story'].forEach(id => {
+  ['f-slug','f-company','f-official-url','f-meta-desc','f-hero-tag','f-hero-title','f-hero-sub'].forEach(id => {
     const el = document.getElementById(id); if (el) el.value = '';
   });
+  const storyRteEl = document.getElementById('f-story-rte');
+  if (storyRteEl) storyRteEl.innerHTML = '';
   document.getElementById('f-category').value = '美容・健康';
   document.getElementById('f-published').value = new Date().toISOString().split('T')[0];
   document.getElementById('f-story-img').value = 'images/placeholders/story-portrait.svg';
@@ -1792,7 +1899,15 @@ function loadArticleForEdit(article) {
   document.getElementById('f-story-img').value = article.storyImg || '';
   const _sp = document.getElementById('f-story-img-preview');
   if (_sp) { const v = article.storyImg||''; if (v && !v.includes('placeholders/')) { _sp.src=v; _sp.classList.add('show'); } else _sp.classList.remove('show'); }
-  document.getElementById('f-story').value = Array.isArray(article.storyText) ? article.storyText.join('\n\n') : (article.storyText||'');
+  const storyRteEl = document.getElementById('f-story-rte');
+  if (storyRteEl) {
+    if (article.storyHtml) {
+      storyRteEl.innerHTML = article.storyHtml;
+    } else {
+      const paras = Array.isArray(article.storyText) ? article.storyText : (article.storyText ? [article.storyText] : []);
+      storyRteEl.innerHTML = paras.map(p => `<p>${p}</p>`).join('');
+    }
+  }
   document.getElementById('f-cta-title').value = article.ctaTitle || 'この評判記事が気になった方へ';
   document.getElementById('f-cta-sub').value = article.ctaSub || 'まずは公式サイトで詳細をご確認ください。';
   document.getElementById('f-cta-btn').value = article.ctaBtn || '公式サイトを確認する →';
@@ -1827,6 +1942,53 @@ document.addEventListener('DOMContentLoaded', () => {
   buildServiceCardRows(); buildStepsRows();
   defaultReviewData.forEach(r => addReviewRow(r));
   defaultFaqData.forEach(f => addFaqRow(f));
+
+  // Rich text editor toolbar
+  document.getElementById('story-rte-toolbar')?.addEventListener('mousedown', e => {
+    const btn = e.target.closest('.rte-btn');
+    if (!btn) return;
+    e.preventDefault(); // keep focus in editor
+    const cmd = btn.dataset.cmd;
+    const val = btn.dataset.val || null;
+    document.execCommand(cmd, false, val);
+    updateRteToolbarState();
+  });
+  const rteBody = document.getElementById('f-story-rte');
+  if (rteBody) {
+    rteBody.addEventListener('keyup', updateRteToolbarState);
+    rteBody.addEventListener('mouseup', updateRteToolbarState);
+    // Insert <p> on Enter if no block element yet
+    rteBody.addEventListener('keydown', e => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        const sel = window.getSelection();
+        if (sel && sel.anchorNode) {
+          let node = sel.anchorNode;
+          while (node && node !== rteBody) {
+            if (/^(H[1-6]|LI|BLOCKQUOTE)$/.test(node.nodeName)) {
+              // let browser default handle within these elements
+              return;
+            }
+            node = node.parentNode;
+          }
+        }
+      }
+    });
+  }
+  function updateRteToolbarState() {
+    const toolbar = document.getElementById('story-rte-toolbar');
+    if (!toolbar) return;
+    toolbar.querySelectorAll('.rte-btn[data-cmd]').forEach(btn => {
+      const cmd = btn.dataset.cmd;
+      const val = btn.dataset.val;
+      let active = false;
+      if (cmd === 'formatBlock' && val) {
+        active = document.queryCommandValue('formatBlock').toLowerCase() === val.toLowerCase();
+      } else if (cmd !== 'removeFormat') {
+        try { active = document.queryCommandState(cmd); } catch(_) {}
+      }
+      btn.classList.toggle('rte-active', active);
+    });
+  }
 
   // Preview button (always available)
   const openPreview = () => {
