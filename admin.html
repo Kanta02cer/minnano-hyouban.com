@@ -627,6 +627,47 @@
       font-family: inherit;
     }
     .ne-row-delete:hover { background: #fff5f5; }
+
+    /* ── Image upload ── */
+    .img-field-wrap {
+      display: flex;
+      gap: 6px;
+      align-items: stretch;
+    }
+    .img-field-wrap input[type="url"] { flex: 1; min-width: 0; }
+    .img-upload-btn {
+      flex-shrink: 0;
+      background: #eff6ff;
+      border: 1px solid #93c5fd;
+      color: #1d4ed8;
+      border-radius: 5px;
+      padding: 0 10px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background .15s;
+      font-family: inherit;
+      line-height: 1;
+    }
+    .img-upload-btn:hover { background: #dbeafe; }
+    .img-upload-btn.uploading {
+      background: #fef9c3;
+      border-color: #fde047;
+      color: #854d0e;
+      cursor: not-allowed;
+    }
+    .img-preview {
+      width: 100%;
+      max-height: 72px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin-top: 6px;
+      border: 1px solid var(--ne-border);
+      display: none;
+    }
+    .img-preview.show { display: block; }
+
     .ne-row-grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -891,6 +932,9 @@
 <!-- ════════════════════════════════════════════════════════════
      VIEW 2: EDITOR
 ════════════════════════════════════════════════════════════ -->
+<!-- Hidden file input for image uploads (shared, one at a time) -->
+<input type="file" id="img-file-input" accept="image/*" style="display:none">
+
 <div id="view-editor" style="display:none">
 
   <!-- Editor sticky header -->
@@ -1042,8 +1086,12 @@
             <summary>創業ストーリー</summary>
             <div class="ne-section-body">
               <div class="ne-field" style="margin-bottom:12px;">
-                <label for="f-story-img">ストーリー画像URL</label>
-                <input id="f-story-img" type="url" placeholder="images/placeholders/story-portrait.svg">
+                <label for="f-story-img">ストーリー画像</label>
+                <div class="img-field-wrap">
+                  <input id="f-story-img" type="url" placeholder="images/placeholders/story-portrait.svg">
+                  <button type="button" class="img-upload-btn">↑ 選択</button>
+                </div>
+                <img id="f-story-img-preview" class="img-preview">
               </div>
               <div class="ne-field">
                 <label for="f-story">本文（段落を空行で区切る）</label>
@@ -1338,15 +1386,25 @@ function buildGalleryServiceRows(data) {
     { src: 'images/placeholders/gallery-photo.svg', alt: 'サービス画像3', caption: '快適な利用環境を整えています' }
   ];
   const rows = (data && data.length) ? data : def;
-  document.getElementById('gallery-service-rows').innerHTML = rows.map((d,i) => `
+  document.getElementById('gallery-service-rows').innerHTML = rows.map((d,i) => {
+    const hasSrc = d.src && !d.src.includes('placeholders/');
+    return `
     <div class="ne-row">
       <span class="ne-row-num">画像 ${i+1}</span>
       <div class="ne-row-grid-3" style="margin-top:22px;">
-        <div class="ne-field"><label>画像URL</label><input type="url" class="gs-src" value="${esc(d.src||'')}"></div>
-        <div class="ne-field"><label>alt</label><input type="text" class="gs-alt" value="${esc(d.alt||'')}"></div>
+        <div class="ne-field">
+          <label>画像</label>
+          <div class="img-field-wrap">
+            <input type="url" class="gs-src" value="${esc(d.src||'')}">
+            <button type="button" class="img-upload-btn">↑ 選択</button>
+          </div>
+          <img class="img-preview${hasSrc?' show':''}" src="${esc(d.src||'')}">
+        </div>
+        <div class="ne-field"><label>alt テキスト</label><input type="text" class="gs-alt" value="${esc(d.alt||'')}"></div>
         <div class="ne-field"><label>キャプション</label><input type="text" class="gs-caption" value="${esc(d.caption||'')}"></div>
       </div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 }
 function buildGalleryBARows(data) {
   const def = [
@@ -1354,15 +1412,25 @@ function buildGalleryBARows(data) {
     { src: 'images/placeholders/gallery-after.svg', alt: '利用3ヶ月後', label: '利用3ヶ月後' }
   ];
   const rows = (data && data.length) ? data : def;
-  document.getElementById('gallery-ba-rows').innerHTML = rows.map((d,i) => `
+  document.getElementById('gallery-ba-rows').innerHTML = rows.map((d,i) => {
+    const hasSrc = d.src && !d.src.includes('placeholders/');
+    return `
     <div class="ne-row">
       <span class="ne-row-num">${i===0?'Before':'After'}</span>
       <div class="ne-row-grid-3" style="margin-top:22px;">
-        <div class="ne-field"><label>画像URL</label><input type="url" class="gba-src" value="${esc(d.src||'')}"></div>
-        <div class="ne-field"><label>alt</label><input type="text" class="gba-alt" value="${esc(d.alt||'')}"></div>
+        <div class="ne-field">
+          <label>画像</label>
+          <div class="img-field-wrap">
+            <input type="url" class="gba-src" value="${esc(d.src||'')}">
+            <button type="button" class="img-upload-btn">↑ 選択</button>
+          </div>
+          <img class="img-preview${hasSrc?' show':''}" src="${esc(d.src||'')}">
+        </div>
+        <div class="ne-field"><label>alt テキスト</label><input type="text" class="gba-alt" value="${esc(d.alt||'')}"></div>
         <div class="ne-field"><label>ラベル</label><input type="text" class="gba-label" value="${esc(d.label||'')}"></div>
       </div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 }
 function buildGalleryMediaRows(data) {
   const def = [
@@ -1371,14 +1439,24 @@ function buildGalleryMediaRows(data) {
     { src: 'images/placeholders/media-logo.svg', alt: 'メディアC' }
   ];
   const rows = (data && data.length) ? data : def;
-  document.getElementById('gallery-media-rows').innerHTML = rows.map((d,i) => `
+  document.getElementById('gallery-media-rows').innerHTML = rows.map((d,i) => {
+    const hasSrc = d.src && !d.src.includes('placeholders/');
+    return `
     <div class="ne-row">
       <span class="ne-row-num">ロゴ ${i+1}</span>
       <div class="ne-row-grid-2" style="margin-top:22px;">
-        <div class="ne-field"><label>ロゴURL</label><input type="url" class="gm-src" value="${esc(d.src||'')}"></div>
+        <div class="ne-field">
+          <label>ロゴ画像</label>
+          <div class="img-field-wrap">
+            <input type="url" class="gm-src" value="${esc(d.src||'')}">
+            <button type="button" class="img-upload-btn">↑ 選択</button>
+          </div>
+          <img class="img-preview${hasSrc?' show':''}" src="${esc(d.src||'')}">
+        </div>
         <div class="ne-field"><label>メディア名</label><input type="text" class="gm-alt" value="${esc(d.alt||'')}"></div>
       </div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 }
 function buildServiceCardRows(data) {
   const def = [
@@ -1556,6 +1634,74 @@ function buildMergedArticles(data) {
   return [...existing, data];
 }
 
+/* ─── Image upload ─── */
+let _uploadTargetInput = null;
+let _uploadTargetPreview = null;
+
+function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result.split(',')[1]);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+async function uploadImageToGitHub(file) {
+  const { token, branch } = getGitHubSettings();
+  if (!token) {
+    alert('GitHub PAT が設定されていません。\n左サイドバーの「GitHub 設定」からトークンを入力して保存してください。');
+    document.getElementById('github-settings-panel').open = true;
+    return;
+  }
+
+  // Build a clean filename: timestamp + sanitised original name
+  const ext = file.name.split('.').pop().toLowerCase().replace(/[^a-z0-9]/g, '');
+  const base = file.name.replace(/\.[^.]+$/, '').replace(/[^a-zA-Z0-9_-]/g, '-').slice(0, 40);
+  const filename = `${Date.now()}-${base}.${ext}`;
+  const path = `images/photos/${filename}`;
+
+  // Instant local preview (no network needed)
+  const objectUrl = URL.createObjectURL(file);
+  if (_uploadTargetPreview) {
+    _uploadTargetPreview.src = objectUrl;
+    _uploadTargetPreview.classList.add('show');
+  }
+
+  // Mark button as uploading
+  const btn = _uploadTargetInput?.closest('.img-field-wrap')?.querySelector('.img-upload-btn');
+  if (btn) { btn.classList.add('uploading'); btn.textContent = '送信中…'; btn.disabled = true; }
+
+  try {
+    const base64 = await fileToBase64(file);
+    const apiBase = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${encodeURIComponent(path)}`;
+    const headers = {
+      'Authorization': `Bearer ${token}`,
+      'Accept': 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28',
+      'Content-Type': 'application/json'
+    };
+    const body = { message: `feat: 画像をアップロード — ${filename}`, content: base64, branch };
+    const res = await fetch(apiBase, { method: 'PUT', headers, body: JSON.stringify(body) });
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.message || `HTTP ${res.status}`);
+    }
+    // Set the relative path into the input
+    if (_uploadTargetInput) _uploadTargetInput.value = path;
+    showToast(`✓ 画像をアップロードしました`);
+  } catch (e) {
+    // Revert preview on error
+    if (_uploadTargetPreview) { _uploadTargetPreview.classList.remove('show'); _uploadTargetPreview.src = ''; }
+    alert(`画像アップロードエラー:\n${e.message}`);
+  } finally {
+    URL.revokeObjectURL(objectUrl);
+    if (btn) { btn.classList.remove('uploading'); btn.textContent = '↑ 選択'; btn.disabled = false; }
+    _uploadTargetInput = null;
+    _uploadTargetPreview = null;
+  }
+}
+
 /* ─── GitHub push ─── */
 const GH_OWNER = 'Kanta02cer', GH_REPO = 'minnano-hyouban.com', GH_FILE = 'data/articles.js';
 function getGitHubSettings() {
@@ -1645,6 +1791,8 @@ function loadArticleForEdit(article) {
   document.getElementById('f-hero-title').value = article.heroTitle || '';
   document.getElementById('f-hero-sub').value = article.heroSub || '';
   document.getElementById('f-story-img').value = article.storyImg || '';
+  const _sp = document.getElementById('f-story-img-preview');
+  if (_sp) { const v = article.storyImg||''; if (v && !v.includes('placeholders/')) { _sp.src=v; _sp.classList.add('show'); } else _sp.classList.remove('show'); }
   document.getElementById('f-story').value = Array.isArray(article.storyText) ? article.storyText.join('\n\n') : (article.storyText||'');
   document.getElementById('f-cta-title').value = article.ctaTitle || 'この評判記事が気になった方へ';
   document.getElementById('f-cta-sub').value = article.ctaSub || 'まずは公式サイトで詳細をご確認ください。';
@@ -1719,6 +1867,38 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem('gh_branch', branch);
     const s = document.getElementById('gh-settings-status');
     s.textContent = '✓ 保存'; setTimeout(() => { s.textContent = ''; }, 2000);
+  });
+
+  // Image upload: file input change
+  document.getElementById('img-file-input').addEventListener('change', e => {
+    const file = e.target.files[0];
+    if (file && _uploadTargetInput) uploadImageToGitHub(file);
+    e.target.value = ''; // reset so same file can be re-selected
+  });
+
+  // Image upload: click delegation (upload buttons are in dynamic rows)
+  document.getElementById('view-editor').addEventListener('click', e => {
+    const btn = e.target.closest('.img-upload-btn');
+    if (!btn) return;
+    const wrap = btn.closest('.img-field-wrap');
+    if (!wrap) return;
+    _uploadTargetInput = wrap.querySelector('input[type="url"]');
+    // Preview is the next sibling img after the wrap
+    _uploadTargetPreview = wrap.nextElementSibling?.tagName === 'IMG' ? wrap.nextElementSibling : null;
+    // For static f-story-img, preview has a specific ID
+    if (!_uploadTargetPreview && _uploadTargetInput?.id === 'f-story-img') {
+      _uploadTargetPreview = document.getElementById('f-story-img-preview');
+    }
+    document.getElementById('img-file-input').click();
+  });
+
+  // Story image preview on load/edit
+  const storyInput = document.getElementById('f-story-img');
+  const storyPreview = document.getElementById('f-story-img-preview');
+  storyInput.addEventListener('input', () => {
+    const v = storyInput.value.trim();
+    if (v && !v.includes('placeholders/')) { storyPreview.src = v; storyPreview.classList.add('show'); }
+    else storyPreview.classList.remove('show');
   });
 
   // Company → title hint
