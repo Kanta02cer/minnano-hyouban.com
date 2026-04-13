@@ -347,25 +347,54 @@ function buildArticleHTML(a) {
     `;
   })();
 
-  // Not-for section
-  const notForHTML = (() => {
-    if (!a.notForItems || !a.notForItems.length) return '';
-    const itemsHTML = a.notForItems.map(item => `
-      <li class="not-for-item">
-        <span class="not-for-icon" aria-hidden="true">△</span>
+  // Fit section: "for you" + "not for you" combined
+  const fitSectionHTML = (() => {
+    const hasFor = a.forItems && a.forItems.length;
+    const hasNotFor = a.notForItems && a.notForItems.length;
+    if (!hasFor && !hasNotFor) return '';
+
+    const forItemsHTML = hasFor ? a.forItems.map(item => `
+      <li class="fit-item fit-item-yes">
+        <span class="fit-item-icon" aria-hidden="true">✓</span>
         <div>
-          <p class="not-for-text">${esc(typeof item === 'string' ? item : item.who)}</p>
-          ${typeof item === 'object' && item.reason ? `<p class="not-for-reason">${esc(item.reason)}</p>` : ''}
+          <p class="fit-item-text">${esc(typeof item === 'string' ? item : item.who)}</p>
+          ${typeof item === 'object' && item.reason ? `<p class="fit-item-reason">${esc(item.reason)}</p>` : ''}
         </div>
-      </li>
-    `).join('');
+      </li>`).join('') : '';
+
+    const notForItemsHTML = hasNotFor ? a.notForItems.map(item => `
+      <li class="fit-item fit-item-no">
+        <span class="fit-item-icon" aria-hidden="true">△</span>
+        <div>
+          <p class="fit-item-text">${esc(typeof item === 'string' ? item : item.who)}</p>
+          ${typeof item === 'object' && item.reason ? `<p class="fit-item-reason">${esc(item.reason)}</p>` : ''}
+        </div>
+      </li>`).join('') : '';
+
     return `
-      <section class="not-for-section animate-on-scroll" aria-labelledby="not-for-heading">
+      <section class="fit-section animate-on-scroll" aria-labelledby="fit-heading">
         <div class="container">
-          <h2 class="section-title" id="not-for-heading">記者が考える「こんな方には向かないかも？」</h2>
-          <p class="section-sub">正直にお伝えします。以下に当てはまる方はご注意ください。</p>
-          <ul class="not-for-list" role="list">${itemsHTML}</ul>
-          ${a.notForNote ? `<p class="not-for-note">${esc(a.notForNote)}</p>` : ''}
+          <h2 class="section-title" id="fit-heading">あなたに合うサービスか確認してみてください</h2>
+          <p class="section-sub">記者が取材を通して感じた、正直な「向き・不向き」をお伝えします</p>
+          <div class="fit-grid">
+            ${hasFor ? `
+            <div class="fit-col fit-col-yes">
+              <div class="fit-col-header">
+                <span class="fit-col-icon" aria-hidden="true">✓</span>
+                <h3 class="fit-col-title">こんな方にぴったり</h3>
+              </div>
+              <ul class="fit-list" role="list">${forItemsHTML}</ul>
+            </div>` : ''}
+            ${hasNotFor ? `
+            <div class="fit-col fit-col-no">
+              <div class="fit-col-header">
+                <span class="fit-col-icon" aria-hidden="true">△</span>
+                <h3 class="fit-col-title">こんな方には不向きかも</h3>
+              </div>
+              <ul class="fit-list" role="list">${notForItemsHTML}</ul>
+            </div>` : ''}
+          </div>
+          ${a.notForNote ? `<p class="fit-reporter-note">${esc(a.notForNote)}</p>` : ''}
         </div>
       </section>
     `;
@@ -509,8 +538,8 @@ function buildArticleHTML(a) {
     <!-- 新: 利用前・利用後テキスト比較 -->
     ${baTextHTML}
 
-    <!-- 新: こんな方には向かないかも？ -->
-    ${notForHTML}
+    <!-- 新: 向き・不向き適合確認セクション -->
+    ${fitSectionHTML}
 
     <!-- MID CTA -->
     ${hasOfficial ? `
