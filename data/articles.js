@@ -182,7 +182,8 @@ window.ARTICLES = [
 
     title:    "「TASKUL（タスクル）って実際どう？」フリーランスが使って感じたこと | みんなの評判.com",
     metaDesc: "TASKULの口コミ・評判を記者がまとめました。株式会社フリーカンパニーが運営するクリエイター向けAIタスク管理ツールの正直な感想、使いやすさ・無料プラン・向いている人をわかりやすく解説。",
-    ogImage:  "images/placeholders/og-career.svg",
+    ogImage:  "images/taskul/fv.png",
+    heroImg:  "images/taskul/fv.png",
     company:  "TASKUL（株式会社フリーカンパニー）",
     category: "ライフスタイル",
     publishedAt: "2026-04-17",

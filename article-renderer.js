@@ -402,7 +402,7 @@ function buildArticleHTML(a) {
 
   return `
     <!-- 01 HERO -->
-    <section class="hero" aria-labelledby="hero-heading">
+    <section class="hero${a.heroImg ? ' hero--with-img' : ''}" aria-labelledby="hero-heading"${a.heroImg ? ` style="background-image:linear-gradient(rgba(30,42,80,0.72),rgba(30,42,80,0.72)),url('${esc(a.heroImg)}')"` : ''}>
       <div class="hero-inner">
         <div class="hero-news-label">楽天・ニコニコ・エキサイトなど大手ネットニュースで話題の企業を第三者記者が取材</div>
         <span class="hero-tag" aria-label="注目情報">${esc(a.heroTag || '第三者記者が直接取材しました')}</span>
