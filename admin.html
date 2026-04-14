@@ -962,6 +962,52 @@
       .db-btn-ghost,
       .db-btn-danger { width: 100%; text-align: center; }
     }
+
+    /* ─── Intake View ─── */
+    #view-intake { display: none; min-height: 100vh; background: #f8f9fa; }
+    .intake-header { background: #fff; border-bottom: 1px solid #e0e0e0; padding: 16px 24px; display: flex; align-items: center; gap: 16px; position: sticky; top: 0; z-index: 100; }
+    .intake-header h1 { font-size: 18px; font-weight: 700; color: #1a1a1a; margin: 0; flex: 1; }
+    .intake-back-btn { background: none; border: 1px solid #ccc; border-radius: 6px; padding: 6px 14px; font-size: 14px; cursor: pointer; color: #555; }
+    .intake-back-btn:hover { background: #f0f0f0; }
+    .intake-generate-btn { background: #7c3aed; color: #fff; border: none; border-radius: 6px; padding: 8px 20px; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; }
+    .intake-generate-btn:hover { background: #6d28d9; }
+    .intake-generate-btn:disabled { background: #a78bfa; cursor: not-allowed; }
+    .intake-body { max-width: 800px; margin: 0 auto; padding: 32px 24px; display: flex; flex-direction: column; gap: 24px; }
+    .intake-section { background: #fff; border-radius: 10px; border: 1px solid #e0e0e0; overflow: hidden; }
+    .intake-section-header { background: #f3f0ff; border-bottom: 1px solid #e0e0e0; padding: 12px 20px; display: flex; align-items: center; gap: 10px; }
+    .intake-section-num { background: #7c3aed; color: #fff; width: 24px; height: 24px; border-radius: 50%; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .intake-section-title { font-size: 15px; font-weight: 700; color: #1a1a1a; }
+    .intake-fields { padding: 20px; display: flex; flex-direction: column; gap: 16px; }
+    .intake-field { display: flex; flex-direction: column; gap: 6px; }
+    .intake-label { font-size: 13px; font-weight: 600; color: #444; }
+    .intake-hint { font-size: 11px; color: #888; }
+    .intake-input, .intake-textarea, .intake-select { width: 100%; border: 1px solid #d1d5db; border-radius: 6px; padding: 8px 12px; font-size: 14px; font-family: inherit; box-sizing: border-box; }
+    .intake-input:focus, .intake-textarea:focus { outline: none; border-color: #7c3aed; box-shadow: 0 0 0 2px rgba(124,58,237,0.15); }
+    .intake-textarea { min-height: 80px; resize: vertical; }
+    .intake-textarea.tall { min-height: 140px; }
+    .intake-row-list { display: flex; flex-direction: column; gap: 8px; }
+    .intake-dynamic-row { display: flex; gap: 8px; align-items: flex-start; }
+    .intake-dynamic-row input, .intake-dynamic-row textarea, .intake-dynamic-row select { flex: 1; border: 1px solid #d1d5db; border-radius: 6px; padding: 7px 10px; font-size: 13px; font-family: inherit; }
+    .intake-dynamic-row textarea { resize: vertical; min-height: 60px; }
+    .intake-rm-btn { background: none; border: 1px solid #f87171; color: #ef4444; border-radius: 5px; width: 30px; height: 30px; cursor: pointer; font-size: 16px; flex-shrink: 0; }
+    .intake-rm-btn:hover { background: #fee2e2; }
+    .intake-add-btn { background: none; border: 1px dashed #7c3aed; color: #7c3aed; border-radius: 6px; padding: 7px 14px; font-size: 13px; cursor: pointer; align-self: flex-start; margin-top: 4px; }
+    .intake-add-btn:hover { background: #f3f0ff; }
+    .intake-ai-status { background: #f3f0ff; border: 1px solid #c4b5fd; border-radius: 8px; padding: 12px 16px; font-size: 13px; color: #5b21b6; display: none; }
+    .intake-ai-status.show { display: block; }
+    .intake-settings { background: #fff; border: 1px solid #e0e0e0; border-radius: 10px; padding: 16px 20px; display: flex; gap: 12px; align-items: flex-end; }
+    .intake-settings label { font-size: 13px; font-weight: 600; color: #444; display: block; margin-bottom: 4px; }
+    .intake-settings input { border: 1px solid #d1d5db; border-radius: 6px; padding: 7px 10px; font-size: 13px; width: 320px; max-width: 100%; }
+    .intake-settings-save { background: #374151; color: #fff; border: none; border-radius: 6px; padding: 8px 16px; font-size: 13px; cursor: pointer; }
+    .intake-review-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .intake-review-grid input, .intake-review-grid select { border: 1px solid #d1d5db; border-radius: 6px; padding: 7px 10px; font-size: 13px; font-family: inherit; }
+    .intake-review-text { grid-column: 1/-1; }
+    .intake-review-text textarea { width: 100%; border: 1px solid #d1d5db; border-radius: 6px; padding: 7px 10px; font-size: 13px; font-family: inherit; min-height: 60px; resize: vertical; box-sizing: border-box; }
+    @media (max-width: 600px) {
+      .intake-body { padding: 16px; }
+      .intake-review-grid { grid-template-columns: 1fr; }
+      .intake-settings input { width: 100%; }
+    }
   </style>
 </head>
 <body>
@@ -980,6 +1026,7 @@
       <a href="index.html">みんなの評判.com</a>
       <span class="db-admin-badge">Admin</span>
     </div>
+    <button id="ai-intake-btn" style="background:#7c3aed;color:#fff;border:none;border-radius:6px;padding:8px 18px;font-size:14px;font-weight:600;cursor:pointer;margin-right:8px;">AI で記事を作成</button>
     <button id="new-article-btn">＋ 新規記事を投稿</button>
   </header>
 
@@ -1330,6 +1377,199 @@
 </div><!-- /#view-editor -->
 
 
+<!-- ════════════════════════════════════════════════════════════
+     VIEW 3: INTAKE (AI記事生成フォーム)
+════════════════════════════════════════════════════════════ -->
+<div id="view-intake">
+
+  <header class="intake-header">
+    <button class="intake-back-btn" id="intake-back-btn">← 戻る</button>
+    <h1>AI で記事を自動生成</h1>
+    <div id="intake-ai-status" class="intake-ai-status"></div>
+    <button class="intake-generate-btn" id="intake-generate-btn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      AI で記事を生成
+    </button>
+  </header>
+
+  <div class="intake-body">
+
+    <!-- OpenAI API 設定 -->
+    <div class="intake-settings">
+      <div style="flex:1">
+        <label for="intake-api-key">OpenAI API キー</label>
+        <input type="password" id="intake-api-key" placeholder="sk-..." autocomplete="off">
+      </div>
+      <div>
+        <label for="intake-model">モデル</label>
+        <select id="intake-model" class="intake-select" style="width:180px;">
+          <option value="gpt-4o">gpt-4o（推奨）</option>
+          <option value="gpt-4o-mini">gpt-4o-mini（速い）</option>
+        </select>
+      </div>
+      <button class="intake-settings-save" id="intake-save-api-key">保存</button>
+    </div>
+
+    <!-- Section 1: 基本情報 -->
+    <div class="intake-section">
+      <div class="intake-section-header">
+        <div class="intake-section-num">1</div>
+        <div class="intake-section-title">基本情報</div>
+      </div>
+      <div class="intake-fields">
+        <div class="intake-field">
+          <label class="intake-label" for="it-company">企業・サービス名 <span style="color:#ef4444">*</span></label>
+          <input type="text" class="intake-input" id="it-company" placeholder="例：株式会社〇〇">
+        </div>
+        <div class="intake-field">
+          <label class="intake-label" for="it-slug">スラッグ（URL用）<span style="color:#ef4444">*</span></label>
+          <input type="text" class="intake-input" id="it-slug" placeholder="例：company-name-review">
+          <span class="intake-hint">英小文字・数字・ハイフンのみ</span>
+        </div>
+        <div class="intake-field">
+          <label class="intake-label" for="it-category">カテゴリ</label>
+          <select class="intake-input intake-select" id="it-category">
+            <option>キャリア・転職</option>
+            <option>副業・フリーランス</option>
+            <option>学習・スクール</option>
+            <option>投資・資産形成</option>
+            <option>美容・健康</option>
+            <option>その他</option>
+          </select>
+        </div>
+        <div class="intake-field">
+          <label class="intake-label" for="it-official-url">公式URL</label>
+          <input type="url" class="intake-input" id="it-official-url" placeholder="https://example.com">
+        </div>
+        <div class="intake-field">
+          <label class="intake-label" for="it-price-range">料金・価格帯</label>
+          <input type="text" class="intake-input" id="it-price-range" placeholder="例：月額980円〜、初月無料など">
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 2: ターゲット読者・ヒーロー -->
+    <div class="intake-section">
+      <div class="intake-section-header">
+        <div class="intake-section-num">2</div>
+        <div class="intake-section-title">ターゲット読者・ヒーローセクション</div>
+      </div>
+      <div class="intake-fields">
+        <div class="intake-field">
+          <label class="intake-label" for="it-target">ターゲット読者（どんな人に読んでほしいか）</label>
+          <textarea class="intake-textarea" id="it-target" placeholder="例：副業を探している20〜30代の会社員。本業をしながら月5万円の副収入を得たい人。"></textarea>
+        </div>
+        <div class="intake-field">
+          <label class="intake-label" for="it-troubles">読者の悩み・課題</label>
+          <textarea class="intake-textarea" id="it-troubles" placeholder="例：スキルがなくても始められるか不安。詐欺的なサービスではないか心配。"></textarea>
+        </div>
+        <div class="intake-field">
+          <label class="intake-label" for="it-hero-tag">ヒーロータグ（短いキャッチコピー）</label>
+          <input type="text" class="intake-input" id="it-hero-tag" placeholder="例：副業初心者にも安心">
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 3: サービスの強み・特徴 -->
+    <div class="intake-section">
+      <div class="intake-section-header">
+        <div class="intake-section-num">3</div>
+        <div class="intake-section-title">サービスの強み・特徴</div>
+      </div>
+      <div class="intake-fields">
+        <div class="intake-field">
+          <label class="intake-label" for="it-strengths">サービスの強み・メリット（箇条書き可）</label>
+          <textarea class="intake-textarea tall" id="it-strengths" placeholder="例：&#10;・未経験でも最短1週間で収益化可能&#10;・専任コーチが毎週フォローアップ&#10;・受講生の87%が3ヶ月以内に副収入を得ている"></textarea>
+        </div>
+        <div class="intake-field">
+          <label class="intake-label" for="it-differentiation">競合との差別化ポイント</label>
+          <textarea class="intake-textarea" id="it-differentiation" placeholder="例：他社は動画教材のみだが、当サービスは1on1サポートが週2回ついている。"></textarea>
+        </div>
+        <div class="intake-field">
+          <label class="intake-label">サービスカード（最大4枚）</label>
+          <div class="intake-row-list" id="it-service-rows"></div>
+          <button class="intake-add-btn" id="it-add-service">＋ カードを追加</button>
+        </div>
+        <div class="intake-field">
+          <label class="intake-label">ご利用の流れ（ステップ）</label>
+          <div class="intake-row-list" id="it-step-rows"></div>
+          <button class="intake-add-btn" id="it-add-step">＋ ステップを追加</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 4: ユーザーの声・口コミ -->
+    <div class="intake-section">
+      <div class="intake-section-header">
+        <div class="intake-section-num">4</div>
+        <div class="intake-section-title">ユーザーの声・口コミ</div>
+      </div>
+      <div class="intake-fields">
+        <div class="intake-field">
+          <div class="intake-row-list" id="it-review-rows"></div>
+          <button class="intake-add-btn" id="it-add-review">＋ 口コミを追加</button>
+        </div>
+        <div class="intake-field">
+          <label class="intake-label">Before / After（変化の実績）</label>
+          <div class="intake-row-list" id="it-ba-rows"></div>
+          <button class="intake-add-btn" id="it-add-ba">＋ Before/After を追加</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 5: 向き・不向き -->
+    <div class="intake-section">
+      <div class="intake-section-header">
+        <div class="intake-section-num">5</div>
+        <div class="intake-section-title">向き・不向き</div>
+      </div>
+      <div class="intake-fields">
+        <div class="intake-field">
+          <label class="intake-label" for="it-for-items">こんな方にぴったり（1行1項目）</label>
+          <textarea class="intake-textarea tall" id="it-for-items" placeholder="例：&#10;副業で収入源を増やしたい会社員&#10;スキルアップしながら稼ぎたい人&#10;家事・育児の合間に取り組みたい主婦・主夫"></textarea>
+        </div>
+        <div class="intake-field">
+          <label class="intake-label" for="it-not-for-items">こんな方には不向きかも（1行1項目）</label>
+          <textarea class="intake-textarea tall" id="it-not-for-items" placeholder="例：&#10;すぐに大きな収入を期待している方&#10;自己学習が苦手な方&#10;週2時間以上の時間が取れない方"></textarea>
+        </div>
+        <div class="intake-field">
+          <label class="intake-label" for="it-not-for-note">不向きな方へのコメント</label>
+          <textarea class="intake-textarea" id="it-not-for-note" placeholder="例：副業に取り組む時間の確保や、ある程度の継続的な努力が必要なサービスです。"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 6: 記者メモ・想い -->
+    <div class="intake-section">
+      <div class="intake-section-header">
+        <div class="intake-section-num">6</div>
+        <div class="intake-section-title">記者メモ・想い（AI生成の元ネタ）</div>
+      </div>
+      <div class="intake-fields">
+        <div class="intake-field">
+          <label class="intake-label" for="it-reporter-memo">取材で感じたこと・印象（記者の視点）</label>
+          <textarea class="intake-textarea tall" id="it-reporter-memo" placeholder="例：代表の〇〇氏は元会社員で自身も副業で月50万を達成した経験を持つ。サービスの設計が「失敗パターンを排除する」思想で作られており、初心者目線が徹底されていると感じた。"></textarea>
+        </div>
+        <div class="intake-field">
+          <label class="intake-label" for="it-story-background">サービス・創業の背景</label>
+          <textarea class="intake-textarea tall" id="it-story-background" placeholder="例：創業者が〇〇に苦労した経験から、同じ悩みを持つ人を助けたいという思いでサービスを立ち上げた。"></textarea>
+        </div>
+        <div class="intake-field">
+          <label class="intake-label" for="it-vision">サービスが目指すビジョン</label>
+          <textarea class="intake-textarea" id="it-vision" placeholder="例：日本全国の働く人が、本業以外の収入源を持てる社会を作りたい。"></textarea>
+        </div>
+        <div class="intake-field">
+          <label class="intake-label">FAQ（よくある質問）</label>
+          <div class="intake-row-list" id="it-faq-rows"></div>
+          <button class="intake-add-btn" id="it-add-faq">＋ FAQを追加</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /.intake-body -->
+</div><!-- /#view-intake -->
+
+
 <!-- ─── Data + Main Script ─── -->
 <script src="data/articles.js"></script>
 <script>
@@ -1351,11 +1591,18 @@ function val(id) { return document.getElementById(id)?.value.trim() ?? ''; }
 function showDashboard() {
   document.getElementById('view-dashboard').style.display = '';
   document.getElementById('view-editor').style.display = 'none';
+  document.getElementById('view-intake').style.display = 'none';
   renderDashboard();
 }
 function showEditor() {
   document.getElementById('view-dashboard').style.display = 'none';
   document.getElementById('view-editor').style.display = '';
+  document.getElementById('view-intake').style.display = 'none';
+}
+function showIntake() {
+  document.getElementById('view-dashboard').style.display = 'none';
+  document.getElementById('view-editor').style.display = 'none';
+  document.getElementById('view-intake').style.display = '';
 }
 
 /* ─── Draft storage ─── */
@@ -1775,7 +2022,8 @@ function collectFormData() {
     officialUrl: val('f-official-url') || '#',
     ctaTitle: val('f-cta-title') || 'この評判記事が気になった方へ',
     ctaSub: val('f-cta-sub') || 'まずは公式サイトで詳細をご確認ください。',
-    ctaBtn: val('f-cta-btn') || 'サービス詳細へ →'
+    ctaBtn: val('f-cta-btn') || 'サービス詳細へ →',
+    ...(window._intakeExtraData || {})
   };
 }
 
@@ -2024,6 +2272,263 @@ function loadArticleForEdit(article) {
   document.getElementById('ne-title-hint').textContent = article.company || article.slug || '新規記事';
 }
 
+/* ─── Intake: Dynamic row builders ─── */
+function addIntakeReviewRow(data = {}) {
+  const row = document.createElement('div');
+  row.className = 'ne-row';
+  row.innerHTML = `
+    <div style="flex:1">
+      <div class="intake-review-grid">
+        <input type="text" class="itr-name" placeholder="名前（例：30代・女性）" value="${esc(data.name||'')}">
+        <input type="text" class="itr-age" placeholder="属性（例：会社員）" value="${esc(data.age||'')}">
+        <select class="itr-stars">
+          ${[5,4,3,2,1].map(n=>`<option value="${n}"${(data.stars||5)==n?' selected':''}>${'★'.repeat(n)}</option>`).join('')}
+        </select>
+        <input type="text" class="itr-tag" placeholder="タグ（例：利用3ヶ月）" value="${esc(data.tag||'')}">
+        <div class="intake-review-text"><textarea class="itr-text" placeholder="口コミ本文">${esc(data.text||'')}</textarea></div>
+      </div>
+    </div>
+    <button class="intake-rm-btn" onclick="this.closest('.ne-row').remove()">&times;</button>
+  `;
+  document.getElementById('it-review-rows').appendChild(row);
+}
+function addIntakeBARow(data = {}) {
+  const row = document.createElement('div');
+  row.className = 'ne-row intake-dynamic-row';
+  row.innerHTML = `
+    <input type="text" class="itba-aspect" placeholder="項目（例：月収）" value="${esc(data.aspect||'')}">
+    <textarea class="itba-before" placeholder="Before（変化前）">${esc(data.before||'')}</textarea>
+    <textarea class="itba-after" placeholder="After（変化後）">${esc(data.after||'')}</textarea>
+    <button class="intake-rm-btn" onclick="this.closest('.ne-row').remove()">&times;</button>
+  `;
+  document.getElementById('it-ba-rows').appendChild(row);
+}
+function addIntakeStepRow(data = {}) {
+  const row = document.createElement('div');
+  row.className = 'ne-row intake-dynamic-row';
+  row.innerHTML = `
+    <input type="text" class="its-title" placeholder="ステップタイトル" value="${esc(data.title||'')}">
+    <textarea class="its-text" placeholder="説明文">${esc(data.text||'')}</textarea>
+    <button class="intake-rm-btn" onclick="this.closest('.ne-row').remove()">&times;</button>
+  `;
+  document.getElementById('it-step-rows').appendChild(row);
+}
+function addIntakeServiceRow(data = {}) {
+  const row = document.createElement('div');
+  row.className = 'ne-row intake-dynamic-row';
+  row.innerHTML = `
+    <input type="text" class="itsc-title" placeholder="カードタイトル" value="${esc(data.title||'')}">
+    <textarea class="itsc-text" placeholder="説明文">${esc(data.text||'')}</textarea>
+    <button class="intake-rm-btn" onclick="this.closest('.ne-row').remove()">&times;</button>
+  `;
+  document.getElementById('it-service-rows').appendChild(row);
+}
+function addIntakeFAQRow(data = {}) {
+  const row = document.createElement('div');
+  row.className = 'ne-row intake-dynamic-row';
+  row.innerHTML = `
+    <input type="text" class="itfaq-q" placeholder="質問" value="${esc(data.q||'')}">
+    <textarea class="itfaq-a" placeholder="回答">${esc(data.a||'')}</textarea>
+    <button class="intake-rm-btn" onclick="this.closest('.ne-row').remove()">&times;</button>
+  `;
+  document.getElementById('it-faq-rows').appendChild(row);
+}
+
+function collectIntakeData() {
+  const itval = id => document.getElementById(id)?.value.trim() ?? '';
+  return {
+    company: itval('it-company'),
+    slug: itval('it-slug'),
+    category: itval('it-category'),
+    officialUrl: itval('it-official-url'),
+    priceRange: itval('it-price-range'),
+    target: itval('it-target'),
+    troubles: itval('it-troubles'),
+    heroTag: itval('it-hero-tag'),
+    strengths: itval('it-strengths'),
+    differentiation: itval('it-differentiation'),
+    reporterMemo: itval('it-reporter-memo'),
+    storyBackground: itval('it-story-background'),
+    vision: itval('it-vision'),
+    forItems: (itval('it-for-items')||'').split('\n').map(s=>s.trim()).filter(Boolean),
+    notForItems: (itval('it-not-for-items')||'').split('\n').map(s=>s.trim()).filter(Boolean),
+    notForNote: itval('it-not-for-note'),
+    reviews: [...document.querySelectorAll('#it-review-rows .ne-row')].map(r=>({
+      name: r.querySelector('.itr-name')?.value.trim()||'',
+      age: r.querySelector('.itr-age')?.value.trim()||'',
+      stars: parseInt(r.querySelector('.itr-stars')?.value||'5',10),
+      tag: r.querySelector('.itr-tag')?.value.trim()||'',
+      text: r.querySelector('.itr-text')?.value.trim()||''
+    })).filter(r=>r.text),
+    beforeAfterItems: [...document.querySelectorAll('#it-ba-rows .ne-row')].map(r=>({
+      aspect: r.querySelector('.itba-aspect')?.value.trim()||'',
+      before: r.querySelector('.itba-before')?.value.trim()||'',
+      after: r.querySelector('.itba-after')?.value.trim()||''
+    })).filter(r=>r.before&&r.after),
+    steps: [...document.querySelectorAll('#it-step-rows .ne-row')].map(r=>({
+      title: r.querySelector('.its-title')?.value.trim()||'',
+      text: r.querySelector('.its-text')?.value.trim()||''
+    })).filter(r=>r.title),
+    serviceCards: [...document.querySelectorAll('#it-service-rows .ne-row')].map(r=>({
+      icon:'', title: r.querySelector('.itsc-title')?.value.trim()||'',
+      text: r.querySelector('.itsc-text')?.value.trim()||''
+    })).filter(r=>r.title),
+    faqs: [...document.querySelectorAll('#it-faq-rows .ne-row')].map(r=>({
+      q: r.querySelector('.itfaq-q')?.value.trim()||'',
+      a: r.querySelector('.itfaq-a')?.value.trim()||''
+    })).filter(r=>r.q&&r.a)
+  };
+}
+
+function buildAIPrompt(d) {
+  return `あなたは日本語の口コミ・評判メディアの専門ライターです。
+以下の情報をもとに、記事コンテンツをJSON形式で生成してください。
+
+【サービス情報】
+- 企業・サービス名: ${d.company}
+- カテゴリ: ${d.category}
+- 料金・価格帯: ${d.priceRange}
+- ターゲット読者: ${d.target}
+- 読者の悩み: ${d.troubles}
+- サービスの強み・メリット: ${d.strengths}
+- 競合との差別化: ${d.differentiation}
+- 記者の取材メモ: ${d.reporterMemo}
+- 創業・サービスの背景: ${d.storyBackground}
+- ビジョン: ${d.vision}
+
+【出力形式】以下のJSONキーを必ず含めてください:
+{
+  "heroTitle": "ヒーローのメインキャッチコピー（20〜35文字、<br>で改行可）",
+  "heroSub": "ヒーローのサブコピー（30〜50文字）",
+  "oneliner": "記事のワンライナー紹介文（40〜60文字）",
+  "checkItems": ["読者への約束1", "読者への約束2", "読者への約束3"],
+  "reporterNote": "記者コメント（100〜150文字、取材で感じたことを一人称で）",
+  "scoreOverall": 4.5,
+  "scoreDetails": [
+    {"label":"サービス品質","score":4.5},
+    {"label":"サポート体制","score":4.3},
+    {"label":"料金の妥当性","score":4.2},
+    {"label":"使いやすさ","score":4.4}
+  ],
+  "storyHtml": "<p>このサービスにかける想いを2〜3段落のHTMLで。<p>タグのみ使用。</p>",
+  "ctaTitle": "CTAのタイトル（20〜30文字）",
+  "ctaSub": "CTAのサブコピー（30〜50文字）",
+  "ctaBtn": "CTAボタンテキスト（10〜15文字）",
+  "notForNote": "不向きな方へのコメント（30〜50文字）"
+}
+
+日本語で、読者に寄り添いながらも信頼感のある文体で書いてください。`;
+}
+
+async function callOpenAI(prompt) {
+  const apiKey = localStorage.getItem('intake_openai_key') || '';
+  const model = document.getElementById('intake-model')?.value || 'gpt-4o';
+  if (!apiKey) throw new Error('OpenAI API キーが設定されていません');
+  const res = await fetch('https://api.openai.com/v1/chat/completions', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${apiKey}` },
+    body: JSON.stringify({
+      model,
+      response_format: { type: 'json_object' },
+      messages: [{ role: 'user', content: prompt }],
+      temperature: 0.7
+    })
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(()=>({error:{message:'Unknown error'}}));
+    throw new Error(err.error?.message || `API Error: ${res.status}`);
+  }
+  const data = await res.json();
+  return JSON.parse(data.choices[0].message.content);
+}
+
+function applyGeneratedToEditor(intake, generated) {
+  // Basic info
+  const sv = (id, v) => { const el = document.getElementById(id); if (el) el.value = v || ''; };
+  sv('f-slug', intake.slug);
+  sv('f-company', intake.company);
+  sv('f-category', intake.category);
+  sv('f-official-url', intake.officialUrl);
+  sv('f-hero-tag', intake.heroTag || '');
+  sv('f-hero-title', generated.heroTitle || '');
+  sv('f-hero-sub', generated.heroSub || '');
+  sv('f-meta-desc', generated.oneliner || '');
+  sv('f-cta-title', generated.ctaTitle || '');
+  sv('f-cta-sub', generated.ctaSub || '');
+  sv('f-cta-btn', generated.ctaBtn || '');
+  sv('f-not-for-note', generated.notForNote || intake.notForNote || '');
+  sv('f-for-items', intake.forItems.join('\n'));
+  sv('f-not-for-items', intake.notForItems.join('\n'));
+
+  // Story RTE
+  const rte = document.getElementById('f-story-rte');
+  if (rte && generated.storyHtml) rte.innerHTML = generated.storyHtml;
+
+  // Title hint
+  const hint = document.getElementById('ne-title-hint');
+  if (hint) hint.textContent = intake.company || '新規記事';
+
+  // Reviews
+  document.getElementById('reviews-rows').innerHTML = '';
+  reviewCount = 0;
+  const reviewsToUse = intake.reviews.length ? intake.reviews : [];
+  reviewsToUse.forEach((r,i) => addReviewRow({...r, id: i+1}));
+
+  // Steps
+  document.getElementById('steps-rows').innerHTML = '';
+  intake.steps.forEach(s => addStepsRow ? addStepsRow(s) : null);
+
+  // Service cards
+  document.getElementById('service-card-rows').innerHTML = '';
+  intake.serviceCards.forEach(sc => addServiceCardRow ? addServiceCardRow(sc) : null);
+
+  // FAQs
+  document.getElementById('faqs-rows').innerHTML = '';
+  faqCount = 0;
+  intake.faqs.forEach(f => addFaqRow(f));
+
+  // BA text rows
+  buildBATextRows(intake.beforeAfterItems || []);
+
+  // Store extra AI fields for collectFormData
+  window._intakeExtraData = {
+    checkItems: generated.checkItems || [],
+    reporterNote: generated.reporterNote || '',
+    scoreOverall: generated.scoreOverall || null,
+    scoreDetails: generated.scoreDetails || []
+  };
+
+  updateCounts();
+}
+
+async function handleGenerateArticle() {
+  const intake = collectIntakeData();
+  if (!intake.company) { showToast('企業・サービス名を入力してください', 'warning'); return; }
+  if (!intake.slug) { showToast('スラッグを入力してください', 'warning'); return; }
+
+  const btn = document.getElementById('intake-generate-btn');
+  const statusEl = document.getElementById('intake-ai-status');
+  btn.disabled = true;
+  btn.textContent = '生成中…';
+  statusEl.textContent = 'AIが記事コンテンツを生成しています。少々お待ちください…';
+  statusEl.classList.add('show');
+
+  try {
+    const prompt = buildAIPrompt(intake);
+    const generated = await callOpenAI(prompt);
+    applyGeneratedToEditor(intake, generated);
+    showEditor();
+    showToast('AI生成完了！エディタで内容を確認してください', 'success');
+  } catch(e) {
+    showToast(`エラー: ${e.message}`, 'error');
+    statusEl.textContent = `エラー: ${e.message}`;
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'AI で記事を生成';
+    setTimeout(() => statusEl.classList.remove('show'), 5000);
+  }
+}
+
 /* ─── Init ─── */
 document.addEventListener('DOMContentLoaded', () => {
   // Init form defaults
@@ -2170,6 +2675,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const v = document.getElementById('f-company').value.trim();
     document.getElementById('ne-title-hint').textContent = v || '新規記事';
   });
+
+  // Intake view
+  document.getElementById('ai-intake-btn').addEventListener('click', () => {
+    showIntake();
+  });
+  document.getElementById('intake-back-btn').addEventListener('click', () => {
+    if (confirm('ダッシュボードに戻りますか？入力内容は保持されます。')) showDashboard();
+  });
+  document.getElementById('intake-generate-btn').addEventListener('click', handleGenerateArticle);
+  document.getElementById('it-add-review').addEventListener('click', () => addIntakeReviewRow());
+  document.getElementById('it-add-ba').addEventListener('click', () => addIntakeBARow());
+  document.getElementById('it-add-step').addEventListener('click', () => addIntakeStepRow());
+  document.getElementById('it-add-service').addEventListener('click', () => addIntakeServiceRow());
+  document.getElementById('it-add-faq').addEventListener('click', () => addIntakeFAQRow());
+  document.getElementById('intake-save-api-key').addEventListener('click', () => {
+    const key = document.getElementById('intake-api-key').value.trim();
+    if (key) { localStorage.setItem('intake_openai_key', key); showToast('APIキーを保存しました'); }
+    else { localStorage.removeItem('intake_openai_key'); showToast('APIキーを削除しました'); }
+  });
+  // Restore saved API key
+  const savedKey = localStorage.getItem('intake_openai_key');
+  if (savedKey) document.getElementById('intake-api-key').value = savedKey;
+  // Default intake rows
+  addIntakeReviewRow();
+  addIntakeStepRow();
+  addIntakeServiceRow();
+  addIntakeFAQRow();
 
   // Start on dashboard
   showDashboard();
