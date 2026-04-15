@@ -402,7 +402,16 @@ function buildArticleHTML(a) {
 
   return `
     <!-- 01 HERO -->
-    <section class="hero${a.heroImg ? ' hero--with-img' : ''}" aria-labelledby="hero-heading"${a.heroImg ? ` style="background-image:linear-gradient(rgba(30,42,80,0.72),rgba(30,42,80,0.72)),url('${esc(a.heroImg)}')"` : ''}>
+    <section class="hero${a.heroImg ? ' hero--with-img' : ''}" aria-labelledby="hero-heading"${a.heroImg ? ` style="background-image:linear-gradient(rgba(11,26,53,0.78),rgba(14,45,90,0.78)),url('${esc(a.heroImg)}')"` : ''}>
+
+      <!-- ブランドバー -->
+      <div class="hero-brand-bar" aria-hidden="true">
+        <span class="hero-brand-name">みんなの評判<em>.com</em></span>
+        <div class="hero-brand-sep"></div>
+        <span class="hero-brand-tagline">第三者記者が書く、企業評判メディア</span>
+      </div>
+
+      <!-- メインコンテンツ -->
       <div class="hero-inner">
         <div class="hero-news-label">楽天・ニコニコ・エキサイトなど大手ネットニュースで話題の企業を第三者記者が取材</div>
         <span class="hero-tag" aria-label="注目情報">${esc(a.heroTag || '第三者記者が直接取材しました')}</span>
