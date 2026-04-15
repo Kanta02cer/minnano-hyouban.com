@@ -540,7 +540,11 @@ function buildArticleHTML(a) {
       <div class="container">
         <h2 class="section-title" id="reviews-heading">ユーザーの声・口コミ</h2>
         <p class="section-sub">実際にサービスを利用した方からのリアルな口コミをお届けします</p>
-        <div class="reviews-grid" id="reviews-grid" aria-label="レビュー一覧" role="list"></div>
+      </div>
+      <div class="reviews-carousel-wrap">
+        <div class="swiper swiper-reviews">
+          <div class="swiper-wrapper" id="reviews-grid" aria-label="レビュー一覧" role="list"></div>
+        </div>
       </div>
     </section>
 
@@ -655,28 +659,29 @@ function buildArticleHTML(a) {
 ============================================================ */
 function renderReviewsInArticle(list) {
   const grid = document.getElementById('reviews-grid');
-  if (!grid) return;
+  if (!grid || !list.length) return;
 
   list.forEach((r) => {
-    const card = document.createElement('article');
-    card.className = 'review-card';
-    card.setAttribute('role', 'listitem');
-    card.setAttribute('aria-label', `${esc(r.name)}さんのレビュー`);
+    const slide = document.createElement('div');
+    slide.className = 'swiper-slide';
+    slide.setAttribute('role', 'listitem');
 
-    card.innerHTML = `
-      <div class="review-card-header">
-        <div class="review-avatar" aria-hidden="true">${esc(r.name.charAt(0))}</div>
-        <div class="review-meta">
-          <p class="review-name">${esc(r.name)}</p>
-          <p class="review-age">${esc(r.age)}</p>
+    slide.innerHTML = `
+      <article class="review-card" aria-label="${esc(r.name)}さんのレビュー">
+        <div class="review-card-header">
+          <div class="review-avatar" aria-hidden="true">${esc(r.name.charAt(0))}</div>
+          <div class="review-meta">
+            <p class="review-name">${esc(r.name)}</p>
+            <p class="review-age">${esc(r.age)}</p>
+          </div>
+          <span class="review-tag">${esc(r.tag)}</span>
         </div>
-        <span class="review-tag">${esc(r.tag)}</span>
-      </div>
-      <p class="review-stars" aria-label="評価：${r.stars}点（5点満点）">${starsHTML(r.stars)}</p>
-      <p class="review-text">${esc(r.text)}</p>
+        <p class="review-stars" aria-label="評価：${r.stars}点（5点満点）">${starsHTML(r.stars)}</p>
+        <p class="review-text">${esc(r.text)}</p>
+      </article>
     `;
 
-    grid.appendChild(card);
+    grid.appendChild(slide);
   });
 }
 
@@ -840,6 +845,26 @@ function initSwipers() {
       navigation: { nextEl: '.swiper-ba .swiper-button-next', prevEl: '.swiper-ba .swiper-button-prev' },
       breakpoints: { 768: { slidesPerView: 2 } },
       a11y: { prevSlideMessage: '前のスライド', nextSlideMessage: '次のスライド' }
+    });
+  }
+  if (document.querySelector('.swiper-reviews')) {
+    new Swiper('.swiper-reviews', {
+      loop: true,
+      autoplay: {
+        delay: 3800,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+      },
+      speed: 700,
+      grabCursor: true,
+      slidesPerView: 1.15,
+      spaceBetween: 16,
+      breakpoints: {
+        600:  { slidesPerView: 1.8, spaceBetween: 20 },
+        900:  { slidesPerView: 2.4, spaceBetween: 24 },
+        1200: { slidesPerView: 3,   spaceBetween: 28 },
+      },
+      a11y: { prevSlideMessage: '前の口コミ', nextSlideMessage: '次の口コミ' }
     });
   }
 }

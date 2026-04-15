@@ -975,19 +975,37 @@ ul, ol {
   background: var(--color-bg);
 }
 
-.reviews-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
+/* カルーセルラッパー — コンテナ外まで広げて没入感を出す */
+.reviews-carousel-wrap {
   margin-top: 32px;
+  padding: 4px 0 16px;
+  overflow: hidden;
+}
+.swiper-reviews {
+  padding: 4px 24px 8px !important;
+  overflow: visible !important;
+}
+/* スライド内のカードが等高になるよう stretch */
+.swiper-reviews .swiper-slide {
+  height: auto;
 }
 
 .review-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   background: var(--color-white);
   border-left: 3px solid var(--color-review);
   border-radius: 0 var(--radius-md) var(--radius-md) 0;
   padding: 20px;
   box-shadow: var(--shadow-card);
+  transition: box-shadow 0.2s;
+}
+.review-card:hover {
+  box-shadow: 0 6px 24px rgba(0,0,0,0.1);
+}
+.review-text {
+  flex: 1;
 }
 
 .review-card-header {
@@ -1599,10 +1617,6 @@ ul, ol {
 @media (min-width: 768px) {
   .hamburger { display: none; }
   .nav-desktop { display: block; }
-
-  .reviews-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
 
   .service-grid {
     grid-template-columns: repeat(4, 1fr);
