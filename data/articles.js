@@ -186,8 +186,8 @@ window.ARTICLES = [
     heroImg:  "images/taskul/fv.png",
     company:  "TASKUL（株式会社フリーカンパニー）",
     category: "ライフスタイル",
-    publishedAt: "2026-04-17",
-    updatedAt:   "2026-04-17",
+    publishedAt: "2026-04-15",
+    updatedAt:   "2026-04-15",
 
     oneliner:  "フリーランスの'あれ、依頼どこに来てたっけ？'をゼロにする——自社の制作現場で毎日使いながら作られた、クリエイターのためのAIタスク管理ツール。",
 
