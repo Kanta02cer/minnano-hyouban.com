@@ -204,7 +204,7 @@
         <img src="${thumb}" alt="${a.company || ''}のサムネイル" class="article-card-thumb" loading="lazy">
         <div class="article-card-body">
           <span class="article-card-tag">${normalizeCategory(a.category)}</span>
-          <h2 class="article-card-title">${a.heroTitle ? a.heroTitle.replace(/<br\s*\/?>/gi, '') : (a.company || '') + 'の評判を徹底調査'}</h2>
+          <h2 class="article-card-title">${a.heroTitle ? a.heroTitle.replace(/<br\s*\/?>/gi, '').replace(/[\s　]*[|｜]\s*みんなの評判\.com\s*$/i, '') : (a.company || '') + 'の評判を徹底調査'}</h2>
           <div class="article-card-meta">
             <span>記者：${a.editorName ? a.editorName.replace('記者：', '') : '漆沢 祐樹'}</span>
             <span>${a.publishedAt || ''}</span>

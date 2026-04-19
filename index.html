@@ -488,7 +488,7 @@
     }
     function fmtDate(d) { return (d || '').replace(/-/g, '.'); }
     function displayTitle(t) {
-      return (t || '').replace(/ \| みんなの評判\.com$/i, '').replace(/<br\s*\/?>/gi, '');
+      return (t || '').replace(/[\s　]*[|｜]\s*みんなの評判\.com\s*$/i, '').replace(/<br\s*\/?>/gi, '');
     }
     function editorShortName(name) { return (name || '').replace(/^記者[：:]\s*/, ''); }
     function catClass(cat) {
