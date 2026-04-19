@@ -888,7 +888,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .featured-img-wrap {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 16/10;
+  aspect-ratio: 16/9;
 }
 .featured-img-wrap img {
   width: 100%;
@@ -1810,7 +1810,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     border-top: 3px solid var(--gold);
   }
   .upcoming-hero-body { padding: 28px 28px; }
-  .featured-img-wrap { aspect-ratio: 16/7; }
+  .featured-img-wrap { aspect-ratio: 16/9; }
 
   .howto-grid { grid-template-columns: 1fr; }
   .howto-step + .howto-step { border-left: none; border-top: 1px solid var(--border); }
