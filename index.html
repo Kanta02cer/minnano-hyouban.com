@@ -534,27 +534,23 @@
 
     function renderFeaturedPlaceholder() {
       return `
-        <article class="featured-card featured-card--upcoming anim-up" aria-label="準備中の注目記事">
-          <div class="upcoming-hero">
-            <img src="images/photos/5.jpg" alt="" class="upcoming-hero-bg" aria-hidden="true" loading="lazy">
-            <div class="upcoming-hero-overlay" aria-hidden="true">
-              <div class="upcoming-scan-line"></div>
+        <article class="featured-card featured-card--wip anim-up" aria-label="デザイン作成中">
+          <div class="wip-featured">
+            <div class="wip-featured-deco" aria-hidden="true">
+              <span class="wip-circle wip-circle--1"></span>
+              <span class="wip-circle wip-circle--2"></span>
+              <span class="wip-line wip-line--1"></span>
+              <span class="wip-line wip-line--2"></span>
             </div>
-            <div class="upcoming-hero-body">
-              <div class="upcoming-live-badge">
-                <span class="upcoming-live-dot"></span>REPORTING
+            <div class="wip-featured-content">
+              <div class="wip-pencil-icon" aria-hidden="true">
+                <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/>
+                  <line x1="15" y1="5" x2="19" y2="9"/>
+                </svg>
               </div>
-              <p class="upcoming-hero-title">注目記事を取材中</p>
-              <p class="upcoming-hero-sub">記者・漆沢が現在複数の企業を直接取材中です。<br>近日、第三者評判レポートを公開予定。</p>
-              <div class="upcoming-progress-wrap" aria-label="取材進捗">
-                <div class="upcoming-progress-label">
-                  <span>取材進捗</span><span class="upcoming-progress-pct">取材中…</span>
-                </div>
-                <div class="upcoming-progress-bar"><div class="upcoming-progress-fill"></div></div>
-              </div>
-              <div class="upcoming-dots" aria-hidden="true">
-                <span></span><span></span><span></span>
-              </div>
+              <p class="wip-main-text">オリジナルデザインで作成中</p>
+              <span class="wip-cursor" aria-hidden="true"></span>
             </div>
           </div>
         </article>`;
@@ -587,38 +583,21 @@
         </article>`;
     }
 
-    const UPCOMING_CATS  = ['キャリア・転職', '美容・健康', 'マネー・投資'];
-    const UPCOMING_IMGS  = ['images/photos/6.jpg', 'images/photos/3.jpg', 'images/photos/8.jpg'];
-    const UPCOMING_TEXTS = [
-      '転職・キャリア系サービスの評判を取材中',
-      '美容・健康サービスの評判を取材中',
-      '資産運用・投資サービスの評判を取材中',
-    ];
     function renderUpcoming(idx) {
-      const cat  = UPCOMING_CATS[idx % UPCOMING_CATS.length];
-      const img  = UPCOMING_IMGS[idx % UPCOMING_IMGS.length];
-      const text = UPCOMING_TEXTS[idx % UPCOMING_TEXTS.length];
       return `
-        <article class="article-item article-item--upcoming anim-up" role="listitem" aria-label="取材進行中の記事">
-          <div class="article-item-link article-upcoming-inner">
-            <figure class="article-thumb article-thumb--upcoming-photo">
-              <img src="${img}" alt="" loading="lazy">
-              <div class="article-thumb-upcoming-overlay" aria-hidden="true">
-                <div class="aup-scan"></div>
+        <article class="article-item article-item--wip anim-up" role="listitem" aria-label="デザイン作成中">
+          <div class="article-wip-card">
+            <figure class="article-thumb article-thumb--wip">
+              <div class="wip-thumb-deco" aria-hidden="true">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/>
+                  <line x1="15" y1="5" x2="19" y2="9"/>
+                </svg>
               </div>
-              <span class="aup-badge"><span class="aup-pulse"></span>取材中</span>
             </figure>
-            <div class="article-body">
-              <span class="article-category ${catClass(cat)}">${cat}</span>
-              <h3 class="article-title aup-title">${text}</h3>
-              <div class="aup-progress-wrap">
-                <div class="aup-progress-bar"><div class="aup-progress-fill"></div></div>
-                <span class="aup-progress-text">取材進行中</span>
-              </div>
-              <div class="article-meta">
-                <span class="meta-author">漆沢 祐樹</span>
-                <span class="aup-soon-label">近日公開</span>
-              </div>
+            <div class="article-body wip-list-body">
+              <p class="wip-list-text">オリジナルデザインで作成中</p>
+              <span class="wip-list-cursor" aria-hidden="true"></span>
             </div>
           </div>
         </article>`;
