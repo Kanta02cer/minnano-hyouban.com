@@ -176,7 +176,7 @@ window.__POST_2221437250750372 = {
   ],
   beforeAfterTitle: "MIRACLE PILLOW使用前・使用後のイメージ",
 
-  officialUrl: "#",
+  officialUrl: "https://miraclepillow.top",
   ctaTitle:    "MIRACLE PILLOWが気になった方へ",
   ctaSub:      "構造の説明・価格・購入方法・開発ストーリーはMakuakeの公式ページで詳しく確認できます。気になる方はまず公式情報をチェックしてみましょう。",
   ctaBtn:      "公式ページで詳しく見る →"
