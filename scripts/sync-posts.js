@@ -3,9 +3,14 @@
  * ================================================================
  *  みんなの評判.com — _post/ 自動同期スクリプト
  *
- *  _post/*.js を自動検出し、以下を更新する：
+ *  _post/ 以下を再帰的にスキャンして .js ファイルを検出し、
+ *  以下を自動更新する：
  *    1. data/articles.js の __ALL_POST_KEYS 配列
  *    2. index.html / article.html / articles.html の <script> タグ
+ *
+ *  ディレクトリ構成例（どちらも対応）:
+ *    _post/1234567890123456-company.js          ← ルート直下
+ *    _post/CompanyName/1234567890123456-company.js  ← サブディレクトリ
  *
  *  GitHub Actions（deploy.yml）から compile-drafts の前に実行される。
  *  ローカルでも `node scripts/sync-posts.js` で手動実行可能。
@@ -21,32 +26,54 @@ const POST_DIR    = path.join(ROOT, '_post');
 const ARTICLES_JS = path.join(ROOT, 'data', 'articles.js');
 const HTML_FILES  = ['index.html', 'article.html', 'articles.html'].map(f => path.join(ROOT, f));
 
-// ── 1. _post/*.js を検出（ルート直下のみ）─────────────────────────
-const postFiles = fs.existsSync(POST_DIR)
-  ? fs.readdirSync(POST_DIR)
-      .filter(f => f.endsWith('.js'))
-      .sort()
-  : [];
+// ── 1. _post/ を再帰スキャンして .js ファイルを収集 ──────────────────
+function collectPostFiles(dir, baseDir) {
+  if (!fs.existsSync(dir)) return [];
+  const results = [];
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (entry.name.startsWith('.')) continue; // .DS_Store 等を除外
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      results.push(...collectPostFiles(fullPath, baseDir));
+    } else if (entry.name.endsWith('.js')) {
+      // _post/ からの相対パス（HTMLのsrc属性に使用）
+      const relPath = path.relative(baseDir, fullPath).replace(/\\/g, '/');
+      results.push({ relPath, filename: entry.name });
+    }
+  }
+  return results;
+}
 
-if (postFiles.length === 0) {
+const allPostFiles = collectPostFiles(POST_DIR, path.join(ROOT)).sort((a, b) =>
+  a.filename.localeCompare(b.filename)
+);
+
+if (allPostFiles.length === 0) {
   console.log('_post/ に .js ファイルがありません。スキップします。');
   process.exit(0);
 }
 
-// slug = ファイル名から最初の "-" の前の数字部分
+// slug = ファイル名の先頭の連続する数字
 function slugFromFilename(filename) {
   const m = filename.match(/^(\d+)/);
   return m ? m[1] : filename.replace(/\.js$/, '');
 }
 
-const posts = postFiles.map(f => ({
-  filename: f,
-  slug: slugFromFilename(f),
-  key: `__POST_${slugFromFilename(f)}`,
-}));
+// スラッグが重複する場合は先に見つかったもの（ルート優先→アルファベット順）を使用
+const seenSlugs = new Set();
+const posts = [];
+for (const f of allPostFiles) {
+  const slug = slugFromFilename(f.filename);
+  if (seenSlugs.has(slug)) {
+    console.warn(`⚠ slug重複をスキップ: ${f.relPath} (slug=${slug})`);
+    continue;
+  }
+  seenSlugs.add(slug);
+  posts.push({ ...f, slug, key: `__POST_${slug}` });
+}
 
 console.log(`検出した _post ファイル (${posts.length}件):`);
-posts.forEach(p => console.log(`  ${p.filename}  →  ${p.key}`));
+posts.forEach(p => console.log(`  ${p.relPath}  →  ${p.key}`));
 
 // ── 2. data/articles.js の __ALL_POST_KEYS を更新 ──────────────────
 if (!fs.existsSync(ARTICLES_JS)) {
@@ -56,11 +83,10 @@ if (!fs.existsSync(ARTICLES_JS)) {
 
 let articlesContent = fs.readFileSync(ARTICLES_JS, 'utf8');
 
-// __ALL_POST_KEYS = [ ... ] ブロックを丸ごと置換
 const keysLines = posts
   .map((p, i) => {
     const comma = i < posts.length - 1 ? ',' : '';
-    const label = p.filename.replace(/\.js$/, '');
+    const label = p.relPath.replace(/\.js$/, '');
     return `  "${p.key}"${comma}   // ${label}`;
   })
   .join('\n');
@@ -73,7 +99,6 @@ if (/const __ALL_POST_KEYS\s*=\s*\[[\s\S]*?\];/.test(articlesContent)) {
     newKeysBlock
   );
 } else {
-  // ブロックが見つからない場合は先頭に追記
   articlesContent = newKeysBlock + '\n\n' + articlesContent;
 }
 
@@ -83,7 +108,7 @@ console.log('✅ data/articles.js の __ALL_POST_KEYS を更新しました。')
 // ── 3. HTML ファイルの <script> タグを更新 ───────────────────────────
 const newScriptBlock =
   '  <!-- 個別記事データ（_post/） -->\n' +
-  posts.map(p => `  <script src="_post/${p.filename}"></script>`).join('\n');
+  posts.map(p => `  <script src="${p.relPath}"></script>`).join('\n');
 
 for (const htmlPath of HTML_FILES) {
   if (!fs.existsSync(htmlPath)) {
@@ -94,7 +119,6 @@ for (const htmlPath of HTML_FILES) {
   let html = fs.readFileSync(htmlPath, 'utf8');
 
   // 既存の _post コメント行と続く <script src="_post/..."> 行を全て削除
-  // コメントの末尾スペース有無を \s* で吸収する
   html = html.replace(
     /[ \t]*<!--\s*個別記事データ（_post\/）\s*-->\n([ \t]*<script src="_post\/[^"]+"><\/script>\n)*/g,
     ''
