@@ -19,7 +19,7 @@ const vm = require('vm');
 
 const ROOT = path.resolve(__dirname, '..');
 const DRAFTS_DIR = path.join(ROOT, '_drafts');
-const TEMPLATE_JSON = path.join(ROOT, 'article-template.json');
+const TEMPLATE_JSON = path.join(ROOT, 'docs', 'article-template.json');
 const ARTICLES_JS = path.join(ROOT, 'data', 'articles.js');
 
 const { generateSlugFromCategory } = require('./id-from-category');
