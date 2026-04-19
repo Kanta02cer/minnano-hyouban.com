@@ -246,6 +246,19 @@ function buildArticleHTML(a) {
     </div>
   `).join('');
 
+  // Media clips (news articles)
+  const mediaClipsHTML = Array.isArray(a.mediaClips) && a.mediaClips.length > 0
+    ? `<ul class="media-clips" role="list" aria-label="ニュース掲載一覧">
+        ${a.mediaClips.map(clip => `
+          <li class="media-clip-item">
+            <span class="media-clip-source">${esc(clip.media || '')}</span>
+            <a href="${esc(clip.url || '#')}" target="_blank" rel="noopener noreferrer" class="media-clip-link">${esc(clip.title || '')}</a>
+            ${clip.date ? `<time class="media-clip-date" datetime="${esc(clip.date)}">${esc(clip.date)} 配信</time>` : ''}
+          </li>
+        `).join('')}
+       </ul>`
+    : '';
+
   // Story paragraphs — prefer storyHtml (rich text) over legacy storyText array
   const storyParas = a.storyHtml
     ? a.storyHtml
@@ -402,7 +415,15 @@ function buildArticleHTML(a) {
 
   return `
     <!-- 01 HERO -->
-    <section class="hero${a.heroImg ? ' hero--with-img' : ''}" aria-labelledby="hero-heading"${a.heroImg ? ` style="background-image:linear-gradient(rgba(11,26,53,0.78),rgba(14,45,90,0.78)),url('${esc(a.heroImg)}')"` : ''}>
+    <section class="hero hero--premium" aria-labelledby="hero-heading" data-category="${esc(a.category || '')}">
+
+      <!-- 装飾レイヤー -->
+      <div class="hero-deco-ring hero-deco-ring--1" aria-hidden="true"></div>
+      <div class="hero-deco-ring hero-deco-ring--2" aria-hidden="true"></div>
+      <div class="hero-deco-line hero-deco-line--1" aria-hidden="true"></div>
+      <div class="hero-deco-line hero-deco-line--2" aria-hidden="true"></div>
+      <div class="hero-deco-dots" aria-hidden="true"></div>
+      <div class="hero-glow" aria-hidden="true"></div>
 
       <!-- ブランドバー -->
       <div class="hero-brand-bar" aria-hidden="true">
@@ -493,6 +514,7 @@ function buildArticleHTML(a) {
       <div class="container">
         <h2 class="section-title" id="media-heading">メディア掲載実績</h2>
         <div class="media-logos" role="list" aria-label="掲載メディア一覧">${mediaLogos}</div>
+        ${mediaClipsHTML}
       </div>
     </section>
 
@@ -1007,10 +1029,31 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Update page meta
-  document.title = `${article.company}の口コミ・評判 | みんなの評判.com`;
+  // article.title が設定されていればそちらを優先（SEO最適化済みタイトル）
+  document.title = article.title || `${article.company}の口コミ・評判 | みんなの評判.com`;
   setMeta('description', article.metaDesc || '');
   setMeta('og:title', article.title || '', 'property');
   setMeta('og:description', article.metaDesc || '', 'property');
+
+  // canonical URL を動的に設定
+  let canonicalEl = document.querySelector('link[rel="canonical"]');
+  if (!canonicalEl) {
+    canonicalEl = document.createElement('link');
+    canonicalEl.rel = 'canonical';
+    document.head.appendChild(canonicalEl);
+  }
+  canonicalEl.href = `https://minnano-hyouban.com/article.html?id=${encodeURIComponent(article.slug || '')}`;
+
+  // keywords メタ（補助的SEOシグナル）
+  if (article.company) {
+    const companyClean = article.company.replace(/[（）\(\)]/g, ' ').trim();
+    const keywords = [companyClean, '口コミ', '評判', article.category || '', 'みんなの評判.com'].filter(Boolean).join(',');
+    setMeta('keywords', keywords);
+  }
+
+  // og:url を正規化
+  setMeta('og:url', `https://minnano-hyouban.com/article.html?id=${encodeURIComponent(article.slug || '')}`, 'property');
+
   function ogImageAbsolute(u) {
     const path = u || PLACEHOLDER_IMG.og;
     try {

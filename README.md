@@ -44,9 +44,8 @@
 | `article.html`（`?id=` 付き） | 記事詳細（データ駆動） |
 | `editor.html` | 記者紹介 |
 | `privacy.html` / `disclaimer.html` | 法務 |
-| `top.html` | `index.html` へリダイレクト（旧URL互換） |
 
-グローバルナビ（本番系）は **記事一覧 → `articles.html`、記者紹介 → `editor.html`、取材依頼 → `index.html#contact`** で統一しています。`admin.html`・`article-format.html`・`design-1`〜`3` は運用・内部用であり、`robots.txt` でインデックス対象外です。
+グローバルナビ（本番系）は **記事一覧 → `articles.html`、記者紹介 → `editor.html`、取材依頼 → `index.html#contact`** で統一しています。
 
 ---
 
@@ -108,57 +107,47 @@ Actions が正常に完了すると、`https://<YOUR_USERNAME>.github.io/minnano
 
 ## 3. 記事の追加方法
 
-### 方法A：CLIスクリプト（推奨）
+記事データは `_post/` ディレクトリに企業ごとの個別ファイルとして管理されています。
 
-対話形式で必要事項を入力するだけで `data/articles.js` に記事が追加されます。
+### 手順
+
+#### ① `_post/` に記事ファイルを作成
 
 ```bash
-node scripts/add-article.js
-# または
-npm run add-article
+# ファイル名: <slug>-<企業名>.js
+# 例: _post/1234567890123456-new-service.js
 ```
 
-**入力項目：**
-
-| 項目 | 説明 | 必須 |
-|---|---|---|
-| スラッグ | URL識別子（例: `abc-service`） | 必須 |
-| 企業・サービス名 | 記事に掲載する企業名 | 必須 |
-| カテゴリ | 1〜5の番号で選択 | 必須 |
-| 公開日 | YYYY-MM-DD 形式（省略で今日） | 推奨 |
-| ヒーロータイトル | h1見出し（省略で自動生成） | 推奨 |
-| サブコピー | 記事概要・エクサープト | 推奨 |
-| 公式サイトURL | CTAボタンのリンク先 | 推奨 |
-
-スクリプト実行後、レビュー・FAQ・ギャラリーは `data/articles.js` を直接編集して追加します。
-
-### 方法B：admin.html（ブラウザ）
-
-1. ブラウザで `admin.html` を開く
-2. フォームに全項目を入力
-3. **「コードを生成」** ボタンをクリック
-4. 生成されたコードを `data/articles.js` の配列末尾（コメントの直前）に貼り付け
-
-### 方法C：data/articles.js を直接編集
-
-`data/articles.js` を開き、配列の末尾のコメントブロックの直前に記事オブジェクトを追加します。
+ファイル内で以下の形式でデータを定義します：
 
 ```javascript
-window.ARTICLES = [
-  { ...既存記事1... },
-  { ...既存記事2... },
+window.__POST_1234567890123456 = {
+  slug: "1234567890123456",
+  company: "新サービス",
+  category: "キャリア・転職",
+  // ...その他フィールド（下記セクション参照）
+};
+```
 
-  // ↓ ここに追加（カンマを忘れずに）
-  ,{
-    slug: "new-service",
-    company: "新サービス",
-    category: "キャリア・転職",
-    // ...その他フィールド
-  }
+#### ② `data/articles.js` にキーを追加
+
+```javascript
+const __ALL_POST_KEYS = [
+  "__POST_1794482170414453",   // SenoRich
+  "__POST_2252563132716439",   // TASKUL
+  "__POST_1234567890123456"    // ← 新規追加
 ];
 ```
 
-追加後、必ず検証スクリプトを実行してください：
+#### ③ HTMLファイルにスクリプトタグを追加
+
+`index.html`・`article.html`・`articles.html`・`editor.html` の `<!-- 個別記事データ -->` セクションに追加：
+
+```html
+<script src="_post/1234567890123456-new-service.js"></script>
+```
+
+#### ④ 検証
 
 ```bash
 npm run validate
@@ -233,38 +222,42 @@ minnano-hyouban/
 │   └── workflows/
 │       └── deploy.yml          # GitHub Pages 自動デプロイ設定
 │
+├── _post/                      # 企業別の記事データ（1ファイル = 1記事）
+│   ├── 1794482170414453-senorich.js
+│   └── 2252563132716439-taskul.js
+│
 ├── data/
-│   └── articles.js             # 記事データストア（window.ARTICLES = [...]）
+│   └── articles.js             # 記事データ集約ローダー（_post/ を window.ARTICLES に統合）
 │
 ├── scripts/
 │   ├── add-article.js          # 記事追加 CLI スクリプト
 │   └── validate-articles.js    # 記事データ検証スクリプト
 │
-├── docs/
+├── docs/                       # 運用ドキュメント・内部資料
 │   ├── outbound-tracking-guide.md   # 公式サイト遷移の計測（GA4・UTM）
 │   ├── article-field-mapping.md     # 取材項目 ↔ articles.js 対応表
+│   ├── article-format.html          # 記事投稿フォーマットガイド
+│   ├── article-template.json        # 新規記事のデフォルトテンプレート
 │   ├── hearing-sheet.md             # ヒアリングシート（1枚）
 │   ├── prompts/
 │   │   └── article-ai-prompt-template.md  # AIドラフト用プロンプト型
 │   ├── operations-runbook.md        # 公開・請求・運用契約メモ
 │   ├── legal-ga-utm-checklist.md    # PR・GA・UTM・クレーム表示チェック
+│   ├── framework.csv / .xlsx        # 設計フレームワーク
 │   └── next-steps-from-meeting.md   # 議事録ベースの次タスクガイド
+│
 ├── js/
 │   └── site-analytics.js            # トップ等の GA4 読み込み（記事は article-renderer.js）
 ├── images/                     # 記事用画像（`images/README.md` に必要素材の一覧あり）
 │
 ├── index.html                  # トップページ（正規トップ・ヒーロー・記事抜粋）
 ├── index.css                   # トップページ CSS
-├── top.html                    # index.html へリダイレクト（旧URL・ブックマーク互換）
-├── top.css                     # 旧トップデザイン用 CSS（参照用に残置）
 ├── articles.html               # 記事一覧ページ
 ├── article.html                # 記事個別ページ（?id=<slug> で動的描画）
 ├── article-renderer.js         # 記事個別ページのレンダリング・GA4・公式URLのUTM
-├── admin.html                  # 記事管理画面（ブラウザで開いて使用）
-├── style.css                   # articles.html / article.html / admin.html 共通 CSS
+├── style.css                   # articles.html / article.html 共通 CSS
 ├── main.js                     # メイン JS（レビュー・FAQ 等）
 │
-├── article-template.json       # 新規記事のデフォルトテンプレート
 ├── package.json                # Node.js プロジェクト設定
 └── README.md                   # このファイル
 ```

@@ -4,17 +4,9 @@
 User-agent: *
 Allow: /
 
-# 管理・デザイン検証・内部用ページはクロール不要
+# 管理・内部用はクロール不要
 Disallow: /scripts/
-Disallow: /_drafts/
-Disallow: /admin.html
-Disallow: /admin/
-Disallow: /login.html
-Disallow: /article-format.html
-Disallow: /design-1/
-Disallow: /design-2/
-Disallow: /design-3/
-Disallow: /top.html
+Disallow: /docs/
 
 # Sitemap
 Sitemap: https://minnano-hyouban.com/sitemap.xml
