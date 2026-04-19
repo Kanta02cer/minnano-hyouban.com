@@ -31,6 +31,9 @@ jobs:
           ref: main
           fetch-depth: 0
 
+      - name: Sync _post/*.js → data/articles.js & HTML script tags
+        run: node scripts/sync-posts.js
+
       - name: Compile published drafts (_drafts → data/articles.js)
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
@@ -44,7 +47,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/articles.js
+          git add data/articles.js index.html article.html articles.html
           if git diff --staged --quiet; then
             echo "articles.js に変更なし。スキップします。"
           else
