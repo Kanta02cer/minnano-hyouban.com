@@ -93,21 +93,22 @@ for (const htmlPath of HTML_FILES) {
 
   let html = fs.readFileSync(htmlPath, 'utf8');
 
-  // <!-- 個別記事データ（_post/） --> ブロック全体を置換
-  const blockRe = /[ \t]*<!-- 個別記事データ（_post\/）-->[\s\S]*?(?=\n[ \t]*<!-- (?!個別記事)|\n[ \t]*<script(?! src="_post\/)|\n[ \t]*<\/body)/;
+  // 既存の _post コメント行と続く <script src="_post/..."> 行を全て削除
+  // コメントの末尾スペース有無を \s* で吸収する
+  html = html.replace(
+    /[ \t]*<!--\s*個別記事データ（_post\/）\s*-->\n([ \t]*<script src="_post\/[^"]+"><\/script>\n)*/g,
+    ''
+  );
 
-  if (/<!-- 個別記事データ（_post\/）-->/.test(html)) {
-    // コメントと直後の <script src="_post/..."> 行群をまとめて置換
-    html = html.replace(
-      /([ \t]*<!-- 個別記事データ（_post\/）-->)([\s\S]*?)(?=\n[ \t]*<!-- (?!個別記事)|\n[ \t]*<script(?! src="_post\/)|\n[ \t]*<\/body)/,
-      newScriptBlock
-    );
-  } else {
-    // ブロックが無い場合: data/articles.js の <script> 行の直前に挿入
+  // data/articles.js の <script> 行の直前に新しいブロックを挿入
+  if (html.includes('<script src="data/articles.js">')) {
     html = html.replace(
       /([ \t]*<script src="data\/articles\.js"><\/script>)/,
       `${newScriptBlock}\n  $1`
     );
+  } else {
+    console.warn(`⚠ ${path.basename(htmlPath)}: data/articles.js の script タグが見つかりません。末尾に追記します。`);
+    html = html.replace('</body>', `${newScriptBlock}\n</body>`);
   }
 
   fs.writeFileSync(htmlPath, html, 'utf8');
