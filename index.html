@@ -616,7 +616,7 @@
 
       const listEl = document.getElementById('article-list-container');
       if (listEl) {
-        const listArts = articles.slice(1, 4);
+        const listArts = articles.slice(0, 3);
         const needed   = Math.max(0, 3 - listArts.length);
         const items    = listArts.map(a => renderArticleItem(a)).join('');
         const upcoming = Array.from({ length: needed }, (_, i) => renderUpcoming(i)).join('');

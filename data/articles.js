@@ -37,7 +37,8 @@ const __ALL_POST_KEYS = [
   "__POST_2252563132716439"   // _post/TASKUL/2252563132716439-taskul
 ];
 
-// 個別ファイルから読み込んだデータを集約
+// 個別ファイルから読み込んだデータを集約（publishedAt 降順でソート）
 window.ARTICLES = __ALL_POST_KEYS
   .map(key => window[key])
-  .filter(Boolean);
+  .filter(Boolean)
+  .sort((a, b) => (b.publishedAt || '').localeCompare(a.publishedAt || ''));
