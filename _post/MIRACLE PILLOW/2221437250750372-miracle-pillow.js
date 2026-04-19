@@ -7,7 +7,7 @@
 window.__POST_2221437250750372 = {
   slug: "2221437250750372",
 
-  title:    "MIRACLE PILLOWの口コミ・評判 | みんなの評判.com",
+  title:    "MIRACLE PILLOWの口コミ評判｜みんなの評判.com",
   metaDesc: "MIRACLE PILLOWが気になっている方へ。実際に使っている人の口コミ・評判を記者がまとめました。6つのAIRが動く電動ピローの特徴・開発背景・購入前の判断材料をわかりやすく解説。",
   ogImage:  "images/placeholders/og-beauty.svg",
   company:  "MIRACLE PILLOW（株式会社TVC）",

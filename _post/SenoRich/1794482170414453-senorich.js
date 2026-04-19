@@ -7,7 +7,7 @@
 window.__POST_1794482170414453 = {
   slug: "1794482170414453",
 
-  title:    "SenoRich（Nジェネレーション株式会社）の口コミ評判 | みんなの評判.com",
+  title:    "SenoRich（Nジェネレーション株式会社）の口コミ評判｜みんなの評判.com",
   metaDesc: "SenoRichが気になっている方へ。実際に使っている人の口コミ・評判を記者がまとめました。成分の安全性・効果・購入前の注意点をわかりやすく解説。",
   ogImage:  "images/placeholders/og-beauty.svg",
   company:  "SenoRich（Nジェネレーション株式会社）",
