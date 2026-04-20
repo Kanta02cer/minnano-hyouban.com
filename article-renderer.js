@@ -424,7 +424,7 @@ function buildArticleHTML(a) {
 
       <!-- メインコンテンツ -->
       <div class="hero-inner">
-        <span class="hero-tag" aria-label="注目情報">${esc(a.heroTag || '第三者記者が直接取材しました')}</span>
+
         <h1 class="hero-title" id="hero-heading">${a.heroTitle || esc(a.company) + 'の評判を<br>徹底調査しました'}</h1>
         <p class="hero-sub">${esc(a.heroSub || '')}</p>
         <div class="hero-cta-group">
