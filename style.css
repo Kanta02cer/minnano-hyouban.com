@@ -2947,64 +2947,59 @@ section.animate-from-right {
 ============================================================ */
 .ba-text-section {
   padding: 56px 0;
-  background: var(--color-white);
 }
 
 .ba-text-list {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 0;
   margin-top: 32px;
 }
 
 .ba-text-row {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.ba-text-row:first-child {
+  border-top: 1px solid var(--color-border);
+}
+
+.ba-aspect {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin: 0 0 12px;
+}
+
+.ba-cols {
   display: grid;
-  grid-template-columns: 1fr 40px 1fr;
+  grid-template-columns: 1fr 32px 1fr;
   align-items: center;
   gap: 0;
 }
 
 .ba-text-cell {
-  border-radius: var(--radius-md);
-  padding: 20px 22px;
-}
-
-.ba-before {
-  background: #fef3f2;
-  border: 1px solid #fca5a5;
-}
-
-.ba-after {
-  background: #f0fdf4;
-  border: 1px solid #86efac;
+  padding: 0;
 }
 
 .ba-cell-label {
-  display: inline-block;
+  display: block;
   font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  padding: 2px 8px;
-  border-radius: 999px;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .ba-before .ba-cell-label {
-  background: #fee2e2;
   color: #dc2626;
 }
 
 .ba-after .ba-cell-label {
-  background: #dcfce7;
   color: #16a34a;
-}
-
-.ba-aspect {
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--color-muted);
-  margin-bottom: 4px;
 }
 
 .ba-cell-text {
@@ -3014,21 +3009,22 @@ section.animate-from-right {
   margin: 0;
 }
 
+.ba-before .ba-cell-text {
+  color: var(--color-muted);
+}
+
 .ba-arrow {
   text-align: center;
-  font-size: 1.4rem;
+  font-size: 1rem;
   color: var(--color-muted);
-  font-weight: 700;
 }
 
 @media (max-width: 600px) {
-  .ba-text-row {
-    grid-template-columns: 1fr;
-    gap: 8px;
+  .ba-cols {
+    grid-template-columns: 1fr 24px 1fr;
   }
   .ba-arrow {
-    font-size: 1.1rem;
-    transform: rotate(90deg);
+    font-size: 0.85rem;
   }
 }
 

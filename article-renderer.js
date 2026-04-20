@@ -337,15 +337,17 @@ function buildArticleHTML(a) {
     if (!a.beforeAfterItems || !a.beforeAfterItems.length) return '';
     const rowsHTML = a.beforeAfterItems.map(item => `
       <div class="ba-text-row">
-        <div class="ba-text-cell ba-before">
-          <span class="ba-cell-label">Before</span>
-          ${item.aspect ? `<p class="ba-aspect">${esc(item.aspect)}</p>` : ''}
-          <p class="ba-cell-text">${esc(item.before)}</p>
-        </div>
-        <div class="ba-arrow" aria-hidden="true">→</div>
-        <div class="ba-text-cell ba-after">
-          <span class="ba-cell-label">After</span>
-          <p class="ba-cell-text">${esc(item.after)}</p>
+        ${item.aspect ? `<p class="ba-aspect">${esc(item.aspect)}</p>` : ''}
+        <div class="ba-cols">
+          <div class="ba-text-cell ba-before">
+            <span class="ba-cell-label">Before</span>
+            <p class="ba-cell-text">${esc(item.before)}</p>
+          </div>
+          <div class="ba-arrow" aria-hidden="true">→</div>
+          <div class="ba-text-cell ba-after">
+            <span class="ba-cell-label">After</span>
+            <p class="ba-cell-text">${esc(item.after)}</p>
+          </div>
         </div>
       </div>
     `).join('');
