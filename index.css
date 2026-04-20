@@ -1962,14 +1962,21 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .hero-media-fade--left  { left: 0;  background: linear-gradient(to right, var(--bg), transparent); }
 .hero-media-fade--right { right: 0; background: linear-gradient(to left,  var(--bg), transparent); }
 
-.swiper-hero-media {
-  overflow: visible !important;
-}
-.swiper-hero-media .swiper-slide {
-  width: auto !important;
+/* マーキー（CSS無限スクロール） */
+.hero-media-marquee {
   display: flex;
+  overflow: hidden;
+}
+.hero-media-marquee-track {
+  display: flex;
+  gap: 24px;
   align-items: center;
-  justify-content: center;
+  flex-shrink: 0;
+  animation: hero-marquee 18s linear infinite;
+}
+@keyframes hero-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
 }
 .hero-media-logo-wrap {
   display: flex;
@@ -1994,8 +2001,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   display: block;
 }
 
+/* ホバーで一時停止 */
+.hero-media-marquee:hover .hero-media-marquee-track {
+  animation-play-state: paused;
+}
+
 @media (max-width: 640px) {
   .hero-media-logo-wrap { padding: 10px 20px; }
   .hero-media-logo      { height: 36px; }
   .hero-media-fade      { width: 48px; }
+  .hero-media-marquee-track { gap: 16px; animation-duration: 14s; }
 }

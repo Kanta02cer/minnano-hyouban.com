@@ -214,17 +214,23 @@
         </div>
         <div class="hero-media-track-wrap">
           <div class="hero-media-fade hero-media-fade--left" aria-hidden="true"></div>
-          <div class="swiper swiper-hero-media">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide"><div class="hero-media-logo-wrap"><img src="images/media-logo/rakuten-news.jpg" alt="楽天ニュース" class="hero-media-logo"></div></div>
-              <div class="swiper-slide"><div class="hero-media-logo-wrap"><img src="images/media-logo/niconico-news.jpg" alt="ニコニコニュース" class="hero-media-logo"></div></div>
-              <div class="swiper-slide"><div class="hero-media-logo-wrap"><img src="images/media-logo/excite-news.jpg" alt="エキサイトニュース" class="hero-media-logo"></div></div>
-              <div class="swiper-slide"><div class="hero-media-logo-wrap"><img src="images/media-logo/rakuten-news.jpg" alt="楽天ニュース" class="hero-media-logo"></div></div>
-              <div class="swiper-slide"><div class="hero-media-logo-wrap"><img src="images/media-logo/niconico-news.jpg" alt="ニコニコニュース" class="hero-media-logo"></div></div>
-              <div class="swiper-slide"><div class="hero-media-logo-wrap"><img src="images/media-logo/excite-news.jpg" alt="エキサイトニュース" class="hero-media-logo"></div></div>
-              <div class="swiper-slide"><div class="hero-media-logo-wrap"><img src="images/media-logo/rakuten-news.jpg" alt="楽天ニュース" class="hero-media-logo"></div></div>
-              <div class="swiper-slide"><div class="hero-media-logo-wrap"><img src="images/media-logo/niconico-news.jpg" alt="ニコニコニュース" class="hero-media-logo"></div></div>
-              <div class="swiper-slide"><div class="hero-media-logo-wrap"><img src="images/media-logo/excite-news.jpg" alt="エキサイトニュース" class="hero-media-logo"></div></div>
+          <div class="hero-media-marquee" aria-hidden="true">
+            <div class="hero-media-marquee-track">
+              <div class="hero-media-logo-wrap"><img src="images/media-logo/rakuten-news.jpg" alt="楽天ニュース" class="hero-media-logo"></div>
+              <div class="hero-media-logo-wrap"><img src="images/media-logo/niconico-news.jpg" alt="ニコニコニュース" class="hero-media-logo"></div>
+              <div class="hero-media-logo-wrap"><img src="images/media-logo/excite-news.jpg" alt="エキサイトニュース" class="hero-media-logo"></div>
+              <div class="hero-media-logo-wrap"><img src="images/media-logo/rakuten-news.jpg" alt="楽天ニュース" class="hero-media-logo"></div>
+              <div class="hero-media-logo-wrap"><img src="images/media-logo/niconico-news.jpg" alt="ニコニコニュース" class="hero-media-logo"></div>
+              <div class="hero-media-logo-wrap"><img src="images/media-logo/excite-news.jpg" alt="エキサイトニュース" class="hero-media-logo"></div>
+            </div>
+            <!-- 複製（シームレスなループ用） -->
+            <div class="hero-media-marquee-track" aria-hidden="true">
+              <div class="hero-media-logo-wrap"><img src="images/media-logo/rakuten-news.jpg" alt="" class="hero-media-logo"></div>
+              <div class="hero-media-logo-wrap"><img src="images/media-logo/niconico-news.jpg" alt="" class="hero-media-logo"></div>
+              <div class="hero-media-logo-wrap"><img src="images/media-logo/excite-news.jpg" alt="" class="hero-media-logo"></div>
+              <div class="hero-media-logo-wrap"><img src="images/media-logo/rakuten-news.jpg" alt="" class="hero-media-logo"></div>
+              <div class="hero-media-logo-wrap"><img src="images/media-logo/niconico-news.jpg" alt="" class="hero-media-logo"></div>
+              <div class="hero-media-logo-wrap"><img src="images/media-logo/excite-news.jpg" alt="" class="hero-media-logo"></div>
             </div>
           </div>
           <div class="hero-media-fade hero-media-fade--right" aria-hidden="true"></div>
@@ -478,21 +484,6 @@
   <script defer>
     document.addEventListener('DOMContentLoaded', function() {
     'use strict';
-
-    /* ─── ヒーロー メディアロゴ カルーセル ───────────────── */
-    if (document.querySelector('.swiper-hero-media')) {
-      new Swiper('.swiper-hero-media', {
-        loop: true,
-        freeMode: true,
-        slidesPerView: 'auto',
-        spaceBetween: 48,
-        autoplay: { delay: 0, disableOnInteraction: false, reverseDirection: true },
-        speed: 4000,
-        grabCursor: false,
-        allowTouchMove: false,
-        a11y: { enabled: false }
-      });
-    }
 
     /* ─── ヒーロー背景ブランドテキスト ─────────────────────── */
     (function() {
