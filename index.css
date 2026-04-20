@@ -232,9 +232,11 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .hamburger {
   display: none;
   flex-direction: column;
+  justify-content: center;
   gap: 6px;
-  width: 28px;
-  padding: 4px 0;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 4px 8px;
   margin-left: auto;
 }
 .hamburger span {
@@ -1373,11 +1375,11 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 72px;
-  align-items: start;
+  align-items: end;
 }
 .about-title {
   font-family: 'Shippori Mincho', serif;
-  font-size: 1.625rem;
+  font-size: 1.875rem;
   font-weight: 700;
   color: #fff;
   margin-bottom: 24px;
@@ -1395,7 +1397,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   background: var(--gold);
 }
 .about-intro p {
-  font-size: .9375rem;
+  font-size: 1.0625rem;
   line-height: 1.95;
   color: rgba(255,255,255,.58);
   margin-bottom: 14px;
@@ -1467,7 +1469,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .promise-items li {
   counter-increment: promise-counter;
-  font-size: .9rem;
+  font-size: .975rem;
   line-height: 1.75;
   color: rgba(255,255,255,.58);
   padding: 15px 0 15px 48px;
@@ -1898,6 +1900,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .portrait-card { padding-top: 100px; }
   .hero-stat { padding: 16px 12px; }
   .hero-stat strong { font-size: 1.625rem; }
+
+  .about-intro p { font-size: .9375rem; }
 
   .featured-body { padding: 22px 20px 20px; }
   .featured-title { font-size: 1.125rem; }

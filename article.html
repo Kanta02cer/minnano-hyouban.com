@@ -22,7 +22,9 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@400;600;700&display=swap"></noscript>
   <!-- Swiper -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
   <link rel="stylesheet" href="style.css">
@@ -119,7 +121,7 @@
   <script src="_post/SenoRich/1794482170414453-senorich.js"></script>
   <script src="_post/MIRACLE PILLOW/2221437250750372-miracle-pillow.js"></script>
   <script src="_post/TASKUL/2252563132716439-taskul.js"></script>
-                                                                                <script src="data/articles.js"></script>
+  <script src="data/articles.js"></script>
   <script>
     // 任意: 公式URLへのUTM自動付与を止める（デフォルトは付与。詳細: docs/outbound-tracking-guide.md）
     // window.__OFFICIAL_LINK_UTM__ = false;
