@@ -779,17 +779,70 @@ function renderFAQInArticle(list) {
    LIGHTBOX（フォトギャラリー拡大表示）
 ============================================================ */
 function initLightbox() {
-  const lb      = document.getElementById('lightbox');
-  const lbImg   = document.getElementById('lightbox-img');
-  const lbCap   = document.getElementById('lightbox-caption');
-  const lbClose = document.getElementById('lightbox-close');
-  const lbPrev  = document.getElementById('lightbox-prev');
-  const lbNext  = document.getElementById('lightbox-next');
+  const lb          = document.getElementById('lightbox');
+  const lbImgWrap   = document.getElementById('lightbox-img-wrap');
+  const lbImg       = document.getElementById('lightbox-img');
+  const lbCap       = document.getElementById('lightbox-caption');
+  const lbClose     = document.getElementById('lightbox-close');
+  const lbPrev      = document.getElementById('lightbox-prev');
+  const lbNext      = document.getElementById('lightbox-next');
+  const lbZoomIn    = document.getElementById('lightbox-zoom-in');
+  const lbZoomOut   = document.getElementById('lightbox-zoom-out');
+  const lbZoomReset = document.getElementById('lightbox-zoom-reset');
+  const lbZoomLevel = document.getElementById('lightbox-zoom-level');
   if (!lb || !lbImg) return;
 
   // すべてのギャラリー画像を収集
   const items = Array.from(document.querySelectorAll('.gallery-extra-item img'));
   let current = 0;
+
+  // ズーム状態
+  let zoom = 1, panX = 0, panY = 0;
+  const ZOOM_MIN = 1, ZOOM_MAX = 5, ZOOM_STEP = 0.3;
+
+  function applyZoom(animate) {
+    if (animate === false) {
+      lbImg.style.transition = 'none';
+    } else {
+      lbImg.style.transition = 'transform 0.15s ease';
+    }
+    lbImg.style.transform = `translate(${panX}px, ${panY}px) scale(${zoom})`;
+    if (lbZoomLevel) lbZoomLevel.textContent = Math.round(zoom * 100) + '%';
+    // ズーム中はドラッグカーソル、等倍はデフォルト
+    lbImg.style.cursor = zoom > 1 ? 'grab' : 'default';
+  }
+
+  function clampPan() {
+    // 画像の表示サイズを計算してパンの範囲を制限
+    const rect = lbImg.getBoundingClientRect();
+    const natW = lbImg.naturalWidth  || rect.width  / zoom;
+    const natH = lbImg.naturalHeight || rect.height / zoom;
+    const dispW = Math.min(natW, window.innerWidth  * 0.9);
+    const dispH = Math.min(natH, window.innerHeight * 0.8);
+    const maxX = Math.max(0, (dispW  * zoom - dispW)  / 2);
+    const maxY = Math.max(0, (dispH * zoom - dispH) / 2);
+    panX = Math.max(-maxX, Math.min(maxX, panX));
+    panY = Math.max(-maxY, Math.min(maxY, panY));
+  }
+
+  function resetZoom() {
+    zoom = 1; panX = 0; panY = 0;
+    applyZoom();
+  }
+
+  function zoomBy(delta, originX, originY) {
+    const prevZoom = zoom;
+    zoom = Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, zoom + delta));
+    if (zoom === prevZoom) return;
+    // ズーム基点に向かってパンを調整（originX/Y は画像中心からのオフセット）
+    if (originX !== undefined && originY !== undefined) {
+      const scale = zoom / prevZoom;
+      panX = originX + (panX - originX) * scale;
+      panY = originY + (panY - originY) * scale;
+    }
+    clampPan();
+    applyZoom();
+  }
 
   function openLightbox(idx) {
     current = idx;
@@ -797,6 +850,7 @@ function initLightbox() {
     lbImg.src = img.src;
     lbImg.alt = img.alt;
     lbCap.textContent = img.closest('figure')?.querySelector('figcaption')?.textContent || '';
+    resetZoom();
     lb.removeAttribute('hidden');
     requestAnimationFrame(() => lb.classList.add('is-open'));
     document.body.style.overflow = 'hidden';
@@ -810,6 +864,7 @@ function initLightbox() {
     setTimeout(() => {
       lb.setAttribute('hidden', '');
       lbImg.src = '';
+      resetZoom();
     }, 260);
     document.body.style.overflow = '';
   }
@@ -824,7 +879,89 @@ function initLightbox() {
     openLightbox(current);
   }
 
-  // イベント登録（後から追加される可能性があるので document に委譲）
+  // ---- ズームボタン ----
+  if (lbZoomIn)    lbZoomIn.addEventListener('click',    (e) => { e.stopPropagation(); zoomBy(+ZOOM_STEP); });
+  if (lbZoomOut)   lbZoomOut.addEventListener('click',   (e) => { e.stopPropagation(); zoomBy(-ZOOM_STEP); });
+  if (lbZoomReset) lbZoomReset.addEventListener('click', (e) => { e.stopPropagation(); resetZoom(); });
+
+  // ---- マウスホイールズーム ----
+  lb.addEventListener('wheel', (e) => {
+    if (lb.hasAttribute('hidden')) return;
+    e.preventDefault();
+    // 画像中心からのカーソル位置を基点にズーム
+    const rect = lbImg.getBoundingClientRect();
+    const cx = e.clientX - (rect.left + rect.width  / 2);
+    const cy = e.clientY - (rect.top  + rect.height / 2);
+    const delta = e.deltaY < 0 ? +ZOOM_STEP : -ZOOM_STEP;
+    zoomBy(delta, cx, cy);
+  }, { passive: false });
+
+  // ---- ダブルクリックでズームトグル ----
+  lbImg.addEventListener('dblclick', (e) => {
+    e.stopPropagation();
+    if (zoom > 1) {
+      resetZoom();
+    } else {
+      const rect = lbImg.getBoundingClientRect();
+      const cx = e.clientX - (rect.left + rect.width  / 2);
+      const cy = e.clientY - (rect.top  + rect.height / 2);
+      zoomBy(2 - ZOOM_MIN, cx, cy); // → zoom=2
+    }
+  });
+
+  // ---- ドラッグでパン ----
+  let dragging = false, dragStartX = 0, dragStartY = 0, panStartX = 0, panStartY = 0;
+  lbImg.addEventListener('mousedown', (e) => {
+    if (zoom <= 1) return;
+    e.preventDefault();
+    dragging = true;
+    dragStartX = e.clientX; dragStartY = e.clientY;
+    panStartX  = panX;      panStartY  = panY;
+    lbImg.style.cursor = 'grabbing';
+  });
+  window.addEventListener('mousemove', (e) => {
+    if (!dragging) return;
+    panX = panStartX + (e.clientX - dragStartX);
+    panY = panStartY + (e.clientY - dragStartY);
+    clampPan();
+    applyZoom(false);
+  });
+  window.addEventListener('mouseup', () => {
+    if (!dragging) return;
+    dragging = false;
+    lbImg.style.cursor = zoom > 1 ? 'grab' : 'default';
+  });
+
+  // ---- ピンチズーム（タッチ） ----
+  let lastPinchDist = null;
+  lb.addEventListener('touchstart', (e) => {
+    if (e.touches.length === 2) {
+      lastPinchDist = Math.hypot(
+        e.touches[1].clientX - e.touches[0].clientX,
+        e.touches[1].clientY - e.touches[0].clientY
+      );
+    }
+  }, { passive: true });
+  lb.addEventListener('touchmove', (e) => {
+    if (e.touches.length === 2 && lastPinchDist !== null) {
+      e.preventDefault();
+      const dist = Math.hypot(
+        e.touches[1].clientX - e.touches[0].clientX,
+        e.touches[1].clientY - e.touches[0].clientY
+      );
+      const delta = (dist - lastPinchDist) * 0.012;
+      lastPinchDist = dist;
+      const midX = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+      const midY = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+      const rect = lbImg.getBoundingClientRect();
+      const cx = midX - (rect.left + rect.width  / 2);
+      const cy = midY - (rect.top  + rect.height / 2);
+      zoomBy(delta, cx, cy);
+    }
+  }, { passive: false });
+  lb.addEventListener('touchend', () => { lastPinchDist = null; }, { passive: true });
+
+  // ---- イベント登録（後から追加される可能性があるので document に委譲） ----
   document.addEventListener('click', (e) => {
     const item = e.target.closest('.gallery-extra-item img');
     if (!item) return;
@@ -836,7 +973,7 @@ function initLightbox() {
   lbPrev.addEventListener('click', (e) => { e.stopPropagation(); showPrev(); });
   lbNext.addEventListener('click', (e) => { e.stopPropagation(); showNext(); });
 
-  // オーバーレイクリックで閉じる
+  // オーバーレイクリックで閉じる（ズーム中のドラッグ後は閉じない）
   lb.addEventListener('click', (e) => {
     if (e.target === lb) closeLightbox();
   });
@@ -844,9 +981,12 @@ function initLightbox() {
   // キーボード操作
   document.addEventListener('keydown', (e) => {
     if (lb.hasAttribute('hidden')) return;
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowLeft')  showPrev();
-    if (e.key === 'ArrowRight') showNext();
+    if (e.key === 'Escape')      { closeLightbox(); return; }
+    if (e.key === 'ArrowLeft')   { if (zoom <= 1) showPrev(); return; }
+    if (e.key === 'ArrowRight')  { if (zoom <= 1) showNext(); return; }
+    if (e.key === '+' || e.key === '=') { zoomBy(+ZOOM_STEP); return; }
+    if (e.key === '-')           { zoomBy(-ZOOM_STEP); return; }
+    if (e.key === '0')           { resetZoom(); return; }
   });
 }
 

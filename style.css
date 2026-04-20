@@ -3313,6 +3313,15 @@ section.animate-from-right {
   from { transform: scale(0.88); opacity: 0; }
   to   { transform: scale(1);    opacity: 1; }
 }
+.lightbox-img-wrap {
+  overflow: hidden;
+  max-width: 90vw;
+  max-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
 .lightbox-img {
   display: block;
   max-width: 90vw;
@@ -3320,6 +3329,11 @@ section.animate-from-right {
   object-fit: contain;
   border-radius: 4px;
   box-shadow: 0 24px 64px rgba(0,0,0,.6);
+  transform-origin: center center;
+  transition: transform 0.15s ease;
+  will-change: transform;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 .lightbox-caption {
   margin-top: 14px;
@@ -3374,6 +3388,49 @@ section.animate-from-right {
 .lightbox-next { right: 16px; }
 .lightbox-prev:hover,
 .lightbox-next:hover { background: rgba(255,255,255,0.28); }
+
+/* ズームツールバー */
+.lightbox-toolbar {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 40px;
+  padding: 6px 14px;
+  z-index: 9002;
+}
+.lightbox-zoom-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.3rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.18s;
+  line-height: 1;
+}
+.lightbox-zoom-btn:hover { background: rgba(255,255,255,0.18); }
+.lightbox-zoom-reset { font-size: 1rem; }
+.lightbox-zoom-level {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.85);
+  min-width: 42px;
+  text-align: center;
+  font-feature-settings: "tnum";
+  letter-spacing: .04em;
+}
 
 /* フォトギャラリーのアイテムにカーソル表示 */
 .gallery-extra-item {
