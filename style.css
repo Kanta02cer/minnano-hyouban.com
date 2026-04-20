@@ -979,7 +979,12 @@ ul, ol {
 
 /* Swiper Service */
 .swiper-service {
-  width: 100%;
+  width: calc(100% - 40px);
+  max-width: 720px;
+  margin: 0 auto;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
 }
 
 .slide-figure {
