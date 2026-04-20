@@ -9,7 +9,7 @@ window.__POST_2221437250750372 = {
 
   title:    "MIRACLE PILLOWの口コミ評判｜みんなの評判.com",
   metaDesc: "MIRACLE PILLOWが気になっている方へ。実際に使っている人の口コミ・評判を記者がまとめました。6つのAIRが動く電動ピローの特徴・開発背景・購入前の判断材料をわかりやすく解説。",
-  ogImage:  "images/miracle-pillow/fv.png",
+  ogImage:  "images/miracle-pillow/photo-sleep-side.jpg",
   company:  "MIRACLE PILLOW（株式会社TVC）",
   category: "美容・健康",
   publishedAt: "2026-04-17",
@@ -33,9 +33,9 @@ window.__POST_2221437250750372 = {
 
   galleries: {
     service: [
-      { src: "images/miracle-pillow/service01.png", alt: "MIRACLE PILLOW サービスイメージ1", caption: "6つのAIRが内部で静かに動き続ける電動ピロー" },
-      { src: "images/miracle-pillow/service02.png", alt: "MIRACLE PILLOW サービスイメージ2", caption: "ボタン1回で使い始められるシンプルな操作性" },
-      { src: "images/miracle-pillow/service03.png", alt: "MIRACLE PILLOW サービスイメージ3", caption: "構想から完成まで10年以上の開発ストーリー" }
+      { src: "images/miracle-pillow/photo-sleep-front.jpg",   alt: "MIRACLE PILLOWで眠る女性", caption: "6つのAIRが内部で静かに動き続ける電動ピロー" },
+      { src: "images/miracle-pillow/photo-sleep-profile.jpg", alt: "MIRACLE PILLOWの枕フォルム", caption: "首・頭を自然に支える独自の構造設計" },
+      { src: "images/miracle-pillow/photo-device.jpg",        alt: "MIRACLE PILLOWのコントローラーユニット", caption: "ボタン1回で使い始められるシンプルな操作性" }
     ],
     beforeAfter: [
       { src: "images/placeholders/gallery-before.svg", alt: "使用前：朝の頭・首まわりの重さが気になる状態", label: "使用前" },
@@ -78,7 +78,7 @@ window.__POST_2221437250750372 = {
     { q: "この記事は広告ですか？",                         a: "本記事はPR記事です。第三者の記者が取材・編集していますが、掲載費用を企業からいただいています。記載内容は記者の独自の視点によるものです。" }
   ],
 
-  storyImg:  "images/miracle-pillow/fv.png",
+  storyImg:  "images/miracle-pillow/photo-story.jpg",
   storyAlt:  "MIRACLE PILLOW開発者インタビューイメージ",
   storyText: [
     "「起きている時間」ではなく、「眠っている時間」に原因があるのではないか——。その発想から、動く6つのAIRという答えにたどり着いた商品です。竹之内 教博氏の開発背景として印象的なのは、リラクゼーション事業などでの施術の現場や、日々の体の違和感から逆算して発想されていることです。",

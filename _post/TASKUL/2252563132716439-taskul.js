@@ -33,7 +33,7 @@ window.__POST_2252563132716439 = {
 
   galleries: {
     service: [
-      { src: "images/photos/2.jpg", alt: "ノートパソコンで作業するクリエイター",         caption: "どこでも使えるクラウドベースのタスク管理" },
+      { src: "images/taskul/invoice-screen.png", alt: "TASKULの請求書送付画面",              caption: "請求書の作成・送付もTASKUL上でシームレスに完結" },
       { src: "images/photos/3.jpg", alt: "コンピューターとホワイトボードのあるオフィス", caption: "チームの制作フローをTASKULで一元管理" },
       { src: "images/photos/5.jpg", alt: "会議室でのミーティングイメージ",               caption: "クライアントとの確認・連携もスムーズに" }
     ],
