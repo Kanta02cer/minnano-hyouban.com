@@ -996,13 +996,19 @@ section.animate-from-right {
   width: calc(100% - 40px);
   max-width: 720px;
   margin: 0 auto;
+  overflow: visible;
+  perspective: 1400px;
+}
+
+.swiper-service .swiper-slide {
   border-radius: var(--radius-md);
   overflow: hidden;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
 }
 
 .slide-figure {
   overflow: hidden;
+  border-radius: var(--radius-md);
+  box-shadow: 0 12px 48px rgba(0,0,0,0.18);
 }
 
 .slide-figure img {

@@ -174,10 +174,21 @@ function initSwipers() {
   if (document.querySelector('.swiper-service')) {
     new Swiper('.swiper-service', {
       loop: true,
-      slidesPerView: 1,
-      spaceBetween: 0,
-      autoplay: { delay: 3000, disableOnInteraction: false },
-      speed: 1500,
+      effect: 'creative',
+      creativeEffect: {
+        prev: {
+          shadow: true,
+          translate: ['-115%', 0, -320],
+          rotate: [0, 14, 0],
+        },
+        next: {
+          shadow: true,
+          translate: ['115%', 0, -320],
+          rotate: [0, -14, 0],
+        },
+      },
+      autoplay: { delay: 3500, disableOnInteraction: false },
+      speed: 1100,
       a11y: {
         prevSlideMessage: '前のスライド',
         nextSlideMessage: '次のスライド',
