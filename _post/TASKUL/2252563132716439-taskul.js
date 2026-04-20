@@ -9,8 +9,8 @@ window.__POST_2252563132716439 = {
 
   title:    "TASKUL（タスクル）の口コミ評判｜みんなの評判.com",
   metaDesc: "TASKUL（タスクル）の口コミ評判を第三者記者が徹底取材。株式会社フリーカンパニーが運営するクリエイター向けAIタスク管理ツールの評判・使いやすさ・無料プラン・利用者の正直な感想をわかりやすく解説します。",
-  ogImage:  "images/taskul/fv.png",
-  heroImg:  "images/taskul/fv.png",
+  ogImage:  "images/taskul/project/project-detail.png",
+  heroImg:  "images/taskul/project/project-detail.png",
   company:  "TASKUL（株式会社フリーカンパニー）",
   category: "ライフスタイル",
   publishedAt: "2026-04-15",
@@ -33,13 +33,13 @@ window.__POST_2252563132716439 = {
 
   galleries: {
     service: [
-      { src: "images/taskul/invoice-screen.png", alt: "TASKULの請求書送付画面",              caption: "請求書の作成・送付もTASKUL上でシームレスに完結" },
-      { src: "images/photos/3.jpg", alt: "コンピューターとホワイトボードのあるオフィス", caption: "チームの制作フローをTASKULで一元管理" },
-      { src: "images/photos/5.jpg", alt: "会議室でのミーティングイメージ",               caption: "クライアントとの確認・連携もスムーズに" }
+      { src: "images/taskul/ai/ai-create.png",              alt: "TASKULのAIがプロジェクトを自動生成する様子",   caption: "依頼文を貼るだけでAIがタスクを自動分解・生成" },
+      { src: "images/taskul/project/client-projects.png",   alt: "クライアントごとのプロジェクト一覧画面",       caption: "クライアント別にプロジェクトを一元管理" },
+      { src: "images/taskul/calendar/google-calendar.png",  alt: "TASKULのGoogleカレンダー連携画面（月表示）",   caption: "Googleカレンダーと同期してスケジュールを可視化" }
     ],
     beforeAfter: [
-      { src: "images/photos/6.jpg", alt: "複数のデスクが並ぶオープンオフィス", label: "導入前" },
-      { src: "images/photos/8.jpg", alt: "整理されたホームオフィス空間",       label: "導入1ヶ月後" }
+      { src: "images/taskul/finance/estimate.png", alt: "TASKULの見積書作成画面",  label: "見積書作成" },
+      { src: "images/taskul/finance/invoice.png",  alt: "TASKULの請求書送付画面",  label: "請求書送付" }
     ],
     media: [
       { src: "images/placeholders/media-rakuten.svg",    alt: "楽天インフォシーク" },
@@ -99,7 +99,7 @@ window.__POST_2252563132716439 = {
     { q: "この記事は広告ですか？",                                a: "本記事はPR記事です。第三者の記者が取材・編集していますが、掲載費用を企業からいただいています。" }
   ],
 
-  storyImg:  "images/photos/7.jpg",
+  storyImg:  "images/taskul/partner/team-skill.png",
   storyAlt:  "山田萌子（TASKULプロダクトマネージャー / クリエイティブディレクター）インタビューイメージ",
   storyText: [
     "TASKULを展開する株式会社フリーカンパニーは、自社でフリーランスを抱える制作事業も手がけており、その現場の一つがKUROCO CREATIONです。外向けに開発したツールを現場に押しつけるのではなく、自分たちが日々使いながら改善を重ねてきた点が、このサービスの一番の信頼材料です。",
