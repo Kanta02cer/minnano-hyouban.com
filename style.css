@@ -998,6 +998,9 @@ section.animate-from-right {
 /* Swiper Service */
 .swiper-service {
   width: 100%;
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
   overflow: hidden;
 }
 
@@ -1021,7 +1024,6 @@ section.animate-from-right {
   aspect-ratio: 16/9;
   object-fit: cover;
   display: block;
-  max-height: 300px;
 }
 
 .slide-figure figcaption {
