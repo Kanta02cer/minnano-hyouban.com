@@ -1027,6 +1027,28 @@ function initHamburger() {
 /* ============================================================
    SMOOTH SCROLL
 ============================================================ */
+// CSS transform を除いたレイアウト上の絶対位置を返す
+function getLayoutOffsetTop(el) {
+  let top = 0;
+  let cur = el;
+  while (cur) {
+    top += cur.offsetTop;
+    cur = cur.offsetParent;
+  }
+  return top;
+}
+
+function scrollToElement(target) {
+  const headerH = document.querySelector('.site-header')?.offsetHeight || 60;
+  // animate-on-scroll の transform が getBoundingClientRect に影響するため
+  // offsetTop ベースでレイアウト位置を計算し、スクロール前に is-visible を付与
+  target.classList.add('is-visible');
+  const top = getLayoutOffsetTop(target);
+  window.scrollTo({ top: top - headerH - 16, behavior: 'smooth' });
+  target.setAttribute('tabindex', '-1');
+  target.focus({ preventScroll: true });
+}
+
 function initSmoothScroll() {
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', (e) => {
@@ -1035,12 +1057,20 @@ function initSmoothScroll() {
       const target = document.getElementById(targetId);
       if (!target) return;
       e.preventDefault();
-      const headerH = document.querySelector('.site-header')?.offsetHeight || 60;
-      window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - headerH - 8, behavior: 'smooth' });
-      target.setAttribute('tabindex', '-1');
-      target.focus({ preventScroll: true });
+      scrollToElement(target);
     });
   });
+}
+
+// ページロード時に URL ハッシュがある場合、JS 描画後にスクロール
+function handleHashOnLoad() {
+  const hash = window.location.hash.slice(1);
+  if (!hash) return;
+  // Swiper 初期化後レイアウトが確定してからスクロール
+  setTimeout(() => {
+    const target = document.getElementById(hash);
+    if (target) scrollToElement(target);
+  }, 200);
 }
 
 /* ============================================================
@@ -1493,5 +1523,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initSmoothScroll();
   initScoreBars();
   initScrollAnimations();
-  requestAnimationFrame(() => initSwipers());
+  requestAnimationFrame(() => {
+    initSwipers();
+    handleHashOnLoad();
+  });
 });
