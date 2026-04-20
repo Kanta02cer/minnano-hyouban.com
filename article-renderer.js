@@ -621,8 +621,10 @@ function buildArticleHTML(a) {
       <div class="container">
         <h2 class="section-title" id="story-heading">このサービスにかける想い</h2>
         <div class="story-content">
-          <img src="${esc(a.storyImg || PLACEHOLDER_IMG.story)}"
-               alt="${esc(a.storyAlt || '代表者の写真')}" class="story-img" loading="lazy" width="200" height="200">
+          <div class="story-img-wrap">
+            <img src="${esc(a.storyImg || PLACEHOLDER_IMG.story)}"
+                 alt="${esc(a.storyAlt || 'サービスイメージ')}" class="story-img" loading="lazy">
+          </div>
           <blockquote class="story-quote">${storyParas}</blockquote>
         </div>
       </div>
@@ -651,15 +653,7 @@ function buildArticleHTML(a) {
            data-article-slug="${esc(a.slug || '')}"
            data-company="${esc(a.company || '')}"
            data-cta-source="${esc(cta.source)}"
-        >${esc(a.ctaBtn || 'サービス詳細へ →')}</a>
-        <a href="${esc(cta.href)}"
-           class="btn-text-link"
-           ${ctaLinkAttrs}
-           data-cta-kind="article_contact"
-           data-article-slug="${esc(a.slug || '')}"
-           data-company="${esc(a.company || '')}"
-           data-cta-source="${esc(cta.source)}"
-        >無料相談・お問い合わせはこちら</a>
+        >${esc(a.ctaBtn || '公式ページで詳しく見る →')}</a>
         ` : `
         <p class="cta-fallback-note" role="note">※ 公式サイトの公開URLが未設定です。お問い合わせからご案内します。</p>
         <a href="${esc(mailInquiry)}"

@@ -1534,13 +1534,19 @@ ul, ol {
   margin-top: 32px;
 }
 
-.story-img {
-  width: 160px;
-  height: 160px;
-  object-fit: cover;
+.story-img-wrap {
+  width: 100%;
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-card);
-  margin: 0 auto 24px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.14);
+  margin-bottom: 32px;
+}
+
+.story-img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  display: block;
 }
 
 .story-quote {
@@ -1787,20 +1793,6 @@ ul, ol {
 
   .service-grid {
     grid-template-columns: repeat(4, 1fr);
-  }
-
-  .story-content {
-    display: flex;
-    gap: 32px;
-    align-items: flex-start;
-  }
-
-  .story-img {
-    width: 200px;
-    height: 200px;
-    flex-shrink: 0;
-    margin: 0;
-    float: none;
   }
 
   .footer-inner {
