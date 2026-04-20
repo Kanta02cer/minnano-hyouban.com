@@ -42,9 +42,9 @@ window.__POST_2252563132716439 = {
       { src: "images/taskul/finance/invoice.png",  alt: "TASKULの請求書送付画面",  label: "請求書送付" }
     ],
     media: [
-      { src: "images/placeholders/media-rakuten.svg",    alt: "楽天インフォシーク" },
-      { src: "images/placeholders/media-excite.svg",     alt: "エキサイトニュース" },
-      { src: "images/placeholders/media-niconico.svg",   alt: "ニコニコニュース" }
+      { src: "images/media-logo/楽天ニュース.jpg",    alt: "楽天ニュース" },
+      { src: "images/media-logo/ニコニコニュース.jpg", alt: "ニコニコニュース" },
+      { src: "images/media-logo/exciteニュース.jpg",  alt: "エキサイトニュース" }
     ],
     extra: [
       { group: "AI機能", src: "images/taskul/ai/ai-meeting-log.png",      alt: "TASKULのAIが商談ログを自動生成する画面", caption: "商談後に内容を入力するだけでAIが議事録・ネクストアクションを自動生成" },

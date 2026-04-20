@@ -41,9 +41,9 @@ window.__POST_1794482170414453 = {
       { src: "images/placeholders/gallery-after.svg",  alt: "継続後：細胞環境を整えた状態",          label: "継続3ヶ月後" }
     ],
     media: [
-      { src: "images/placeholders/media-logo.svg", alt: "業界紙" },
-      { src: "images/placeholders/media-logo.svg", alt: "一般メディア" },
-      { src: "images/placeholders/media-logo.svg", alt: "健康ニュース" }
+      { src: "images/media-logo/楽天ニュース.jpg",    alt: "楽天ニュース" },
+      { src: "images/media-logo/ニコニコニュース.jpg", alt: "ニコニコニュース" },
+      { src: "images/media-logo/exciteニュース.jpg",  alt: "エキサイトニュース" }
     ]
   },
 

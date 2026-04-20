@@ -42,9 +42,9 @@ window.__POST_2221437250750372 = {
       { src: "images/miracle-pillow/lifestyle/photo-sleep-natural.jpg", alt: "MIRACLE PILLOWで自然な姿勢で眠る", label: "MIRACLE PILLOW使用時" }
     ],
     media: [
-      { src: "images/placeholders/media-logo.svg", alt: "Makuake掲載" },
-      { src: "images/placeholders/media-logo.svg", alt: "業界メディア" },
-      { src: "images/placeholders/media-logo.svg", alt: "ニュースメディア" }
+      { src: "images/media-logo/楽天ニュース.jpg",    alt: "楽天ニュース" },
+      { src: "images/media-logo/ニコニコニュース.jpg", alt: "ニコニコニュース" },
+      { src: "images/media-logo/exciteニュース.jpg",  alt: "エキサイトニュース" }
     ],
     extra: [
       { group: "ライフスタイル写真", src: "images/miracle-pillow/photo-sleep-side.jpg",    alt: "MIRACLE PILLOWで横向き睡眠", caption: "自然な横向き寝でも首をしっかりサポート" },

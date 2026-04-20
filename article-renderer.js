@@ -239,10 +239,12 @@ function buildArticleHTML(a) {
     </div>
   `).join('');
 
-  // Media logos
-  const mediaLogos = galleryMediaForArticle(a).map(m => `
-    <div class="media-logo-wrap" role="listitem">
-      <img src="${esc(m.src)}" alt="${esc(m.alt)}" class="media-logo" loading="lazy" height="32">
+  // Media logos (Swiper carousel slides)
+  const mediaLogoSlides = galleryMediaForArticle(a).map(m => `
+    <div class="swiper-slide">
+      <div class="media-logo-wrap">
+        <img src="${esc(m.src)}" alt="${esc(m.alt)}" class="media-logo" loading="lazy">
+      </div>
     </div>
   `).join('');
 
@@ -523,7 +525,11 @@ function buildArticleHTML(a) {
     <section class="media-section animate-on-scroll" id="gallery-media" aria-labelledby="media-heading">
       <div class="container">
         <h2 class="section-title" id="media-heading">メディア掲載実績</h2>
-        <div class="media-logos" role="list" aria-label="掲載メディア一覧">${mediaLogos}</div>
+        <div class="media-logos">
+          <div class="swiper swiper-media" aria-label="掲載メディア一覧">
+            <div class="swiper-wrapper">${mediaLogoSlides}</div>
+          </div>
+        </div>
         ${mediaClipsHTML}
       </div>
     </section>
@@ -862,24 +868,20 @@ function initScrollAnimations() {
    SWIPER INIT
 ============================================================ */
 function initSwipers() {
+  // サービス画像カルーセル（平面・両端ピーク）
   if (document.querySelector('.swiper-service')) {
     new Swiper('.swiper-service', {
       loop: true,
-      effect: 'creative',
-      creativeEffect: {
-        prev: {
-          shadow: true,
-          translate: ['-115%', 0, -320],
-          rotate: [0, 14, 0],
-        },
-        next: {
-          shadow: true,
-          translate: ['115%', 0, -320],
-          rotate: [0, -14, 0],
-        },
-      },
+      centeredSlides: true,
+      slidesPerView: 1.15,
+      spaceBetween: 16,
       autoplay: { delay: 3500, disableOnInteraction: false },
-      speed: 1100,
+      speed: 700,
+      grabCursor: true,
+      breakpoints: {
+        640:  { slidesPerView: 1.2, spaceBetween: 20 },
+        1024: { slidesPerView: 1.25, spaceBetween: 24 },
+      },
       a11y: { prevSlideMessage: '前のスライド', nextSlideMessage: '次のスライド' }
     });
   }
@@ -892,24 +894,35 @@ function initSwipers() {
       a11y: { prevSlideMessage: '前のスライド', nextSlideMessage: '次のスライド' }
     });
   }
+  // 口コミカルーセル（平面・両端ピーク）
   if (document.querySelector('.swiper-reviews')) {
     new Swiper('.swiper-reviews', {
       loop: true,
-      autoplay: {
-        delay: 3800,
-        disableOnInteraction: false,
-        pauseOnMouseEnter: true,
-      },
+      centeredSlides: true,
+      autoplay: { delay: 4000, disableOnInteraction: false, pauseOnMouseEnter: true },
       speed: 700,
       grabCursor: true,
       slidesPerView: 1.15,
       spaceBetween: 16,
       breakpoints: {
-        600:  { slidesPerView: 1.8, spaceBetween: 20 },
-        900:  { slidesPerView: 2.4, spaceBetween: 24 },
-        1200: { slidesPerView: 3,   spaceBetween: 28 },
+        600:  { slidesPerView: 1.6, spaceBetween: 20 },
+        900:  { slidesPerView: 2.2, spaceBetween: 24 },
+        1200: { slidesPerView: 2.8, spaceBetween: 28 },
       },
       a11y: { prevSlideMessage: '前の口コミ', nextSlideMessage: '次の口コミ' }
+    });
+  }
+  // メディアロゴカルーセル（ゆっくり自動スクロール）
+  if (document.querySelector('.swiper-media')) {
+    new Swiper('.swiper-media', {
+      loop: true,
+      freeMode: true,
+      slidesPerView: 'auto',
+      spaceBetween: 48,
+      autoplay: { delay: 0, disableOnInteraction: false },
+      speed: 4000,
+      grabCursor: true,
+      a11y: { enabled: false }
     });
   }
 }

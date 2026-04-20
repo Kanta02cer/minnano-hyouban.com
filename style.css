@@ -813,7 +813,7 @@ section.animate-from-right {
   /* スマホ：横はみ出し完全防止 */
   .animate-from-left  { transform: translateX(-16px); }
   .animate-from-right { transform: translateX(16px); }
-  .swiper-service { width: calc(100% - 24px); }
+  .swiper-service { width: 100%; }
 }
 
 /* ============================================================
@@ -997,22 +997,23 @@ section.animate-from-right {
 
 /* Swiper Service */
 .swiper-service {
-  width: calc(100% - 40px);
-  max-width: 720px;
-  margin: 0 auto;
-  overflow: visible;
-  perspective: 1400px;
+  width: 100%;
+  overflow: hidden;
 }
 
 .swiper-service .swiper-slide {
   border-radius: var(--radius-md);
   overflow: hidden;
+  transition: opacity 0.3s;
+}
+
+.swiper-service .swiper-slide:not(.swiper-slide-active) {
+  opacity: 0.55;
 }
 
 .slide-figure {
   overflow: hidden;
   border-radius: var(--radius-md);
-  box-shadow: 0 12px 48px rgba(0,0,0,0.18);
 }
 
 .slide-figure img {
@@ -1080,19 +1081,26 @@ section.animate-from-right {
   background: var(--color-bg);
 }
 
-/* カルーセルラッパー — コンテナ外まで広げて没入感を出す */
+/* カルーセルラッパー */
 .reviews-carousel-wrap {
   margin-top: 32px;
   padding: 4px 0 16px;
   overflow: hidden;
 }
 .swiper-reviews {
-  padding: 4px 16px 8px !important;
+  padding: 4px 24px 8px !important;
   overflow: hidden !important;
 }
 /* スライド内のカードが等高になるよう stretch */
 .swiper-reviews .swiper-slide {
   height: auto;
+}
+.swiper-reviews .swiper-slide:not(.swiper-slide-active) {
+  opacity: 0.6;
+  transition: opacity 0.3s;
+}
+.swiper-reviews .swiper-slide-active {
+  opacity: 1;
 }
 
 .review-card {
@@ -1417,34 +1425,44 @@ section.animate-from-right {
 }
 
 .media-logos {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 32px;
   margin-top: 28px;
-  flex-wrap: wrap;
-  overflow-x: auto;
-  padding: 8px 0;
+  overflow: hidden;
+}
+
+/* Swiper media carousel */
+.swiper-media {
+  overflow: hidden !important;
+  padding: 8px 0 !important;
+}
+
+.swiper-media .swiper-slide {
+  width: auto !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .media-logo-wrap {
-  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 8px;
 }
 
 .media-logo {
-  height: 32px;
+  height: 36px;
   width: auto;
-  max-width: 120px;
+  max-width: 140px;
   object-fit: contain;
   filter: grayscale(100%);
-  opacity: 0.65;
-  transition: filter 0.25s, opacity 0.25s, transform 0.2s;
+  opacity: 0.6;
+  transition: filter 0.3s, opacity 0.3s;
+  display: block;
 }
 
 .media-logo:hover {
   filter: grayscale(0%);
   opacity: 1;
-  transform: scale(1.05);
 }
 
 /* ─── Media Clips（ニュース掲載リンク一覧）─── */
