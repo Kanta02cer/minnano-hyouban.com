@@ -239,8 +239,12 @@ function buildArticleHTML(a) {
     </div>
   `).join('');
 
-  // Media logos (Swiper carousel slides)
-  const mediaLogoSlides = galleryMediaForArticle(a).map(m => `
+  // Media logos (Swiper carousel slides) — duplicate to ensure enough slides for loop
+  const _mediaItems = galleryMediaForArticle(a);
+  const _mediaItemsLooped = _mediaItems.length < 6
+    ? [..._mediaItems, ..._mediaItems, ..._mediaItems]
+    : _mediaItems;
+  const mediaLogoSlides = _mediaItemsLooped.map(m => `
     <div class="swiper-slide">
       <div class="media-logo-wrap">
         <img src="${esc(m.src)}" alt="${esc(m.alt)}" class="media-logo" loading="lazy">
@@ -253,11 +257,11 @@ function buildArticleHTML(a) {
   (a.galleries?.media || []).forEach(m => { if (m.alt && m.src) mediaLogoMap[m.alt] = m.src; });
   // Also support common name variants
   const MEDIA_LOGO_ALIASES = {
-    '楽天インフォシーク': 'images/media-logo/楽天ニュース.jpg',
-    '楽天ニュース':       'images/media-logo/楽天ニュース.jpg',
-    'エキサイトニュース': 'images/media-logo/exciteニュース.jpg',
-    'exciteニュース':     'images/media-logo/exciteニュース.jpg',
-    'ニコニコニュース':   'images/media-logo/ニコニコニュース.jpg',
+    '楽天インフォシーク': 'images/media-logo/rakuten-news.jpg',
+    '楽天ニュース':       'images/media-logo/rakuten-news.jpg',
+    'エキサイトニュース': 'images/media-logo/excite-news.jpg',
+    'exciteニュース':     'images/media-logo/excite-news.jpg',
+    'ニコニコニュース':   'images/media-logo/niconico-news.jpg',
   };
   const getMediaLogo = name => mediaLogoMap[name] || MEDIA_LOGO_ALIASES[name] || null;
 

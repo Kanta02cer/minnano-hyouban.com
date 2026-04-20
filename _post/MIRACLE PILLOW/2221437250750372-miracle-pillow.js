@@ -9,7 +9,8 @@ window.__POST_2221437250750372 = {
 
   title:    "MIRACLE PILLOWの口コミ評判｜みんなの評判.com",
   metaDesc: "MIRACLE PILLOWが気になっている方へ。実際に使っている人の口コミ・評判を記者がまとめました。6つのAIRが動く電動ピローの特徴・開発背景・購入前の判断材料をわかりやすく解説。",
-  ogImage:  "images/miracle-pillow/photo-sleep-side.jpg",
+  ogImage:  "images/miracle-pillow/fv-main.png",
+  heroImg:  "images/miracle-pillow/fv-main.png",
   company:  "MIRACLE PILLOW（株式会社TVC）",
   category: "美容・健康",
   publishedAt: "2026-04-17",
@@ -33,8 +34,9 @@ window.__POST_2221437250750372 = {
 
   galleries: {
     service: [
-      { src: "images/miracle-pillow/photo-sleep-front.jpg",              alt: "MIRACLE PILLOWで仰向けに眠る女性",     caption: "6つのAIRが内部で静かに動き続ける電動ピロー" },
-      { src: "images/miracle-pillow/lifestyle/photo-sleep-closeup.jpg",  alt: "MIRACLE PILLOWの横向き使用クローズアップ", caption: "首・頭を自然に支える独自の構造設計" },
+      { src: "images/miracle-pillow/fv-main.png",                         alt: "動く枕が朝を変える——MIRACLE PILLOW",    caption: "目覚め×体圧分散 SIX-AIR搭載の電動ピロー" },
+      { src: "images/miracle-pillow/photo-sleep-front.jpg",               alt: "MIRACLE PILLOWで仰向けに眠る女性",     caption: "6つのAIRが内部で静かに動き続ける電動ピロー" },
+      { src: "images/miracle-pillow/lifestyle/photo-sleep-closeup.jpg",   alt: "MIRACLE PILLOWの横向き使用クローズアップ", caption: "首・頭を自然に支える独自の構造設計" },
       { src: "images/miracle-pillow/lifestyle/photo-sleep-controller.jpg", alt: "コントローラーと枕を使用中の様子",   caption: "ボタン1回で使い始められるシンプルな操作性" }
     ],
     beforeAfter: [
@@ -42,9 +44,9 @@ window.__POST_2221437250750372 = {
       { src: "images/miracle-pillow/lifestyle/photo-sleep-natural.jpg", alt: "MIRACLE PILLOWで自然な姿勢で眠る", label: "MIRACLE PILLOW使用時" }
     ],
     media: [
-      { src: "images/media-logo/楽天ニュース.jpg",    alt: "楽天ニュース" },
-      { src: "images/media-logo/ニコニコニュース.jpg", alt: "ニコニコニュース" },
-      { src: "images/media-logo/exciteニュース.jpg",  alt: "エキサイトニュース" }
+      { src: "images/media-logo/rakuten-news.jpg",    alt: "楽天ニュース" },
+      { src: "images/media-logo/niconico-news.jpg", alt: "ニコニコニュース" },
+      { src: "images/media-logo/excite-news.jpg",  alt: "エキサイトニュース" }
     ],
     extra: [
       { group: "ライフスタイル写真", src: "images/miracle-pillow/photo-sleep-side.jpg",    alt: "MIRACLE PILLOWで横向き睡眠", caption: "自然な横向き寝でも首をしっかりサポート" },
