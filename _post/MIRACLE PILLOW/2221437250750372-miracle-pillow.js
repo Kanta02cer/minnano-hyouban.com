@@ -60,11 +60,7 @@ window.__POST_2221437250750372 = {
       { group: "機能・テクノロジー", src: "images/miracle-pillow/feature/feature-spec.png",       alt: "MIRACLE PILLOWのサイズスペック", caption: "幅60cm×高さ40cm。一般的な枕と同等サイズ" },
       { group: "機能・テクノロジー", src: "images/miracle-pillow/feature/feature-logo.png",       alt: "MIRACLE PILLOWロゴ・製品イメージ", caption: "MIRACLE PILLOW 製品イメージ" },
       { group: "比較・データ", src: "images/miracle-pillow/comparison/compare-vs-others.png", alt: "MIRACLE PILLOWと他の睡眠ケア方法の比較表", caption: "時間効率・労力・コスト・省便化で他の方法と比較" },
-      { group: "比較・データ", src: "images/miracle-pillow/comparison/compare-noise.jpg",     alt: "MIRACLE PILLOWの動作音レベル比較インフォグラフィック", caption: "動作音は図書館レベル以下の静音設計" },
-      { group: "専門家・利用者の声", src: "images/miracle-pillow/review/review-doctor.png",    alt: "Tokyo Capital Clinic院長 新木先生による医師推薦コメント", caption: "医師（Tokyo Capital Clinic 院長 新木 勉先生）推薦" },
-      { group: "専門家・利用者の声", src: "images/miracle-pillow/review/review-ikeda-01.jpg", alt: "整体師 池田朋秋先生による専門家推薦コメント", caption: "整体師 池田朋秋先生（46歳）からの専門家推薦" },
-      { group: "専門家・利用者の声", src: "images/miracle-pillow/review/review-ikeda-02.jpg", alt: "セント整骨院院長による実使用レビュー", caption: "セント整骨院 院長による実使用レビュー" },
-      { group: "専門家・利用者の声", src: "images/miracle-pillow/review/review-summary.jpg",  alt: "利用者の声・口コミまとめ", caption: "実際に使った方々のリアルな感想" }
+      { group: "比較・データ", src: "images/miracle-pillow/comparison/compare-noise.jpg",     alt: "MIRACLE PILLOWの動作音レベル比較インフォグラフィック", caption: "動作音は図書館レベル以下の静音設計" }
     ]
   },
 
