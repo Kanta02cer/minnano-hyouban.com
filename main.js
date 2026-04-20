@@ -174,20 +174,10 @@ function initSwipers() {
   if (document.querySelector('.swiper-service')) {
     new Swiper('.swiper-service', {
       loop: true,
-      slidesPerView: 1.3,
-      spaceBetween: 16,
-      centeredSlides: true,
-      pagination: {
-        el: '.swiper-service .swiper-pagination',
-        clickable: true,
-      },
-      breakpoints: {
-        768: {
-          slidesPerView: 3,
-          centeredSlides: false,
-          spaceBetween: 20,
-        }
-      },
+      slidesPerView: 1,
+      spaceBetween: 0,
+      autoplay: { delay: 3000, disableOnInteraction: false },
+      speed: 1500,
       a11y: {
         prevSlideMessage: '前のスライド',
         nextSlideMessage: '次のスライド',

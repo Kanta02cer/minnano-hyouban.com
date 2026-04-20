@@ -1007,27 +1007,22 @@ ul, ol {
 
 /* Swiper Service */
 .swiper-service {
-  padding-bottom: 40px !important;
+  width: 100%;
 }
 
 .slide-figure {
-  border-radius: var(--radius-md);
   overflow: hidden;
-  box-shadow: var(--shadow-card);
 }
 
 .slide-figure img {
   width: 100%;
-  aspect-ratio: 4/3;
+  aspect-ratio: 16/9;
   object-fit: cover;
+  display: block;
 }
 
 .slide-figure figcaption {
-  padding: 10px 14px;
-  font-size: 0.85rem;
-  color: var(--color-muted);
-  background: var(--color-white);
-  text-align: center;
+  display: none;
 }
 
 /* Swiper BA */

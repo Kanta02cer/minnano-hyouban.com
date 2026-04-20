@@ -546,14 +546,13 @@ function buildArticleHTML(a) {
       </div>
     </section>` : ''}
 
-    <!-- G1 SERVICE GALLERY  [画像: 800×600px / 横3枚スライダー] -->
+    <!-- G1 SERVICE GALLERY  [画像: フル幅ループカルーセル] -->
     <section class="gallery-section animate-on-scroll" id="gallery-service" aria-labelledby="gallery-service-heading">
       <div class="container">
         <h2 class="section-title" id="gallery-service-heading">サービスの雰囲気をご覧ください</h2>
-        <div class="swiper swiper-service" aria-label="サービスイメージスライダー">
-          <div class="swiper-wrapper">${serviceSlides}</div>
-          <div class="swiper-pagination" aria-label="スライドページネーション"></div>
-        </div>
+      </div>
+      <div class="swiper swiper-service" aria-label="サービスイメージスライダー">
+        <div class="swiper-wrapper">${serviceSlides}</div>
       </div>
     </section>
 
@@ -852,11 +851,10 @@ function initSwipers() {
   if (document.querySelector('.swiper-service')) {
     new Swiper('.swiper-service', {
       loop: true,
-      slidesPerView: 1.3,
-      spaceBetween: 16,
-      centeredSlides: true,
-      pagination: { el: '.swiper-service .swiper-pagination', clickable: true },
-      breakpoints: { 768: { slidesPerView: 3, centeredSlides: false, spaceBetween: 20 } },
+      slidesPerView: 1,
+      spaceBetween: 0,
+      autoplay: { delay: 3000, disableOnInteraction: false },
+      speed: 1500,
       a11y: { prevSlideMessage: '前のスライド', nextSlideMessage: '次のスライド' }
     });
   }
