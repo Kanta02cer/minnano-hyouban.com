@@ -332,6 +332,35 @@ function buildArticleHTML(a) {
        </div>`
     : '';
 
+  // Extra photo gallery (galleries.extra)
+  const extraGalleryHTML = (() => {
+    const extra = a.galleries?.extra;
+    if (!extra || !extra.length) return '';
+    const groups = [];
+    const groupMap = {};
+    extra.forEach(item => {
+      const g = item.group || '';
+      if (!groupMap[g]) { groupMap[g] = []; groups.push(g); }
+      groupMap[g].push(item);
+    });
+    const groupsHTML = groups.map(g => {
+      const itemsHTML = groupMap[g].map(item => `
+        <figure class="gallery-extra-item">
+          <img src="${esc(item.src)}" alt="${esc(item.alt || '')}" loading="lazy">
+          ${item.caption ? `<figcaption class="gallery-extra-caption">${esc(item.caption)}</figcaption>` : ''}
+        </figure>`).join('');
+      return `${g ? `<h3 class="gallery-extra-group-title">${esc(g)}</h3>` : ''}
+        <div class="gallery-extra-grid">${itemsHTML}</div>`;
+    }).join('');
+    return `
+      <section class="gallery-extra-section animate-on-scroll" aria-label="フォトギャラリー">
+        <div class="container">
+          <h2 class="section-title">フォトギャラリー</h2>
+          ${groupsHTML}
+        </div>
+      </section>`;
+  })();
+
   // Before/after text comparison
   const baTextHTML = (() => {
     if (!a.beforeAfterItems || !a.beforeAfterItems.length) return '';
@@ -536,6 +565,9 @@ function buildArticleHTML(a) {
         <div class="swiper-wrapper">${serviceSlides}</div>
       </div>
     </section>
+
+    <!-- G2 EXTRA PHOTO GALLERY -->
+    ${extraGalleryHTML}
 
     <!-- 06 REVIEWS（口コミ・ユーザーの声） -->
     <section class="reviews-section animate-on-scroll" id="reviews" aria-labelledby="reviews-heading">

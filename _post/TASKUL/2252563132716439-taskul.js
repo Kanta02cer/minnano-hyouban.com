@@ -45,6 +45,10 @@ window.__POST_2252563132716439 = {
       { src: "images/placeholders/media-rakuten.svg",    alt: "楽天インフォシーク" },
       { src: "images/placeholders/media-excite.svg",     alt: "エキサイトニュース" },
       { src: "images/placeholders/media-niconico.svg",   alt: "ニコニコニュース" }
+    ],
+    extra: [
+      { group: "AI機能", src: "images/taskul/ai/ai-meeting-log.png",      alt: "TASKULのAIが商談ログを自動生成する画面", caption: "商談後に内容を入力するだけでAIが議事録・ネクストアクションを自動生成" },
+      { group: "パートナー管理", src: "images/taskul/partner/partner-list.png", alt: "TASKULの制作パートナー一覧管理画面", caption: "パートナーのスキル・単価・ステータスを一覧で管理。チームを組むのが格段にラクになる" }
     ]
   },
 

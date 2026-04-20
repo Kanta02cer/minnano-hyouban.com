@@ -3015,6 +3015,62 @@ section.animate-from-right {
 }
 
 /* ============================================================
+   EXTRA PHOTO GALLERY
+============================================================ */
+.gallery-extra-section {
+  padding: 56px 0;
+}
+
+.gallery-extra-group-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin: 36px 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.gallery-extra-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.gallery-extra-item {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+.gallery-extra-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+  transition: opacity 0.2s;
+}
+
+.gallery-extra-item img:hover {
+  opacity: 0.9;
+}
+
+.gallery-extra-caption {
+  font-size: 0.72rem;
+  color: var(--color-muted);
+  line-height: 1.55;
+  margin-top: 6px;
+  padding: 0 2px;
+}
+
+@media (max-width: 640px) {
+  .gallery-extra-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ============================================================
    FIT SECTION（向き・不向き 2カラム）
 ============================================================ */
 .fit-section {

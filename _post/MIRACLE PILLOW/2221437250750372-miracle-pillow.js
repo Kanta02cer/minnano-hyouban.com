@@ -33,18 +33,36 @@ window.__POST_2221437250750372 = {
 
   galleries: {
     service: [
-      { src: "images/miracle-pillow/photo-sleep-front.jpg",   alt: "MIRACLE PILLOWで眠る女性", caption: "6つのAIRが内部で静かに動き続ける電動ピロー" },
-      { src: "images/miracle-pillow/photo-sleep-profile.jpg", alt: "MIRACLE PILLOWの枕フォルム", caption: "首・頭を自然に支える独自の構造設計" },
-      { src: "images/miracle-pillow/photo-device.jpg",        alt: "MIRACLE PILLOWのコントローラーユニット", caption: "ボタン1回で使い始められるシンプルな操作性" }
+      { src: "images/miracle-pillow/photo-sleep-front.jpg",              alt: "MIRACLE PILLOWで仰向けに眠る女性",     caption: "6つのAIRが内部で静かに動き続ける電動ピロー" },
+      { src: "images/miracle-pillow/lifestyle/photo-sleep-closeup.jpg",  alt: "MIRACLE PILLOWの横向き使用クローズアップ", caption: "首・頭を自然に支える独自の構造設計" },
+      { src: "images/miracle-pillow/lifestyle/photo-sleep-controller.jpg", alt: "コントローラーと枕を使用中の様子",   caption: "ボタン1回で使い始められるシンプルな操作性" }
     ],
     beforeAfter: [
-      { src: "images/placeholders/gallery-before.svg", alt: "使用前：朝の頭・首まわりの重さが気になる状態", label: "使用前" },
-      { src: "images/placeholders/gallery-after.svg",  alt: "使用後：ゆるやかに支え方が変わり朝の感覚が変化", label: "継続使用後" }
+      { src: "images/miracle-pillow/comparison/compare-posture.png", alt: "従来の枕との首のカーブ比較", label: "従来の枕" },
+      { src: "images/miracle-pillow/lifestyle/photo-sleep-natural.jpg", alt: "MIRACLE PILLOWで自然な姿勢で眠る", label: "MIRACLE PILLOW使用時" }
     ],
     media: [
       { src: "images/placeholders/media-logo.svg", alt: "Makuake掲載" },
       { src: "images/placeholders/media-logo.svg", alt: "業界メディア" },
       { src: "images/placeholders/media-logo.svg", alt: "ニュースメディア" }
+    ],
+    extra: [
+      { group: "ライフスタイル写真", src: "images/miracle-pillow/photo-sleep-side.jpg",    alt: "MIRACLE PILLOWで横向き睡眠", caption: "自然な横向き寝でも首をしっかりサポート" },
+      { group: "ライフスタイル写真", src: "images/miracle-pillow/photo-sleep-profile.jpg", alt: "枕のフォルムが見える横向きショット", caption: "独自フォルムが首のS字カーブを保持" },
+      { group: "ライフスタイル写真", src: "images/miracle-pillow/photo-device.jpg",        alt: "MIRACLE PILLOWのコントローラーユニット", caption: "Blue LEDが光るコントローラー。設置も簡単" },
+      { group: "機能・テクノロジー", src: "images/miracle-pillow/feature/feature-technology.jpg", alt: "MIRACLE PILLOW 先端睡眠テクノロジー SIX-AIR RECOVERY SYSTEM", caption: "先端睡眠テクノロジー「SIX-AIR RECOVERY SYSTEM」" },
+      { group: "機能・テクノロジー", src: "images/miracle-pillow/feature/feature-concept.png",    alt: "構想から10年・動く6つのAIという答え", caption: "構想から10年。「動く6つのAIR」という答え" },
+      { group: "機能・テクノロジー", src: "images/miracle-pillow/feature/feature-tagline.png",    alt: "枕なのに、動く。だから、朝が違う", caption: "枕なのに、動く。だから、朝が違う" },
+      { group: "機能・テクノロジー", src: "images/miracle-pillow/feature/feature-brand.png",      alt: "あなた専属の整体師 MIRACLE PILLOW", caption: "一晩中、頭・首・肩の負担を軽減し続ける" },
+      { group: "機能・テクノロジー", src: "images/miracle-pillow/feature/feature-system.png",     alt: "SIX-AIR & RECOVERY 人間工学に基づく設計", caption: "人間工学に基づくSIX-AIRとRECOVERYの融合" },
+      { group: "機能・テクノロジー", src: "images/miracle-pillow/feature/feature-spec.png",       alt: "MIRACLE PILLOWのサイズスペック", caption: "幅60cm×高さ40cm。一般的な枕と同等サイズ" },
+      { group: "機能・テクノロジー", src: "images/miracle-pillow/feature/feature-logo.png",       alt: "MIRACLE PILLOWロゴ・製品イメージ", caption: "MIRACLE PILLOW 製品イメージ" },
+      { group: "比較・データ", src: "images/miracle-pillow/comparison/compare-vs-others.png", alt: "MIRACLE PILLOWと他の睡眠ケア方法の比較表", caption: "時間効率・労力・コスト・省便化で他の方法と比較" },
+      { group: "比較・データ", src: "images/miracle-pillow/comparison/compare-noise.jpg",     alt: "MIRACLE PILLOWの動作音レベル比較インフォグラフィック", caption: "動作音は図書館レベル以下の静音設計" },
+      { group: "専門家・利用者の声", src: "images/miracle-pillow/review/review-doctor.png",    alt: "Tokyo Capital Clinic院長 新木先生による医師推薦コメント", caption: "医師（Tokyo Capital Clinic 院長 新木 勉先生）推薦" },
+      { group: "専門家・利用者の声", src: "images/miracle-pillow/review/review-ikeda-01.jpg", alt: "整体師 池田朋秋先生による専門家推薦コメント", caption: "整体師 池田朋秋先生（46歳）からの専門家推薦" },
+      { group: "専門家・利用者の声", src: "images/miracle-pillow/review/review-ikeda-02.jpg", alt: "セント整骨院院長による実使用レビュー", caption: "セント整骨院 院長による実使用レビュー" },
+      { group: "専門家・利用者の声", src: "images/miracle-pillow/review/review-summary.jpg",  alt: "利用者の声・口コミまとめ", caption: "実際に使った方々のリアルな感想" }
     ]
   },
 
