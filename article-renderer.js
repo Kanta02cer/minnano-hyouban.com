@@ -776,6 +776,81 @@ function renderFAQInArticle(list) {
 }
 
 /* ============================================================
+   LIGHTBOX（フォトギャラリー拡大表示）
+============================================================ */
+function initLightbox() {
+  const lb      = document.getElementById('lightbox');
+  const lbImg   = document.getElementById('lightbox-img');
+  const lbCap   = document.getElementById('lightbox-caption');
+  const lbClose = document.getElementById('lightbox-close');
+  const lbPrev  = document.getElementById('lightbox-prev');
+  const lbNext  = document.getElementById('lightbox-next');
+  if (!lb || !lbImg) return;
+
+  // すべてのギャラリー画像を収集
+  const items = Array.from(document.querySelectorAll('.gallery-extra-item img'));
+  let current = 0;
+
+  function openLightbox(idx) {
+    current = idx;
+    const img = items[idx];
+    lbImg.src = img.src;
+    lbImg.alt = img.alt;
+    lbCap.textContent = img.closest('figure')?.querySelector('figcaption')?.textContent || '';
+    lb.removeAttribute('hidden');
+    requestAnimationFrame(() => lb.classList.add('is-open'));
+    document.body.style.overflow = 'hidden';
+    lbClose.focus();
+    lbPrev.style.display = items.length > 1 ? '' : 'none';
+    lbNext.style.display = items.length > 1 ? '' : 'none';
+  }
+
+  function closeLightbox() {
+    lb.classList.remove('is-open');
+    setTimeout(() => {
+      lb.setAttribute('hidden', '');
+      lbImg.src = '';
+    }, 260);
+    document.body.style.overflow = '';
+  }
+
+  function showPrev() {
+    current = (current - 1 + items.length) % items.length;
+    openLightbox(current);
+  }
+
+  function showNext() {
+    current = (current + 1) % items.length;
+    openLightbox(current);
+  }
+
+  // イベント登録（後から追加される可能性があるので document に委譲）
+  document.addEventListener('click', (e) => {
+    const item = e.target.closest('.gallery-extra-item img');
+    if (!item) return;
+    const idx = items.indexOf(item);
+    if (idx !== -1) openLightbox(idx);
+  });
+
+  lbClose.addEventListener('click', closeLightbox);
+  lbPrev.addEventListener('click', (e) => { e.stopPropagation(); showPrev(); });
+  lbNext.addEventListener('click', (e) => { e.stopPropagation(); showNext(); });
+
+  // オーバーレイクリックで閉じる
+  lb.addEventListener('click', (e) => {
+    if (e.target === lb) closeLightbox();
+  });
+
+  // キーボード操作
+  document.addEventListener('keydown', (e) => {
+    if (lb.hasAttribute('hidden')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft')  showPrev();
+    if (e.key === 'ArrowRight') showNext();
+  });
+}
+
+/* ============================================================
    HAMBURGER
 ============================================================ */
 function initHamburger() {
@@ -1271,9 +1346,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { capture: true, passive: true });
   });
 
-  // Post-render: reviews, FAQ, animations, swipers
+  // Post-render: reviews, FAQ, animations, swipers, lightbox
   renderReviewsInArticle(article.reviews || []);
   renderFAQInArticle(article.faqs || []);
+  initLightbox();
   initSmoothScroll();
   initScoreBars();
   initScrollAnimations();

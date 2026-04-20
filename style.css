@@ -998,7 +998,7 @@ section.animate-from-right {
 /* Swiper Service */
 .swiper-service {
   width: 100%;
-  max-width: 680px;
+  max-width: 860px;
   margin-left: auto;
   margin-right: auto;
   overflow: hidden;
@@ -1081,7 +1081,7 @@ section.animate-from-right {
 ============================================================ */
 .reviews-section {
   padding: 56px 0;
-  background: var(--color-bg);
+  background: transparent;
 }
 
 /* カルーセルラッパー */
@@ -1111,8 +1111,7 @@ section.animate-from-right {
   display: flex;
   flex-direction: column;
   background: transparent;
-  padding: 20px 4px;
-  border-top: 1px solid var(--color-border);
+  padding: 24px 0;
   transition: opacity 0.2s;
 }
 .review-card:hover {
@@ -1424,7 +1423,7 @@ section.animate-from-right {
 ============================================================ */
 .media-section {
   padding: 48px 0;
-  background: var(--color-white);
+  background: transparent;
 }
 
 .media-logos {
@@ -1453,18 +1452,17 @@ section.animate-from-right {
 }
 
 .media-logo {
-  height: 36px;
+  height: 40px;
   width: auto;
-  max-width: 140px;
+  max-width: 160px;
   object-fit: contain;
-  filter: grayscale(100%);
-  opacity: 0.6;
-  transition: filter 0.3s, opacity 0.3s;
+  filter: none;
+  opacity: 0.85;
+  transition: opacity 0.3s;
   display: block;
 }
 
 .media-logo:hover {
-  filter: grayscale(0%);
   opacity: 1;
 }
 
@@ -2614,19 +2612,15 @@ section.animate-from-right {
 ============================================================ */
 .score-breakdown {
   padding: 56px 0;
-  background: var(--color-bg);
+  background: transparent;
 }
 
 .score-bars {
-  background: var(--color-white);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: 32px;
-  box-shadow: var(--shadow-card);
+  background: transparent;
   margin-top: 32px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
 }
 
 .score-bar-row {
@@ -2656,11 +2650,10 @@ section.animate-from-right {
 .bar-track {
   grid-column: 1 / -1;
   grid-row: 2;
-  height: 10px;
-  background: var(--color-bg);
+  height: 6px;
+  background: var(--color-border);
   border-radius: 6px;
   overflow: hidden;
-  border: 1px solid var(--color-border);
 }
 
 .bar-fill {
@@ -2957,7 +2950,7 @@ section.animate-from-right {
 ============================================================ */
 @media (max-width: 767px) {
   .feature-boxes { grid-template-columns: 1fr; }
-  .score-bars { padding: 20px; }
+  .score-bars { padding: 0; }
   .interview-qa { padding: 18px 16px; }
   .interviewee-header { padding: 16px; }
   .reporter-obs { padding: 14px 16px; }
@@ -3203,4 +3196,109 @@ section.animate-from-right {
     grid-template-columns: 1fr;
     gap: 32px 0;
   }
+}
+
+/* ============================================================
+   LIGHTBOX（フォトギャラリー拡大表示）
+============================================================ */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.25s;
+  cursor: pointer;
+}
+.lightbox:not([hidden]) {
+  display: flex;
+}
+.lightbox[hidden] {
+  display: none !important;
+}
+.lightbox.is-open {
+  opacity: 1;
+}
+.lightbox-inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 90vw;
+  max-height: 90vh;
+  cursor: default;
+  animation: lightbox-zoom-in 0.28s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes lightbox-zoom-in {
+  from { transform: scale(0.88); opacity: 0; }
+  to   { transform: scale(1);    opacity: 1; }
+}
+.lightbox-img {
+  display: block;
+  max-width: 90vw;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 24px 64px rgba(0,0,0,.6);
+}
+.lightbox-caption {
+  margin-top: 14px;
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.7);
+  text-align: center;
+  max-width: 600px;
+  line-height: 1.6;
+}
+.lightbox-close {
+  position: fixed;
+  top: 20px;
+  right: 24px;
+  background: rgba(255,255,255,0.12);
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  line-height: 1;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 9001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.lightbox-close:hover { background: rgba(255,255,255,0.25); }
+
+.lightbox-prev,
+.lightbox-next {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.12);
+  border: none;
+  color: #fff;
+  font-size: 2.2rem;
+  line-height: 1;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 9001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.lightbox-prev { left: 16px; }
+.lightbox-next { right: 16px; }
+.lightbox-prev:hover,
+.lightbox-next:hover { background: rgba(255,255,255,0.28); }
+
+/* フォトギャラリーのアイテムにカーソル表示 */
+.gallery-extra-item {
+  cursor: zoom-in;
 }

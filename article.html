@@ -101,6 +101,17 @@
     </div>
   </footer>
 
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="画像を拡大表示" hidden>
+    <button class="lightbox-close" id="lightbox-close" aria-label="閉じる">&times;</button>
+    <button class="lightbox-prev" id="lightbox-prev" aria-label="前の画像">&#8249;</button>
+    <button class="lightbox-next" id="lightbox-next" aria-label="次の画像">&#8250;</button>
+    <div class="lightbox-inner">
+      <img src="" alt="" id="lightbox-img" class="lightbox-img">
+      <p class="lightbox-caption" id="lightbox-caption"></p>
+    </div>
+  </div>
+
   <!-- Swiper JS -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <!-- 記事データ集約ローダー -->
