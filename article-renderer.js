@@ -368,20 +368,14 @@ function buildArticleHTML(a) {
 
     const forItemsHTML = hasFor ? a.forItems.map(item => `
       <li class="fit-item fit-item-yes">
-        <span class="fit-item-icon" aria-hidden="true">✓</span>
-        <div>
-          <p class="fit-item-text">${esc(typeof item === 'string' ? item : item.who)}</p>
-          ${typeof item === 'object' && item.reason ? `<p class="fit-item-reason">${esc(item.reason)}</p>` : ''}
-        </div>
+        <p class="fit-item-text">${esc(typeof item === 'string' ? item : item.who)}</p>
+        ${typeof item === 'object' && item.reason ? `<p class="fit-item-reason">${esc(item.reason)}</p>` : ''}
       </li>`).join('') : '';
 
     const notForItemsHTML = hasNotFor ? a.notForItems.map(item => `
       <li class="fit-item fit-item-no">
-        <span class="fit-item-icon" aria-hidden="true">△</span>
-        <div>
-          <p class="fit-item-text">${esc(typeof item === 'string' ? item : item.who)}</p>
-          ${typeof item === 'object' && item.reason ? `<p class="fit-item-reason">${esc(item.reason)}</p>` : ''}
-        </div>
+        <p class="fit-item-text">${esc(typeof item === 'string' ? item : item.who)}</p>
+        ${typeof item === 'object' && item.reason ? `<p class="fit-item-reason">${esc(item.reason)}</p>` : ''}
       </li>`).join('') : '';
 
     return `
@@ -392,18 +386,12 @@ function buildArticleHTML(a) {
           <div class="fit-grid">
             ${hasFor ? `
             <div class="fit-col fit-col-yes">
-              <div class="fit-col-header">
-                <span class="fit-col-icon" aria-hidden="true">✓</span>
-                <h3 class="fit-col-title">こんな方にぴったり</h3>
-              </div>
+              <h3 class="fit-col-title">こんな方にぴったり</h3>
               <ul class="fit-list" role="list">${forItemsHTML}</ul>
             </div>` : ''}
             ${hasNotFor ? `
             <div class="fit-col fit-col-no">
-              <div class="fit-col-header">
-                <span class="fit-col-icon" aria-hidden="true">△</span>
-                <h3 class="fit-col-title">こんな方には不向きかも</h3>
-              </div>
+              <h3 class="fit-col-title">こんな方には不向きかも</h3>
               <ul class="fit-list" role="list">${notForItemsHTML}</ul>
             </div>` : ''}
           </div>
