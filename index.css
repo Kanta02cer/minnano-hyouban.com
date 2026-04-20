@@ -1955,7 +1955,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .section-header { flex-wrap: wrap; gap: 12px; }
   .section-link { margin-left: 0; }
 
-  .promise-list li { padding: 4px 14px; font-size: .7rem; }
+  .promise-list li { padding: 4px 14px; font-size: .8rem; }
 
   .section-featured,
   .section-articles,
@@ -2109,4 +2109,40 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .hero-media-logo      { height: 36px; }
   .hero-media-fade      { width: 48px; }
   .hero-media-marquee-track { gap: 16px; animation-duration: 14s; }
+
+  /* コンタクトセクション: パディング削減 */
+  .section-contact { padding: 64px 0; }
+  .contact-header  { margin-bottom: 40px; }
+  .contact-title   { font-size: 1.45rem; }
+  .contact-cta     { margin-top: 36px; }
+  .contact-btn { width: 100%; text-align: center; padding: 16px 24px; }
+
+  /* aboutセクション: パディング削減 */
+  .section-about { padding: 56px 0; }
+
+  /* howtoセクション: パディング削減 */
+  .section-howto { padding: 56px 0; }
+
+  /* featuredセクション */
+  .section-featured { padding: 56px 0; }
+}
+
+/* =============================================================
+   MOBILE 480px 以下: 追加最適化
+   ============================================================= */
+@media (max-width: 480px) {
+  /* コンタクト取材ステップ */
+  .contact-step { gap: 14px; padding: 16px 0; }
+  .contact-step-num { font-size: 1.25rem; min-width: 26px; }
+  .contact-step-body strong { font-size: .875rem; }
+  .contact-step-body p      { font-size: .8rem; }
+
+  /* コンタクト対象リスト */
+  .contact-target-list li { font-size: .825rem; padding: 10px 0 10px 20px; }
+
+  /* フッター */
+  .footer-nav ul { gap: 4px 16px; }
+
+  /* ヒーロー統計 */
+  .hero-stat-unit { font-size: .65rem; }
 }
