@@ -1913,8 +1913,6 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
   .article-item { flex: 0 0 86vw; }
 
-  .hero-media-strip { padding: 20px 0 0; }
-  .hero-media-logo  { height: 28px; }
 }
 
 /* ============================================================
@@ -1923,19 +1921,49 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .hero-media-strip {
   position: relative;
   z-index: 2;
-  padding: 28px 0 0;
-  overflow: hidden;
+  padding: 36px 0 4px;
+}
+.hero-media-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.hero-media-badge {
+  font-size: .62rem;
+  font-weight: 800;
+  letter-spacing: .14em;
+  color: var(--navy);
+  background: var(--navy-l);
+  border: 1px solid rgba(13,27,62,.15);
+  padding: 3px 10px;
+  border-radius: 3px;
+  flex-shrink: 0;
 }
 .hero-media-label {
-  font-size: .68rem;
+  font-size: .72rem;
   color: var(--ink-mute);
-  letter-spacing: .05em;
-  text-align: center;
-  margin-bottom: 14px;
-  text-transform: uppercase;
+  letter-spacing: .04em;
 }
+.hero-media-track-wrap {
+  position: relative;
+  overflow: hidden;
+}
+/* 両端フェード */
+.hero-media-fade {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+  z-index: 2;
+  pointer-events: none;
+}
+.hero-media-fade--left  { left: 0;  background: linear-gradient(to right, var(--bg), transparent); }
+.hero-media-fade--right { right: 0; background: linear-gradient(to left,  var(--bg), transparent); }
+
 .swiper-hero-media {
-  overflow: hidden !important;
+  overflow: visible !important;
 }
 .swiper-hero-media .swiper-slide {
   width: auto !important;
@@ -1947,15 +1975,27 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 4px;
+  background: #fff;
+  border: 1px solid rgba(13,27,62,.09);
+  border-radius: 12px;
+  padding: 14px 28px;
+  box-shadow: 0 2px 12px rgba(13,27,62,.06);
+  transition: box-shadow 0.25s, transform 0.25s;
+}
+.hero-media-logo-wrap:hover {
+  box-shadow: 0 6px 24px rgba(13,27,62,.13);
+  transform: translateY(-2px);
 }
 .hero-media-logo {
-  height: 36px;
+  height: 48px;
   width: auto;
-  max-width: 160px;
+  max-width: 180px;
   object-fit: contain;
   display: block;
-  opacity: 0.9;
-  transition: opacity 0.2s;
 }
-.hero-media-logo:hover { opacity: 1; }
+
+@media (max-width: 640px) {
+  .hero-media-logo-wrap { padding: 10px 20px; }
+  .hero-media-logo      { height: 36px; }
+  .hero-media-fade      { width: 48px; }
+}

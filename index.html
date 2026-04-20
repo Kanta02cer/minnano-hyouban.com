@@ -208,16 +208,26 @@
 
       <!-- メディアロゴ カルーセル（ヒーロー内） -->
       <div class="hero-media-strip" aria-label="掲載メディア一覧">
-        <p class="hero-media-label">大手ニュースメディアに掲載された企業のみ取材</p>
-        <div class="swiper swiper-hero-media">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide"><div class="hero-media-logo-wrap"><img src="images/media-logo/rakuten-news.jpg" alt="楽天ニュース" class="hero-media-logo"></div></div>
-            <div class="swiper-slide"><div class="hero-media-logo-wrap"><img src="images/media-logo/niconico-news.jpg" alt="ニコニコニュース" class="hero-media-logo"></div></div>
-            <div class="swiper-slide"><div class="hero-media-logo-wrap"><img src="images/media-logo/excite-news.jpg" alt="エキサイトニュース" class="hero-media-logo"></div></div>
-            <div class="swiper-slide"><div class="hero-media-logo-wrap"><img src="images/media-logo/rakuten-news.jpg" alt="楽天ニュース" class="hero-media-logo"></div></div>
-            <div class="swiper-slide"><div class="hero-media-logo-wrap"><img src="images/media-logo/niconico-news.jpg" alt="ニコニコニュース" class="hero-media-logo"></div></div>
-            <div class="swiper-slide"><div class="hero-media-logo-wrap"><img src="images/media-logo/excite-news.jpg" alt="エキサイトニュース" class="hero-media-logo"></div></div>
+        <div class="hero-media-header">
+          <span class="hero-media-badge">FEATURED IN</span>
+          <p class="hero-media-label">大手ニュースメディア掲載企業のみを取材対象に</p>
+        </div>
+        <div class="hero-media-track-wrap">
+          <div class="hero-media-fade hero-media-fade--left" aria-hidden="true"></div>
+          <div class="swiper swiper-hero-media">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide"><div class="hero-media-logo-wrap"><img src="images/media-logo/rakuten-news.jpg" alt="楽天ニュース" class="hero-media-logo"></div></div>
+              <div class="swiper-slide"><div class="hero-media-logo-wrap"><img src="images/media-logo/niconico-news.jpg" alt="ニコニコニュース" class="hero-media-logo"></div></div>
+              <div class="swiper-slide"><div class="hero-media-logo-wrap"><img src="images/media-logo/excite-news.jpg" alt="エキサイトニュース" class="hero-media-logo"></div></div>
+              <div class="swiper-slide"><div class="hero-media-logo-wrap"><img src="images/media-logo/rakuten-news.jpg" alt="楽天ニュース" class="hero-media-logo"></div></div>
+              <div class="swiper-slide"><div class="hero-media-logo-wrap"><img src="images/media-logo/niconico-news.jpg" alt="ニコニコニュース" class="hero-media-logo"></div></div>
+              <div class="swiper-slide"><div class="hero-media-logo-wrap"><img src="images/media-logo/excite-news.jpg" alt="エキサイトニュース" class="hero-media-logo"></div></div>
+              <div class="swiper-slide"><div class="hero-media-logo-wrap"><img src="images/media-logo/rakuten-news.jpg" alt="楽天ニュース" class="hero-media-logo"></div></div>
+              <div class="swiper-slide"><div class="hero-media-logo-wrap"><img src="images/media-logo/niconico-news.jpg" alt="ニコニコニュース" class="hero-media-logo"></div></div>
+              <div class="swiper-slide"><div class="hero-media-logo-wrap"><img src="images/media-logo/excite-news.jpg" alt="エキサイトニュース" class="hero-media-logo"></div></div>
+            </div>
           </div>
+          <div class="hero-media-fade hero-media-fade--right" aria-hidden="true"></div>
         </div>
       </div>
 
@@ -259,25 +269,6 @@
           <li class="ticker-item">PR記事として記事内に明示</li>
           <li class="ticker-sep" aria-hidden="true"></li>
         </ul>
-      </div>
-    </div>
-
-    <!-- ============================================================
-         MEDIA CREDIBILITY — authority through recognized sources
-         ============================================================ -->
-    <div class="media-cred" aria-label="取材対象企業の選定基準">
-      <div class="container">
-        <div class="media-cred-inner">
-          <p class="media-cred-label">取材対象の選定基準：以下の大手メディアに掲載された企業のみ</p>
-          <ul class="media-logo-list" aria-label="掲載実績メディア">
-            <li>楽天ニュース</li>
-            <li>ニコニコニュース</li>
-            <li>エキサイトニュース</li>
-            <li>Yahoo!ニュース</li>
-            <li>goo ニュース</li>
-            <li>livedoor ニュース</li>
-          </ul>
-        </div>
       </div>
     </div>
 
@@ -494,9 +485,9 @@
         loop: true,
         freeMode: true,
         slidesPerView: 'auto',
-        spaceBetween: 32,
-        autoplay: { delay: 0, disableOnInteraction: false },
-        speed: 3500,
+        spaceBetween: 48,
+        autoplay: { delay: 0, disableOnInteraction: false, reverseDirection: true },
+        speed: 4000,
         grabCursor: false,
         allowTouchMove: false,
         a11y: { enabled: false }
