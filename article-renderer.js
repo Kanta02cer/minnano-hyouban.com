@@ -434,26 +434,17 @@ function buildArticleHTML(a) {
 
       <!-- メインコンテンツ -->
       <div class="hero-inner">
-        <div class="hero-news-label">楽天・ニコニコ・エキサイトなど大手ネットニュースで話題の企業を第三者記者が取材</div>
         <span class="hero-tag" aria-label="注目情報">${esc(a.heroTag || '第三者記者が直接取材しました')}</span>
         <h1 class="hero-title" id="hero-heading">${a.heroTitle || esc(a.company) + 'の評判を<br>徹底調査しました'}</h1>
         <p class="hero-sub">${esc(a.heroSub || '')}</p>
-        <div class="hero-trust" aria-label="取材の特徴">
-          <span>✓ 利用者へ直接取材</span>
-          <span>✓ 第三者の視点</span>
-          <span>✓ PR記事として明記</span>
-        </div>
-        <ul class="hero-badges" role="list" aria-label="記事の特徴">
-          <li class="badge-media">大手ネットニュース掲載企業</li>
-          <li>第三者記者が取材</li>
-          <li>利用者インタビュー掲載</li>
-          <li>口コミ多数掲載</li>
-        </ul>
         <div class="hero-cta-group">
           ${hasOfficial ? `<a href="${esc(cta.href)}" class="btn btn--hero" ${ctaLinkAttrs} data-cta-kind="hero_official" data-article-slug="${esc(a.slug || '')}" data-company="${esc(a.company || '')}">公式サイトを見る →</a>` : ''}
           <a href="#reviews" class="btn btn--hero-outline">口コミを先に読む</a>
         </div>
         <p class="hero-pr-note">※本記事はPR・広告を含みます</p>
+      </div>
+      <div class="hero-scroll-hint" aria-hidden="true">
+        <span class="scroll-chevron"></span>
       </div>
     </section>
 
@@ -633,18 +624,12 @@ function buildArticleHTML(a) {
     <!-- 11 CTA -->
     <section class="cta-section animate-on-scroll" id="contact" aria-labelledby="cta-heading">
       <div class="container">
-        <div class="cta-verdict">第三者記者が取材・検証した上で、自信を持ってご紹介しています</div>
         <h2 class="cta-title" id="cta-heading">${esc(a.ctaTitle || 'この記事を読んで気になった方へ')}</h2>
         <p class="cta-sub">${esc(
           hasOfficial
             ? (a.ctaSub || '利用者の声・記者の取材を経て、まずは公式サイトで詳細を確認してみてください。')
             : (a.ctaSub || '公式サイトの案内URLが未登録のため、お問い合わせからご案内します。')
         )}</p>
-        <div class="cta-trust">
-          <span>✓ 第三者取材済み</span>
-          <span>✓ PR記事として明記</span>
-          <span>✓ 申込み義務なし</span>
-        </div>
         ${hasOfficial ? `
         <a href="${esc(cta.href)}"
            class="btn btn--cta"
@@ -823,10 +808,23 @@ function initScoreBars() {
    INTERSECTION OBSERVER
 ============================================================ */
 function initScrollAnimations() {
+  const els = Array.from(document.querySelectorAll('.animate-on-scroll'));
   if (!('IntersectionObserver' in window)) {
-    document.querySelectorAll('.animate-on-scroll').forEach(el => el.classList.add('is-visible'));
+    els.forEach(el => el.classList.add('is-visible'));
     return;
   }
+  // 全幅カラーセクション（hero/CTA系）は上下フェード、それ以外は左右交互スライド
+  const fullWidthSections = new Set([
+    'hero', 'oneliner-verdict', 'reviews-section', 'cta-section', 'mid-cta', 'gallery-section'
+  ]);
+  let dirIndex = 0;
+  els.forEach(el => {
+    const isFullWidth = [...el.classList].some(c => fullWidthSections.has(c));
+    if (!isFullWidth) {
+      el.classList.add(dirIndex % 2 === 0 ? 'animate-from-left' : 'animate-from-right');
+      dirIndex++;
+    }
+  });
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -834,8 +832,8 @@ function initScrollAnimations() {
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+  }, { threshold: 0.08, rootMargin: '0px 0px -48px 0px' });
+  els.forEach(el => observer.observe(el));
 }
 
 /* ============================================================

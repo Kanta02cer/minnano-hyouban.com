@@ -111,13 +111,17 @@ ul, ol {
 
 .animate-on-scroll {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition: opacity 0.78s cubic-bezier(0.22,1,0.36,1), transform 0.78s cubic-bezier(0.22,1,0.36,1);
 }
+.animate-on-scroll:not(.animate-from-left):not(.animate-from-right) {
+  transform: translateY(24px);
+}
+.animate-from-left  { transform: translateX(-56px); }
+.animate-from-right { transform: translateX(56px); }
 
 .animate-on-scroll.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -127,7 +131,9 @@ ul, ol {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  .animate-on-scroll {
+  .animate-on-scroll,
+  .animate-from-left,
+  .animate-from-right {
     opacity: 1;
     transform: none;
     transition: none;
@@ -709,22 +715,6 @@ ul, ol {
   color: var(--color-white);
 }
 
-/* ニュースラベル */
-.hero-news-label {
-  font-size: 0.68rem;
-  color: rgba(255,255,255,0.5);
-  letter-spacing: 0.04em;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 999px;
-  padding: 5px 16px;
-  margin-bottom: 20px;
-  display: inline-block;
-  line-height: 1.6;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-}
-
 /* タグ */
 .hero-tag {
   display: inline-block;
@@ -760,58 +750,36 @@ ul, ol {
   max-width: 560px;
 }
 
-/* trust ピル */
-.hero-trust {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
-  margin-bottom: 22px;
-}
-.hero-trust span {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 999px;
-  padding: 5px 14px;
-  font-size: 0.76rem;
-  color: rgba(255,255,255,0.82);
-  letter-spacing: 0.02em;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-}
-
-/* バッジ群 */
-.hero-badges {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
-  margin-bottom: 30px;
-}
-.hero-badges li {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.12);
-  color: rgba(255,255,255,0.82);
-  font-size: 0.78rem;
-  font-weight: 600;
-  padding: 5px 14px;
-  border-radius: 999px;
-  letter-spacing: 0.02em;
-}
-/* 大手ニュース掲載 — ゴールド強調 */
-.hero-badges li.badge-media {
-  background: rgba(201,168,76,0.12);
-  border-color: rgba(201,168,76,0.4);
-  color: #fde68a;
-  order: -1;
-}
-
 /* CTA グループ */
 .hero-cta-group {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 12px;
+}
+
+/* スクロールヒント */
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.scroll-chevron {
+  display: block;
+  width: 18px;
+  height: 18px;
+  border-right: 2px solid rgba(255,255,255,0.45);
+  border-bottom: 2px solid rgba(255,255,255,0.45);
+  transform: rotate(45deg);
+  animation: scroll-bounce 1.8s ease-in-out infinite;
+}
+@keyframes scroll-bounce {
+  0%,100% { transform: rotate(45deg) translate(0,0); opacity: 0.45; }
+  50%      { transform: rotate(45deg) translate(4px,4px); opacity: 0.9; }
 }
 
 .hero-pr-note {
@@ -825,7 +793,6 @@ ul, ol {
   .hero-brand-tagline { display: none; }
   .hero-brand-sep { display: none; }
   .hero-inner { padding: 40px 20px 36px; }
-  .hero-news-label { font-size: 0.62rem; }
   .hero-deco-ring--1 { width: 260px; height: 260px; top: -60px; right: -80px; }
   .hero-deco-ring--2 { width: 180px; height: 180px; }
   .hero-deco-dots { display: none; }
@@ -904,30 +871,24 @@ ul, ol {
    02 EDITOR'S NOTE
 ============================================================ */
 .editors-note {
-  background: var(--color-white);
+  background: transparent;
   padding: 48px 0;
 }
 
 .note-card {
   position: relative;
-  border-left: 4px solid var(--color-primary);
-  border-radius: 0 var(--radius-md) var(--radius-md) 0;
-  padding: 28px 28px 28px 28px;
-  background: var(--color-white);
-  box-shadow: var(--shadow-card);
+  padding: 0;
 }
 
 .pr-badge {
   position: absolute;
-  top: 12px;
-  right: 14px;
-  background: #f1f5f9;
+  top: 0;
+  right: 0;
+  background: transparent;
   color: var(--color-muted);
   font-size: 0.68rem;
   font-weight: 700;
-  padding: 2px 7px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--color-border);
+  padding: 2px 0;
   letter-spacing: 0.06em;
 }
 
@@ -1098,15 +1059,13 @@ ul, ol {
   height: 100%;
   display: flex;
   flex-direction: column;
-  background: var(--color-white);
-  border-left: 3px solid var(--color-review);
-  border-radius: 0 var(--radius-md) var(--radius-md) 0;
-  padding: 20px;
-  box-shadow: var(--shadow-card);
-  transition: box-shadow 0.2s;
+  background: transparent;
+  padding: 20px 4px;
+  border-top: 1px solid var(--color-border);
+  transition: opacity 0.2s;
 }
 .review-card:hover {
-  box-shadow: 0 6px 24px rgba(0,0,0,0.1);
+  opacity: 0.82;
 }
 .review-text {
   flex: 1;
@@ -1176,7 +1135,7 @@ ul, ol {
 ============================================================ */
 .service-section {
   padding: 56px 0;
-  background: var(--color-white);
+  background: transparent;
 }
 
 .service-grid {
@@ -1187,18 +1146,14 @@ ul, ol {
 }
 
 .service-card {
-  background: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-left: 3px solid var(--color-primary);
-  border-radius: var(--radius-md);
-  padding: 16px 20px;
+  padding: 16px 0;
   text-align: left;
-  transition: box-shadow 0.2s, transform 0.2s;
+  border-top: 1px solid var(--color-border);
+  transition: opacity 0.2s;
 }
 
 .service-card:hover {
-  box-shadow: var(--shadow-card);
-  transform: translateY(-2px);
+  opacity: 0.75;
 }
 
 .service-icon {
@@ -1296,10 +1251,7 @@ ul, ol {
 
 .step-content {
   flex: 1;
-  background: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: 14px 18px;
+  padding: 4px 0;
   margin-top: 4px;
 }
 
@@ -1323,7 +1275,7 @@ ul, ol {
 ============================================================ */
 .faq-section {
   padding: 56px 0;
-  background: var(--color-bg);
+  background: transparent;
 }
 
 .faq-list {
@@ -1331,13 +1283,10 @@ ul, ol {
   display: flex;
   flex-direction: column;
   gap: 0;
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  box-shadow: var(--shadow-card);
 }
 
 .faq-item {
-  background: var(--color-white);
+  background: transparent;
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -1526,7 +1475,7 @@ ul, ol {
 ============================================================ */
 .story-section {
   padding: 64px 0;
-  background: var(--color-bg);
+  background: transparent;
 }
 
 .story-content {
@@ -1588,28 +1537,6 @@ ul, ol {
   margin-bottom: 20px;
 }
 
-.cta-verdict {
-  display: inline-block;
-  background: rgba(255,255,255,0.12);
-  border: 1px solid rgba(255,255,255,0.3);
-  border-radius: 999px;
-  padding: 8px 22px;
-  font-size: 0.82rem;
-  color: rgba(255,255,255,0.92);
-  font-weight: 700;
-  margin-bottom: 20px;
-  letter-spacing: 0.02em;
-}
-
-.cta-trust {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px 24px;
-  margin-bottom: 28px;
-  font-size: 0.82rem;
-  color: rgba(255,255,255,0.8);
-}
 
 /* ============================================================
    HERO — btn--hero-outline (ヒーローアウトラインボタン)
@@ -1639,9 +1566,9 @@ ul, ol {
    MID CTA
 ============================================================ */
 .mid-cta {
-  background: linear-gradient(135deg, #f0f7ff 0%, #e4f0ff 100%);
-  border-top: 3px solid var(--color-primary);
-  border-bottom: 3px solid var(--color-primary);
+  background: transparent;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
   padding: 52px 20px;
   text-align: center;
 }
@@ -2483,11 +2410,8 @@ ul, ol {
    ─ article-renderer.js: reporterNote フィールド
 ============================================================ */
 .reporter-note-card {
-  background: #eff6ff;
-  border: 1px solid rgba(26,95,168,.18);
-  border-left: 4px solid var(--color-primary);
-  border-radius: 0 var(--radius-md) var(--radius-md) 0;
-  padding: 24px;
+  padding: 0 0 0 20px;
+  border-left: 2px solid var(--color-accent);
   margin-bottom: 40px;
 }
 
@@ -2538,7 +2462,7 @@ ul, ol {
 ============================================================ */
 .body-section {
   padding: 56px 0;
-  background: var(--color-white);
+  background: transparent;
 }
 
 .feature-boxes {
@@ -2549,10 +2473,8 @@ ul, ol {
 }
 
 .feature-box {
-  background: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: 24px 20px;
+  padding: 20px 0;
+  border-top: 1px solid var(--color-border);
 }
 
 .feature-box-num {
@@ -2585,11 +2507,8 @@ ul, ol {
    ─ article-renderer.js: journalistTake フィールド
 ============================================================ */
 .journalist-take {
-  background: #fffbeb;
-  border: 1px solid rgba(201,168,76,.25);
-  border-left: 4px solid var(--color-accent);
-  border-radius: 0 var(--radius-md) var(--radius-md) 0;
-  padding: 24px 28px;
+  padding: 0 0 0 20px;
+  border-left: 2px solid var(--color-accent);
   margin: 40px 0;
 }
 
