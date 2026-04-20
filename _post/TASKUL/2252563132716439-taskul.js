@@ -9,8 +9,8 @@ window.__POST_2252563132716439 = {
 
   title:    "TASKUL（タスクル）の口コミ評判｜みんなの評判.com",
   metaDesc: "TASKUL（タスクル）の口コミ評判を第三者記者が徹底取材。株式会社フリーカンパニーが運営するクリエイター向けAIタスク管理ツールの評判・使いやすさ・無料プラン・利用者の正直な感想をわかりやすく解説します。",
-  ogImage:  "images/taskul/project/project-detail.png",
-  heroImg:  "images/taskul/project/project-detail.png",
+  ogImage:  "images/taskul/fv-main.png",
+  heroImg:  "images/taskul/fv-main.png",
   company:  "TASKUL（株式会社フリーカンパニー）",
   category: "ライフスタイル",
   publishedAt: "2026-04-15",

@@ -1021,6 +1021,7 @@ section.animate-from-right {
   aspect-ratio: 16/9;
   object-fit: cover;
   display: block;
+  max-height: 300px;
 }
 
 .slide-figure figcaption {
@@ -3051,15 +3052,15 @@ section.animate-from-right {
 }
 
 .gallery-extra-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+  columns: 3 200px;
+  column-gap: 12px;
 }
 
 .gallery-extra-item {
-  margin: 0;
+  margin: 0 0 12px;
   overflow: hidden;
   border-radius: 6px;
+  break-inside: avoid;
 }
 
 .gallery-extra-item img {
@@ -3084,7 +3085,7 @@ section.animate-from-right {
 
 @media (max-width: 640px) {
   .gallery-extra-grid {
-    grid-template-columns: repeat(2, 1fr);
+    columns: 2 140px;
   }
 }
 
