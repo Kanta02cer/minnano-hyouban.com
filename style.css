@@ -803,25 +803,35 @@ ul, ol {
 ============================================================ */
 .oneliner-verdict {
   background: var(--color-primary);
-  padding: 40px 0;
+  padding: 56px 0;
+  position: relative;
+  overflow: hidden;
+}
+.oneliner-verdict::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(184,151,74,0.18) 0%, transparent 70%);
+  pointer-events: none;
 }
 .oneliner-inner {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
+  gap: 20px;
   text-align: center;
+  position: relative;
 }
 .oneliner-label {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-size: 0.68rem;
+  gap: 10px;
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--color-accent);
 }
@@ -829,42 +839,43 @@ ul, ol {
 .oneliner-label::after {
   content: '';
   display: block;
-  width: 24px;
+  width: 36px;
   height: 1px;
   background: var(--color-accent);
-  opacity: 0.6;
+  opacity: 0.5;
 }
 .oneliner-text {
   font-family: var(--font-heading);
-  font-size: clamp(1.05rem, 2.8vw, 1.3rem);
-  font-weight: 600;
-  line-height: 1.8;
+  font-size: clamp(1.2rem, 3.2vw, 1.6rem);
+  font-weight: 700;
+  line-height: 1.85;
   color: var(--color-white);
   position: relative;
-  padding: 0 2rem;
-  max-width: 640px;
+  padding: 0 2.8rem;
+  max-width: 680px;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.3);
 }
 .oneliner-text::before {
   content: '\201C';
   position: absolute;
   left: 0;
-  top: -0.15em;
-  font-size: 2.2em;
+  top: -0.1em;
+  font-size: 3em;
   line-height: 1;
   color: var(--color-accent);
   font-family: Georgia, serif;
-  opacity: 0.8;
+  opacity: 0.7;
 }
 .oneliner-text::after {
   content: '\201D';
   position: absolute;
   right: 0;
-  bottom: -0.35em;
-  font-size: 2.2em;
+  bottom: -0.4em;
+  font-size: 3em;
   line-height: 1;
   color: var(--color-accent);
   font-family: Georgia, serif;
-  opacity: 0.8;
+  opacity: 0.7;
 }
 
 /* ============================================================

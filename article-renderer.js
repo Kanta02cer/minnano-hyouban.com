@@ -453,7 +453,7 @@ function buildArticleHTML(a) {
     <section class="oneliner-verdict animate-on-scroll" aria-label="記者の一言結論">
       <div class="container">
         <div class="oneliner-inner">
-          <span class="oneliner-label">記者・漆沢の結論</span>
+          <span class="oneliner-label">記者・漆沢のひとこと</span>
           <p class="oneliner-text">${esc(a.oneliner)}</p>
         </div>
       </div>
