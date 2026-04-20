@@ -39,6 +39,7 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  overflow-x: hidden;
 }
 
 body {
@@ -49,6 +50,8 @@ body {
   background: var(--color-bg);
   line-height: 1.8;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 /* ── Global animated dot background ──────────────────────── */
@@ -116,12 +119,18 @@ ul, ol {
 .animate-on-scroll:not(.animate-from-left):not(.animate-from-right) {
   transform: translateY(24px);
 }
-.animate-from-left  { transform: translateX(-56px); }
-.animate-from-right { transform: translateX(56px); }
+.animate-from-left  { transform: translateX(-32px); }
+.animate-from-right { transform: translateX(32px); }
 
 .animate-on-scroll.is-visible {
   opacity: 1;
   transform: none;
+}
+
+/* 横スライドアニメのはみ出し防止 */
+section.animate-from-left,
+section.animate-from-right {
+  overflow: hidden;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -796,6 +805,11 @@ ul, ol {
   .hero-deco-ring--1 { width: 260px; height: 260px; top: -60px; right: -80px; }
   .hero-deco-ring--2 { width: 180px; height: 180px; }
   .hero-deco-dots { display: none; }
+
+  /* スマホ：横はみ出し完全防止 */
+  .animate-from-left  { transform: translateX(-16px); }
+  .animate-from-right { transform: translateX(16px); }
+  .swiper-service { width: calc(100% - 24px); }
 }
 
 /* ============================================================
@@ -1063,8 +1077,8 @@ ul, ol {
   overflow: hidden;
 }
 .swiper-reviews {
-  padding: 4px 24px 8px !important;
-  overflow: visible !important;
+  padding: 4px 16px 8px !important;
+  overflow: hidden !important;
 }
 /* スライド内のカードが等高になるよう stretch */
 .swiper-reviews .swiper-slide {
