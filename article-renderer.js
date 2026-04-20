@@ -813,14 +813,12 @@ function initLightbox() {
   }
 
   function clampPan() {
-    // 画像の表示サイズを計算してパンの範囲を制限
-    const rect = lbImg.getBoundingClientRect();
-    const natW = lbImg.naturalWidth  || rect.width  / zoom;
-    const natH = lbImg.naturalHeight || rect.height / zoom;
-    const dispW = Math.min(natW, window.innerWidth  * 0.9);
-    const dispH = Math.min(natH, window.innerHeight * 0.8);
-    const maxX = Math.max(0, (dispW  * zoom - dispW)  / 2);
-    const maxY = Math.max(0, (dispH * zoom - dispH) / 2);
+    // zoom=1 時の画像表示サイズ（CSS max-width/max-height 制約後）をベースに計算
+    const baseW = Math.min(lbImg.naturalWidth  || window.innerWidth  * 0.9, window.innerWidth  * 0.9);
+    const baseH = Math.min(lbImg.naturalHeight || window.innerHeight * 0.8, window.innerHeight * 0.8);
+    // ズーム後の画像がビューポートからはみ出せる最大量（半分まで）
+    const maxX = Math.max(0, (baseW  * zoom - baseW)  / 2 + baseW  * (zoom - 1) * 0.5);
+    const maxY = Math.max(0, (baseH * zoom - baseH) / 2 + baseH * (zoom - 1) * 0.5);
     panX = Math.max(-maxX, Math.min(maxX, panX));
     panY = Math.max(-maxY, Math.min(maxY, panY));
   }

@@ -3343,13 +3343,7 @@ section.animate-from-right {
   to   { transform: scale(1);    opacity: 1; }
 }
 .lightbox-img-wrap {
-  overflow: hidden;
-  max-width: 90vw;
-  max-height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 4px;
+  display: contents; /* ラップを透過させ、overflow clipping を除去 */
 }
 .lightbox-img {
   display: block;
