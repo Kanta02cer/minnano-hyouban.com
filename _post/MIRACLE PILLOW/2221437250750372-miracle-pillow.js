@@ -33,12 +33,9 @@ window.__POST_2221437250750372 = {
 
   galleries: {
     service: [
-      { src: "images/miracle-pillow/fv.png", alt: "MIRACLE PILLOW 外観",         caption: "6つのAIRが内部で静かに動き続ける電動ピロー" },
-      { src: "images/miracle-pillow/fv.png", alt: "MIRACLE PILLOW 使用イメージ",  caption: "ボタン1回で使い始められるシンプルな操作性" },
-      { src: "images/miracle-pillow/fv.png", alt: "MIRACLE PILLOW 開発背景",      caption: "構想から完成まで10年以上の開発ストーリー" },
-      { src: "images/miracle-pillow/fv.png", alt: "MIRACLE PILLOW 動作イメージ",  caption: "約30分ごとにゆるやかに支え方が変化" },
-      { src: "images/miracle-pillow/fv.png", alt: "MIRACLE PILLOW 静音設計",      caption: "寝室での使用を前提にした静音設計" },
-      { src: "images/miracle-pillow/fv.png", alt: "MIRACLE PILLOW 商品詳細",      caption: "毎日の睡眠時間を整えるために設計された電動ピロー" }
+      { src: "images/miracle-pillow/service01.png", alt: "MIRACLE PILLOW サービスイメージ1", caption: "6つのAIRが内部で静かに動き続ける電動ピロー" },
+      { src: "images/miracle-pillow/service02.png", alt: "MIRACLE PILLOW サービスイメージ2", caption: "ボタン1回で使い始められるシンプルな操作性" },
+      { src: "images/miracle-pillow/service03.png", alt: "MIRACLE PILLOW サービスイメージ3", caption: "構想から完成まで10年以上の開発ストーリー" }
     ],
     beforeAfter: [
       { src: "images/placeholders/gallery-before.svg", alt: "使用前：朝の頭・首まわりの重さが気になる状態", label: "使用前" },
