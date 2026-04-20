@@ -215,16 +215,16 @@ section.animate-from-right {
 }
 
 .btn--hero {
-  background: var(--color-primary);
+  background: var(--color-accent);
   color: var(--color-white);
-  font-size: 1.1rem;
-  padding: 16px 40px;
+  font-size: 1.05rem;
+  padding: 15px 40px;
   border-radius: var(--radius-sm);
-  box-shadow: 0 4px 16px rgba(28,61,138,0.25);
+  box-shadow: 0 4px 20px rgba(184,151,74,0.3);
 }
 
 .btn--hero:hover {
-  background: var(--color-primary-d);
+  background: #a07c38;
   opacity: 1;
 }
 
@@ -537,7 +537,7 @@ section.animate-from-right {
    01 HERO — Premium CSS-only Design
 ============================================================ */
 .hero {
-  background: linear-gradient(150deg, #0b1a35 0%, #122247 45%, #0e2d5a 100%);
+  background: var(--color-bg);
   min-height: 100svh;
   display: flex;
   flex-direction: column;
@@ -547,6 +547,7 @@ section.animate-from-right {
   animation: heroFadeIn 1s ease both;
   position: relative;
   overflow: hidden;
+  border-bottom: 1px solid var(--color-border);
 }
 
 @keyframes heroFadeIn {
@@ -554,22 +555,7 @@ section.animate-from-right {
   to   { opacity: 1; }
 }
 
-/* ─── カテゴリ別テーマカラー ─── */
-.hero--premium[data-category="美容・健康"] {
-  background: linear-gradient(150deg, #1a0b2e 0%, #2d1b4e 40%, #1e0e3a 100%);
-}
-.hero--premium[data-category="キャリア・転職"] {
-  background: linear-gradient(150deg, #0b1a35 0%, #122247 45%, #0e2d5a 100%);
-}
-.hero--premium[data-category="語学・スキル"] {
-  background: linear-gradient(150deg, #0b2e1a 0%, #1b4e2d 40%, #0e3a1e 100%);
-}
-.hero--premium[data-category="マネー・投資"] {
-  background: linear-gradient(150deg, #2e1a0b 0%, #4e2d1b 40%, #3a1e0e 100%);
-}
-.hero--premium[data-category="ライフスタイル"] {
-  background: linear-gradient(150deg, #0b2535 0%, #12334a 45%, #0e2a42 100%);
-}
+/* ─── カテゴリ別テーマカラーは廃止（統一白地）─── */
 
 /* ─── 背景の透かし文字 ─── */
 .hero::before {
@@ -578,7 +564,7 @@ section.animate-from-right {
   font-size: clamp(64px, 16vw, 200px);
   font-weight: 900;
   font-family: var(--font-heading);
-  color: rgba(255,255,255,0.022);
+  color: rgba(184,151,74,0.04);
   letter-spacing: -0.01em;
   white-space: nowrap;
   top: 50%;
@@ -589,28 +575,28 @@ section.animate-from-right {
   z-index: 0;
 }
 
-/* ─── 装飾: グロー（光の差し込み）─── */
+/* ─── 装飾: グロー ─── */
 .hero-glow {
   position: absolute;
-  top: -30%;
-  right: -15%;
-  width: 60%;
-  height: 90%;
-  background: radial-gradient(ellipse at center, rgba(201,168,76,0.08) 0%, transparent 60%);
+  top: -20%;
+  right: -10%;
+  width: 55%;
+  height: 80%;
+  background: radial-gradient(ellipse at center, rgba(184,151,74,0.07) 0%, transparent 65%);
   pointer-events: none;
   z-index: 0;
-  animation: glowPulse 6s ease-in-out infinite alternate;
+  animation: glowPulse 7s ease-in-out infinite alternate;
 }
 
 @keyframes glowPulse {
-  0%   { opacity: 0.6; transform: scale(1); }
-  100% { opacity: 1; transform: scale(1.15); }
+  0%   { opacity: 0.5; transform: scale(1); }
+  100% { opacity: 1;   transform: scale(1.12); }
 }
 
 /* ─── 装飾: 幾何学リング ─── */
 .hero-deco-ring {
   position: absolute;
-  border: 1px solid rgba(201,168,76,0.12);
+  border: 1px solid rgba(184,151,74,0.14);
   border-radius: 50%;
   pointer-events: none;
   z-index: 0;
@@ -629,7 +615,7 @@ section.animate-from-right {
   height: 280px;
   bottom: -40px;
   left: -60px;
-  border-color: rgba(255,255,255,0.06);
+  border-color: rgba(184,151,74,0.08);
   animation: ringFloat2 15s ease-in-out infinite;
 }
 
@@ -655,7 +641,7 @@ section.animate-from-right {
   width: 220px;
   top: 35%;
   right: 5%;
-  background: linear-gradient(90deg, transparent 0%, rgba(201,168,76,0.2) 50%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(184,151,74,0.25) 50%, transparent 100%);
   transform: rotate(-25deg);
 }
 
@@ -663,7 +649,7 @@ section.animate-from-right {
   width: 160px;
   bottom: 25%;
   left: 8%;
-  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(184,151,74,0.15) 50%, transparent 100%);
   transform: rotate(20deg);
 }
 
@@ -674,11 +660,11 @@ section.animate-from-right {
   left: 10%;
   width: 120px;
   height: 100px;
-  background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(184,151,74,0.18) 1px, transparent 1px);
   background-size: 16px 16px;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
 /* ─── .hero--with-img は廃止（互換用に残す）─── */
@@ -694,8 +680,8 @@ section.animate-from-right {
   z-index: 1;
   width: 100%;
   padding: 12px 24px;
-  background: rgba(255,255,255,0.04);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.7);
+  border-bottom: 1px solid rgba(184,151,74,0.18);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -706,7 +692,7 @@ section.animate-from-right {
 .hero-brand-name {
   font-size: 0.85rem;
   font-weight: 700;
-  color: rgba(255,255,255,0.85);
+  color: var(--color-text);
   letter-spacing: 0.05em;
 }
 .hero-brand-name em {
@@ -716,12 +702,12 @@ section.animate-from-right {
 .hero-brand-sep {
   width: 1px;
   height: 14px;
-  background: rgba(255,255,255,0.22);
+  background: rgba(0,0,0,0.15);
   flex-shrink: 0;
 }
 .hero-brand-tagline {
   font-size: 0.72rem;
-  color: rgba(255,255,255,0.45);
+  color: var(--color-muted);
   letter-spacing: 0.04em;
 }
 
@@ -739,22 +725,21 @@ section.animate-from-right {
   margin: 0 auto;
   padding: 56px 24px 48px;
   text-align: center;
-  color: var(--color-white);
+  color: var(--color-text);
 }
 
 /* タグ */
 .hero-tag {
   display: inline-block;
-  background: linear-gradient(135deg, var(--color-accent), #d4a84a);
-  color: var(--color-white);
-  font-size: 0.78rem;
+  background: transparent;
+  color: var(--color-accent);
+  border: 1px solid rgba(184,151,74,0.5);
+  font-size: 0.75rem;
   font-weight: 700;
-  padding: 6px 20px;
+  padding: 5px 18px;
   border-radius: 999px;
-  margin-bottom: 18px;
-  letter-spacing: 0.06em;
-  box-shadow: 0 2px 16px rgba(201,168,76,0.4),
-              0 0 40px rgba(201,168,76,0.08);
+  margin-bottom: 20px;
+  letter-spacing: 0.08em;
 }
 
 /* タイトル */
@@ -765,13 +750,13 @@ section.animate-from-right {
   line-height: 1.35;
   margin-bottom: 18px;
   letter-spacing: 0.02em;
-  text-shadow: 0 2px 30px rgba(0,0,0,0.4);
+  color: var(--color-accent);
 }
 
 /* サブコピー */
 .hero-sub {
   font-size: clamp(0.875rem, 2.2vw, 0.98rem);
-  color: rgba(255,255,255,0.75);
+  color: var(--color-muted);
   margin-bottom: 28px;
   line-height: 1.9;
   max-width: 560px;
@@ -799,8 +784,8 @@ section.animate-from-right {
   display: block;
   width: 18px;
   height: 18px;
-  border-right: 2px solid rgba(255,255,255,0.45);
-  border-bottom: 2px solid rgba(255,255,255,0.45);
+  border-right: 2px solid rgba(184,151,74,0.5);
+  border-bottom: 2px solid rgba(184,151,74,0.5);
   transform: rotate(45deg);
   animation: scroll-bounce 1.8s ease-in-out infinite;
 }
@@ -812,7 +797,8 @@ section.animate-from-right {
 .hero-pr-note {
   margin-top: 20px;
   font-size: 0.7rem;
-  color: rgba(255,255,255,0.38);
+  color: var(--color-muted);
+  opacity: 0.65;
   letter-spacing: 0.02em;
 }
 
@@ -1599,8 +1585,8 @@ section.animate-from-right {
 .btn--hero-outline {
   display: inline-block;
   background: transparent;
-  color: rgba(255,255,255,0.9);
-  border: 2px solid rgba(255,255,255,0.5);
+  color: var(--color-text);
+  border: 1.5px solid rgba(0,0,0,0.2);
   font-size: 0.95rem;
   font-weight: 700;
   padding: 12px 32px;
@@ -1612,8 +1598,8 @@ section.animate-from-right {
   text-decoration: none;
 }
 .btn--hero-outline:hover {
-  background: rgba(255,255,255,0.1);
-  border-color: rgba(255,255,255,0.8);
+  background: rgba(0,0,0,0.04);
+  border-color: rgba(0,0,0,0.4);
 }
 
 /* ============================================================
