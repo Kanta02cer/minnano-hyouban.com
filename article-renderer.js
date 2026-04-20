@@ -798,7 +798,7 @@ function initLightbox() {
 
   // ズーム状態
   let zoom = 1, panX = 0, panY = 0;
-  const ZOOM_MIN = 1, ZOOM_MAX = 5, ZOOM_STEP = 0.3;
+  const ZOOM_MIN = 0.2, ZOOM_MAX = 5, ZOOM_STEP = 0.3;
 
   function applyZoom(animate) {
     if (animate === false) {
@@ -809,7 +809,7 @@ function initLightbox() {
     lbImg.style.transform = `translate(${panX}px, ${panY}px) scale(${zoom})`;
     if (lbZoomLevel) lbZoomLevel.textContent = Math.round(zoom * 100) + '%';
     // ズーム中はドラッグカーソル、等倍はデフォルト
-    lbImg.style.cursor = zoom > 1 ? 'grab' : 'default';
+    lbImg.style.cursor = zoom !== 1 ? 'grab' : 'default';
   }
 
   function clampPan() {
@@ -910,7 +910,7 @@ function initLightbox() {
   // ---- ドラッグでパン ----
   let dragging = false, dragStartX = 0, dragStartY = 0, panStartX = 0, panStartY = 0;
   lbImg.addEventListener('mousedown', (e) => {
-    if (zoom <= 1) return;
+    if (zoom === 1) return;
     e.preventDefault();
     dragging = true;
     dragStartX = e.clientX; dragStartY = e.clientY;
@@ -927,7 +927,7 @@ function initLightbox() {
   window.addEventListener('mouseup', () => {
     if (!dragging) return;
     dragging = false;
-    lbImg.style.cursor = zoom > 1 ? 'grab' : 'default';
+    lbImg.style.cursor = zoom !== 1 ? 'grab' : 'default';
   });
 
   // ---- ピンチズーム（タッチ） ----
