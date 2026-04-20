@@ -5,7 +5,7 @@
 
 /* ── Reset & Base ─────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 16px; scroll-behavior: smooth; }
+html { font-size: 16px; scroll-behavior: smooth; overflow-x: hidden; }
 body {
   font-family: 'Noto Sans JP', sans-serif;
   font-feature-settings: "palt" 1;
@@ -14,6 +14,8 @@ body {
   background: var(--bg);
   line-height: 1.8;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 /* ── Global animated dot background ──────────────────────── */
@@ -195,15 +197,36 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 .nav-inquiry {
   padding: 8px 22px;
-  background: var(--navy);
+  background: var(--gold);
   color: #fff !important;
   border-radius: var(--radius-s);
   font-size: .8125rem !important;
+  font-weight: 700 !important;
   letter-spacing: .06em !important;
-  transition: background .2s, transform .15s !important;
+  transition: background .2s, transform .15s, box-shadow .2s !important;
+  box-shadow: 0 2px 8px rgba(184,151,74,.35) !important;
 }
-.nav-inquiry:hover { background: var(--navy-mid) !important; transform: translateY(-1px) !important; }
+.nav-inquiry:hover { background: #8a6d2a !important; transform: translateY(-1px) !important; box-shadow: 0 4px 14px rgba(184,151,74,.45) !important; }
 .nav-inquiry::after { display: none !important; }
+
+/* モバイルドロワー 取材依頼ボタン */
+.drawer-inquiry {
+  display: block;
+  margin-top: 4px;
+  padding: 12px 20px !important;
+  background: var(--gold);
+  color: #fff !important;
+  border-radius: var(--radius-s);
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: .06em;
+}
+.drawer-inquiry:hover { background: #8a6d2a !important; }
+
+/* フッター統一クラスエイリアス */
+.footer-tagline { font-size: .775rem; color: var(--ink-mute); margin-top: 8px; line-height: 1.75; }
+.footer-com { color: var(--gold); }
+.pr-footer-note { font-style: italic; }
 
 /* Hamburger */
 .hamburger {
