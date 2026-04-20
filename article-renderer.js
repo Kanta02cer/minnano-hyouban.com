@@ -248,16 +248,33 @@ function buildArticleHTML(a) {
     </div>
   `).join('');
 
-  // Media clips (news articles)
+  // Media clips (news articles) — logo lookup from galleries.media
+  const mediaLogoMap = {};
+  (a.galleries?.media || []).forEach(m => { if (m.alt && m.src) mediaLogoMap[m.alt] = m.src; });
+  // Also support common name variants
+  const MEDIA_LOGO_ALIASES = {
+    '楽天インフォシーク': 'images/media-logo/楽天ニュース.jpg',
+    '楽天ニュース':       'images/media-logo/楽天ニュース.jpg',
+    'エキサイトニュース': 'images/media-logo/exciteニュース.jpg',
+    'exciteニュース':     'images/media-logo/exciteニュース.jpg',
+    'ニコニコニュース':   'images/media-logo/ニコニコニュース.jpg',
+  };
+  const getMediaLogo = name => mediaLogoMap[name] || MEDIA_LOGO_ALIASES[name] || null;
+
   const mediaClipsHTML = Array.isArray(a.mediaClips) && a.mediaClips.length > 0
     ? `<ul class="media-clips" role="list" aria-label="ニュース掲載一覧">
-        ${a.mediaClips.map(clip => `
+        ${a.mediaClips.map(clip => {
+          const logoSrc = getMediaLogo(clip.media || '');
+          const sourceHTML = logoSrc
+            ? `<span class="media-clip-source"><img src="${esc(logoSrc)}" alt="${esc(clip.media || '')}" class="media-clip-logo" loading="lazy"></span>`
+            : `<span class="media-clip-source">${esc(clip.media || '')}</span>`;
+          return `
           <li class="media-clip-item">
-            <span class="media-clip-source">${esc(clip.media || '')}</span>
+            ${sourceHTML}
             <a href="${esc(clip.url || '#')}" target="_blank" rel="noopener noreferrer" class="media-clip-link">${esc(clip.title || '')}</a>
             ${clip.date ? `<time class="media-clip-date" datetime="${esc(clip.date)}">${esc(clip.date)} 配信</time>` : ''}
-          </li>
-        `).join('')}
+          </li>`;
+        }).join('')}
        </ul>`
     : '';
 

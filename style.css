@@ -1479,7 +1479,7 @@ section.animate-from-right {
 .media-clip-item {
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
+  align-items: center;
   gap: 8px 12px;
   padding: 16px 20px;
   background: var(--color-bg);
@@ -1494,7 +1494,8 @@ section.animate-from-right {
 }
 
 .media-clip-source {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   background: var(--color-primary);
   color: var(--color-white);
   font-size: 0.72rem;
@@ -1504,6 +1505,21 @@ section.animate-from-right {
   letter-spacing: 0.04em;
   white-space: nowrap;
   flex-shrink: 0;
+}
+
+/* ロゴ画像がある場合はバッジ背景をリセット */
+.media-clip-source:has(.media-clip-logo) {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+}
+
+.media-clip-logo {
+  height: 22px;
+  width: auto;
+  display: block;
+  object-fit: contain;
 }
 
 .media-clip-link {
