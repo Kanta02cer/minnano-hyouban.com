@@ -223,7 +223,7 @@ function buildArticleHTML(a) {
   const serviceSlides = galleryServiceForArticle(a).map(img => `
     <div class="swiper-slide">
       <figure class="slide-figure">
-        <img src="${esc(img.src)}" alt="${esc(img.alt)}" loading="lazy">
+        <img src="${esc(img.src)}" alt="${esc(img.alt)}" loading="lazy" decoding="async">
         <figcaption>${esc(img.caption)}</figcaption>
       </figure>
     </div>
@@ -233,7 +233,7 @@ function buildArticleHTML(a) {
   const baSlides = galleryBeforeAfterForArticle(a).map(img => `
     <div class="swiper-slide">
       <figure class="ba-figure">
-        <img src="${esc(img.src)}" alt="${esc(img.alt)}" loading="lazy">
+        <img src="${esc(img.src)}" alt="${esc(img.alt)}" loading="lazy" decoding="async">
         <span class="ba-label">${esc(img.label)}</span>
       </figure>
     </div>
@@ -247,7 +247,7 @@ function buildArticleHTML(a) {
   const mediaLogoSlides = _mediaItemsLooped.map(m => `
     <div class="swiper-slide">
       <div class="media-logo-wrap">
-        <img src="${esc(m.src)}" alt="${esc(m.alt)}" class="media-logo" loading="lazy">
+        <img src="${esc(m.src)}" alt="${esc(m.alt)}" class="media-logo" loading="lazy" decoding="async">
       </div>
     </div>
   `).join('');
@@ -270,7 +270,7 @@ function buildArticleHTML(a) {
         ${a.mediaClips.map(clip => {
           const logoSrc = getMediaLogo(clip.media || '');
           const sourceHTML = logoSrc
-            ? `<span class="media-clip-source"><img src="${esc(logoSrc)}" alt="${esc(clip.media || '')}" class="media-clip-logo" loading="lazy"></span>`
+            ? `<span class="media-clip-source"><img src="${esc(logoSrc)}" alt="${esc(clip.media || '')}" class="media-clip-logo" loading="lazy" decoding="async"></span>`
             : `<span class="media-clip-source">${esc(clip.media || '')}</span>`;
           return `
           <li class="media-clip-item">
@@ -369,7 +369,7 @@ function buildArticleHTML(a) {
     const groupsHTML = groups.map(g => {
       const itemsHTML = groupMap[g].map(item => `
         <figure class="gallery-extra-item">
-          <img src="${esc(item.src)}" alt="${esc(item.alt || '')}" loading="lazy">
+          <img src="${esc(item.src)}" alt="${esc(item.alt || '')}" loading="lazy" decoding="async">
           ${item.caption ? `<figcaption class="gallery-extra-caption">${esc(item.caption)}</figcaption>` : ''}
         </figure>`).join('');
       return `${g ? `<h3 class="gallery-extra-group-title">${esc(g)}</h3>` : ''}
@@ -663,7 +663,7 @@ function buildArticleHTML(a) {
         <div class="story-content">
           <div class="story-img-wrap">
             <img src="${esc(a.storyImg || PLACEHOLDER_IMG.story)}"
-                 alt="${esc(a.storyAlt || 'サービスイメージ')}" class="story-img" loading="lazy">
+                 alt="${esc(a.storyAlt || 'サービスイメージ')}" class="story-img" loading="lazy" decoding="async">
           </div>
           <blockquote class="story-quote">${storyParas}</blockquote>
         </div>
@@ -1001,6 +1001,7 @@ function initHamburger() {
     drawer.classList.add('open');
     overlay?.classList.add('open');
     drawer.setAttribute('aria-hidden', 'false');
+    drawer.removeAttribute('inert');
     btn.setAttribute('aria-expanded', 'true');
     btn.setAttribute('aria-label', 'メニューを閉じる');
     document.body.style.overflow = 'hidden';
@@ -1009,6 +1010,7 @@ function initHamburger() {
     drawer.classList.remove('open');
     overlay?.classList.remove('open');
     drawer.setAttribute('aria-hidden', 'true');
+    drawer.setAttribute('inert', '');
     btn.setAttribute('aria-expanded', 'false');
     btn.setAttribute('aria-label', 'メニューを開く');
     document.body.style.overflow = '';

@@ -15,7 +15,12 @@
   <meta property="og:url" content="https://minnano-hyouban.com/articles.html">
   <meta property="og:site_name" content="みんなの評判.com">
   <meta property="og:image" content="https://minnano-hyouban.com/images/urushizawa-face-close.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="記事一覧 | みんなの評判.com">
+  <meta name="twitter:description" content="第三者記者が取材・執筆した評判記事の一覧です。">
+  <meta name="twitter:image" content="https://minnano-hyouban.com/images/urushizawa-face-close.jpg">
   <link rel="canonical" href="https://minnano-hyouban.com/articles.html">
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,7 +47,7 @@
           <li><a href="index.html#contact" class="nav-inquiry">取材依頼</a></li>
         </ul>
       </nav>
-      <button class="hamburger" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav-mobile">
+      <button class="hamburger" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav-drawer">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -50,7 +55,7 @@
 
   <!-- Side nav overlay + drawer -->
   <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
-  <nav class="nav-drawer" id="nav-drawer" aria-label="モバイルナビゲーション" aria-hidden="true">
+  <nav class="nav-drawer" id="nav-drawer" aria-label="モバイルナビゲーション" aria-hidden="true" inert>
     <button class="nav-drawer-close" id="nav-drawer-close" aria-label="メニューを閉じる">&times;</button>
     <div class="nav-drawer-logo">みんなの評判<span>.com</span></div>
     <ul>
@@ -75,19 +80,19 @@
           <div class="articles-marquee-fade articles-marquee-fade--left" aria-hidden="true"></div>
           <div class="articles-marquee" aria-hidden="true">
             <div class="articles-marquee-track">
-              <div class="articles-marquee-logo-wrap"><img src="images/media-logo/rakuten-news.jpg" alt="楽天ニュース" class="articles-marquee-logo"></div>
-              <div class="articles-marquee-logo-wrap"><img src="images/media-logo/niconico-news.jpg" alt="ニコニコニュース" class="articles-marquee-logo"></div>
-              <div class="articles-marquee-logo-wrap"><img src="images/media-logo/excite-news.jpg" alt="エキサイトニュース" class="articles-marquee-logo"></div>
-              <div class="articles-marquee-logo-wrap"><img src="images/media-logo/rakuten-news.jpg" alt="楽天ニュース" class="articles-marquee-logo"></div>
-              <div class="articles-marquee-logo-wrap"><img src="images/media-logo/niconico-news.jpg" alt="ニコニコニュース" class="articles-marquee-logo"></div>
-              <div class="articles-marquee-logo-wrap"><img src="images/media-logo/excite-news.jpg" alt="エキサイトニュース" class="articles-marquee-logo"></div>
-              <!-- 複製（シームレスループ用） -->
-              <div class="articles-marquee-logo-wrap"><img src="images/media-logo/rakuten-news.jpg" alt="" class="articles-marquee-logo"></div>
-              <div class="articles-marquee-logo-wrap"><img src="images/media-logo/niconico-news.jpg" alt="" class="articles-marquee-logo"></div>
-              <div class="articles-marquee-logo-wrap"><img src="images/media-logo/excite-news.jpg" alt="" class="articles-marquee-logo"></div>
-              <div class="articles-marquee-logo-wrap"><img src="images/media-logo/rakuten-news.jpg" alt="" class="articles-marquee-logo"></div>
-              <div class="articles-marquee-logo-wrap"><img src="images/media-logo/niconico-news.jpg" alt="" class="articles-marquee-logo"></div>
-              <div class="articles-marquee-logo-wrap"><img src="images/media-logo/excite-news.jpg" alt="" class="articles-marquee-logo"></div>
+              <div class="articles-marquee-logo-wrap"><img src="images/media-logo/rakuten-news.jpg" alt="楽天ニュース" class="articles-marquee-logo" width="492" height="168" loading="lazy" decoding="async"></div>
+              <div class="articles-marquee-logo-wrap"><img src="images/media-logo/niconico-news.jpg" alt="ニコニコニュース" class="articles-marquee-logo" width="492" height="168" loading="lazy" decoding="async"></div>
+              <div class="articles-marquee-logo-wrap"><img src="images/media-logo/excite-news.jpg" alt="エキサイトニュース" class="articles-marquee-logo" width="492" height="168" loading="lazy" decoding="async"></div>
+              <div class="articles-marquee-logo-wrap"><img src="images/media-logo/rakuten-news.jpg" alt="楽天ニュース" class="articles-marquee-logo" width="492" height="168" loading="lazy" decoding="async"></div>
+              <div class="articles-marquee-logo-wrap"><img src="images/media-logo/niconico-news.jpg" alt="ニコニコニュース" class="articles-marquee-logo" width="492" height="168" loading="lazy" decoding="async"></div>
+              <div class="articles-marquee-logo-wrap"><img src="images/media-logo/excite-news.jpg" alt="エキサイトニュース" class="articles-marquee-logo" width="492" height="168" loading="lazy" decoding="async"></div>
+              <!-- 複製（シームレスループ用）aria-hidden コンテナ内のため alt="" で可 -->
+              <div class="articles-marquee-logo-wrap"><img src="images/media-logo/rakuten-news.jpg" alt="" class="articles-marquee-logo" width="492" height="168" loading="lazy" decoding="async"></div>
+              <div class="articles-marquee-logo-wrap"><img src="images/media-logo/niconico-news.jpg" alt="" class="articles-marquee-logo" width="492" height="168" loading="lazy" decoding="async"></div>
+              <div class="articles-marquee-logo-wrap"><img src="images/media-logo/excite-news.jpg" alt="" class="articles-marquee-logo" width="492" height="168" loading="lazy" decoding="async"></div>
+              <div class="articles-marquee-logo-wrap"><img src="images/media-logo/rakuten-news.jpg" alt="" class="articles-marquee-logo" width="492" height="168" loading="lazy" decoding="async"></div>
+              <div class="articles-marquee-logo-wrap"><img src="images/media-logo/niconico-news.jpg" alt="" class="articles-marquee-logo" width="492" height="168" loading="lazy" decoding="async"></div>
+              <div class="articles-marquee-logo-wrap"><img src="images/media-logo/excite-news.jpg" alt="" class="articles-marquee-logo" width="492" height="168" loading="lazy" decoding="async"></div>
             </div>
           </div>
           <div class="articles-marquee-fade articles-marquee-fade--right" aria-hidden="true"></div>
@@ -163,12 +168,14 @@
       const overlay = document.getElementById('nav-overlay');
       function openDrawer() {
         drawer?.classList.add('open'); overlay?.classList.add('open');
-        drawer?.setAttribute('aria-hidden','false'); btn?.setAttribute('aria-expanded','true');
+        drawer?.setAttribute('aria-hidden','false'); drawer?.removeAttribute('inert');
+        btn?.setAttribute('aria-expanded','true');
         btn?.setAttribute('aria-label','メニューを閉じる'); document.body.style.overflow='hidden';
       }
       function closeDrawer() {
         drawer?.classList.remove('open'); overlay?.classList.remove('open');
-        drawer?.setAttribute('aria-hidden','true'); btn?.setAttribute('aria-expanded','false');
+        drawer?.setAttribute('aria-hidden','true'); drawer?.setAttribute('inert','');
+        btn?.setAttribute('aria-expanded','false');
         btn?.setAttribute('aria-label','メニューを開く'); document.body.style.overflow='';
       }
       btn?.addEventListener('click', () => btn.getAttribute('aria-expanded')==='true' ? closeDrawer() : openDrawer());

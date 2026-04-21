@@ -17,6 +17,9 @@
   <meta property="og:image" content="images/placeholders/og-career.svg">
   <meta property="og:url" content="https://minnano-hyouban.com/article.html">
   <meta name="twitter:card" content="summary_large_image">
+  <!-- canonical（JS で記事ごとに上書きされる。クローラー向け静的フォールバック） -->
+  <link rel="canonical" href="https://minnano-hyouban.com/article.html">
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
   <!-- GA4 測定ID（本番: コメントを外すか、article-renderer 読込前に window.__GA4_MEASUREMENT_ID__ を設定） -->
   <!-- <meta name="ga4-measurement-id" content="G-XXXXXXXXXX"> -->
   <!-- Fonts -->
@@ -25,8 +28,10 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@400;600;700&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@400;600;700&display=swap"></noscript>
-  <!-- Swiper -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <!-- Swiper（非ブロッキング読み込み） -->
+  <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"></noscript>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -47,7 +52,7 @@
           <li><a href="index.html#contact" class="nav-inquiry">取材依頼</a></li>
         </ul>
       </nav>
-      <button class="hamburger" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav-mobile">
+      <button class="hamburger" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav-drawer">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -55,7 +60,7 @@
 
   <!-- Side nav overlay + drawer -->
   <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
-  <nav class="nav-drawer" id="nav-drawer" aria-label="モバイルナビゲーション" aria-hidden="true">
+  <nav class="nav-drawer" id="nav-drawer" aria-label="モバイルナビゲーション" aria-hidden="true" inert>
     <button class="nav-drawer-close" id="nav-drawer-close" aria-label="メニューを閉じる">&times;</button>
     <div class="nav-drawer-logo">みんなの評判<span>.com</span></div>
     <ul>
@@ -124,7 +129,7 @@
   </div>
 
   <!-- Swiper JS -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
   <!-- 記事データ集約ローダー -->
   <!-- 個別記事データ（_post/） -->
   <script src="_post/SenoRich/1794482170414453-senorich.js"></script>

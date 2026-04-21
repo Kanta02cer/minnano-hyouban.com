@@ -73,7 +73,9 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@400;600;700&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@400;600;700&display=swap"></noscript>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"></noscript>
   <link rel="stylesheet" href="index.css">
 </head>
 <body>
@@ -94,7 +96,7 @@
           <li><a href="#contact" class="nav-inquiry">取材依頼</a></li>
         </ul>
       </nav>
-      <button class="hamburger" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav-mobile">
+      <button class="hamburger" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav-drawer">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -102,7 +104,7 @@
 
   <!-- Side nav overlay + drawer -->
   <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
-  <nav class="nav-drawer" id="nav-drawer" aria-label="モバイルナビゲーション" aria-hidden="true">
+  <nav class="nav-drawer" id="nav-drawer" aria-label="モバイルナビゲーション" aria-hidden="true" inert>
     <button class="nav-drawer-close" id="nav-drawer-close" aria-label="メニューを閉じる">&times;</button>
     <div class="nav-drawer-logo">みんなの評判<span>.com</span></div>
     <ul>
@@ -216,19 +218,19 @@
           <div class="hero-media-marquee" aria-hidden="true">
             <!-- 1トラックに全アイテム集約（translateX(-50%)でシームレスループ） -->
             <div class="hero-media-marquee-track">
-              <div class="hero-media-logo-wrap"><img src="images/media-logo/rakuten-news.jpg" alt="楽天ニュース" class="hero-media-logo"></div>
-              <div class="hero-media-logo-wrap"><img src="images/media-logo/niconico-news.jpg" alt="ニコニコニュース" class="hero-media-logo"></div>
-              <div class="hero-media-logo-wrap"><img src="images/media-logo/excite-news.jpg" alt="エキサイトニュース" class="hero-media-logo"></div>
-              <div class="hero-media-logo-wrap"><img src="images/media-logo/rakuten-news.jpg" alt="楽天ニュース" class="hero-media-logo"></div>
-              <div class="hero-media-logo-wrap"><img src="images/media-logo/niconico-news.jpg" alt="ニコニコニュース" class="hero-media-logo"></div>
-              <div class="hero-media-logo-wrap"><img src="images/media-logo/excite-news.jpg" alt="エキサイトニュース" class="hero-media-logo"></div>
-              <!-- 複製（シームレスループ用） -->
-              <div class="hero-media-logo-wrap"><img src="images/media-logo/rakuten-news.jpg" alt="" class="hero-media-logo"></div>
-              <div class="hero-media-logo-wrap"><img src="images/media-logo/niconico-news.jpg" alt="" class="hero-media-logo"></div>
-              <div class="hero-media-logo-wrap"><img src="images/media-logo/excite-news.jpg" alt="" class="hero-media-logo"></div>
-              <div class="hero-media-logo-wrap"><img src="images/media-logo/rakuten-news.jpg" alt="" class="hero-media-logo"></div>
-              <div class="hero-media-logo-wrap"><img src="images/media-logo/niconico-news.jpg" alt="" class="hero-media-logo"></div>
-              <div class="hero-media-logo-wrap"><img src="images/media-logo/excite-news.jpg" alt="" class="hero-media-logo"></div>
+              <div class="hero-media-logo-wrap"><img src="images/media-logo/rakuten-news.jpg" alt="楽天ニュース" class="hero-media-logo" width="492" height="168" loading="lazy" decoding="async"></div>
+              <div class="hero-media-logo-wrap"><img src="images/media-logo/niconico-news.jpg" alt="ニコニコニュース" class="hero-media-logo" width="492" height="168" loading="lazy" decoding="async"></div>
+              <div class="hero-media-logo-wrap"><img src="images/media-logo/excite-news.jpg" alt="エキサイトニュース" class="hero-media-logo" width="492" height="168" loading="lazy" decoding="async"></div>
+              <div class="hero-media-logo-wrap"><img src="images/media-logo/rakuten-news.jpg" alt="楽天ニュース" class="hero-media-logo" width="492" height="168" loading="lazy" decoding="async"></div>
+              <div class="hero-media-logo-wrap"><img src="images/media-logo/niconico-news.jpg" alt="ニコニコニュース" class="hero-media-logo" width="492" height="168" loading="lazy" decoding="async"></div>
+              <div class="hero-media-logo-wrap"><img src="images/media-logo/excite-news.jpg" alt="エキサイトニュース" class="hero-media-logo" width="492" height="168" loading="lazy" decoding="async"></div>
+              <!-- 複製（シームレスループ用）aria-hidden コンテナ内のため alt="" で可 -->
+              <div class="hero-media-logo-wrap"><img src="images/media-logo/rakuten-news.jpg" alt="" class="hero-media-logo" width="492" height="168" loading="lazy" decoding="async"></div>
+              <div class="hero-media-logo-wrap"><img src="images/media-logo/niconico-news.jpg" alt="" class="hero-media-logo" width="492" height="168" loading="lazy" decoding="async"></div>
+              <div class="hero-media-logo-wrap"><img src="images/media-logo/excite-news.jpg" alt="" class="hero-media-logo" width="492" height="168" loading="lazy" decoding="async"></div>
+              <div class="hero-media-logo-wrap"><img src="images/media-logo/rakuten-news.jpg" alt="" class="hero-media-logo" width="492" height="168" loading="lazy" decoding="async"></div>
+              <div class="hero-media-logo-wrap"><img src="images/media-logo/niconico-news.jpg" alt="" class="hero-media-logo" width="492" height="168" loading="lazy" decoding="async"></div>
+              <div class="hero-media-logo-wrap"><img src="images/media-logo/excite-news.jpg" alt="" class="hero-media-logo" width="492" height="168" loading="lazy" decoding="async"></div>
             </div>
           </div>
           <div class="hero-media-fade hero-media-fade--right" aria-hidden="true"></div>
@@ -702,6 +704,7 @@
       navDrawer?.classList.add('open');
       navOverlay?.classList.add('open');
       navDrawer?.setAttribute('aria-hidden', 'false');
+      navDrawer?.removeAttribute('inert');
       navOverlay?.setAttribute('aria-hidden', 'false');
       hamburgerBtn?.setAttribute('aria-expanded', 'true');
       hamburgerBtn?.setAttribute('aria-label', 'メニューを閉じる');
@@ -711,6 +714,7 @@
       navDrawer?.classList.remove('open');
       navOverlay?.classList.remove('open');
       navDrawer?.setAttribute('aria-hidden', 'true');
+      navDrawer?.setAttribute('inert', '');
       navOverlay?.setAttribute('aria-hidden', 'true');
       hamburgerBtn?.setAttribute('aria-expanded', 'false');
       hamburgerBtn?.setAttribute('aria-label', 'メニューを開く');

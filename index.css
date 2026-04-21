@@ -2095,6 +2095,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   height: 48px;
   width: auto;
   max-width: 180px;
+  aspect-ratio: 492 / 168;
   object-fit: contain;
   display: block;
 }

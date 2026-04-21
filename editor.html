@@ -602,7 +602,7 @@
           <li><a href="index.html#contact" class="nav-inquiry">取材依頼</a></li>
         </ul>
       </nav>
-      <button class="hamburger" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav-mobile">
+      <button class="hamburger" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav-drawer">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -610,7 +610,7 @@
 
   <!-- Side nav overlay + drawer -->
   <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
-  <nav class="nav-drawer" id="nav-drawer" aria-label="モバイルナビゲーション" aria-hidden="true">
+  <nav class="nav-drawer" id="nav-drawer" aria-label="モバイルナビゲーション" aria-hidden="true" inert>
     <button class="nav-drawer-close" id="nav-drawer-close" aria-label="メニューを閉じる">&times;</button>
     <div class="nav-drawer-logo">みんなの評判<span>.com</span></div>
     <ul>
@@ -978,6 +978,7 @@
       drawer?.classList.add('open');
       overlay?.classList.add('open');
       drawer?.setAttribute('aria-hidden', 'false');
+      drawer?.removeAttribute('inert');
       overlay?.setAttribute('aria-hidden', 'false');
       btn?.setAttribute('aria-expanded', 'true');
       btn?.setAttribute('aria-label', 'メニューを閉じる');
@@ -987,6 +988,7 @@
       drawer?.classList.remove('open');
       overlay?.classList.remove('open');
       drawer?.setAttribute('aria-hidden', 'true');
+      drawer?.setAttribute('inert', '');
       overlay?.setAttribute('aria-hidden', 'true');
       btn?.setAttribute('aria-expanded', 'false');
       btn?.setAttribute('aria-label', 'メニューを開く');
