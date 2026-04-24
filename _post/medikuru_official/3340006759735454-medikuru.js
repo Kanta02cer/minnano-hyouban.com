@@ -33,9 +33,10 @@ window.__POST_3340006759735454 = {
 
   galleries: {
     service: [
-      { src: "images/medikuru/effect-01-trust.png",  alt: "ニュースに掲載される効果①：信用度が跳ね上がる",        caption: "指名検索時に第三者記事が並ぶことで、信用の第一印象が大きく変わる",  objectFit: "contain" },
-      { src: "images/medikuru/effect-02-sales.png",  alt: "ニュースに掲載される効果②：営業やセールスが楽になる",  caption: "ニュース掲載実績が「ちゃんとできる会社」の印象を生み出す",          objectFit: "contain" },
-      { src: "images/medikuru/effect-03-ad.png",     alt: "ニュースに掲載される効果③：広告の費用対効果が改善する", caption: "指名検索ユーザーの購買率は潜在顧客の10倍以上（Yahoo調査）",        objectFit: "contain" }
+      { src: "images/medikuru/strength-01.png", alt: "他社にはマネできない5つの圧倒的な強み・01：大手ネットニュース掲載実績1,000件以上", caption: "01｜大手ネットニュース掲載実績1,000件以上。結果が出ることを証明済みのサービス", objectFit: "contain" },
+      { src: "images/medikuru/strength-02.png", alt: "強み02：掲載保証あり・全額返金保証",                                                 caption: "02｜掲載保証＋全額返金保証。他社には絶対できない安心設計",                    objectFit: "contain" },
+      { src: "images/medikuru/strength-03.png", alt: "強み03：他社では真似できない独自サービス・漆沢が直接コンサル",                       caption: "03｜漆沢が直接コンサル。メディアが載せたくなる角度で設計する独自サービス",    objectFit: "contain" },
+      { src: "images/medikuru/strength-04.png", alt: "強み04：取材から平均最短1ヶ月で掲載へ",                                             caption: "04｜取材から平均最短1ヶ月で掲載。スピード感ある信頼構築が可能",             objectFit: "contain" }
     ],
     beforeAfter: [
       { src: "images/medikuru/pain-points.png", alt: "導入前：こんな悩みを抱えていませんか？", label: "導入前のイメージ" },
