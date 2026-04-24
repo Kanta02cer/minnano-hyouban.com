@@ -33,9 +33,9 @@ window.__POST_3340006759735454 = {
 
   galleries: {
     service: [
-      { src: "images/medikuru/effect-01-trust.png",  alt: "ニュースに掲載される効果①：信用度が跳ね上がる",     caption: "指名検索時に第三者記事が並ぶことで、信用の第一印象が大きく変わる" },
-      { src: "images/medikuru/effect-02-sales.png",  alt: "ニュースに掲載される効果②：営業やセールスが楽になる", caption: "ニュース掲載実績が「ちゃんとできる会社」の印象を生み出す" },
-      { src: "images/medikuru/effect-03-ad.png",     alt: "ニュースに掲載される効果③：広告の費用対効果が改善する", caption: "指名検索ユーザーの購買率は潜在顧客の10倍以上（Yahoo調査）" }
+      { src: "images/medikuru/effect-01-trust.png",  alt: "ニュースに掲載される効果①：信用度が跳ね上がる",        caption: "指名検索時に第三者記事が並ぶことで、信用の第一印象が大きく変わる",  objectFit: "contain" },
+      { src: "images/medikuru/effect-02-sales.png",  alt: "ニュースに掲載される効果②：営業やセールスが楽になる",  caption: "ニュース掲載実績が「ちゃんとできる会社」の印象を生み出す",          objectFit: "contain" },
+      { src: "images/medikuru/effect-03-ad.png",     alt: "ニュースに掲載される効果③：広告の費用対効果が改善する", caption: "指名検索ユーザーの購買率は潜在顧客の10倍以上（Yahoo調査）",        objectFit: "contain" }
     ],
     beforeAfter: [
       { src: "images/medikuru/pain-points.png", alt: "導入前：こんな悩みを抱えていませんか？", label: "導入前のイメージ" },
@@ -47,10 +47,22 @@ window.__POST_3340006759735454 = {
       { src: "images/media-logo/excite-news.jpg",   alt: "エキサイトニュース" }
     ],
     extra: [
-      { group: "5つの強み", src: "images/medikuru/strength-01.png", alt: "強み①：大手ネットニュース掲載実績1,000件以上",       caption: "掲載実績1,000件以上。結果が出ることを証明済みのサービス" },
-      { group: "5つの強み", src: "images/medikuru/strength-02.png", alt: "強み②：掲載保証あり・全額返金保証",                   caption: "掲載できなければ全額返金。他社にはできない安心設計" },
-      { group: "5つの強み", src: "images/medikuru/strength-03.png", alt: "強み③：漆沢が直接コンサルする独自サービス",            caption: "上場企業3社役員経験の漆沢が「メディアが載せたくなる角度」で設計" },
-      { group: "5つの強み", src: "images/medikuru/strength-04.png", alt: "強み④：取材から平均最短1ヶ月で掲載",                   caption: "長期待機のPRとは違い、スピード感ある信頼構築が可能" }
+      { group: "令和の虎 × メディくる",          src: "images/medikuru/reiwa-tiger-intro.png",  alt: "令和の虎の辛口社長たちが本気で惚れ込んで役員として参画",           caption: "令和の虎出演メンバーが役員として参画した「令和のブランディング革命」" },
+      { group: "令和の虎 × メディくる",          src: "images/medikuru/voice-hayashi.png",      alt: "令和の虎2代目主宰・林尚弘 掲載後の感想",                         caption: "林尚弘氏「今までになかったサービス！おすすめ」" },
+      { group: "令和の虎 × メディくる",          src: "images/medikuru/voice-inaba.png",        alt: "令和の虎出演・イエロ株式会社CEO 稲葉信 掲載後の感想",             caption: "稲葉信氏「信頼性が一気に高まり成約率も向上した」" },
+      { group: "令和の虎 × メディくる",          src: "images/medikuru/voice-sakaguchi.png",    alt: "令和の虎事業再生版出演・坂口貴徳 掲載後の感想",                   caption: "坂口貴徳氏「経営戦略の中での必要な武器になると実感」" },
+      { group: "指名検索の重要性",               src: "images/medikuru/stat-88-percent.png",   alt: "顧客の88%が会社名・社長名を直接指名検索している統計",              caption: "初めて知った顧客の88%が指名検索をしている（調査データ）" },
+      { group: "指名検索の重要性",               src: "images/medikuru/stat-10x.png",          alt: "指名検索した顧客の購買率は潜在顧客の10倍以上",                     caption: "指名検索ユーザーの購買率は約10倍以上（Yahooマーケティング調査）" },
+      { group: "指名検索の重要性",               src: "images/medikuru/pain-points.png",       alt: "こんな悩みを抱えていませんか？受注率・信頼性・掲載実績・採用など",   caption: "受注率・信頼性・採用など、多くの経営課題に対応" },
+      { group: "ニュース掲載の3つの効果",        src: "images/medikuru/effect-01-trust.png",   alt: "効果①：信用度が跳ね上がる",                                       caption: "01 信用度が跳ね上がる——第三者メディアが並ぶことで印象が全く違う" },
+      { group: "ニュース掲載の3つの効果",        src: "images/medikuru/effect-02-sales.png",   alt: "効果②：営業やセールスが楽になる",                                 caption: "02 営業やセールスが楽になる——売り込まなくても選ばれる状態へ" },
+      { group: "ニュース掲載の3つの効果",        src: "images/medikuru/effect-03-ad.png",      alt: "効果③：広告の費用対効果が改善する",                               caption: "03 広告の費用対効果が改善する——CPAが下がり全体効率が向上" },
+      { group: "他社にはマネできない5つの強み",  src: "images/medikuru/strength-01.png",       alt: "強み①：大手ネットニュース掲載実績1,000件以上",                      caption: "01 掲載実績1,000件以上。結果が出ることを証明済みのサービス" },
+      { group: "他社にはマネできない5つの強み",  src: "images/medikuru/strength-02.png",       alt: "強み②：掲載保証あり・全額返金保証",                                caption: "02 掲載保証＋全額返金保証。他社には絶対できない安心設計" },
+      { group: "他社にはマネできない5つの強み",  src: "images/medikuru/strength-03.png",       alt: "強み③：漆沢が直接コンサルする独自サービス",                         caption: "03 漆沢が直接コンサル。メディアが載せたくなる角度で設計" },
+      { group: "他社にはマネできない5つの強み",  src: "images/medikuru/strength-04.png",       alt: "強み④：取材から平均最短1ヶ月で掲載",                               caption: "04 取材から平均最短1ヶ月で掲載。スピード感ある信頼構築が可能" },
+      { group: "サービス案内",                   src: "images/medikuru/trust-up.png",          alt: "信用度UP！あのニュースサイトに掲載された企業だ！",                  caption: "指名検索されたとき「あのニュースに掲載された会社」という印象を作る" },
+      { group: "サービス案内",                   src: "images/medikuru/line-cta.png",          alt: "メディア取材は毎月30社限定・全額返金保証・LINE登録特典割引あり",    caption: "毎月30社限定。LINE登録で無料相談・特典割引あり" }
     ]
   },
 

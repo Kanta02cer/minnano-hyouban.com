@@ -220,14 +220,19 @@ function buildArticleHTML(a) {
   `).join('');
 
   // Gallery service slides
-  const serviceSlides = galleryServiceForArticle(a).map(img => `
+  // img.objectFit: "contain" を指定すると aspect-ratio を解除してトリミングなしで表示
+  const serviceSlides = galleryServiceForArticle(a).map(img => {
+    const imgStyle = img.objectFit
+      ? ` style="object-fit:${esc(img.objectFit)};aspect-ratio:unset;"`
+      : '';
+    return `
     <div class="swiper-slide">
       <figure class="slide-figure">
-        <img src="${esc(img.src)}" alt="${esc(img.alt)}" loading="lazy" decoding="async">
+        <img src="${esc(img.src)}" alt="${esc(img.alt)}" loading="lazy" decoding="async"${imgStyle}>
         <figcaption>${esc(img.caption)}</figcaption>
       </figure>
-    </div>
-  `).join('');
+    </div>`;
+  }).join('');
 
   // Gallery before/after slides
   const baSlides = galleryBeforeAfterForArticle(a).map(img => `
