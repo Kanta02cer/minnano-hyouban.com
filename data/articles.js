@@ -34,7 +34,8 @@
 const __ALL_POST_KEYS = [
   "__POST_1794482170414453",   // _post/SenoRich/1794482170414453-senorich
   "__POST_2221437250750372",   // _post/MIRACLE PILLOW/2221437250750372-miracle-pillow
-  "__POST_2252563132716439"   // _post/TASKUL/2252563132716439-taskul
+  "__POST_2252563132716439",   // _post/TASKUL/2252563132716439-taskul
+  "__POST_3340006759735454"   // _post/medikuru_official/3340006759735454-medikuru
 ];
 
 // 個別ファイルから読み込んだデータを集約（publishedAt 降順でソート）
