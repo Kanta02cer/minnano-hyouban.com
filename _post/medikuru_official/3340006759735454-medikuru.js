@@ -13,8 +13,8 @@ window.__POST_3340006759735454 = {
   heroImg:  "images/medikuru/fv-main.jpg",
   company:  "メディくる",
   category: "マーケティング・広報",
-  publishedAt: "2026-04-17",
-  updatedAt:   "2026-04-17",
+  publishedAt: "2026-04-24",
+  updatedAt:   "2026-04-24",
 
   oneliner: "「検索された後に売れる環境」をつくる——ニュース・評判・広告を一気通貫で設計する、指名検索特化型のメディアブランディングサービス。",
 
