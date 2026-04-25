@@ -1209,7 +1209,7 @@ section.animate-from-right {
 
 .service-card {
   padding: 16px 0;
-  text-align: left;
+  text-align: center;
   border-top: 1px solid var(--color-border);
   transition: opacity 0.2s;
 }
