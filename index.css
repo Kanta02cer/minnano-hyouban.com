@@ -1046,19 +1046,24 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 /* =============================================================
-   CAROUSEL WRAPPER
+   ARTICLES SWIPER CAROUSEL
    ============================================================= */
-.carousel-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+
+/* Swiper ラッパー — ナビボタン分の余白を確保 */
+.articles-swiper {
+  position: relative;
+  padding: 0 52px;
+  overflow: hidden;
 }
 
-/* Nav buttons */
-.carousel-btn {
-  flex-shrink: 0;
-  width: 44px;
-  height: 44px;
+/* カスタムナビボタン */
+.articles-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -1066,20 +1071,23 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background .2s, border-color .2s, box-shadow .2s, transform .15s;
   cursor: pointer;
-  align-self: center;
+  transition: background .2s, border-color .2s, box-shadow .2s, transform .2s;
 }
-.carousel-btn:hover {
+.articles-nav--prev { left: 0; }
+.articles-nav--next { right: 0; }
+.articles-nav:hover {
   background: var(--navy);
   border-color: var(--navy);
   box-shadow: var(--shadow-m);
-  transform: scale(1.08);
+  transform: translateY(-50%) scale(1.08);
 }
-.carousel-btn:disabled {
+.articles-nav.swiper-button-disabled {
   opacity: .25;
   pointer-events: none;
 }
+
+/* 矢印アイコン（共通） */
 .carousel-icon {
   display: block;
   width: 9px;
@@ -1088,57 +1096,40 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   border-bottom: 2px solid var(--ink-soft);
   transition: border-color .2s;
 }
-.carousel-btn:hover .carousel-icon { border-color: #fff; }
+.articles-nav:hover .carousel-icon { border-color: #fff; }
 .carousel-icon--right { transform: rotate(-45deg) translateY(1px); }
 .carousel-icon--left  { transform: rotate(135deg) translateY(-1px); }
 
-/* Dots */
-.carousel-dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 28px;
+/* Swiper ページネーション（ドット） */
+.articles-swiper-pagination {
+  margin-top: 24px;
+  text-align: center;
+  position: static !important;
+  bottom: auto !important;
 }
-.carousel-dot {
+.articles-swiper-pagination .swiper-pagination-bullet {
   width: 6px;
   height: 6px;
-  border-radius: 50%;
   background: var(--border);
-  border: none;
-  padding: 0;
+  opacity: 1;
   transition: background .2s, transform .2s;
-  cursor: pointer;
 }
-.carousel-dot--active {
+.articles-swiper-pagination .swiper-pagination-bullet-active {
   background: var(--navy);
   transform: scale(1.4);
 }
 
 /* =============================================================
-   ARTICLE LIST — scrollable carousel with snap
+   ARTICLE CARD
    ============================================================= */
-.article-list {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  gap: 24px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  scroll-padding-left: 0;
-}
-.article-list::-webkit-scrollbar { display: none; }
-
 .article-item {
-  flex: 0 0 calc((100% - 48px) / 3);
+  height: 100%;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-top: 2px solid transparent;
   border-radius: var(--radius-m);
   overflow: hidden;
   transition: box-shadow .3s, transform .3s, border-top-color .3s;
-  scroll-snap-align: start;
 }
 .article-item:hover {
   box-shadow: var(--shadow-m);

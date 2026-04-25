@@ -306,19 +306,18 @@
           <a href="articles.html" class="section-link">すべての記事を見る</a>
         </div>
 
-        <div class="carousel-wrapper">
-          <button class="carousel-btn carousel-btn--prev" aria-label="前の記事" disabled hidden>
+        <div class="articles-swiper swiper">
+          <div class="swiper-wrapper" id="article-list-container">
+            <!-- data/articles.js を動的レンダリング（swiper-slide でラップ） -->
+          </div>
+          <button class="articles-nav articles-nav--prev" aria-label="前の記事">
             <span class="carousel-icon carousel-icon--left" aria-hidden="true"></span>
           </button>
-          <div class="article-list" role="list" id="article-list-container">
-            <!-- data/articles.js 第2件目以降を動的レンダリング -->
-          </div>
-          <button class="carousel-btn carousel-btn--next" aria-label="次の記事" hidden>
+          <button class="articles-nav articles-nav--next" aria-label="次の記事">
             <span class="carousel-icon carousel-icon--right" aria-hidden="true"></span>
           </button>
+          <div class="articles-swiper-pagination swiper-pagination"></div>
         </div>
-
-        <div class="carousel-dots" id="carousel-dots" aria-hidden="true"></div>
       </div>
     </section>
 
@@ -631,44 +630,48 @@
       const cc    = catClass(art.category);
       const scoreH = score ? `<span class="meta-score">&#9733; ${score}</span>` : '';
       return `
-        <article class="article-item anim-up" role="listitem">
-          <a href="article.html?id=${art.slug}" class="article-item-link">
-            <figure class="article-thumb">
-              <img src="${thumb}" alt="${art.company || ''}の評判" loading="lazy">
-            </figure>
-            <div class="article-body">
-              <span class="article-category ${cc}">${art.category || ''}</span>
-              <h3 class="article-title">${displayTitle(art.heroTitle || art.title)}</h3>
-              <p class="article-excerpt">${art.heroSub || ''}</p>
-              <div class="article-meta">
-                <span class="meta-pr">PR</span>
-                <span class="meta-author">${editorShortName(art.editorName)}</span>
-                <time datetime="${art.publishedAt}">${fmtDate(art.publishedAt)}</time>
-                ${scoreH}
+        <div class="swiper-slide">
+          <article class="article-item" role="listitem">
+            <a href="article.html?id=${art.slug}" class="article-item-link">
+              <figure class="article-thumb">
+                <img src="${thumb}" alt="${art.company || ''}の評判" loading="lazy">
+              </figure>
+              <div class="article-body">
+                <span class="article-category ${cc}">${art.category || ''}</span>
+                <h3 class="article-title">${displayTitle(art.heroTitle || art.title)}</h3>
+                <p class="article-excerpt">${art.heroSub || ''}</p>
+                <div class="article-meta">
+                  <span class="meta-pr">PR</span>
+                  <span class="meta-author">${editorShortName(art.editorName)}</span>
+                  <time datetime="${art.publishedAt}">${fmtDate(art.publishedAt)}</time>
+                  ${scoreH}
+                </div>
               </div>
-            </div>
-          </a>
-        </article>`;
+            </a>
+          </article>
+        </div>`;
     }
 
     function renderUpcoming(idx) {
       return `
-        <article class="article-item article-item--wip anim-up" role="listitem" aria-label="デザイン作成中">
-          <div class="article-wip-card">
-            <figure class="article-thumb article-thumb--wip">
-              <div class="wip-thumb-deco" aria-hidden="true">
-                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/>
-                  <line x1="15" y1="5" x2="19" y2="9"/>
-                </svg>
+        <div class="swiper-slide">
+          <article class="article-item article-item--wip" role="listitem" aria-label="デザイン作成中">
+            <div class="article-wip-card">
+              <figure class="article-thumb article-thumb--wip">
+                <div class="wip-thumb-deco" aria-hidden="true">
+                  <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/>
+                    <line x1="15" y1="5" x2="19" y2="9"/>
+                  </svg>
+                </div>
+              </figure>
+              <div class="article-body wip-list-body">
+                <p class="wip-list-text">オリジナルデザインで作成中</p>
+                <span class="wip-list-cursor" aria-hidden="true"></span>
               </div>
-            </figure>
-            <div class="article-body wip-list-body">
-              <p class="wip-list-text">オリジナルデザインで作成中</p>
-              <span class="wip-list-cursor" aria-hidden="true"></span>
             </div>
-          </div>
-        </article>`;
+          </article>
+        </div>`;
     }
 
     /* ─── 記事描画 ───────────────────────────────────────────── */
@@ -684,16 +687,11 @@
 
       const listEl = document.getElementById('article-list-container');
       if (listEl) {
-        const listArts = articles.slice(0, 3);
+        const listArts = articles;
         const needed   = Math.max(0, 3 - listArts.length);
         const items    = listArts.map(a => renderArticleItem(a)).join('');
         const upcoming = Array.from({ length: needed }, (_, i) => renderUpcoming(i)).join('');
         listEl.innerHTML = items + upcoming;
-
-        /* Stagger transition delays for card grid */
-        Array.from(listEl.children).forEach((el, i) => {
-          el.style.transitionDelay = `${i * 0.1}s`;
-        });
       }
     })();
 
@@ -797,78 +795,28 @@
       });
     }
 
-    /* ─── Carousel ───────────────────────────────────────────── */
-    (function initCarousel() {
-      const list    = document.getElementById('article-list-container');
-      const prevBtn = document.querySelector('.carousel-btn--prev');
-      const nextBtn = document.querySelector('.carousel-btn--next');
-      const dotsEl  = document.getElementById('carousel-dots');
-      if (!list || !prevBtn || !nextBtn) return;
+    /* ─── Articles Swiper ───────────────────────────────────── */
+    (function initArticlesSwiper() {
+      const wrapper = document.getElementById('article-list-container');
+      if (!wrapper || wrapper.children.length === 0) return;
 
-      function getItemScrollWidth() {
-        const first = list.firstElementChild;
-        if (!first) return 0;
-        const gap = parseFloat(getComputedStyle(list).gap) || 24;
-        return first.offsetWidth + gap;
-      }
-
-      function updateDots() {
-        if (!dotsEl || !list.firstElementChild) return;
-        const sw   = getItemScrollWidth();
-        const curr = sw ? Math.round(list.scrollLeft / sw) : 0;
-        dotsEl.querySelectorAll('.carousel-dot').forEach((d, i) => {
-          d.classList.toggle('carousel-dot--active', i === curr);
-        });
-      }
-
-      function updateButtons() {
-        const max = list.scrollWidth - list.clientWidth;
-        prevBtn.disabled = list.scrollLeft <= 2;
-        nextBtn.disabled = list.scrollLeft >= max - 2;
-        updateDots();
-      }
-
-      function setup() {
-        const count = list.children.length;
-        if (count === 0) return;
-
-        /* Build dots */
-        if (dotsEl) {
-          dotsEl.innerHTML = '';
-          for (let i = 0; i < count; i++) {
-            const dot = document.createElement('button');
-            dot.className = 'carousel-dot' + (i === 0 ? ' carousel-dot--active' : '');
-            dot.setAttribute('aria-label', `${i + 1}件目`);
-            dot.addEventListener('click', () => {
-              list.scrollTo({ left: i * getItemScrollWidth(), behavior: 'smooth' });
-            });
-            dotsEl.appendChild(dot);
-          }
-        }
-
-        prevBtn.hidden = false;
-        nextBtn.hidden = false;
-        updateButtons();
-
-        prevBtn.addEventListener('click', () => {
-          list.scrollBy({ left: -getItemScrollWidth(), behavior: 'smooth' });
-        });
-        nextBtn.addEventListener('click', () => {
-          list.scrollBy({ left: getItemScrollWidth(), behavior: 'smooth' });
-        });
-        list.addEventListener('scroll', updateButtons, { passive: true });
-        window.addEventListener('resize', updateButtons, { passive: true });
-      }
-
-      /* Articles are rendered synchronously above, but guard with MutationObserver just in case */
-      if (list.children.length > 0) {
-        setup();
-      } else {
-        const mo = new MutationObserver(() => {
-          if (list.children.length > 0) { mo.disconnect(); setup(); }
-        });
-        mo.observe(list, { childList: true });
-      }
+      new Swiper('.articles-swiper', {
+        slidesPerView: 1,
+        spaceBetween: 24,
+        loop: true,
+        navigation: {
+          prevEl: '.articles-nav--prev',
+          nextEl: '.articles-nav--next',
+        },
+        pagination: {
+          el: '.articles-swiper-pagination',
+          clickable: true,
+        },
+        breakpoints: {
+          600: { slidesPerView: 2 },
+          960: { slidesPerView: 3 },
+        },
+      });
     })();
 
     /* ─── How-to stagger ─────────────────────────────────────── */
