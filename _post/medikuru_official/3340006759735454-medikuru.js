@@ -72,19 +72,19 @@ window.__POST_3340006759735454 = {
     {
       media: "楽天インフォシーク",
       title: "メディくる｜指名検索後の信頼形成を設計する「検索特化型メディア戦略」",
-      url:   "https://news.infoseek.co.jp/",
-      date:  "2026-04-17"
-    },
-    {
-      media: "エキサイトニュース",
-      title: "メディくる｜ニュース・評判・広告を一気通貫で設計するブランディング支援",
-      url:   "https://www.excite.co.jp/news/",
+      url:   "https://news.infoseek.co.jp/article/globalnewsasia_11093/",
       date:  "2026-04-17"
     },
     {
       media: "ニコニコニュース",
       title: "メディくる｜「検索された後に売れる環境」をつくるメディアブランディング",
-      url:   "https://news.nicovideo.jp/",
+      url:   "https://news.nicovideo.jp/watch/nw19171868",
+      date:  "2026-04-17"
+    },
+    {
+      media: "エキサイトニュース",
+      title: "メディくる｜ニュース・評判・広告を一気通貫で設計するブランディング支援",
+      url:   "https://www.excite.co.jp/news/article/Global_news_asia_11093/",
       date:  "2026-04-17"
     }
   ],
@@ -203,7 +203,7 @@ window.__POST_3340006759735454 = {
     }
   ],
 
-  officialUrl: "https://medikuru.me/",
+  officialUrl: "https://liff-gateway.lineml.jp/landing?follow=%40658txruh&lp=n31x4b&liff_id=2008402152-x8WDy4eX",
   ctaTitle:    "まずは現状を知りたい・詳しく見てみたい方へ",
   ctaSub:      "メディくるでは、いきなり相談する前に現状を整理できるコンテンツや動画が用意されています。①【売上直結ブランディング診断】で自社の課題を把握 → ②YouTube紹介動画でサービスの雰囲気・考え方を確認 → ③公式サイト・LINE相談で具体的に相談、という流れがおすすめです。",
   ctaBtn:      "メディくる公式サイトを見る →",
