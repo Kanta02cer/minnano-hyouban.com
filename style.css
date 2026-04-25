@@ -24,7 +24,7 @@
   --radius-lg:       16px;
   --shadow-card:     0 1px 4px rgba(0,0,0,.07);
   --shadow-card-m:   0 4px 20px rgba(0,0,0,.09);
-  --max-width:       860px;
+  --max-width:       960px;
 }
 
 /* ============================================================
@@ -732,10 +732,10 @@ section.animate-from-right {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  max-width: 680px;
+  max-width: 820px;
   width: 100%;
   margin: 0 auto;
-  padding: 56px 24px 48px;
+  padding: 56px 14px 48px;
   text-align: center;
   color: var(--color-text);
 }
@@ -771,7 +771,7 @@ section.animate-from-right {
   color: var(--color-muted);
   margin-bottom: 28px;
   line-height: 1.9;
-  max-width: 560px;
+  max-width: 720px;
 }
 
 /* CTA グループ */
@@ -816,7 +816,7 @@ section.animate-from-right {
 @media (max-width: 480px) {
   .hero-brand-tagline { display: none; }
   .hero-brand-sep { display: none; }
-  .hero-inner { padding: 40px 20px 36px; }
+  .hero-inner { padding: 40px 10px 36px; }
   .hero-deco-ring--1 { width: 260px; height: 260px; top: -60px; right: -80px; }
   .hero-deco-ring--2 { width: 180px; height: 180px; }
   .hero-deco-dots { display: none; }
@@ -881,7 +881,7 @@ section.animate-from-right {
   color: var(--color-white);
   position: relative;
   padding: 0 2.8rem;
-  max-width: 680px;
+  max-width: 800px;
   text-shadow: 0 2px 24px rgba(0,0,0,0.3);
 }
 .oneliner-text::before {
