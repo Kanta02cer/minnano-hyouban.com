@@ -9,8 +9,8 @@ window.__POST_3340006759735454 = {
 
   title:    "メディくるの口コミ評判｜みんなの評判.com",
   metaDesc: "メディくるの口コミ評判を第三者記者が整理。大手ネットニュース掲載・評判メディア・広告運用を一体で設計するブランディングサービスの特徴・メリット・向いている会社・相談前の判断材料をわかりやすく解説。",
-  ogImage:  "images/medikuru/fv-main.jpg",
-  heroImg:  "images/medikuru/fv-main.jpg",
+  ogImage:  "images/medikuru/reiwa-tiger-intro.png",
+  heroImg:  "images/medikuru/reiwa-tiger-intro.png",
   company:  "メディくる",
   category: "マーケティング・広報",
   publishedAt: "2026-04-24",
