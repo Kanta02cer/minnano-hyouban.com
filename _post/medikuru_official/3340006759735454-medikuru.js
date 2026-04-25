@@ -203,7 +203,8 @@ window.__POST_3340006759735454 = {
     }
   ],
 
-  officialUrl: "https://liff-gateway.lineml.jp/landing?follow=%40658txruh&lp=n31x4b&liff_id=2008402152-x8WDy4eX",
+  officialUrl: "https://www.medikuru.me/",
+  lineUrl:     "https://liff-gateway.lineml.jp/landing?follow=%40658txruh&lp=n31x4b&liff_id=2008402152-x8WDy4eX&utm_source=minnano-hyouban&utm_medium=referral&utm_campaign=review_article&utm_content=3340006759735454",
   ctaTitle:    "まずは現状を知りたい・詳しく見てみたい方へ",
   ctaSub:      "メディくるでは、いきなり相談する前に現状を整理できるコンテンツや動画が用意されています。①【売上直結ブランディング診断】で自社の課題を把握 → ②YouTube紹介動画でサービスの雰囲気・考え方を確認 → ③公式サイト・LINE相談で具体的に相談、という流れがおすすめです。",
   ctaBtn:      "メディくる公式サイトを見る →",

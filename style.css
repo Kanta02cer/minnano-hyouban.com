@@ -1714,6 +1714,35 @@ section.animate-from-right {
   transform: translateY(-1px);
 }
 
+/* LINE ボタン（記事 CTA 用） */
+.btn--line {
+  display: inline-block;
+  background: #06C755;
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  padding: 16px 44px;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 4px 18px rgba(6,199,85,0.3);
+  transition: opacity 0.2s, transform 0.15s;
+  min-height: 44px;
+  text-align: center;
+  text-decoration: none;
+}
+.btn--line:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+/* CTA ボタン複数並び */
+.cta-btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+}
+
 /* ============================================================
    FOOTER
 ============================================================ */
@@ -2126,8 +2155,10 @@ section.animate-from-right {
   .article-card-thumb { width: 100%; min-width: unset; aspect-ratio: 16/9; height: auto; }
   .article-card-body { padding: 18px 20px; }
   .article-card-title { font-size: 1rem; }
-  /* Mid-CTA ボタン: モバイルでフル幅 */
-  .btn--mid-cta { width: 100%; padding-left: 24px; padding-right: 24px; }
+  /* Mid-CTA / LINE ボタン: モバイルでフル幅 */
+  .btn--mid-cta,
+  .btn--line { width: 100%; padding-left: 24px; padding-right: 24px; }
+  .cta-btn-group { flex-direction: column; }
 }
 
 /* ============================================================

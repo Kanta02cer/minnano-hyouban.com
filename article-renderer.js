@@ -198,6 +198,8 @@ function buildArticleHTML(a) {
   const isMailto = String(cta.href).startsWith('mailto:');
   const ctaLinkAttrs = isMailto ? '' : ' target="_blank" rel="noopener noreferrer"';
   const mailInquiry = `${CONTACT_MAILTO}?subject=${encodeURIComponent(`お問い合わせ（${a.company || '記事'}）`)}`;
+  const lineHref = a.lineUrl || null;
+  const hasLine  = !!lineHref;
 
   // Service cards
   const serviceCardsHTML = (a.serviceCards || []).map(c => `
@@ -486,6 +488,7 @@ function buildArticleHTML(a) {
         <p class="hero-sub">${esc(a.heroSub || '')}</p>
         <div class="hero-cta-group">
           ${hasOfficial ? `<a href="${esc(cta.href)}" class="btn btn--hero" ${ctaLinkAttrs} data-cta-kind="hero_official" data-article-slug="${esc(a.slug || '')}" data-company="${esc(a.company || '')}">公式サイトを見る →</a>` : ''}
+          ${hasLine ? `<a href="${esc(lineHref)}" class="btn btn--line" target="_blank" rel="noopener noreferrer" data-cta-kind="hero_line" data-article-slug="${esc(a.slug || '')}" data-company="${esc(a.company || '')}">公式LINEで相談する →</a>` : ''}
           <a href="#reviews" class="btn btn--hero-outline">口コミを先に読む</a>
         </div>
         <p class="hero-pr-note">※本記事はPR・広告を含みます</p>
@@ -627,7 +630,10 @@ function buildArticleHTML(a) {
         <p class="mid-cta-eyebrow">ここまで読んで気になった方へ</p>
         <h3 class="mid-cta-title">まず公式サイトで無料相談・詳細確認から始めませんか？</h3>
         <p class="mid-cta-note">申込みの義務はありません。気軽に内容を確認してみてください。</p>
-        <a href="${esc(cta.href)}" class="btn btn--mid-cta" ${ctaLinkAttrs} data-cta-kind="mid_official" data-article-slug="${esc(a.slug || '')}" data-company="${esc(a.company || '')}">公式サイトで詳細を確認する →</a>
+        <div class="cta-btn-group">
+          <a href="${esc(cta.href)}" class="btn btn--mid-cta" ${ctaLinkAttrs} data-cta-kind="mid_official" data-article-slug="${esc(a.slug || '')}" data-company="${esc(a.company || '')}">公式サイトを見る →</a>
+          ${hasLine ? `<a href="${esc(lineHref)}" class="btn btn--line" target="_blank" rel="noopener noreferrer" data-cta-kind="mid_line" data-article-slug="${esc(a.slug || '')}" data-company="${esc(a.company || '')}">公式LINEで相談する →</a>` : ''}
+        </div>
       </div>
     </section>` : ''}
 
@@ -685,14 +691,17 @@ function buildArticleHTML(a) {
             : (a.ctaSub || '公式サイトの案内URLが未登録のため、お問い合わせからご案内します。')
         )}</p>
         ${hasOfficial ? `
-        <a href="${esc(cta.href)}"
-           class="btn btn--cta"
-           ${ctaLinkAttrs}
-           data-cta-kind="article_official"
-           data-article-slug="${esc(a.slug || '')}"
-           data-company="${esc(a.company || '')}"
-           data-cta-source="${esc(cta.source)}"
-        >${esc(a.ctaBtn || '公式ページで詳しく見る →')}</a>
+        <div class="cta-btn-group">
+          <a href="${esc(cta.href)}"
+             class="btn btn--cta"
+             ${ctaLinkAttrs}
+             data-cta-kind="article_official"
+             data-article-slug="${esc(a.slug || '')}"
+             data-company="${esc(a.company || '')}"
+             data-cta-source="${esc(cta.source)}"
+          >${esc(a.ctaBtn || '公式ページで詳しく見る →')}</a>
+          ${hasLine ? `<a href="${esc(lineHref)}" class="btn btn--line" target="_blank" rel="noopener noreferrer" data-cta-kind="article_line" data-article-slug="${esc(a.slug || '')}" data-company="${esc(a.company || '')}">公式LINEで相談する →</a>` : ''}
+        </div>
         ` : `
         <p class="cta-fallback-note" role="note">※ 公式サイトの公開URLが未設定です。お問い合わせからご案内します。</p>
         <a href="${esc(mailInquiry)}"
