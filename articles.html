@@ -8,20 +8,43 @@
   <link rel="icon" href="/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="/favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>記事一覧 | みんなの評判.com</title>
-  <meta name="description" content="みんなの評判.comの記事一覧ページです。各サービス・企業の評判記事をご覧いただけます。">
-  <meta property="og:title" content="記事一覧 | みんなの評判.com">
-  <meta property="og:description" content="第三者記者が取材・執筆した評判記事の一覧です。">
+  <title>評判・口コミ記事一覧｜みんなの評判.com（みんなの評判ドットコム）</title>
+  <meta name="description" content="みんなの評判.com（みんなの評判ドットコム）の評判・口コミ記事一覧。企業・サービスの口コミ評判を第三者記者が直接取材した評判口コミ記事を掲載しています。">
+  <meta name="robots" content="nosnippet, noarchive">
+  <meta property="og:title" content="評判・口コミ記事一覧｜みんなの評判.com — 評判口コミサイト">
+  <meta property="og:description" content="企業・サービスの口コミ評判を第三者記者が直接取材した評判記事の一覧。みんなの評判ドットコムで企業の正直な評判をチェック。">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://minnano-hyouban.com/articles.html">
   <meta property="og:site_name" content="みんなの評判.com">
   <meta property="og:image" content="https://minnano-hyouban.com/images/urushizawa-face-close.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="記事一覧 | みんなの評判.com">
-  <meta name="twitter:description" content="第三者記者が取材・執筆した評判記事の一覧です。">
+  <meta name="twitter:title" content="評判・口コミ記事一覧｜みんなの評判.com — 評判口コミサイト">
+  <meta name="twitter:description" content="企業・サービスの口コミ評判を第三者記者が直接取材した評判記事の一覧。みんなの評判ドットコム。">
   <meta name="twitter:image" content="https://minnano-hyouban.com/images/urushizawa-face-close.jpg">
   <link rel="canonical" href="https://minnano-hyouban.com/articles.html">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "トップ", "item": "https://minnano-hyouban.com/" },
+      { "@type": "ListItem", "position": 2, "name": "評判・口コミ記事一覧", "item": "https://minnano-hyouban.com/articles.html" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "url": "https://minnano-hyouban.com/articles.html",
+    "name": "評判・口コミ記事一覧",
+    "description": "企業・サービスの口コミ評判を第三者記者が直接取材した評判口コミ記事の一覧",
+    "inLanguage": "ja",
+    "isPartOf": { "@id": "https://minnano-hyouban.com/#website" },
+    "publisher": { "@id": "https://minnano-hyouban.com/#organization" }
+  }
+  </script>
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -161,7 +184,7 @@
   <script src="_post/MIRACLE PILLOW/2221437250750372-miracle-pillow.js"></script>
   <script src="_post/TASKUL/2252563132716439-taskul.js"></script>
   <script src="_post/medikuru_official/3340006759735454-medikuru.js"></script>
-                                                    <script src="data/articles.js"></script>
+                                                      <script src="data/articles.js"></script>
   <script>
     /* ── Side Drawer ── */
     (function() {
@@ -223,7 +246,7 @@
         <img src="${thumb}" alt="${a.company || ''}のサムネイル" class="article-card-thumb" loading="lazy">
         <div class="article-card-body">
           <span class="article-card-tag">${normalizeCategory(a.category)}</span>
-          <h2 class="article-card-title">${a.heroTitle ? a.heroTitle.replace(/<br\s*\/?>/gi, '').replace(/[\s　]*[|｜]\s*みんなの評判\.com\s*$/i, '') : (a.company || '') + 'の評判を徹底調査'}</h2>
+          <h2 class="article-card-title" data-nosnippet>${a.heroTitle ? a.heroTitle.replace(/<br\s*\/?>/gi, '').replace(/[\s　]*[|｜]\s*みんなの評判\.com\s*$/i, '') : (a.company || '') + 'の評判を徹底調査'}</h2>
           <div class="article-card-meta">
             <span>記者：${a.editorName ? a.editorName.replace('記者：', '') : '漆沢 祐樹'}</span>
             <span>${a.publishedAt || ''}</span>

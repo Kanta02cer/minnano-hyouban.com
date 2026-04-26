@@ -1,60 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
+  <!-- ホーム -->
   <url>
     <loc>https://minnano-hyouban.com/</loc>
-    <lastmod>2026-04-20</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
+  <!-- 記事一覧（個別記事より低優先） -->
   <url>
     <loc>https://minnano-hyouban.com/articles.html</loc>
-    <lastmod>2026-04-20</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.6</priority>
   </url>
 
+  <!-- 編集部・運営情報 -->
   <url>
     <loc>https://minnano-hyouban.com/editor.html</loc>
-    <lastmod>2026-04-20</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
+  <!-- 法的情報 -->
   <url>
     <loc>https://minnano-hyouban.com/privacy.html</loc>
-    <lastmod>2026-04-20</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
 
   <url>
     <loc>https://minnano-hyouban.com/disclaimer.html</loc>
-    <lastmod>2026-04-20</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
 
+  <!-- 個別記事（slug = 16桁数値ID）— 最高優先度で指名検索上位を狙う -->
   <url>
-    <loc>https://minnano-hyouban.com/article.html?id=senorich</loc>
-    <lastmod>2026-04-20</lastmod>
+    <loc>https://minnano-hyouban.com/article.html?id=1794482170414453</loc>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://minnano-hyouban.com/images/placeholders/og-beauty.svg</image:loc>
+      <image:title>SenoRich（セノリッチ）の口コミ・評判は？SENOX25サプリの効果を第三者取材</image:title>
+      <image:caption>SenoRich（セノリッチ）の口コミ・評判｜みんなの評判.com</image:caption>
+    </image:image>
   </url>
 
   <url>
-    <loc>https://minnano-hyouban.com/article.html?id=miracle-pillow</loc>
-    <lastmod>2026-04-20</lastmod>
+    <loc>https://minnano-hyouban.com/article.html?id=2221437250750372</loc>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://minnano-hyouban.com/images/miracle-pillow/fv-main.png</image:loc>
+      <image:title>MIRACLE PILLOW（ミラクルピロー）の口コミ・評判は？電動枕の効果を第三者取材</image:title>
+      <image:caption>MIRACLE PILLOW（ミラクルピロー）の口コミ・評判｜みんなの評判.com</image:caption>
+    </image:image>
   </url>
 
   <url>
-    <loc>https://minnano-hyouban.com/article.html?id=taskul</loc>
-    <lastmod>2026-04-20</lastmod>
+    <loc>https://minnano-hyouban.com/article.html?id=2252563132716439</loc>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://minnano-hyouban.com/images/taskul/fv-main.png</image:loc>
+      <image:title>TASKUL（タスクル）の口コミ・評判は？フリーランス向けAIタスク管理ツールを第三者取材</image:title>
+      <image:caption>TASKUL（タスクル）の口コミ・評判｜みんなの評判.com</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://minnano-hyouban.com/article.html?id=3340006759735454</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://minnano-hyouban.com/images/medikuru/reiwa-tiger-intro.png</image:loc>
+      <image:title>メディくる（medikuru）の口コミ・評判は？指名検索ブランディングの効果を第三者取材</image:title>
+      <image:caption>メディくる（medikuru）の口コミ・評判｜みんなの評判.com</image:caption>
+    </image:image>
   </url>
 
 </urlset>

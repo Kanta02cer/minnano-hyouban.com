@@ -201,6 +201,9 @@ function buildArticleHTML(a) {
   const lineHref = a.lineUrl || null;
   const hasLine  = !!lineHref;
 
+  // 製品・企業の短縮名（括弧内を除去）→ H2見出しに使用
+  const companyShort = (a.company || '').split(/[（(]/)[0].trim();
+
   // Service cards
   const serviceCardsHTML = (a.serviceCards || []).map(c => `
     <div class="service-card" role="listitem">
@@ -544,7 +547,7 @@ function buildArticleHTML(a) {
     ${scoreBarsHTML ? `
     <section class="score-breakdown animate-on-scroll" aria-labelledby="score-heading">
       <div class="container">
-        <h2 class="section-title" id="score-heading">記者が評価した5つの指標</h2>
+        <h2 class="section-title" id="score-heading">${esc(companyShort)}を記者が5指標で評価</h2>
         <div class="score-bars">${scoreBarsHTML}</div>
         ${a.scoreNote ? `<p class="score-note">${esc(a.scoreNote)}</p>` : ''}
       </div>
@@ -567,8 +570,8 @@ function buildArticleHTML(a) {
     ${interviewsHTML ? `
     <section class="interview-section animate-on-scroll" aria-labelledby="interview-heading">
       <div class="container">
-        <h2 class="section-title" id="interview-heading">ユーザーの声</h2>
-        <p class="section-sub">記者が直接インタビューした利用者のリアルな証言です</p>
+        <h2 class="section-title" id="interview-heading">${esc(companyShort)}を実際に使った人の声（取材インタビュー）</h2>
+        <p class="section-sub">記者・漆沢が直接インタビューした利用者のリアルな証言です</p>
         ${interviewsHTML}
       </div>
     </section>` : ''}
@@ -577,7 +580,7 @@ function buildArticleHTML(a) {
     ${featureBoxesHTML ? `
     <section class="body-section animate-on-scroll" aria-labelledby="features-heading">
       <div class="container">
-        <h2 class="section-title" id="features-heading">取材で見えた注目ポイント</h2>
+        <h2 class="section-title" id="features-heading">${esc(companyShort)}の取材で見えた注目ポイント</h2>
         <div class="feature-boxes" role="list">${featureBoxesHTML}</div>
       </div>
     </section>` : ''}
@@ -607,8 +610,8 @@ function buildArticleHTML(a) {
     <!-- 06 REVIEWS（口コミ・ユーザーの声） -->
     <section class="reviews-section animate-on-scroll" id="reviews" aria-labelledby="reviews-heading">
       <div class="container">
-        <h2 class="section-title" id="reviews-heading">ユーザーの声・口コミ</h2>
-        <p class="section-sub">実際にサービスを利用した方からのリアルな口コミをお届けします</p>
+        <h2 class="section-title" id="reviews-heading">${esc(companyShort)}の口コミ・ユーザーの声</h2>
+        <p class="section-sub">実際に${esc(companyShort)}を利用した方のリアルな口コミをお届けします</p>
       </div>
       <div class="reviews-carousel-wrap">
         <div class="swiper swiper-reviews">
@@ -650,7 +653,7 @@ function buildArticleHTML(a) {
     <!-- 08 SERVICE DETAILS -->
     <section class="service-section animate-on-scroll" aria-labelledby="service-heading">
       <div class="container">
-        <h2 class="section-title" id="service-heading">サービス概要</h2>
+        <h2 class="section-title" id="service-heading">${esc(companyShort)}のサービス概要・特徴</h2>
         <div class="service-grid" role="list">${serviceCardsHTML}</div>
         <div class="steps-wrapper" aria-labelledby="steps-heading">
           <h3 class="steps-heading" id="steps-heading">ご利用の流れ</h3>
@@ -662,7 +665,7 @@ function buildArticleHTML(a) {
     <!-- 09 FAQ -->
     <section class="faq-section animate-on-scroll" aria-labelledby="faq-heading">
       <div class="container">
-        <h2 class="section-title" id="faq-heading">よくある疑問</h2>
+        <h2 class="section-title" id="faq-heading">${esc(companyShort)}についてよくある疑問・Q&amp;A</h2>
         <dl class="faq-list" id="faq-list"></dl>
       </div>
     </section>
@@ -670,7 +673,7 @@ function buildArticleHTML(a) {
     <!-- 10 STORY（このサービスにかける想い） -->
     <section class="story-section animate-on-scroll" aria-labelledby="story-heading">
       <div class="container">
-        <h2 class="section-title" id="story-heading">このサービスにかける想い</h2>
+        <h2 class="section-title" id="story-heading">${esc(companyShort)}の開発背景・ストーリー</h2>
         <div class="story-content">
           <div class="story-img-wrap">
             <img src="${esc(a.storyImg || PLACEHOLDER_IMG.story)}"
@@ -680,6 +683,29 @@ function buildArticleHTML(a) {
         </div>
       </div>
     </section>
+
+    <!-- 10.5 RELATED KEYWORD Q&A（関連検索キーワード網羅） -->
+    ${Array.isArray(a.relatedQA) && a.relatedQA.length > 0 ? `
+    <section class="related-qa-section animate-on-scroll" aria-labelledby="related-qa-heading">
+      <div class="container">
+        <h2 class="section-title" id="related-qa-heading">${esc(companyShort)}に関する関連Q&amp;A</h2>
+        <p class="section-sub">${esc(companyShort)}を検索している方からよく見られる関連質問に回答します</p>
+        <dl class="faq-list related-qa-list">
+          ${a.relatedQA.map((item, i) => `
+          <div class="faq-item related-qa-item" id="rqa-${i}">
+            <dt class="faq-q">
+              <button class="faq-toggle" aria-expanded="false" aria-controls="rqa-body-${i}" type="button">
+                <span>${esc(item.q)}</span>
+                <span class="faq-icon" aria-hidden="true"></span>
+              </button>
+            </dt>
+            <dd class="faq-a" id="rqa-body-${i}" hidden>
+              <p>${esc(item.a)}</p>
+            </dd>
+          </div>`).join('')}
+        </dl>
+      </div>
+    </section>` : ''}
 
     <!-- 11 CTA -->
     <section class="cta-section animate-on-scroll" id="contact" aria-labelledby="cta-heading">
@@ -714,6 +740,41 @@ function buildArticleHTML(a) {
         `}
       </div>
     </section>
+
+    <!-- 12 RELATED ARTICLES（内部リンク・PageRank分散） -->
+    ${(() => {
+      const others = (window.ARTICLES || []).filter(art => art.slug !== a.slug);
+      if (others.length === 0) return '';
+      const items = others.map(art => {
+        const t = (art.title || `${art.company}の口コミ・評判`).replace(/｜みんなの評判\.com$/, '');
+        const cat = art.category || '';
+        const score = (() => {
+          const rs = Array.isArray(art.reviews) ? art.reviews : [];
+          if (!rs.length) return '';
+          const avg = (rs.reduce((s, r) => s + (Number(r.stars) || 0), 0) / rs.length).toFixed(1);
+          return `<span class="ra-score">★ ${avg}</span>`;
+        })();
+        return `
+          <li class="ra-item">
+            <a href="article.html?id=${esc(art.slug)}" class="ra-link">
+              <span class="ra-cat">${esc(cat)}</span>
+              <span class="ra-title">${esc(t)}</span>
+              ${score}
+            </a>
+          </li>`;
+      }).join('');
+      return `
+    <section class="related-articles animate-on-scroll" aria-labelledby="related-articles-heading">
+      <div class="container">
+        <h2 class="section-title" id="related-articles-heading">みんなの評判.com ― 他の口コミ・評判記事</h2>
+        <p class="section-sub">第三者記者が取材した他の企業・サービスの評判もご覧ください</p>
+        <ul class="related-articles-list" role="list">${items}</ul>
+        <div class="ra-footer">
+          <a href="articles.html" class="btn btn--outline">評判・口コミ記事を一覧で見る →</a>
+        </div>
+      </div>
+    </section>`;
+    })()}
   `;
 }
 
@@ -1346,7 +1407,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Update page meta
   // article.title が設定されていればそちらを優先（SEO最適化済みタイトル）
-  document.title = article.title || `${article.company}の口コミ・評判 | みんなの評判.com`;
+  document.title = article.title || `${article.company}の口コミ評判｜みんなの評判.com`;
   setMeta('description', article.metaDesc || '');
   setMeta('og:title', article.title || '', 'property');
   setMeta('og:description', article.metaDesc || '', 'property');
@@ -1431,11 +1492,14 @@ document.addEventListener('DOMContentLoaded', () => {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'トップ', item: new URL('/index.html', siteOrigin).href },
+      { '@type': 'ListItem', position: 1, name: 'トップ', item: new URL('/', siteOrigin).href },
       { '@type': 'ListItem', position: 2, name: '記事一覧', item: new URL('/articles.html', siteOrigin).href },
       { '@type': 'ListItem', position: 3, name: stripHTML(article.company || article.title || ''), item: pageUrl }
     ]
   };
+
+  // 記事スキーマ型（article.schemaType で上書き可能）
+  const schemaType = article.schemaType || 'Product';
 
   const articleLD = {
     '@context': 'https://schema.org',
@@ -1444,13 +1508,30 @@ document.addEventListener('DOMContentLoaded', () => {
     mainEntityOfPage: pageUrl,
     headline: stripHTML(article.heroTitle || article.title || ''),
     description: article.metaDesc || '',
+    // abstract: AI Overviews / Perplexity がサマリー抽出に使う
+    abstract: article.summary || article.metaDesc || '',
     image: ogImgAbs,
     articleSection: article.category || undefined,
     inLanguage: 'ja-JP',
     datePublished: article.publishedAt || undefined,
     dateModified: article.updatedAt || article.publishedAt || undefined,
     author: authorPerson,
-    publisher: publisherOrg
+    publisher: publisherOrg,
+    // keywords: セカンダリクエリのシグナル
+    ...(Array.isArray(article.seoKeywords) && article.seoKeywords.length > 0
+      ? { keywords: article.seoKeywords.join(',') }
+      : {}),
+    // about: 記事が扱う主エンティティをAIに明示
+    about: {
+      '@type': schemaType,
+      name: stripHTML(article.company || ''),
+      ...(article.sameAs ? { sameAs: article.sameAs } : {})
+    },
+    // speakable: AI Overview・音声検索が引用しやすいセクションを指定
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: ['.hero-title', '.hero-sub', '.oneliner-text', '.cutting-summary', '.reporter-note-text']
+    }
   };
 
   upsertJSONLD('jsonld-breadcrumb', breadcrumbLD);
@@ -1465,12 +1546,44 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalStars = reviews.reduce((sum, r) => sum + (Number(r.stars) || 0), 0);
     const avgRating  = Math.round((totalStars / reviews.length) * 10) / 10;
 
+    // brand / manufacturer / offers をデータから組み立て
+    const brandObj       = article.brand        ? { '@type': 'Brand',        name: article.brand }        : undefined;
+    const manufacturerObj = article.manufacturer ? { '@type': 'Organization', name: article.manufacturer } : undefined;
+    let offersObj = undefined;
+    if (article.priceInfo) {
+      offersObj = {
+        '@type': 'Offer',
+        price: String(article.priceInfo.value || ''),
+        priceCurrency: article.priceInfo.currency || 'JPY',
+        availability: 'https://schema.org/InStock',
+        ...(article.priceInfo.url ? { url: article.priceInfo.url } : {}),
+        ...(article.priceInfo.description ? { description: article.priceInfo.description } : {})
+      };
+    }
+
     const serviceLD = {
       '@context': 'https://schema.org',
-      '@type': 'Product',
+      '@type': schemaType,
       name: stripHTML(article.company || ''),
-      description: article.metaDesc || '',
+      description: article.summary || article.metaDesc || '',
       url: pageUrl,
+      // エンティティ同定（sameAs で公式URL・ニュースURLを列挙）
+      ...(article.sameAs ? { sameAs: article.sameAs } : {}),
+      ...(brandObj        ? { brand: brandObj }               : {}),
+      ...(manufacturerObj ? { manufacturer: manufacturerObj } : {}),
+      ...(offersObj       ? { offers: offersObj }             : {}),
+      // SoftwareApplication 固有フィールド
+      ...(schemaType === 'SoftwareApplication' ? {
+        applicationCategory: article.applicationCategory || 'BusinessApplication',
+        operatingSystem: 'Web',
+        featureList: Array.isArray(article.seoKeywords) ? article.seoKeywords.join(', ') : undefined
+      } : {}),
+      // Service 固有フィールド
+      ...(schemaType === 'Service' ? {
+        serviceType: article.serviceType || article.category || undefined,
+        areaServed: { '@type': 'Country', name: '日本' },
+        provider: manufacturerObj || undefined
+      } : {}),
       aggregateRating: {
         '@type': 'AggregateRating',
         ratingValue: String(avgRating),
@@ -1496,11 +1609,16 @@ document.addEventListener('DOMContentLoaded', () => {
     upsertJSONLD('jsonld-service', serviceLD);
   }
 
-  if (Array.isArray(article.faqs) && article.faqs.length > 0) {
+  // FAQPage: article.faqs + article.relatedQA を統合してスキーマ化
+  const allFaqs = [
+    ...(Array.isArray(article.faqs)      ? article.faqs      : []),
+    ...(Array.isArray(article.relatedQA) ? article.relatedQA : [])
+  ];
+  if (allFaqs.length > 0) {
     const faqLD = {
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
-      mainEntity: article.faqs.slice(0, 10).map(item => ({
+      mainEntity: allFaqs.map(item => ({
         '@type': 'Question',
         name: stripHTML(item.q || ''),
         acceptedAnswer: {
