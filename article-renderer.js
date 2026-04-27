@@ -1557,15 +1557,43 @@ document.addEventListener('DOMContentLoaded', () => {
         priceCurrency: article.priceInfo.currency || 'JPY',
         availability: 'https://schema.org/InStock',
         ...(article.priceInfo.url ? { url: article.priceInfo.url } : {}),
-        ...(article.priceInfo.description ? { description: article.priceInfo.description } : {})
+        ...(article.priceInfo.description ? { description: article.priceInfo.description } : {}),
+        shippingDetails: {
+          '@type': 'OfferShippingDetails',
+          shippingRate: {
+            '@type': 'MonetaryAmount',
+            value: '0',
+            currency: 'JPY'
+          },
+          shippingDestination: {
+            '@type': 'DefinedRegion',
+            addressCountry: 'JP'
+          },
+          deliveryTime: {
+            '@type': 'ShippingDeliveryTime',
+            handlingTime: { '@type': 'QuantitativeValue', minValue: 1, maxValue: 3, unitCode: 'DAY' },
+            transitTime:  { '@type': 'QuantitativeValue', minValue: 2, maxValue: 7, unitCode: 'DAY' }
+          }
+        },
+        hasMerchantReturnPolicy: {
+          '@type': 'MerchantReturnPolicy',
+          applicableCountry: 'JP',
+          returnPolicyCategory: 'https://schema.org/MerchantReturnNotPermitted'
+        }
       };
     }
+
+    // Product schema では image が必須（絶対URLに解決）
+    const imageAbsUrl = article.ogImage
+      ? new URL(article.ogImage, 'https://minnano-hyouban.com/').href
+      : 'https://minnano-hyouban.com/images/placeholders/og-career.svg';
 
     const serviceLD = {
       '@context': 'https://schema.org',
       '@type': schemaType,
       name: stripHTML(article.company || ''),
       description: article.summary || article.metaDesc || '',
+      image: imageAbsUrl,
       url: pageUrl,
       // エンティティ同定（sameAs で公式URL・ニュースURLを列挙）
       ...(article.sameAs ? { sameAs: article.sameAs } : {}),
