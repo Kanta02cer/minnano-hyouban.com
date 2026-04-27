@@ -4,9 +4,15 @@
   "description": "みんなの評判.com — 第三者記者が書く企業評判メディア",
   "private": true,
   "scripts": {
-    "add-article": "node scripts/add-article.js",
-    "validate":    "node scripts/validate-articles.js",
-    "compile-drafts": "node scripts/compile-drafts.js"
+    "add-article":    "node scripts/add-article.js",
+    "validate":       "node scripts/validate-articles.js",
+    "compile-drafts": "node scripts/compile-drafts.js",
+    "sitemap":        "node scripts/generate-sitemap.js",
+    "feed":           "node scripts/generate-feed.js",
+    "webp":           "node scripts/convert-webp.js",
+    "indexing":       "node scripts/request-indexing.js",
+    "build":          "npm run sitemap && npm run feed",
+    "publish":        "npm run build && git add -A && git commit -m 'chore: 記事公開・sitemap/feed 更新' && git push origin main"
   },
   "engines": {
     "node": ">=18.0.0"

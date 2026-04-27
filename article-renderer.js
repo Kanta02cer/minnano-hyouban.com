@@ -1528,6 +1528,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // og:url を正規化
   setMeta('og:url', `https://minnano-hyouban.com/article.html?id=${encodeURIComponent(article.slug || '')}`, 'property');
 
+  // OGP article メタ（Facebook/SNS クローラー向け）
+  if (article.publishedAt) setMeta('article:published_time', article.publishedAt, 'property');
+  if (article.updatedAt)   setMeta('article:modified_time',  article.updatedAt,   'property');
+  setMeta('article:author',    'https://minnano-hyouban.com/editor.html', 'property');
+  setMeta('article:publisher', 'https://minnano-hyouban.com/',            'property');
+  if (article.category)   setMeta('article:section', article.category, 'property');
+
   function ogImageAbsolute(u) {
     const path = u || PLACEHOLDER_IMG.og;
     try {
