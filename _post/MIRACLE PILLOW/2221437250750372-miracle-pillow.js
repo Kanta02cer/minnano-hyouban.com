@@ -7,8 +7,8 @@
 window.__POST_2221437250750372 = {
   slug: "2221437250750372",
 
-  title:    "MIRACLE PILLOW（ミラクルピロー）の口コミ・評判は？電動枕の効果を第三者取材｜みんなの評判.com",
-  metaDesc: "MIRACLE PILLOW（ミラクルピロー）の口コミ・評判は？【第三者取材】電動ピローの効果・朝の変化・価格59,800円の価値を実際の利用者5名の声から正直解説。Makuake購入前の必読まとめ。",
+  title:    "ミラクルピロー（MIRACLE PILLOW）の評判・口コミは？怪しい？電動枕の効果を第三者取材｜みんなの評判.com",
+  metaDesc: "ミラクルピロー（MIRACLE PILLOW）の評判・口コミは？怪しい？効果ある？電動ピローの朝の変化・59,800円の価値・デメリットを利用者5名への第三者取材で正直解説。Makuake購入前に確認。",
   ogImage:  "images/miracle-pillow/fv-main.png",
   heroImg:  "images/miracle-pillow/fv-main.png",
   company:  "MIRACLE PILLOW（株式会社TVC）",
@@ -40,7 +40,7 @@ window.__POST_2221437250750372 = {
   oneliner: "「また枕を変えても同じかも」と思っていた人へ——眠っている時間から、朝の感覚を変えることを考えた電動ピロー。",
 
   heroTag:   "第三者記者が直接取材しました",
-  heroTitle: "MIRACLE PILLOW（ミラクルピロー）の<br>口コミ・評判は？",
+  heroTitle: "ミラクルピロー（MIRACLE PILLOW）の<br>評判・口コミは？",
   heroSub:   "ミラクルピローって本当に眠れる？効果はある？価格59,800円に見合う？——第三者記者の漆沢が利用者5名への取材と開発背景をもとに、電動枕の効果・睡眠改善・購入前の注意点を正直にまとめました。",
 
   editorName:  "記者：漆沢 祐樹",
