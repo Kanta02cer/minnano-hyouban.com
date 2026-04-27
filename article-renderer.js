@@ -748,29 +748,6 @@ function buildArticleHTML(a) {
       </div>
     </section>
 
-    <!-- 10.5 RELATED KEYWORD Q&A（関連検索キーワード網羅） -->
-    ${Array.isArray(a.relatedQA) && a.relatedQA.length > 0 ? `
-    <section class="related-qa-section animate-on-scroll" aria-labelledby="related-qa-heading">
-      <div class="container">
-        <h2 class="section-title" id="related-qa-heading">${esc(companyShort)}に関する関連Q&amp;A</h2>
-        <p class="section-sub">${esc(companyShort)}を検索している方からよく見られる関連質問に回答します</p>
-        <dl class="faq-list related-qa-list">
-          ${a.relatedQA.map((item, i) => `
-          <div class="faq-item related-qa-item" id="rqa-${i}">
-            <dt class="faq-q">
-              <button class="faq-toggle" aria-expanded="false" aria-controls="rqa-body-${i}" type="button">
-                <span>${esc(item.q)}</span>
-                <span class="faq-icon" aria-hidden="true"></span>
-              </button>
-            </dt>
-            <dd class="faq-a" id="rqa-body-${i}" hidden>
-              <p>${esc(item.a)}</p>
-            </dd>
-          </div>`).join('')}
-        </dl>
-      </div>
-    </section>` : ''}
-
     <!-- 11 CTA -->
     <section class="cta-section animate-on-scroll" id="contact" aria-labelledby="cta-heading">
       <div class="container">
