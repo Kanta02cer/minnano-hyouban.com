@@ -774,6 +774,42 @@ section.animate-from-right {
   max-width: 780px;
 }
 
+/* 記事メタ（取材・執筆者 / 取材日） */
+.hero-article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 20px;
+  margin-bottom: 14px;
+  font-size: 0.78rem;
+  color: var(--color-muted);
+  letter-spacing: 0.02em;
+}
+.hero-reporter {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.hero-reporter::before {
+  content: '✍';
+  font-size: 0.85em;
+  opacity: 0.7;
+}
+.hero-date {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-variant-numeric: tabular-nums;
+}
+.hero-date::before {
+  content: '📅';
+  font-size: 0.8em;
+}
+.hero-date--updated::before {
+  content: '🔄';
+  font-size: 0.8em;
+}
+
 /* CTA グループ */
 .hero-cta-group {
   display: flex;

@@ -487,6 +487,11 @@ function buildArticleHTML(a) {
       <!-- メインコンテンツ -->
       <div class="hero-inner">
 
+        <div class="hero-article-meta">
+          <span class="hero-reporter">取材・執筆：${esc(a.editorName ? a.editorName.replace('記者：','') : '漆沢 祐樹')}</span>
+          ${a.publishedAt ? `<time class="hero-date" datetime="${esc(a.publishedAt)}">取材日：${esc(a.publishedAt.replace(/^(\d{4})-(\d{2})-(\d{2})$/, '$1年$2月$3日'))}</time>` : ''}
+          ${a.updatedAt   ? `<time class="hero-date hero-date--updated" datetime="${esc(a.updatedAt)}">更新：${esc(a.updatedAt.replace(/^(\d{4})-(\d{2})-(\d{2})$/, '$1年$2月$3日'))}</time>` : ''}
+        </div>
         <h1 class="hero-title" id="hero-heading">${a.heroTitle || esc(a.company) + 'の評判を<br>徹底調査しました'}</h1>
         <p class="hero-sub">${esc(a.heroSub || '')}</p>
         <div class="hero-cta-group">
