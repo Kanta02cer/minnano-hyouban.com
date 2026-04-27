@@ -1,60 +1,73 @@
 #!/usr/bin/env node
 /**
  * ================================================================
- *  みんなの評判.com — Google インデックス促進スクリプト
+ *  みんなの評判.com — インデックス促進ガイドスクリプト
  *
- *  以下の2つを実行する：
- *  1. Google に sitemap.xml を ping して再クロールを促す
- *  2. Bing に sitemap.xml を ping（Bing 経由流入も見込む）
+ *  Google/Bing の公開 ping エンドポイントは2023年に廃止済み。
+ *  現在の正規手順は Search Console での手動リクエスト。
  *
  *  使い方: node scripts/request-indexing.js
- *
- *  ※ Google Search Console API（OAuth）は不要。
- *     公開 ping エンドポイントを使用。
- *  ※ 新記事追加後・大きな変更後に実行してください。
+ *  → 手順と URL 一覧を出力する
  * ================================================================
  */
 'use strict';
 
-const https = require('https');
+const vm   = require('vm');
+const fs   = require('fs');
+const path = require('path');
 
-const SITEMAP_URL = encodeURIComponent('https://minnano-hyouban.com/sitemap.xml');
+const ROOT     = path.resolve(__dirname, '..');
+const POST_DIR = path.join(ROOT, '_post');
+const BASE_URL = 'https://minnano-hyouban.com';
 
-const PINGS = [
-  {
-    label: 'Google Sitemap ping',
-    url: `https://www.google.com/ping?sitemap=${SITEMAP_URL}`
-  },
-  {
-    label: 'Bing Sitemap ping',
-    url: `https://www.bing.com/ping?sitemap=${SITEMAP_URL}`
+function collectPostFiles(dir) {
+  if (!fs.existsSync(dir)) return [];
+  const results = [];
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (entry.name.startsWith('.')) continue;
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) results.push(...collectPostFiles(full));
+    else if (entry.name.endsWith('.js')) results.push(full);
   }
-];
-
-function ping(label, url) {
-  return new Promise((resolve) => {
-    https.get(url, (res) => {
-      console.log(`  ${res.statusCode < 300 ? '✅' : '⚠️ '} ${label}: HTTP ${res.statusCode}`);
-      resolve();
-    }).on('error', (err) => {
-      console.log(`  ❌ ${label}: ${err.message}`);
-      resolve();
-    });
-  });
+  return results;
 }
 
-(async () => {
-  console.log('\n📡 サイトマップを検索エンジンに送信中...\n');
-  for (const p of PINGS) {
-    await ping(p.label, p.url);
-  }
-  console.log('\n✅ 完了。Search Console で「URL検査」→「インデックス登録リクエスト」も個別に実行すると効果的です。');
-  console.log('\n📋 個別記事URL一覧（Search Console でのURL検査用）:');
-  const slugs = [
-    '1794482170414453',
-    '2221437250750372',
-    '2252563132716439',
-    '3340006759735454'
-  ];
-  slugs.forEach(s => console.log(`  https://minnano-hyouban.com/article.html?id=${s}`));
-})();
+function extractSlug(filePath) {
+  try {
+    const src = fs.readFileSync(filePath, 'utf8');
+    const sandbox = { window: {} };
+    vm.createContext(sandbox);
+    vm.runInContext(src, sandbox, { timeout: 3000 });
+    const key = Object.keys(sandbox.window).find(k => k.startsWith('__POST_'));
+    return key ? sandbox.window[key]?.slug : null;
+  } catch { return null; }
+}
+
+const slugs = collectPostFiles(POST_DIR).map(extractSlug).filter(Boolean);
+const urls  = slugs.map(s => `${BASE_URL}/article.html?id=${s}`);
+
+console.log(`
+====================================================
+  みんなの評判.com — Search Console インデックス促進
+====================================================
+
+【手順】
+1. https://search.google.com/search-console/ を開く
+2. 左メニュー「URL検査」をクリック
+3. 以下のURLを1件ずつ入力 → 「インデックス登録リクエスト」
+
+【対象URL (${urls.length}件)】
+`);
+urls.forEach((u, i) => console.log(`  ${i + 1}. ${u}`));
+
+console.log(`
+【サイトマップ確認】
+  Search Console → サイトマップ → 以下を送信済みか確認
+  ${BASE_URL}/sitemap.xml
+
+【Bing Webmaster Tools も実施すると◎】
+  https://www.bing.com/webmasters/
+  → サイトマップ → ${BASE_URL}/sitemap.xml を送信
+
+====================================================
+`);
