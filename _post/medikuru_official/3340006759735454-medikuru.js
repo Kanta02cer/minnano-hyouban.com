@@ -17,7 +17,7 @@ window.__POST_3340006759735454 = {
   updatedAt:   "2026-04-27",
 
   // ── SEO / AIO 専用フィールド ──────────────────────────────────────
-  schemaType:   "Service",
+  schemaType:   "Product",
   brand:        "メディくる",
   manufacturer: "株式会社メディくる",
   serviceType:  "メディアブランディング・指名検索SEO支援",
