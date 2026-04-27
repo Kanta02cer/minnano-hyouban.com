@@ -158,6 +158,26 @@
   <script src="_post/medikuru_official/3340006759735454-medikuru.js"></script>
           <script src="data/articles.js"></script>
   <script>
+    // Google クローラー向け：DOMContentLoaded を待たずに title/meta を同期設定
+    (function() {
+      var params = new URLSearchParams(location.search);
+      var slug = (params.get('id') || '').trim();
+      if (!slug || !Array.isArray(window.ARTICLES)) return;
+      var art = window.ARTICLES.find(function(a) { return a.slug === slug; });
+      if (!art) return;
+      var t = art.title || (art.company + 'の評判・口コミ｜みんなの評判.com');
+      document.title = t;
+      var desc = document.querySelector('meta[name="description"]');
+      if (desc && art.metaDesc) desc.setAttribute('content', art.metaDesc);
+      var ogTitle = document.querySelector('meta[property="og:title"]');
+      if (ogTitle) ogTitle.setAttribute('content', t);
+      var ogDesc = document.querySelector('meta[property="og:description"]');
+      if (ogDesc && art.metaDesc) ogDesc.setAttribute('content', art.metaDesc);
+      var canonical = document.querySelector('link[rel="canonical"]');
+      if (canonical) canonical.setAttribute('href', 'https://minnano-hyouban.com/article.html?id=' + encodeURIComponent(slug));
+    })();
+  </script>
+  <script>
     // 任意: 公式URLへのUTM自動付与を止める（デフォルトは付与。詳細: docs/outbound-tracking-guide.md）
     // window.__OFFICIAL_LINK_UTM__ = false;
     // window.__OFFICIAL_LINK_UTM__ = { utm_campaign: 'review_2026' };
