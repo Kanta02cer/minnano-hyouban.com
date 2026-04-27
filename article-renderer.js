@@ -782,40 +782,6 @@ function buildArticleHTML(a) {
       </div>
     </section>
 
-    <!-- 12 RELATED ARTICLES（内部リンク・PageRank分散） -->
-    ${(() => {
-      const others = (window.ARTICLES || []).filter(art => art.slug !== a.slug);
-      if (others.length === 0) return '';
-      const items = others.map(art => {
-        const t = (art.title || `${art.company}の口コミ・評判`).replace(/｜みんなの評判\.com$/, '');
-        const cat = art.category || '';
-        const score = (() => {
-          const rs = Array.isArray(art.reviews) ? art.reviews : [];
-          if (!rs.length) return '';
-          const avg = (rs.reduce((s, r) => s + (Number(r.stars) || 0), 0) / rs.length).toFixed(1);
-          return `<span class="ra-score">★ ${avg}</span>`;
-        })();
-        return `
-          <li class="ra-item">
-            <a href="article.html?id=${esc(art.slug)}" class="ra-link">
-              <span class="ra-cat">${esc(cat)}</span>
-              <span class="ra-title">${esc(t)}</span>
-              ${score}
-            </a>
-          </li>`;
-      }).join('');
-      return `
-    <section class="related-articles animate-on-scroll" aria-labelledby="related-articles-heading">
-      <div class="container">
-        <h2 class="section-title" id="related-articles-heading">みんなの評判.com ― 他の口コミ・評判記事</h2>
-        <p class="section-sub">第三者記者が取材した他の企業・サービスの評判もご覧ください</p>
-        <ul class="related-articles-list" role="list">${items}</ul>
-        <div class="ra-footer">
-          <a href="articles.html" class="btn btn--outline">評判・口コミ記事を一覧で見る →</a>
-        </div>
-      </div>
-    </section>`;
-    })()}
   `;
 }
 
