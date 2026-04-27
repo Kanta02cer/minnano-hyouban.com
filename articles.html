@@ -366,9 +366,33 @@
         e.preventDefault();
         applyFilter();
       });
+
+      // ItemList スキーマを動的生成（Google Rich Result 対応）
+      const itemListLD = {
+        '@context': 'https://schema.org',
+        '@type': 'ItemList',
+        name: '評判・口コミ記事一覧｜みんなの評判.com',
+        description: '企業・サービスの口コミ評判を第三者記者が直接取材した評判口コミ記事の一覧',
+        numberOfItems: articles.length,
+        itemListElement: articles.map((a, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          url: `https://minnano-hyouban.com/article.html?id=${encodeURIComponent(a.slug)}`,
+          name: a.title || (a.company + 'の口コミ評判｜みんなの評判.com')
+        }))
+      };
+      let ldEl = document.getElementById('jsonld-itemlist');
+      if (!ldEl) {
+        ldEl = document.createElement('script');
+        ldEl.type = 'application/ld+json';
+        ldEl.id = 'jsonld-itemlist';
+        document.head.appendChild(ldEl);
+      }
+      ldEl.textContent = JSON.stringify(itemListLD);
     });
   </script>
   <script src="js/site-analytics.js"></script>
 
+  <script>if("serviceWorker"in navigator){navigator.serviceWorker.register("/sw.js").catch(function(){});}</script>
 </body>
 </html>

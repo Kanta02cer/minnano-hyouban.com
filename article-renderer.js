@@ -1441,6 +1441,17 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   setMeta('og:image', ogImageAbsolute(article.ogImage), 'property');
 
+  // LCP 最適化: ヒーロー画像を最優先でプリロード
+  const lcpImgUrl = ogImageAbsolute(article.ogImage);
+  if (lcpImgUrl && !document.querySelector(`link[rel="preload"][href="${lcpImgUrl}"]`)) {
+    const preloadLink = document.createElement('link');
+    preloadLink.rel = 'preload';
+    preloadLink.as = 'image';
+    preloadLink.href = lcpImgUrl;
+    preloadLink.setAttribute('fetchpriority', 'high');
+    document.head.insertBefore(preloadLink, document.head.firstChild);
+  }
+
   /* ============================================================
      JSON-LD（構造化データ）
      - 記事ページに Article / BreadcrumbList / FAQPage を付与
@@ -1529,10 +1540,17 @@ document.addEventListener('DOMContentLoaded', () => {
       name: stripHTML(article.company || ''),
       ...(article.sameAs ? { sameAs: article.sameAs } : {})
     },
-    // speakable: AI Overview・音声検索が引用しやすいセクションを指定
+    // speakable: AI Overview・音声検索・Perplexityが引用しやすいセクションを指定
     speakable: {
       '@type': 'SpeakableSpecification',
-      cssSelector: ['.hero-title', '.hero-sub', '.oneliner-text', '.cutting-summary', '.reporter-note-text']
+      cssSelector: [
+        '.hero-title', '.hero-sub',
+        '.oneliner-text', '.cutting-summary', '.reporter-note-text',
+        '.faq-list',        // FAQ全文（People Also Ask対応）
+        '.related-qa-list', // 関連Q&A（セカンダリクエリ対応）
+        '.score-bars',      // 評価スコア（AI引用しやすい数値情報）
+        '.section-title'    // H2見出し（トピック信号）
+      ]
     }
   };
 
