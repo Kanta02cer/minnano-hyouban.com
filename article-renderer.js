@@ -184,6 +184,26 @@ function starsHTML(count, max = 5) {
   return html;
 }
 
+/**
+ * 記事の推定読了時間を計算（日本語: 約 500 字/分）
+ * article データから文字数を概算して分単位で返す
+ */
+function estimateReadingMinutes(a) {
+  const texts = [
+    a.summary, a.metaDesc, a.oneliner, a.storyText,
+    a.cuttingIntro,
+    ...(Array.isArray(a.features) ? a.features.map(f => f.text || f.title || '') : []),
+    ...(Array.isArray(a.reviews) ? a.reviews.map(r => r.body || r.text || '') : []),
+    ...(Array.isArray(a.faqs) ? a.faqs.map(f => (f.q || '') + (f.a || '')) : []),
+    ...(Array.isArray(a.relatedQA) ? a.relatedQA.map(f => (f.q || '') + (f.a || '')) : []),
+    ...(Array.isArray(a.interviews) ? a.interviews.map(i => i.answer || '') : []),
+    ...(Array.isArray(a.steps) ? a.steps.map(s => s.text || '') : []),
+    ...(Array.isArray(a.cuttingQA) ? a.cuttingQA.map(q => (q.question || '') + (q.answer || '')) : []),
+  ].filter(Boolean).join('');
+  const chars = texts.replace(/\s/g, '').length;
+  return Math.max(3, Math.round(chars / 500));
+}
+
 function setMeta(name, content, attr = 'name') {
   let el = document.querySelector(`meta[${attr}="${name}"]`);
   if (!el) {
@@ -487,6 +507,28 @@ function buildArticleHTML(a) {
   })();
 
   return `
+    <!-- 00 BREADCRUMB NAV -->
+    <nav class="breadcrumb-nav" aria-label="パンくずリスト">
+      <div class="container">
+        <ol class="breadcrumb-list" itemscope itemtype="https://schema.org/BreadcrumbList">
+          <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/" itemprop="item"><span itemprop="name">トップ</span></a>
+            <meta itemprop="position" content="1">
+          </li>
+          <li class="breadcrumb-sep" aria-hidden="true">›</li>
+          <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="articles.html" itemprop="item"><span itemprop="name">評判・口コミ記事一覧</span></a>
+            <meta itemprop="position" content="2">
+          </li>
+          <li class="breadcrumb-sep" aria-hidden="true">›</li>
+          <li class="breadcrumb-item breadcrumb-item--current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <span itemprop="name">${esc(companyShort)}の口コミ評判</span>
+            <meta itemprop="position" content="3">
+          </li>
+        </ol>
+      </div>
+    </nav>
+
     <!-- 01 HERO -->
     <section class="hero hero--premium" aria-labelledby="hero-heading" data-category="${esc(a.category || '')}">
 
@@ -512,6 +554,7 @@ function buildArticleHTML(a) {
           <span class="hero-reporter">取材・執筆：${esc(a.editorName ? a.editorName.replace('記者：','') : '漆沢 祐樹')}</span>
           ${a.publishedAt ? `<time class="hero-date" datetime="${esc(a.publishedAt)}">取材日：${esc(a.publishedAt.replace(/^(\d{4})-(\d{2})-(\d{2})$/, '$1年$2月$3日'))}</time>` : ''}
           ${a.updatedAt   ? `<time class="hero-date hero-date--updated" datetime="${esc(a.updatedAt)}">更新：${esc(a.updatedAt.replace(/^(\d{4})-(\d{2})-(\d{2})$/, '$1年$2月$3日'))}</time>` : ''}
+          <span class="hero-reading-time">約${estimateReadingMinutes(a)}分で読めます</span>
         </div>
         <h1 class="hero-title" id="hero-heading">${a.heroTitle || esc(a.company) + 'の評判を<br>徹底調査しました'}</h1>
         <p class="hero-sub">${esc(a.heroSub || '')}</p>
@@ -873,6 +916,35 @@ function renderFAQInArticle(list) {
       dd.style.maxHeight = isOpen ? '0' : dd.scrollHeight + 'px';
     });
   });
+}
+
+/* ============================================================
+   TABLE OF CONTENTS（目次 — ポストレンダーで挿入）
+============================================================ */
+function injectTOC(container) {
+  const headings = Array.from(container.querySelectorAll('h2.section-title[id], h2[id].section-title'));
+  if (headings.length < 3) return; // 3件未満は目次不要
+
+  const items = headings.map(h => {
+    const id = h.id;
+    const text = h.textContent.trim();
+    return `<li class="toc-item"><a href="#${id}" class="toc-link">${text}</a></li>`;
+  }).join('');
+
+  const tocEl = document.createElement('div');
+  tocEl.className = 'toc-block animate-on-scroll';
+  tocEl.setAttribute('aria-label', 'この記事の目次');
+  tocEl.innerHTML = `
+    <details class="toc-details" open>
+      <summary class="toc-summary">目次</summary>
+      <ol class="toc-list">${items}</ol>
+    </details>`;
+
+  // editors-note セクションの直後に挿入
+  const noteSection = container.querySelector('.editors-note');
+  if (noteSection && noteSection.nextElementSibling) {
+    container.insertBefore(tocEl, noteSection.nextElementSibling);
+  }
 }
 
 /* ============================================================
@@ -1466,6 +1538,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   setMeta('og:image', ogImageAbsolute(article.ogImage), 'property');
 
+  // Twitter Card 動的設定
+  setMeta('twitter:card', 'summary_large_image');
+  setMeta('twitter:site', '@uru_navi');
+  setMeta('twitter:creator', '@uru_navi');
+  setMeta('twitter:title', article.title || `${article.company}の口コミ評判｜みんなの評判.com`);
+  setMeta('twitter:description', article.metaDesc || '');
+  setMeta('twitter:image', ogImageAbsolute(article.ogImage));
+
   // LCP 最適化: ヒーロー画像を最優先でプリロード
   const lcpImgUrl = ogImageAbsolute(article.ogImage);
   if (lcpImgUrl && !document.querySelector(`link[rel="preload"][href="${lcpImgUrl}"]`)) {
@@ -1724,6 +1804,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Post-render: reviews, FAQ, animations, swipers, lightbox
   renderReviewsInArticle(article.reviews || []);
   renderFAQInArticle(article.faqs || []);
+  injectTOC(main);
   initLightbox();
   initSmoothScroll();
   initScoreBars();

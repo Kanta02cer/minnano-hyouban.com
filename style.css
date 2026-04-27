@@ -592,6 +592,81 @@ section.animate-from-right {
   z-index: 0;
 }
 
+/* ─── パンくずナビ ─── */
+.breadcrumb-nav {
+  background: var(--color-surface, #f8f9fa);
+  border-bottom: 1px solid rgba(0,0,0,.06);
+  padding: 8px 0;
+  font-size: 0.75rem;
+}
+.breadcrumb-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  color: var(--color-muted);
+}
+.breadcrumb-item a {
+  color: var(--color-accent, #1a6fd4);
+  text-decoration: none;
+}
+.breadcrumb-item a:hover { text-decoration: underline; }
+.breadcrumb-item--current { color: var(--color-muted); }
+.breadcrumb-sep { opacity: .5; }
+
+/* ─── 目次 ─── */
+.toc-block {
+  margin: 0 auto 2rem;
+  max-width: 860px;
+  padding: 0 16px;
+}
+.toc-details {
+  background: var(--color-surface, #f8f9fa);
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 10px;
+  padding: 0;
+  overflow: hidden;
+}
+.toc-summary {
+  padding: 14px 20px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  user-select: none;
+}
+.toc-summary::before { content: '📋'; font-size: 0.9em; }
+.toc-details[open] .toc-summary { border-bottom: 1px solid rgba(0,0,0,.06); }
+.toc-list {
+  margin: 0;
+  padding: 12px 20px 16px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.toc-item { font-size: 0.85rem; }
+.toc-link {
+  color: var(--color-accent, #1a6fd4);
+  text-decoration: none;
+  line-height: 1.5;
+}
+.toc-link:hover { text-decoration: underline; }
+
+/* ─── 読了時間 ─── */
+.hero-reading-time {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-variant-numeric: tabular-nums;
+}
+.hero-reading-time::before { content: '⏱'; font-size: 0.8em; }
+
 /* ─── 装飾: グロー ─── */
 .hero-glow {
   position: absolute;
