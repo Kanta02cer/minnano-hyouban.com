@@ -30,6 +30,27 @@ const PLACEHOLDER_IMG = {
 
 const CONTACT_MAILTO = 'mailto:info@minnano-hyouban.com';
 
+/**
+ * WebP 対応 <picture> タグを生成する。
+ * ローカルの .jpg/.png に対して同名 .webp を <source> として追加し、
+ * 非対応ブラウザは元の <img> にフォールバック。
+ * 外部URL・SVG・既存WebPはそのまま <img> を返す。
+ *
+ * @param {string} src    - 画像URL
+ * @param {string} alt    - alt テキスト
+ * @param {string} attrs  - img タグに追加する属性文字列（class, loading, style 等）
+ * @returns {string} HTML文字列
+ */
+function pictureTag(src, alt, attrs = '') {
+  const isLocal = src && !/^https?:\/\//.test(src);
+  const isRaster = /\.(jpe?g|png)$/i.test(src || '');
+  if (!isLocal || !isRaster) {
+    return `<img src="${esc(src)}" alt="${esc(alt)}" ${attrs}>`;
+  }
+  const webpSrc = src.replace(/\.(jpe?g|png)$/i, '.webp');
+  return `<picture><source srcset="${esc(webpSrc)}" type="image/webp"><img src="${esc(src)}" alt="${esc(alt)}" ${attrs}></picture>`;
+}
+
 function resolveOfficialUrl(u) {
   const raw = String(u || '').trim();
   if (!raw || raw === '#') return { href: CONTACT_MAILTO, source: 'fallback_mailto' };
@@ -233,7 +254,7 @@ function buildArticleHTML(a) {
     return `
     <div class="swiper-slide">
       <figure class="slide-figure">
-        <img src="${esc(img.src)}" alt="${esc(img.alt)}" loading="lazy" decoding="async"${imgStyle}>
+        ${pictureTag(img.src, img.alt, `loading="lazy" decoding="async"${imgStyle}`)}
         <figcaption>${esc(img.caption)}</figcaption>
       </figure>
     </div>`;
@@ -243,7 +264,7 @@ function buildArticleHTML(a) {
   const baSlides = galleryBeforeAfterForArticle(a).map(img => `
     <div class="swiper-slide">
       <figure class="ba-figure">
-        <img src="${esc(img.src)}" alt="${esc(img.alt)}" loading="lazy" decoding="async">
+        ${pictureTag(img.src, img.alt, 'loading="lazy" decoding="async"')}
         <span class="ba-label">${esc(img.label)}</span>
       </figure>
     </div>
@@ -257,7 +278,7 @@ function buildArticleHTML(a) {
   const mediaLogoSlides = _mediaItemsLooped.map(m => `
     <div class="swiper-slide">
       <div class="media-logo-wrap">
-        <img src="${esc(m.src)}" alt="${esc(m.alt)}" class="media-logo" loading="lazy" decoding="async">
+        ${pictureTag(m.src, m.alt, 'class="media-logo" loading="lazy" decoding="async"')}
       </div>
     </div>
   `).join('');
@@ -379,7 +400,7 @@ function buildArticleHTML(a) {
     const groupsHTML = groups.map(g => {
       const itemsHTML = groupMap[g].map(item => `
         <figure class="gallery-extra-item">
-          <img src="${esc(item.src)}" alt="${esc(item.alt || '')}" loading="lazy" decoding="async">
+          ${pictureTag(item.src, item.alt || '', 'loading="lazy" decoding="async"')}
           ${item.caption ? `<figcaption class="gallery-extra-caption">${esc(item.caption)}</figcaption>` : ''}
         </figure>`).join('');
       return `${g ? `<h3 class="gallery-extra-group-title">${esc(g)}</h3>` : ''}
@@ -681,8 +702,7 @@ function buildArticleHTML(a) {
         <h2 class="section-title" id="story-heading">${esc(companyShort)}の開発背景・ストーリー</h2>
         <div class="story-content">
           <div class="story-img-wrap">
-            <img src="${esc(a.storyImg || PLACEHOLDER_IMG.story)}"
-                 alt="${esc(a.storyAlt || 'サービスイメージ')}" class="story-img" loading="lazy" decoding="async">
+            ${pictureTag(a.storyImg || PLACEHOLDER_IMG.story, a.storyAlt || 'サービスイメージ', 'class="story-img" loading="lazy" decoding="async"')}
           </div>
           <blockquote class="story-quote">${storyParas}</blockquote>
         </div>

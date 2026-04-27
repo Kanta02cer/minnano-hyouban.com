@@ -77,6 +77,11 @@ img {
   display: block;
 }
 
+/* <picture> は img と同様にブロックとして扱う */
+picture {
+  display: contents;
+}
+
 a {
   color: inherit;
   text-decoration: none;
