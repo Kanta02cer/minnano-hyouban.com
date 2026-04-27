@@ -164,6 +164,21 @@
   </script>
   <script src="article-renderer.js"></script>
 
-  <script>if("serviceWorker"in navigator){navigator.serviceWorker.register("/sw.js").catch(function(){});}</script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').then(function(reg) {
+        reg.addEventListener('updatefound', function() {
+          var newSW = reg.installing;
+          newSW.addEventListener('statechange', function() {
+            if (newSW.state === 'activated') { window.location.reload(); }
+          });
+        });
+      }).catch(function(){});
+      // 新しい SW が制御権を取得したらリロード（キャッシュ更新反映）
+      navigator.serviceWorker.addEventListener('controllerchange', function() {
+        window.location.reload();
+      });
+    }
+  </script>
 </body>
 </html>

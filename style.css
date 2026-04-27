@@ -79,7 +79,7 @@ img {
 
 /* <picture> は img と同様にブロックとして扱う */
 picture {
-  display: contents;
+  display: block;
 }
 
 a {
