@@ -6,6 +6,7 @@
   "scripts": {
     "add-article":    "node scripts/add-article.js",
     "validate":       "node scripts/validate-articles.js",
+    "validate-schema":"node scripts/validate-schema.js",
     "compile-drafts": "node scripts/compile-drafts.js",
     "sitemap":        "node scripts/generate-sitemap.js",
     "feed":           "node scripts/generate-feed.js",

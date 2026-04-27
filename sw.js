@@ -8,8 +8,8 @@
  */
 'use strict';
 
-const CACHE_NAME    = 'mhcom-v2';
-const CACHE_STATIC  = 'mhcom-static-v2';
+const CACHE_NAME    = 'mhcom-v3';
+const CACHE_STATIC  = 'mhcom-static-v3';
 
 // 初回インストール時にキャッシュするアセット
 const PRECACHE = [
