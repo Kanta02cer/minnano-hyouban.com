@@ -641,7 +641,7 @@ section.animate-from-right {
   gap: 8px;
   user-select: none;
 }
-.toc-summary::before { content: '📋'; font-size: 0.9em; }
+.toc-summary::before { content: ''; }
 .toc-details[open] .toc-summary { border-bottom: 1px solid rgba(0,0,0,.06); }
 .toc-list {
   margin: 0;
