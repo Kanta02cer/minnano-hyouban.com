@@ -1462,22 +1462,24 @@ document.addEventListener('DOMContentLoaded', () => {
     return String(str || '').replace(/<[^>]*>/g, '');
   }
 
-  const pageUrl = new URL(window.location.href).href;
-  const siteOrigin = window.location.origin;
+  // canonical URL を正規形式で統一（?id=slug 付き）
+  const canonicalUrl = `https://minnano-hyouban.com/article.html?id=${encodeURIComponent(article.slug || '')}`;
+  const pageUrl = canonicalUrl;
+  const siteOrigin = 'https://minnano-hyouban.com';
 
-  // TODO: 公開可能項目の最終ファクトチェック（schemaに入れる項目は最小限）
   const authorPerson = {
     '@type': 'Person',
     name: '漆沢 祐樹',
-    jobTitle: '株式会社パーソナルナビ／株式会社メディくる 代表取締役',
-    worksFor: { '@type': 'Organization', name: '株式会社パーソナルナビ' },
-    sameAs: ['https://thecareer.jp', 'https://humanstory.jp'],
+    url: 'https://minnano-hyouban.com/editor.html',
+    jobTitle: 'みんなの評判.com 代表記者',
+    worksFor: { '@type': 'Organization', name: 'みんなの評判.com', url: 'https://minnano-hyouban.com/' },
+    sameAs: ['https://minnano-hyouban.com/editor.html', 'https://x.com/uru_navi', 'https://thecareer.jp', 'https://humanstory.jp'],
     knowsAbout: [
+      '企業評判取材',
       'キャリア教育',
       '人材紹介',
       '企業研修',
-      '浮世絵外交',
-      '国際芸術文化協会'
+      'メディアブランディング'
     ]
   };
 
@@ -1492,9 +1494,9 @@ document.addEventListener('DOMContentLoaded', () => {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'トップ', item: new URL('/', siteOrigin).href },
-      { '@type': 'ListItem', position: 2, name: '記事一覧', item: new URL('/articles.html', siteOrigin).href },
-      { '@type': 'ListItem', position: 3, name: stripHTML(article.company || article.title || ''), item: pageUrl }
+      { '@type': 'ListItem', position: 1, name: 'トップ', item: `${siteOrigin}/` },
+      { '@type': 'ListItem', position: 2, name: '記事一覧', item: `${siteOrigin}/articles.html` },
+      { '@type': 'ListItem', position: 3, name: `${companyShort}の口コミ評判`, item: pageUrl }
     ]
   };
 
@@ -1503,7 +1505,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const articleLD = {
     '@context': 'https://schema.org',
-    '@type': 'Article',
+    '@type': 'NewsArticle',
     url: pageUrl,
     mainEntityOfPage: pageUrl,
     headline: stripHTML(article.heroTitle || article.title || ''),
