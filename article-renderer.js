@@ -44,7 +44,9 @@ const CONTACT_MAILTO = 'mailto:info@minnano-hyouban.com';
 function pictureTag(src, alt, attrs = '') {
   const isLocal = src && !/^https?:\/\//.test(src);
   const isRaster = /\.(jpe?g|png)$/i.test(src || '');
-  if (!isLocal || !isRaster) {
+  // WebP ソースは _post/ または images/ 以下のみ（convert-webp.js で変換済み）
+  const hasWebp = isLocal && isRaster && /^(_post|images)\//.test(src || '');
+  if (!hasWebp) {
     return `<img src="${esc(src)}" alt="${esc(alt)}" ${attrs}>`;
   }
   const webpSrc = src.replace(/\.(jpe?g|png)$/i, '.webp');
@@ -1300,10 +1302,18 @@ function initScrollAnimations() {
    SWIPER INIT
 ============================================================ */
 function initSwipers() {
+  /** スライド数が slidesPerView の2倍未満ならループ不可 */
+  function canLoop(selector, minSlides) {
+    const el = document.querySelector(selector);
+    if (!el) return false;
+    const count = el.querySelectorAll('.swiper-slide').length;
+    return count >= minSlides;
+  }
+
   // サービス画像カルーセル（平面・両端ピーク）
   if (document.querySelector('.swiper-service')) {
     new Swiper('.swiper-service', {
-      loop: true,
+      loop: canLoop('.swiper-service', 3),
       centeredSlides: true,
       slidesPerView: 1.15,
       spaceBetween: 16,
@@ -1329,7 +1339,7 @@ function initSwipers() {
   // 口コミカルーセル（平面・両端ピーク）
   if (document.querySelector('.swiper-reviews')) {
     new Swiper('.swiper-reviews', {
-      loop: true,
+      loop: canLoop('.swiper-reviews', 4),
       centeredSlides: true,
       autoplay: { delay: 4000, disableOnInteraction: false, pauseOnMouseEnter: true },
       speed: 700,
@@ -1347,7 +1357,7 @@ function initSwipers() {
   // メディアロゴカルーセル（ゆっくり自動スクロール）
   if (document.querySelector('.swiper-media')) {
     new Swiper('.swiper-media', {
-      loop: true,
+      loop: canLoop('.swiper-media', 6),
       freeMode: true,
       slidesPerView: 'auto',
       spaceBetween: 48,

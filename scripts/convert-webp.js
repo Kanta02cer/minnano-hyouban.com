@@ -18,10 +18,10 @@ const { execSync } = require('child_process');
 const fs   = require('fs');
 const path = require('path');
 
-const ROOT     = path.resolve(__dirname, '..');
-const POST_DIR = path.join(ROOT, '_post');
-const FORCE    = process.argv.includes('--force');
-const EXTS     = new Set(['.jpg', '.jpeg', '.png']);
+const ROOT      = path.resolve(__dirname, '..');
+const SCAN_DIRS = [path.join(ROOT, '_post'), path.join(ROOT, 'images')];
+const FORCE     = process.argv.includes('--force');
+const EXTS      = new Set(['.jpg', '.jpeg', '.png']);
 
 function collectImages(dir) {
   if (!fs.existsSync(dir)) return [];
@@ -35,7 +35,7 @@ function collectImages(dir) {
   return results;
 }
 
-const images = collectImages(POST_DIR);
+const images = SCAN_DIRS.flatMap(collectImages);
 let converted = 0, skipped = 0, failed = 0;
 
 for (const src of images) {
