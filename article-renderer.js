@@ -1553,15 +1553,22 @@ document.addEventListener('DOMContentLoaded', () => {
   setMeta('twitter:description', article.metaDesc || '');
   setMeta('twitter:image', ogImageAbsolute(article.ogImage));
 
-  // LCP 最適化: ヒーロー画像を最優先でプリロード
-  const lcpImgUrl = ogImageAbsolute(article.ogImage);
-  if (lcpImgUrl && !document.querySelector(`link[rel="preload"][href="${lcpImgUrl}"]`)) {
-    const preloadLink = document.createElement('link');
-    preloadLink.rel = 'preload';
-    preloadLink.as = 'image';
-    preloadLink.href = lcpImgUrl;
-    preloadLink.setAttribute('fetchpriority', 'high');
-    document.head.insertBefore(preloadLink, document.head.firstChild);
+  // LCP 最適化: ページ内で最初に表示される <img> を最優先でプリロード
+  // （ogImage は OG meta 専用で img タグに使われない場合があるため、
+  //   ポストレンダーで実際の最初の img src を取得してプリロードする）
+  function injectLCPPreload(container) {
+    const firstImg = container.querySelector('img[src]:not([loading="lazy"])') ||
+                     container.querySelector('img[src]');
+    if (!firstImg) return;
+    const src = firstImg.getAttribute('src') || '';
+    const absUrl = src ? new URL(src, window.location.href).href : '';
+    if (!absUrl || document.querySelector(`link[rel="preload"][href="${absUrl}"]`)) return;
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'image';
+    link.href = absUrl;
+    link.setAttribute('fetchpriority', 'high');
+    document.head.insertBefore(link, document.head.firstChild);
   }
 
   /* ============================================================
@@ -1589,6 +1596,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const canonicalUrl = `https://minnano-hyouban.com/article.html?id=${encodeURIComponent(article.slug || '')}`;
   const pageUrl = canonicalUrl;
   const siteOrigin = 'https://minnano-hyouban.com';
+
+  // companyShort: ブランド名（括弧より前）。buildArticleHTML のスコープ外でも使えるよう定義
+  const companyShort = (article.company || '').split(/[（(]/)[0].trim();
 
   const authorPerson = {
     '@type': 'Person',
@@ -1792,6 +1802,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Render article
   main.innerHTML = buildArticleHTML(article);
+  injectLCPPreload(main);
   updateFooterShareLinks();
 
   // CTA click tracking（指名検索→記事→公式遷移の計測を想定）
