@@ -23,13 +23,20 @@
   <!-- 個別記事はスニペット・アーカイブ共に許可。検索結果での表示を最大化 -->
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
-  <!-- CookieYes CMP（Consent Mode v2 自動管理 — GA4 より前に必須） -->
-  <script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/3a2acd7e4338ada80749d414/script.js"></script>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0XHQPCC4CF"></script>
+  <!-- Consent Mode v2 default（日本国内向け：全項目許可） -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage:  'granted',
+      ad_storage:         'granted',
+      ad_user_data:       'granted',
+      ad_personalization: 'granted'
+    });
+  </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0XHQPCC4CF"></script>
+  <script>
     gtag('js', new Date());
     gtag('config', 'G-0XHQPCC4CF');
   </script>
