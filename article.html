@@ -23,8 +23,14 @@
   <!-- 個別記事はスニペット・アーカイブ共に許可。検索結果での表示を最大化 -->
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
-  <!-- GA4 測定ID（本番: コメントを外すか、article-renderer 読込前に window.__GA4_MEASUREMENT_ID__ を設定） -->
-  <!-- <meta name="ga4-measurement-id" content="G-XXXXXXXXXX"> -->
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0XHQPCC4CF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-0XHQPCC4CF');
+  </script>
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
