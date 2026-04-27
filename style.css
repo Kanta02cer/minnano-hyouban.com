@@ -333,36 +333,38 @@ section.animate-from-right {
 .nav-inquiry {
   display: inline-flex;
   align-items: center;
-  padding: 9px 22px;
-  background: var(--color-accent);
-  color: #fff !important;
-  border-radius: 4px;
-  font-size: 0.8125rem !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.06em !important;
+  padding: 8px 20px;
+  background: var(--color-primary);
+  color: #fff;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
   line-height: 1.2;
-  transition: background 0.2s, transform 0.15s, box-shadow 0.2s !important;
-  box-shadow: 0 2px 8px rgba(184,151,74,.35) !important;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(13,27,62,0.2);
 }
 .nav-inquiry:hover {
-  background: #8a6d2a !important;
-  transform: translateY(-1px) !important;
-  box-shadow: 0 4px 14px rgba(184,151,74,.45) !important;
+  background: var(--color-primary-d);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(13,27,62,0.3);
 }
 
 /* モバイルドロワー 取材依頼ボタン */
 .drawer-inquiry {
   display: block;
-  margin-top: 4px;
-  padding: 12px 20px !important;
-  background: var(--color-accent);
-  color: #fff !important;
-  border-radius: 4px;
+  margin-top: 8px;
+  padding: 12px 20px;
+  background: var(--color-primary);
+  color: #fff;
+  border-radius: 8px;
   font-weight: 700;
   text-align: center;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
+  transition: background 0.2s;
 }
-.drawer-inquiry:hover { background: #8a6d2a !important; }
+.drawer-inquiry:hover { background: var(--color-primary-d); }
 
 /* Hamburger */
 .hamburger {

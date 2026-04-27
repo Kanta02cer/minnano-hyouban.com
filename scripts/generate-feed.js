@@ -80,7 +80,7 @@ const items = articles.map(a => {
     <guid isPermaLink="true">${xmlEsc(url)}</guid>
     <pubDate>${pub}</pubDate>
     <description><![CDATA[${desc}]]></description>
-    <author>info@minnano-hyouban.com (漆沢 祐樹)</author>
+    <author>urushizawa@medikuru.com (漆沢 祐樹)</author>
     <category>${xmlEsc(a.category || '企業評判')}</category>
     <enclosure url="${xmlEsc(img)}" type="image/png" length="0"/>
     <media:content url="${xmlEsc(img)}" medium="image"/>
@@ -98,8 +98,8 @@ const xml = `<?xml version="1.0" encoding="UTF-8"?>
     <description>企業・サービスの口コミ評判を第三者記者が直接取材する評判口コミメディア。漆沢祐樹が取材・執筆。</description>
     <language>ja</language>
     <lastBuildDate>${NOW_RFC}</lastBuildDate>
-    <managingEditor>info@minnano-hyouban.com (漆沢 祐樹)</managingEditor>
-    <webMaster>info@minnano-hyouban.com (漆沢 祐樹)</webMaster>
+    <managingEditor>urushizawa@medikuru.com (漆沢 祐樹)</managingEditor>
+    <webMaster>urushizawa@medikuru.com (漆沢 祐樹)</webMaster>
     <image>
       <url>${BASE_URL}/favicon.png</url>
       <title>みんなの評判.com</title>

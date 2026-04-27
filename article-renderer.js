@@ -28,7 +28,7 @@ const PLACEHOLDER_IMG = {
   og: 'images/placeholders/og-career.svg',
 };
 
-const CONTACT_MAILTO = 'mailto:info@minnano-hyouban.com';
+const CONTACT_MAILTO = 'mailto:urushizawa@medikuru.com';
 
 /**
  * WebP 対応 <picture> タグを生成する。
