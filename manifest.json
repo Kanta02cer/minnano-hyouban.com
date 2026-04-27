@@ -1,0 +1,26 @@
+{
+  "name": "みんなの評判.com（みんなの評判ドットコム）",
+  "short_name": "みんなの評判.com",
+  "description": "企業・サービスの口コミ評判を第三者記者が直接取材する評判口コミメディア",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d1b3e",
+  "theme_color": "#0d1b3e",
+  "lang": "ja",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "2000x2000",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["news", "lifestyle"],
+  "screenshots": [
+    {
+      "src": "/images/urushizawa-face-close.jpg",
+      "sizes": "1200x630",
+      "type": "image/jpeg"
+    }
+  ]
+}
