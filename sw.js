@@ -8,8 +8,8 @@
  */
 'use strict';
 
-const CACHE_NAME    = 'mhcom-v3';
-const CACHE_STATIC  = 'mhcom-static-v3';
+const CACHE_NAME    = 'mhcom-v4';
+const CACHE_STATIC  = 'mhcom-static-v4';
 
 // 初回インストール時にキャッシュするアセット
 const PRECACHE = [
@@ -65,7 +65,13 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // CSS / JS / 画像 → Cache First（静的アセット）
+  // JS ファイル → Network First（デプロイ後すぐに最新版を反映）
+  if (url.pathname.endsWith('.js')) {
+    event.respondWith(networkFirst(request));
+    return;
+  }
+
+  // CSS / 画像 → Cache First（静的アセット）
   event.respondWith(cacheFirst(request));
 });
 
