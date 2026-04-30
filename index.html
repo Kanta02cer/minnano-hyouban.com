@@ -412,7 +412,7 @@
         </div>
 
         <div class="articles-swiper swiper">
-          <div class="swiper-wrapper" id="article-list-container">
+          <div class="swiper-wrapper" id="article-list-container" role="list">
             <!-- data/articles.js を動的レンダリング（swiper-slide でラップ） -->
           </div>
           <button class="articles-nav articles-nav--prev" aria-label="前の記事">
@@ -540,7 +540,7 @@
           <h2 id="faq-h" class="section-title">よくある質問（Q&amp;A）</h2>
           <p class="section-sub">みんなの評判.com の口コミ・評判記事・取材についてのご質問</p>
         </header>
-        <dl class="faq-list">
+        <div class="faq-list">
 
           <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
             <summary itemprop="name">みんなの評判.comとはどんな口コミ・評判サイトですか？</summary>
@@ -584,7 +584,7 @@
             </div>
           </details>
 
-        </dl>
+        </div>
       </div>
     </section>
 
@@ -691,11 +691,11 @@
 
   <!-- 記事データ集約ローダー -->
   <!-- 個別記事データ（_post/） -->
-  <script src="_post/SenoRich/1794482170414453-senorich.js"></script>
-  <script src="_post/MIRACLE PILLOW/2221437250750372-miracle-pillow.js"></script>
-  <script src="_post/TASKUL/2252563132716439-taskul.js"></script>
-  <script src="_post/medikuru_official/3340006759735454-medikuru.js"></script>
-                                                                                                                                                                                                        <script src="data/articles.js"></script>
+  <script src="_post/SenoRich/1794482170414453-senorich.js" defer></script>
+  <script src="_post/MIRACLE PILLOW/2221437250750372-miracle-pillow.js" defer></script>
+  <script src="_post/TASKUL/2252563132716439-taskul.js" defer></script>
+  <script src="_post/medikuru_official/3340006759735454-medikuru.js" defer></script>
+  <script src="data/articles.js" defer></script>
   <script defer>
     document.addEventListener('DOMContentLoaded', function() {
     'use strict';
@@ -906,8 +906,15 @@
 
     /* ─── Header scroll compact ─────────────────────────────── */
     const siteHeader = document.querySelector('.site-header');
+    let tickingHeader = false;
     window.addEventListener('scroll', () => {
-      siteHeader?.classList.toggle('scrolled', window.scrollY > 48);
+      if (!tickingHeader) {
+        window.requestAnimationFrame(() => {
+          siteHeader?.classList.toggle('scrolled', window.scrollY > 48);
+          tickingHeader = false;
+        });
+        tickingHeader = true;
+      }
     }, { passive: true });
 
     /* ─── Parallax — 3 depth layers ─────────────────────────── */
@@ -915,16 +922,23 @@
     const portraitImg = document.querySelector('.portrait-photo');
     const heroWmark   = document.querySelector('.hero-watermark');
     if (heroBg || portraitImg || heroWmark) {
+      let tickingParallax = false;
       window.addEventListener('scroll', () => {
-        const s = window.scrollY;
-        /* Layer 0 (deepest): dot grid bg — fastest scroll */
-        if (heroBg) heroBg.style.transform = `translateY(${s * 0.32}px)`;
-        /* Layer 0.5: watermark text */
-        if (heroWmark) heroWmark.style.transform = `translateY(calc(-60% + ${s * 0.18}px))`;
-        /* Layer 3 (closest): portrait photo — slowest = appears to float forward */
-        if (portraitImg) {
-          const base = portraitImg.dataset.baseY || '0';
-          portraitImg.style.transform = `translateX(-50%) translateY(calc(${base}px + ${s * 0.06}px))`;
+        if (!tickingParallax) {
+          window.requestAnimationFrame(() => {
+            const s = window.scrollY;
+            /* Layer 0 (deepest): dot grid bg — fastest scroll */
+            if (heroBg) heroBg.style.transform = `translateY(${s * 0.32}px)`;
+            /* Layer 0.5: watermark text */
+            if (heroWmark) heroWmark.style.transform = `translateY(calc(-60% + ${s * 0.18}px))`;
+            /* Layer 3 (closest): portrait photo — slowest = appears to float forward */
+            if (portraitImg) {
+              const base = portraitImg.dataset.baseY || '0';
+              portraitImg.style.transform = `translateX(-50%) translateY(calc(${base}px + ${s * 0.06}px))`;
+            }
+            tickingParallax = false;
+          });
+          tickingParallax = true;
         }
       }, { passive: true });
     }
@@ -1006,7 +1020,7 @@
   </script>
   <script src="js/site-analytics.js" defer></script>
   <!-- Netlify Identity: メール招待の確認リンク処理のみ（ページ遷移は行わない） -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" async></script>
   <script>
     if (window.netlifyIdentity) {
       window.netlifyIdentity.init({
