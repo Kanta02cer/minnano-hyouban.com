@@ -79,6 +79,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .section-articles,
 .section-categories,
 .section-about,
+.section-faq,
 .section-contact,
 .section-howto {
   padding: 80px 0;
@@ -1489,6 +1490,77 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* =============================================================
    CONTACT
    ============================================================= */
+/* =============================================================
+   FAQ
+   ============================================================= */
+.section-faq { background: var(--bg-card, #fff); }
+.faq-list {
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.faq-item {
+  border: 1px solid #e2ddd6;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+}
+.faq-item summary {
+  list-style: none;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 22px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--color-text, #1a1a1a);
+  user-select: none;
+  position: relative;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::before {
+  content: 'Q';
+  flex-shrink: 0;
+  font-weight: 900;
+  font-size: 0.85rem;
+  color: var(--color-accent, #b8974a);
+  line-height: 1.4;
+  margin-top: 1px;
+}
+.faq-item summary::after {
+  content: '';
+  flex-shrink: 0;
+  margin-left: auto;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid var(--color-accent, #b8974a);
+  border-bottom: 2px solid var(--color-accent, #b8974a);
+  transform: rotate(45deg);
+  transition: transform 0.22s;
+  margin-top: 4px;
+}
+.faq-item[open] summary::after { transform: rotate(-135deg); }
+.faq-answer-inner {
+  display: flex;
+  gap: 14px;
+  padding: 0 22px 18px 22px;
+  font-size: 0.9rem;
+  color: var(--color-muted, #6a6a6a);
+  line-height: 1.85;
+}
+.faq-answer-inner::before {
+  content: 'A';
+  flex-shrink: 0;
+  font-weight: 900;
+  font-size: 0.85rem;
+  color: var(--color-primary, #0d1b3e);
+  line-height: 1.4;
+  margin-top: 2px;
+}
+
 .section-contact { background: var(--bg); padding: 88px 0; }
 .contact-header {
   text-align: center;
