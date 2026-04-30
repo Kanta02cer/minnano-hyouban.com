@@ -621,7 +621,7 @@ function buildArticleHTML(a) {
     <!-- G3 MEDIA（社会的証明として早期提示） -->
     <section class="media-section animate-on-scroll" id="gallery-media" aria-labelledby="media-heading">
       <div class="container">
-        <h2 class="section-title" id="media-heading">メディア掲載実績</h2>
+        <h2 class="section-title" id="media-heading">${esc(companyShort)}のメディア掲載実績・ニュース掲載情報</h2>
         <div class="media-logos">
           <div class="swiper swiper-media" aria-label="掲載メディア一覧">
             <div class="swiper-wrapper">${mediaLogoSlides}</div>
@@ -662,7 +662,7 @@ function buildArticleHTML(a) {
     <!-- G1 SERVICE GALLERY  [画像: フル幅ループカルーセル] -->
     <section class="gallery-section animate-on-scroll" id="gallery-service" aria-labelledby="gallery-service-heading">
       <div class="container">
-        <h2 class="section-title" id="gallery-service-heading">サービスの雰囲気をご覧ください</h2>
+        <h2 class="section-title" id="gallery-service-heading">${esc(companyShort)}のサービス・製品イメージ</h2>
       </div>
       <div class="swiper swiper-service" aria-label="サービスイメージスライダー">
         <div class="swiper-wrapper">${serviceSlides}</div>
@@ -1550,16 +1550,22 @@ document.addEventListener('DOMContentLoaded', () => {
   const authorPerson = {
     '@type': 'Person',
     name: '漆沢 祐樹',
+    alternateName: 'うるしざわ ゆうき',
+    description: '令和の虎出演。30代で複数の上場会社役員を経験し2社の代表取締役を務める起業家。みんなの評判.com代表記者として楽天・ニコニコ・エキサイト掲載企業の評判・口コミ・怪しい疑問を直接取材する第三者評判メディアを運営。',
     url: 'https://minnano-hyouban.com/editor.html',
     jobTitle: 'みんなの評判.com 代表記者',
     worksFor: { '@type': 'Organization', name: 'みんなの評判.com', url: 'https://minnano-hyouban.com/' },
     sameAs: ['https://minnano-hyouban.com/editor.html', 'https://x.com/uru_navi', 'https://thecareer.jp', 'https://humanstory.jp'],
     knowsAbout: [
       '企業評判取材',
+      '口コミ評判メディア',
+      '第三者評判取材',
+      '令和の虎出演',
+      '指名検索SEO',
       'キャリア教育',
+      'メディアブランディング',
       '人材紹介',
-      '企業研修',
-      'メディアブランディング'
+      '企業研修'
     ]
   };
 
@@ -1588,13 +1594,15 @@ document.addEventListener('DOMContentLoaded', () => {
     '@type': 'NewsArticle',
     url: pageUrl,
     mainEntityOfPage: pageUrl,
-    headline: stripHTML(article.heroTitle || article.title || ''),
+    // title を優先（怪しい？等のSEOキーワードを含む正式タイトル）
+    headline: stripHTML(article.title || article.heroTitle || '').replace(/[\s　]*[|｜]\s*みんなの評判\.com\s*$/i, ''),
     description: article.metaDesc || '',
     // abstract: AI Overviews / Perplexity がサマリー抽出に使う
     abstract: article.summary || article.metaDesc || '',
     image: ogImgAbs,
     articleSection: article.category || undefined,
     inLanguage: 'ja-JP',
+    isAccessibleForFree: true,
     datePublished: article.publishedAt || undefined,
     dateModified: article.updatedAt || article.publishedAt || undefined,
     author: authorPerson,
@@ -1607,6 +1615,7 @@ document.addEventListener('DOMContentLoaded', () => {
     about: {
       '@type': schemaType,
       name: stripHTML(article.company || ''),
+      ...(article.summary ? { description: article.summary } : {}),
       ...(article.sameAs ? { sameAs: article.sameAs } : {})
     },
     // speakable: AI Overview・音声検索・Perplexityが引用しやすいセクションを指定
