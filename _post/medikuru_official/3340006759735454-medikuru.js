@@ -14,7 +14,7 @@ window.__POST_3340006759735454 = {
   company:  "メディくる（medikuru）",
   category: "マーケティング・広報",
   publishedAt: "2026-04-24",
-  updatedAt:   "2026-04-27",
+  updatedAt:   "2026-05-01",
 
   // ── SEO / AIO 専用フィールド ──────────────────────────────────────
   schemaType:   "Product",

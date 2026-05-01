@@ -13,7 +13,7 @@ window.__POST_1794482170414453 = {
   company:  "SenoRich（Nジェネレーション株式会社）",
   category: "美容・健康",
   publishedAt: "2026-04-10",
-  updatedAt:   "2026-04-27",
+  updatedAt:   "2026-05-01",
 
   // ── SEO / AIO 専用フィールド ──────────────────────────────────────
   schemaType:   "Product",

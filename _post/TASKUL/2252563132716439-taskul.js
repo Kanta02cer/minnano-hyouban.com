@@ -14,7 +14,7 @@ window.__POST_2252563132716439 = {
   company:  "TASKUL（株式会社フリーカンパニー）",
   category: "ライフスタイル",
   publishedAt: "2026-04-15",
-  updatedAt:   "2026-04-27",
+  updatedAt:   "2026-05-01",
 
   // ── SEO / AIO 専用フィールド ──────────────────────────────────────
   schemaType:          "SoftwareApplication",

@@ -14,7 +14,7 @@ window.__POST_2221437250750372 = {
   company:  "MIRACLE PILLOW（株式会社TVC）",
   category: "美容・健康",
   publishedAt: "2026-04-17",
-  updatedAt:   "2026-04-27",
+  updatedAt:   "2026-05-01",
 
   // ── SEO / AIO 専用フィールド ──────────────────────────────────────
   schemaType:    "Product",

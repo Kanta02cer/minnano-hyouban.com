@@ -782,6 +782,33 @@ function buildArticleHTML(a) {
       </div>
     </section>
 
+    <!-- 12 関連記事 -->
+    ${(function() {
+      const others = (window.ARTICLES || []).filter(function(x) { return x.slug !== a.slug; }).slice(0, 4);
+      if (!others.length) return '';
+      const items = others.map(function(x) {
+        const img = x.ogImage || x.heroImg || '';
+        const imgTag = img
+          ? `<img src="${esc(img)}" alt="${esc(x.company || '')}の評判・口コミ" class="related-thumb" width="120" height="80" loading="lazy">`
+          : `<span class="related-thumb related-thumb--placeholder" aria-hidden="true"></span>`;
+        return `<li class="related-item">
+          <a href="article.html?id=${esc(x.slug)}" class="related-link">
+            ${imgTag}
+            <span class="related-text">
+              <span class="related-company">${esc(x.company || '')}</span>
+              <span class="related-title">${esc(x.company || '')}の評判・口コミは？</span>
+            </span>
+          </a>
+        </li>`;
+      }).join('');
+      return `<section class="related-articles animate-on-scroll" aria-labelledby="related-heading">
+      <div class="container">
+        <h2 class="related-heading" id="related-heading">関連記事</h2>
+        <ul class="related-list">${items}</ul>
+      </div>
+    </section>`;
+    })()}
+
   `;
 }
 
