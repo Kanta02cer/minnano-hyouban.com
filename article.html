@@ -25,6 +25,55 @@
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
   <link rel="alternate" type="application/rss+xml" title="みんなの評判.com — 新着記事" href="/feed.xml">
   <link rel="manifest" href="/manifest.json">
+  <!-- 静的フォールバック JSON-LD（JS未実行クローラ・AIクローラ向け） -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://minnano-hyouban.com/#website",
+        "url": "https://minnano-hyouban.com/",
+        "name": "みんなの評判.com",
+        "alternateName": ["みんなの評判ドットコム", "みんなのひょうばんドットコム"],
+        "description": "令和の虎出演記者が第三者取材した企業評判メディア。利用者インタビュー・デメリット・怪しい疑問を正直に掲載。",
+        "inLanguage": "ja",
+        "publisher": { "@id": "https://minnano-hyouban.com/#organization" }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/#organization",
+        "name": "みんなの評判.com",
+        "url": "https://minnano-hyouban.com/",
+        "logo": { "@type": "ImageObject", "url": "https://minnano-hyouban.com/favicon.png", "width": 512, "height": 512 },
+        "publishingPrinciples": "https://minnano-hyouban.com/disclaimer.html",
+        "contactPoint": { "@type": "ContactPoint", "contactType": "editorial inquiries", "email": "urushizawa@medikuru.com", "availableLanguage": "Japanese" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/#person-urushizawa",
+        "name": "漆沢 祐樹",
+        "alternateName": "うるしざわ ゆうき",
+        "jobTitle": "みんなの評判.com 代表記者",
+        "description": "令和の虎出演。30代で複数の上場会社役員を経験し2社の代表取締役を務める起業家。楽天・ニコニコ・エキサイト掲載企業の評判・口コミを第三者取材する評判メディアを運営。",
+        "url": "https://minnano-hyouban.com/editor.html",
+        "image": "https://minnano-hyouban.com/images/urushizawa-face-close.jpg",
+        "worksFor": { "@id": "https://minnano-hyouban.com/#organization" },
+        "sameAs": ["https://x.com/uru_navi", "https://thecareer.jp", "https://humanstory.jp"]
+      },
+      {
+        "@type": "NewsArticle",
+        "isPartOf": { "@id": "https://minnano-hyouban.com/#website" },
+        "headline": "企業の評判・口コミ取材記事｜みんなの評判.com",
+        "description": "第三者記者・漆沢祐樹が取材・執筆した企業評判レポート。利用者5名以上へのインタビューとデメリット・怪しい疑問を含む正直な評判情報。",
+        "inLanguage": "ja-JP",
+        "isAccessibleForFree": true,
+        "author": { "@id": "https://minnano-hyouban.com/#person-urushizawa" },
+        "publisher": { "@id": "https://minnano-hyouban.com/#organization" }
+      }
+    ]
+  }
+  </script>
   <!-- Consent Mode v2 default（日本国内向け：全項目許可） -->
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -156,7 +205,7 @@
   <script src="_post/MIRACLE PILLOW/2221437250750372-miracle-pillow.js"></script>
   <script src="_post/TASKUL/2252563132716439-taskul.js"></script>
   <script src="_post/medikuru_official/3340006759735454-medikuru.js"></script>
-                          <script src="data/articles.js"></script>
+                            <script src="data/articles.js"></script>
   <script>
     // Google クローラー向け：DOMContentLoaded を待たずに title/meta を同期設定
     (function() {

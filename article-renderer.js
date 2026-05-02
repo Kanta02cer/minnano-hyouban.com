@@ -1645,16 +1645,42 @@ document.addEventListener('DOMContentLoaded', () => {
       ...(article.summary ? { description: article.summary } : {}),
       ...(article.sameAs ? { sameAs: article.sameAs } : {})
     },
+    // wordCount: 記事の文字数目安（AIクローラへの情報量シグナル）
+    wordCount: 3000,
+    // isPartOf: サイト全体との関係を明示
+    isPartOf: {
+      '@type': 'WebSite',
+      '@id': siteOrigin + '/#website',
+      'url': siteOrigin + '/',
+      'name': 'みんなの評判.com'
+    },
+    // mentions: 記事が言及する主エンティティ（企業・製品）をAIに明示
+    mentions: [
+      {
+        '@type': schemaType,
+        name: stripHTML(article.company || ''),
+        ...(article.officialUrl ? { url: article.officialUrl } : {}),
+        ...(Array.isArray(article.sameAs) && article.sameAs.length > 0 ? { sameAs: article.sameAs } : {})
+      }
+    ],
+    // creditText: 引用時の出典表記をAIに提供
+    creditText: 'みんなの評判.com — 記者：漆沢 祐樹',
+    // copyrightHolder: 著作権情報
+    copyrightHolder: { '@type': 'Organization', name: 'みんなの評判.com', url: siteOrigin + '/' },
     // speakable: AI Overview・音声検索・Perplexityが引用しやすいセクションを指定
     speakable: {
       '@type': 'SpeakableSpecification',
       cssSelector: [
         '.hero-title', '.hero-sub',
-        '.oneliner-text', '.cutting-summary', '.reporter-note-text',
-        '.faq-list',        // FAQ全文（People Also Ask対応）
-        '.related-qa-list', // 関連Q&A（セカンダリクエリ対応）
-        '.score-bars',      // 評価スコア（AI引用しやすい数値情報）
-        '.section-title'    // H2見出し（トピック信号）
+        '.oneliner-text',
+        '.reporter-note-text',  // 記者コメント（E-E-A-T信号）
+        '.cutting-summary',     // 記者総評（AI Overview最優先引用箇所）
+        '.journalist-take',     // 記者の見解
+        '.faq-list',            // FAQ全文（People Also Ask対応）
+        '.related-qa-list',     // 関連Q&A（セカンダリクエリ対応）
+        '.score-bars',          // 評価スコア（AI引用しやすい数値情報）
+        '.section-title',       // H2見出し（トピック信号）
+        '.interview-section'    // 取材インタビュー（E-E-A-T: 一次情報）
       ]
     }
   };
@@ -1757,7 +1783,15 @@ document.addEventListener('DOMContentLoaded', () => {
           worstRating: '1'
         },
         reviewBody: stripHTML(r.text || '')
-      }))
+      })),
+      // additionalProperty: サービス特徴をAIクローラに構造化提供
+      ...(Array.isArray(article.serviceCards) && article.serviceCards.length > 0 ? {
+        additionalProperty: article.serviceCards.map(card => ({
+          '@type': 'PropertyValue',
+          name: card.title,
+          value: card.text
+        }))
+      } : {})
     };
     upsertJSONLD('jsonld-service', serviceLD);
   }
