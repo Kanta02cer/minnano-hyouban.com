@@ -1566,6 +1566,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   background: var(--bg-alt, #f5f5f2);
   padding: 80px 0 88px;
   position: relative;
+  opacity: 1 !important;
+  transform: none !important;
+  overflow: visible !important;
 }
 .related-articles::before {
   content: '';

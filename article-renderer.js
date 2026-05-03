@@ -797,13 +797,17 @@ function buildArticleHTML(a) {
             <span class="related-text">
               <span class="related-company">${esc(x.company || '')}</span>
               <span class="related-title">${esc(x.company || '')}の評判・口コミは？</span>
+              <span class="related-cta">記事を読む</span>
             </span>
           </a>
         </li>`;
       }).join('');
-      return `<section class="related-articles animate-on-scroll" aria-labelledby="related-heading">
+      return `<section class="related-articles" aria-labelledby="related-heading">
       <div class="container">
-        <h2 class="related-heading" id="related-heading">関連記事</h2>
+        <div class="related-heading-wrap">
+          <h2 class="related-heading" id="related-heading">関連記事</h2>
+          <p class="related-sub">他の取材記事もチェック</p>
+        </div>
         <ul class="related-list">${items}</ul>
       </div>
     </section>`;
