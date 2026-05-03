@@ -9,11 +9,12 @@ window.__POST_1794482170414453 = {
 
   title:    "セノリッチ（SenoRich）の評判・口コミは？怪しい？SENOX25サプリの効果を第三者取材｜みんなの評判.com",
   metaDesc: "セノリッチ（SenoRich）の評判・口コミは？怪しい？効果ある？SENOX25・NMN・HIF-1・5-ALA配合サプリの効果・副作用・成分安全性を利用者5名への第三者取材で正直解説。購入前に確認。",
-  ogImage:  "images/placeholders/og-beauty.svg",
+  ogImage:  "images/senorich/product-box-front.jpg",
+  heroImg:  "images/senorich/product-box-plant.jpg",
   company:  "SenoRich（Nジェネレーション株式会社）",
   category: "美容・健康",
   publishedAt: "2026-04-10",
-  updatedAt:   "2026-05-01",
+  updatedAt:   "2026-05-03",
 
   // ── SEO / AIO 専用フィールド ──────────────────────────────────────
   schemaType:   "Product",
@@ -38,25 +39,37 @@ window.__POST_1794482170414453 = {
   editorTitle: "みんなの評判.com 代表記者 / 元上場企業役員・２社の代表取締役",
   editorImg:   "images/urushizawa-avatar.jpg",
   checkItems: [
-    "SenoRichがどんな人に向いているサプリなのか",
+    "セノリッチ（SenoRich）がどんな人に向いているサプリなのか",
     "実際に飲んでいる人のリアルな感想と気になった点",
     "買う前に確認しておくべき3つのポイント"
   ],
 
   galleries: {
     service: [
-      { src: "images/photos/1.jpg", alt: "デスクで資料を確認する女性",   caption: "健康と仕事のバランスを大切にする現代のライフスタイル" },
-      { src: "images/photos/4.jpg", alt: "開放感のあるモダンな会議室",   caption: "TIME・WEALTH・HEALTHのバランスを重視した企業理念" },
-      { src: "images/photos/8.jpg", alt: "整理されたホームオフィス空間", caption: "自分らしいライフスタイルを実現する環境づくり" }
+      { src: "images/senorich/product-box-front.jpg",        alt: "セノリッチ（SenoRich）外箱 — SENOX25・NMN・HIF-1・5-ALA配合エイジングケアサプリ",      caption: "Luxury meets Longevity — セノリッチ外箱。ゴールドフレームが上質さを表現" },
+      { src: "images/senorich/product-box-plant.jpg",        alt: "セノリッチ外箱と植物背景 — 自然由来成分哲学を体現したパッケージデザイン",              caption: "植物と並べたセノリッチ。自然由来の成分哲学を表現" },
+      { src: "images/senorich/product-box-pouch-plant.jpg",  alt: "セノリッチ外箱・ゴールドパウチ・植物のフラットレイ撮影",                              caption: "外箱とゴールドパウチ。1日分ずつ個包装で持ち運びやすい設計" },
+      { src: "images/senorich/product-full-set-plant.jpg",   alt: "セノリッチ 外箱・カプセルシート・ゴールドパウチの全セット内容",                        caption: "外箱・カプセルシート・個包装パウチ — 1箱の全内容" }
     ],
     beforeAfter: [
-      { src: "images/placeholders/gallery-before.svg", alt: "ケア前：エイジングサインが気になる状態", label: "ケア前" },
-      { src: "images/placeholders/gallery-after.svg",  alt: "継続後：細胞環境を整えた状態",          label: "継続3ヶ月後" }
+      { src: "images/senorich/product-box-pouch.jpg",        alt: "セノリッチ外箱とゴールド個包装パウチ — パッケージ外観", label: "パッケージ外観" },
+      { src: "images/senorich/product-capsule-closeup.jpg",  alt: "セノリッチのカプセル — SENOX25・NMN・HIF-1・5-ALA配合の中身",                       label: "カプセル内成分" }
     ],
     media: [
       { src: "images/media-logo/rakuten-news.jpg",    alt: "楽天ニュース" },
-      { src: "images/media-logo/niconico-news.jpg", alt: "ニコニコニュース" },
-      { src: "images/media-logo/excite-news.jpg",  alt: "エキサイトニュース" }
+      { src: "images/media-logo/niconico-news.jpg",   alt: "ニコニコニュース" },
+      { src: "images/media-logo/excite-news.jpg",     alt: "エキサイトニュース" }
+    ],
+    extra: [
+      { group: "製品パッケージ", src: "images/senorich/product-box-angle.jpg",         alt: "セノリッチ外箱・斜め角度から見た立体感あるパッケージ",                          caption: "Nジェネレーション株式会社が設計した高級感あるホワイト＆ゴールドのパッケージ" },
+      { group: "製品パッケージ", src: "images/senorich/product-capsule-marble.jpg",    alt: "セノリッチ外箱とカプセルシート・大理石背景",                                     caption: "大理石調の背景に映えるホワイト＆ゴールドのパッケージデザイン" },
+      { group: "製品パッケージ", src: "images/senorich/product-capsule-set-plant.jpg", alt: "セノリッチ外箱・カプセルシート 俯瞰フラットレイ",                                caption: "外箱とカプセルシートの全容。植物と共に俯瞰で捉えた全体像" },
+      { group: "ライフスタイル", src: "images/senorich/product-lifestyle-wood.jpg",    alt: "セノリッチ 木製テーブルと観葉植物のある日常ライフスタイルシーン",                caption: "日常の中に溶け込む設計。継続しやすいサプリメントとしての提案" },
+      { group: "ライフスタイル", src: "images/senorich/product-lifestyle-bright.jpg",  alt: "セノリッチ 明るい木製テーブルのナチュラルライフスタイルシーン",                  caption: "朝のルーティンとして取り入れやすいサイズ感と設計" },
+      { group: "ライフスタイル", src: "images/senorich/product-lifestyle-brick.jpg",   alt: "セノリッチ レンガ調テーブルとローズマリーのあるアウトドア情景",                  caption: "ハーブと並ぶセノリッチ。自然由来素材へのこだわりを体現" },
+      { group: "成分・研究背景", src: "images/senorich/gls1-mechanism.png",            alt: "SENOX25のGLS1酵素阻害メカニズム図 — Johmura et al. Science 2021準拠",          caption: "SENOX25の作用：GLS1酵素だけをピンポイントで阻害し老化細胞（ゾンビ細胞）の自滅を促す" },
+      { group: "成分・研究背景", src: "images/senorich/research-lab.jpg",              alt: "セノリッチ・SENOX25成分の研究開発をイメージした研究室シーン",                    caption: "SENOX25は日本国内特許出願中・158か国PCT出願手続き完了の独自研究成分" },
+      { group: "成分・研究背景", src: "images/senorich/product-capsule-closeup.jpg",   alt: "セノリッチのカプセル成分クローズアップ — SENOX25・NMN・HIF-1・5-ALA",          caption: "SENOX25・NMN・HIF-1・5-ALAの4素材を独自バランスで配合したカプセル" }
     ]
   },
 
@@ -92,8 +105,8 @@ window.__POST_1794482170414453 = {
     { q: "この記事は広告ですか？",                                      a: "本記事はPR記事です。第三者の記者が取材・編集していますが、掲載費用を企業からいただいています。" }
   ],
 
-  storyImg:  "images/photos/7.jpg",
-  storyAlt:  "Nジェネレーション代表インタビューイメージ",
+  storyImg:  "images/senorich/product-lifestyle-bright.jpg",
+  storyAlt:  "セノリッチ（SenoRich）製品と明るいライフスタイルイメージ",
   storyText: [
     "Nジェネレーション株式会社は、「自分の人生を持つ」という考え方を大切にしている会社です。健康・時間・お金の3つのバランスが取れた生活を目指すという理念が、SenoRichという商品にも反映されています。",
     "「売って終わり」ではなく、「買った人に本当に良くなってほしい」という姿勢が、成分の説明や研究背景の公開につながっています。購入前にしっかり調べてから選べる環境を作っている点は、信頼できるポイントだと感じます。"
@@ -188,7 +201,7 @@ window.__POST_1794482170414453 = {
   ],
 
   officialUrl: "#",
-  ctaTitle:    "SenoRichが気になった方へ",
+  ctaTitle:    "セノリッチが気になった方へ",
   ctaSub:      "成分の詳細・料金・購入方法は公式サイトでご確認ください。気になる方はまず公式情報をチェックしてみましょう。",
   ctaBtn:      "公式サイトで詳しく見る →"
 };
