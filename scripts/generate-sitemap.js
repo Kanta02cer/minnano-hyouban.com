@@ -101,7 +101,8 @@ articles.sort((a, b) => String(a.slug).localeCompare(String(b.slug)));
 const lines = [
   '<?xml version="1.0" encoding="UTF-8"?>',
   '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
-  '        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">',
+  '        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"',
+  '        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">',
   '',
   '  <!-- 静的ページ -->',
 ];
@@ -137,6 +138,15 @@ if (articles.length > 0) {
       lines.push(`      <image:caption>${xmlEsc(company)}の口コミ・評判｜みんなの評判.com</image:caption>`);
       lines.push('    </image:image>');
     }
+    // Google News サイトマップ（記事インデックス促進）
+    lines.push('    <news:news>');
+    lines.push('      <news:publication>');
+    lines.push('        <news:name>みんなの評判.com</news:name>');
+    lines.push('        <news:language>ja</news:language>');
+    lines.push('      </news:publication>');
+    lines.push(`      <news:publication_date>${xmlEsc(lastmod)}</news:publication_date>`);
+    lines.push(`      <news:title>${xmlEsc(title)}</news:title>`);
+    lines.push('    </news:news>');
     lines.push('  </url>');
     lines.push('');
   }

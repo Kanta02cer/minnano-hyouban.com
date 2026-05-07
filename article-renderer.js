@@ -1496,8 +1496,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   canonicalEl.href = `https://minnano-hyouban.com/article.html?id=${encodeURIComponent(article.slug || '')}`;
 
-  // keywords メタ（補助的SEOシグナル）
-  if (article.company) {
+  // keywords メタ（補助的SEOシグナル）— seoKeywords がある場合は優先使用
+  if (article.seoKeywords && article.seoKeywords.length > 0) {
+    setMeta('keywords', article.seoKeywords.join(','));
+  } else if (article.company) {
     const companyClean = article.company.replace(/[（）\(\)]/g, ' ').trim();
     const keywords = [companyClean, '口コミ', '評判', article.category || '', 'みんなの評判.com'].filter(Boolean).join(',');
     setMeta('keywords', keywords);
@@ -1650,7 +1652,15 @@ document.addEventListener('DOMContentLoaded', () => {
       ...(article.sameAs ? { sameAs: article.sameAs } : {})
     },
     // wordCount: 記事の文字数目安（AIクローラへの情報量シグナル）
-    wordCount: 3000,
+    wordCount: (() => {
+      // faqs + relatedQA + serviceCards + reviews の文字数を合算して推定
+      const faqLen  = (article.faqs      || []).reduce((s, f) => s + (f.q || '').length + (f.a || '').length, 0);
+      const rqaLen  = (article.relatedQA || []).reduce((s, f) => s + (f.q || '').length + (f.a || '').length, 0);
+      const revLen  = (article.reviews   || []).reduce((s, r) => s + (r.text || '').length, 0);
+      const cardLen = (article.serviceCards || []).reduce((s, c) => s + (c.text || '').length, 0);
+      const base    = (article.summary || '').length + (article.metaDesc || '').length + (article.heroSub || '').length;
+      return Math.max(3000, Math.round((base + faqLen + rqaLen + revLen + cardLen) * 1.5));
+    })(),
     // isPartOf: サイト全体との関係を明示
     isPartOf: {
       '@type': 'WebSite',
@@ -1786,7 +1796,9 @@ document.addEventListener('DOMContentLoaded', () => {
           bestRating: '5',
           worstRating: '1'
         },
-        reviewBody: stripHTML(r.text || '')
+        reviewBody: stripHTML(r.text || ''),
+        // datePublished: 記事公開日を口コミ日として使用（クローラー向け）
+        datePublished: article.publishedAt || undefined
       })),
       // additionalProperty: サービス特徴をAIクローラに構造化提供
       ...(Array.isArray(article.serviceCards) && article.serviceCards.length > 0 ? {
@@ -1819,6 +1831,41 @@ document.addEventListener('DOMContentLoaded', () => {
       }))
     };
     upsertJSONLD('jsonld-faq', faqLD);
+  }
+
+  // HowTo: article.steps から「購入・利用の手順」を構造化（Googleリッチリザルト対象）
+  const stepsData = Array.isArray(article.steps) ? article.steps : [];
+  if (stepsData.length > 0) {
+    const howToLD = {
+      '@context': 'https://schema.org',
+      '@type': 'HowTo',
+      name: `${companyShort}の始め方・購入の流れ`,
+      description: article.metaDesc || `${companyShort}を検討する際の手順と判断のポイント`,
+      totalTime: 'PT10M',
+      step: stepsData.map((s, i) => ({
+        '@type': 'HowToStep',
+        position: i + 1,
+        name: stripHTML(s.title || ''),
+        text: stripHTML(s.text || '')
+      }))
+    };
+    upsertJSONLD('jsonld-howto', howToLD);
+  }
+
+  // ItemList: checkItems から「この記事でわかること」をリスト構造化
+  const checkItemsData = Array.isArray(article.checkItems) ? article.checkItems : [];
+  if (checkItemsData.length > 0) {
+    const itemListLD = {
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      name: `${companyShort}について記事でわかること`,
+      itemListElement: checkItemsData.map((item, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: stripHTML(String(item))
+      }))
+    };
+    upsertJSONLD('jsonld-checklist', itemListLD);
   }
 
   // Render article

@@ -10,9 +10,10 @@
     "compile-drafts": "node scripts/compile-drafts.js",
     "sitemap":        "node scripts/generate-sitemap.js",
     "feed":           "node scripts/generate-feed.js",
+    "llms":           "node scripts/generate-llms.js",
     "webp":           "node scripts/convert-webp.js",
     "indexing":       "node scripts/request-indexing.js",
-    "build":          "npm run sitemap && npm run feed",
+    "build":          "npm run sitemap && npm run feed && npm run llms",
     "publish":        "npm run build && git add -A && git commit -m 'chore: 記事公開・sitemap/feed 更新' && git push origin main"
   },
   "engines": {

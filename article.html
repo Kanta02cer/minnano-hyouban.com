@@ -24,6 +24,8 @@
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
   <link rel="alternate" type="application/rss+xml" title="みんなの評判.com — 新着記事" href="/feed.xml">
+  <!-- AI/LLM向けコンテンツガイド（llmstxt.org 仕様） -->
+  <link rel="llms-txt" href="/llms.txt">
   <link rel="manifest" href="/manifest.json">
   <!-- 静的フォールバック JSON-LD（JS未実行クローラ・AIクローラ向け） -->
   <script type="application/ld+json">
@@ -68,8 +70,18 @@
         "description": "第三者記者・漆沢祐樹が取材・執筆した企業評判レポート。利用者5名以上へのインタビューとデメリット・怪しい疑問を含む正直な評判情報。",
         "inLanguage": "ja-JP",
         "isAccessibleForFree": true,
+        "creditText": "みんなの評判.com — 記者：漆沢 祐樹",
+        "copyrightHolder": { "@id": "https://minnano-hyouban.com/#organization" },
         "author": { "@id": "https://minnano-hyouban.com/#person-urushizawa" },
         "publisher": { "@id": "https://minnano-hyouban.com/#organization" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "トップ", "item": "https://minnano-hyouban.com/" },
+          { "@type": "ListItem", "position": 2, "name": "記事一覧", "item": "https://minnano-hyouban.com/articles.html" },
+          { "@type": "ListItem", "position": 3, "name": "企業の口コミ評判記事", "item": "https://minnano-hyouban.com/article.html" }
+        ]
       }
     ]
   }

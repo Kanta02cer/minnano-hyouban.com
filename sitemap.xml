@@ -1,39 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
 
   <!-- 静的ページ -->
   <url>
     <loc>https://minnano-hyouban.com/</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-05-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
     <loc>https://minnano-hyouban.com/articles.html</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-05-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
     <loc>https://minnano-hyouban.com/editor.html</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-05-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://minnano-hyouban.com/privacy.html</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-05-07</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
 
   <url>
     <loc>https://minnano-hyouban.com/disclaimer.html</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-05-07</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -41,26 +42,42 @@
   <!-- 個別記事（slug = 16桁数値ID）— 最高優先度で指名検索上位を狙う -->
   <url>
     <loc>https://minnano-hyouban.com/article.html?id=1794482170414453</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-05-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
       <image:loc>https://minnano-hyouban.com/images/senorich/product-box-front.jpg</image:loc>
-      <image:title>セノリッチ（SenoRich）の評判・口コミは？怪しい？SENOX25サプリの効果を第三者取材｜みんなの評判.com</image:title>
-      <image:caption>セノリッチ（SenoRich）外箱 — SENOX25・NMN・HIF-1・5-ALA配合エイジングケアサプリ｜みんなの評判.com</image:caption>
+      <image:title>セノリッチ（SenoRich）とは？評判・口コミ・価格・怪しい？をNジェネレーション株式会社サプリを第三者取材｜みんなの評判.com</image:title>
+      <image:caption>SenoRichの口コミ・評判｜みんなの評判.com</image:caption>
     </image:image>
+    <news:news>
+      <news:publication>
+        <news:name>みんなの評判.com</news:name>
+        <news:language>ja</news:language>
+      </news:publication>
+      <news:publication_date>2026-05-03</news:publication_date>
+      <news:title>セノリッチ（SenoRich）とは？評判・口コミ・価格・怪しい？をNジェネレーション株式会社サプリを第三者取材｜みんなの評判.com</news:title>
+    </news:news>
   </url>
 
   <url>
     <loc>https://minnano-hyouban.com/article.html?id=2221437250750372</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-05-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
       <image:loc>https://minnano-hyouban.com/images/miracle-pillow/fv-main.png</image:loc>
-      <image:title>ミラクルピロー（MIRACLE PILLOW）の評判・口コミは？怪しい？電動枕の効果を第三者取材｜みんなの評判.com</image:title>
-      <image:caption>ミラクルピローの評判・口コミ｜みんなの評判.com</image:caption>
+      <image:title>ミラクルピロー 評判・口コミまとめ｜怪しい？とは？効果・価格59,800円を利用者5名への第三者取材で解説｜みんなの評判.com</image:title>
+      <image:caption>MIRACLE PILLOWの口コミ・評判｜みんなの評判.com</image:caption>
     </image:image>
+    <news:news>
+      <news:publication>
+        <news:name>みんなの評判.com</news:name>
+        <news:language>ja</news:language>
+      </news:publication>
+      <news:publication_date>2026-05-05</news:publication_date>
+      <news:title>ミラクルピロー 評判・口コミまとめ｜怪しい？とは？効果・価格59,800円を利用者5名への第三者取材で解説｜みんなの評判.com</news:title>
+    </news:news>
   </url>
 
   <url>
@@ -71,8 +88,16 @@
     <image:image>
       <image:loc>https://minnano-hyouban.com/images/taskul/fv-main.png</image:loc>
       <image:title>タスクル（TASKUL）の評判・口コミは？怪しい？AIタスク管理ツールの効果を第三者取材｜みんなの評判.com</image:title>
-      <image:caption>タスクルの評判・口コミ｜みんなの評判.com</image:caption>
+      <image:caption>TASKULの口コミ・評判｜みんなの評判.com</image:caption>
     </image:image>
+    <news:news>
+      <news:publication>
+        <news:name>みんなの評判.com</news:name>
+        <news:language>ja</news:language>
+      </news:publication>
+      <news:publication_date>2026-05-01</news:publication_date>
+      <news:title>タスクル（TASKUL）の評判・口コミは？怪しい？AIタスク管理ツールの効果を第三者取材｜みんなの評判.com</news:title>
+    </news:news>
   </url>
 
   <url>
@@ -83,8 +108,16 @@
     <image:image>
       <image:loc>https://minnano-hyouban.com/images/medikuru/reiwa-tiger-intro.png</image:loc>
       <image:title>メディくる（medikuru）の評判・口コミは？怪しい？指名検索ブランディングの効果を第三者取材｜みんなの評判.com</image:title>
-      <image:caption>メディくるの評判・口コミ｜みんなの評判.com</image:caption>
+      <image:caption>メディくるの口コミ・評判｜みんなの評判.com</image:caption>
     </image:image>
+    <news:news>
+      <news:publication>
+        <news:name>みんなの評判.com</news:name>
+        <news:language>ja</news:language>
+      </news:publication>
+      <news:publication_date>2026-05-01</news:publication_date>
+      <news:title>メディくる（medikuru）の評判・口コミは？怪しい？指名検索ブランディングの効果を第三者取材｜みんなの評判.com</news:title>
+    </news:news>
   </url>
 
 </urlset>
