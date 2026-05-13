@@ -12,7 +12,7 @@ window.__POST_2252563132716439 = {
   ogImage:  "images/taskul/fv-main.png",
   heroImg:  "images/taskul/fv-main.png",
   company:  "TASKUL（株式会社フリーカンパニー）",
-  category: "ライフスタイル",
+  category: "IT・SaaS",
   publishedAt: "2026-04-15",
   updatedAt:   "2026-05-01",
 

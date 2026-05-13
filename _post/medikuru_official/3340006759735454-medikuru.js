@@ -12,7 +12,7 @@ window.__POST_3340006759735454 = {
   ogImage:  "images/medikuru/reiwa-tiger-intro.png",
   heroImg:  "images/medikuru/reiwa-tiger-intro.png",
   company:  "メディくる（medikuru）",
-  category: "マーケティング・広報",
+  category: "IT・SaaS",
   publishedAt: "2026-04-24",
   updatedAt:   "2026-05-01",
 

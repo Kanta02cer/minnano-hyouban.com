@@ -810,7 +810,16 @@
     }
     function editorShortName(name) { return (name || '').replace(/^記者[：:]\s*/, ''); }
     function catClass(cat) {
-      const map = { '美容・健康':'cat-beauty', '美容・エステ':'cat-beauty', '語学・スキル':'cat-study', 'マネー・投資':'cat-money', 'キャリア・転職':'cat-career', 'ライフスタイル':'cat-lifestyle' };
+      const map = {
+        '美容・健康':'cat-beauty', '美容・エステ':'cat-beauty',
+        '人材・教育':'cat-career', 'キャリア・転職':'cat-career',
+        'IT・SaaS':'cat-it', 'IT・ツール':'cat-it',
+        '医療・福祉':'cat-medical',
+        '金融・士業':'cat-money', 'マネー・投資':'cat-money',
+        'スタートアップ':'cat-startup',
+        '飲食・小売':'cat-lifestyle', 'ライフスタイル':'cat-lifestyle',
+        'メーカー':'cat-maker'
+      };
       return map[cat] || 'cat-career';
     }
 

@@ -519,12 +519,12 @@ function buildArticleHTML(a) {
           </li>
           <li class="breadcrumb-sep" aria-hidden="true">›</li>
           <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-            <a href="articles.html" itemprop="item"><span itemprop="name">評判・口コミ記事一覧</span></a>
+            <a href="articles.html" itemprop="item"><span itemprop="name">企業研究レポート一覧</span></a>
             <meta itemprop="position" content="2">
           </li>
           <li class="breadcrumb-sep" aria-hidden="true">›</li>
           <li class="breadcrumb-item breadcrumb-item--current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-            <span itemprop="name">${esc(companyShort)}の口コミ評判</span>
+            <span itemprop="name">${esc(companyShort)}の企業研究レポート</span>
             <meta itemprop="position" content="3">
           </li>
         </ol>
@@ -546,7 +546,7 @@ function buildArticleHTML(a) {
       <div class="hero-brand-bar" aria-hidden="true">
         <span class="hero-brand-name">みんなの評判<em>.com</em></span>
         <div class="hero-brand-sep"></div>
-        <span class="hero-brand-tagline">第三者記者が書く、企業評判メディア</span>
+        <span class="hero-brand-tagline">第三者記者が届ける、就職前の企業研究メディア</span>
       </div>
 
       <!-- メインコンテンツ -->
@@ -557,7 +557,7 @@ function buildArticleHTML(a) {
         <div class="hero-cta-group">
           ${hasOfficial ? `<a href="${esc(cta.href)}" class="btn btn--hero" ${ctaLinkAttrs} data-cta-kind="hero_official" data-article-slug="${esc(a.slug || '')}" data-company="${esc(a.company || '')}">公式サイトを見る →</a>` : ''}
           ${hasLine ? `<a href="${esc(lineHref)}" class="btn btn--line" target="_blank" rel="noopener noreferrer" data-cta-kind="hero_line" data-article-slug="${esc(a.slug || '')}" data-company="${esc(a.company || '')}">公式LINEで相談する →</a>` : ''}
-          <a href="#reviews" class="btn btn--hero-outline">口コミを先に読む</a>
+          <a href="#reviews" class="btn btn--hero-outline">利用者・社員の声を読む</a>
         </div>
         <p class="hero-pr-note">※本記事はPR・広告を含みます</p>
       </div>
@@ -576,6 +576,34 @@ function buildArticleHTML(a) {
         </div>
       </div>
     </section>` : ''}
+
+    <!-- 01.7 ARTICLE TRANSPARENCY BOX（この記事について） -->
+    <section class="transparency-box animate-on-scroll" aria-label="この記事について">
+      <div class="container">
+        <details class="transparency-details">
+          <summary class="transparency-summary">
+            <span class="transparency-icon" aria-hidden="true">ℹ</span>
+            この記事について（取材情報・PR表記）
+          </summary>
+          <div class="transparency-body">
+            <p>本記事は、企業への直接取材、社員インタビュー、利用者の声、公開情報調査をもとに作成しています。</p>
+            <ul>
+              <li><strong>掲載について：</strong>企業から取材協力・広告費を受けている場合があります</li>
+              <li><strong>編集の独立性：</strong>記事内の評価・注意点・編集方針はみんなの評判.comが独立して判断しています</li>
+              <li><strong>企業確認の範囲：</strong>社名・役職・数値・制度などの事実確認のみ。評価・注意点の削除・修正要求には応じません</li>
+              <li><strong>情報の鮮度：</strong>勤務条件・給与・募集職種等は変更される可能性があります。応募前に必ず企業の公式採用ページをご確認ください</li>
+            </ul>
+            ${a.interviewMeta ? `
+            <div class="transparency-meta">
+              ${a.interviewMeta.date ? `<span><strong>取材日：</strong>${esc(a.interviewMeta.date)}</span>` : ''}
+              ${a.interviewMeta.targets ? `<span><strong>取材対象：</strong>${esc(a.interviewMeta.targets)}</span>` : ''}
+              ${a.interviewMeta.method ? `<span><strong>取材方法：</strong>${esc(a.interviewMeta.method)}</span>` : ''}
+              ${a.interviewMeta.updated ? `<span><strong>更新日：</strong>${esc(a.interviewMeta.updated)}</span>` : ''}
+            </div>` : ''}
+          </div>
+        </details>
+      </div>
+    </section>
 
     <!-- 02 EDITOR'S NOTE -->
     <section class="editors-note animate-on-scroll" aria-labelledby="note-heading">
@@ -635,8 +663,8 @@ function buildArticleHTML(a) {
     ${interviewsHTML ? `
     <section class="interview-section animate-on-scroll" aria-labelledby="interview-heading">
       <div class="container">
-        <h2 class="section-title" id="interview-heading">${esc(companyShort)}を実際に使った人の声（取材インタビュー）</h2>
-        <p class="section-sub">記者・漆沢が直接インタビューした利用者のリアルな証言です</p>
+        <h2 class="section-title" id="interview-heading">${esc(companyShort)}を利用した顧客・社員の声（取材インタビュー）</h2>
+        <p class="section-sub">記者・漆沢が直接インタビューした利用者・社員のリアルな声をお届けします</p>
         ${interviewsHTML}
       </div>
     </section>` : ''}
@@ -675,8 +703,8 @@ function buildArticleHTML(a) {
     <!-- 06 REVIEWS（口コミ・ユーザーの声） -->
     <section class="reviews-section animate-on-scroll" id="reviews" aria-labelledby="reviews-heading">
       <div class="container">
-        <h2 class="section-title" id="reviews-heading">${esc(companyShort)}の口コミ・ユーザーの声</h2>
-        <p class="section-sub">実際に${esc(companyShort)}を利用した方のリアルな口コミをお届けします</p>
+        <h2 class="section-title" id="reviews-heading">${esc(companyShort)}の利用者・社員の声</h2>
+        <p class="section-sub">実際に${esc(companyShort)}を利用した方・働いた方のリアルな声をお届けします</p>
       </div>
       <div class="reviews-carousel-wrap">
         <div class="swiper swiper-reviews">
@@ -789,14 +817,14 @@ function buildArticleHTML(a) {
       const items = others.map(function(x) {
         const img = x.ogImage || x.heroImg || '';
         const imgTag = img
-          ? `<img src="${esc(img)}" alt="${esc(x.company || '')}の評判・口コミ" class="related-thumb" width="120" height="80" loading="lazy">`
+          ? `<img src="${esc(img)}" alt="${esc(x.company || '')}の企業研究レポート" class="related-thumb" width="120" height="80" loading="lazy">`
           : `<span class="related-thumb related-thumb--placeholder" aria-hidden="true"></span>`;
         return `<li class="related-item">
           <a href="article.html?id=${esc(x.slug)}" class="related-link">
             ${imgTag}
             <span class="related-text">
               <span class="related-company">${esc(x.company || '')}</span>
-              <span class="related-title">${esc(x.company || '')}の評判・口コミは？</span>
+              <span class="related-title">${esc(x.company || '')}の企業研究レポートを読む</span>
               <span class="related-cta">記事を読む</span>
             </span>
           </a>
@@ -1482,7 +1510,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Update page meta
   // article.title が設定されていればそちらを優先（SEO最適化済みタイトル）
-  document.title = article.title || `${article.company}の口コミ評判｜みんなの評判.com`;
+  document.title = article.title || `${article.company}の企業研究レポート｜みんなの評判.com`;
   setMeta('description', article.metaDesc || '');
   setMeta('og:title', article.title || '', 'property');
   setMeta('og:description', article.metaDesc || '', 'property');
@@ -1501,7 +1529,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setMeta('keywords', article.seoKeywords.join(','));
   } else if (article.company) {
     const companyClean = article.company.replace(/[（）\(\)]/g, ' ').trim();
-    const keywords = [companyClean, '口コミ', '評判', article.category || '', 'みんなの評判.com'].filter(Boolean).join(',');
+    const keywords = [companyClean, '企業研究', '採用評判', '社風', article.category || '', 'みんなの評判.com'].filter(Boolean).join(',');
     setMeta('keywords', keywords);
   }
 
@@ -1529,7 +1557,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setMeta('twitter:card', 'summary_large_image');
   setMeta('twitter:site', '@uru_navi');
   setMeta('twitter:creator', '@uru_navi');
-  setMeta('twitter:title', article.title || `${article.company}の口コミ評判｜みんなの評判.com`);
+  setMeta('twitter:title', article.title || `${article.company}の企業研究レポート｜みんなの評判.com`);
   setMeta('twitter:description', article.metaDesc || '');
   setMeta('twitter:image', ogImageAbsolute(article.ogImage));
 
@@ -1584,21 +1612,21 @@ document.addEventListener('DOMContentLoaded', () => {
     '@type': 'Person',
     name: '漆沢 祐樹',
     alternateName: 'うるしざわ ゆうき',
-    description: '令和の虎出演。30代で複数の上場会社役員を経験し2社の代表取締役を務める起業家。みんなの評判.com代表記者として楽天・ニコニコ・エキサイト掲載企業の評判・口コミ・怪しい疑問を直接取材する第三者評判メディアを運営。',
+    description: '30代で複数の上場会社役員を経験し2社の代表取締役を務める起業家・キャリア教育者。みんなの評判.com代表記者として、社長・社員・利用者への直接インタビューと公開情報調査をもとに就職・転職者向けの企業研究レポートを作成する第三者取材メディアを運営。',
     url: 'https://minnano-hyouban.com/editor.html',
     jobTitle: 'みんなの評判.com 代表記者',
     worksFor: { '@type': 'Organization', name: 'みんなの評判.com', url: 'https://minnano-hyouban.com/' },
     sameAs: ['https://minnano-hyouban.com/editor.html', 'https://x.com/uru_navi', 'https://thecareer.jp', 'https://humanstory.jp'],
     knowsAbout: [
-      '企業評判取材',
-      '口コミ評判メディア',
-      '第三者評判取材',
-      '令和の虎出演',
-      '指名検索SEO',
+      '企業研究',
+      '採用評判取材',
+      '社長インタビュー',
+      '社員取材',
       'キャリア教育',
+      '第三者取材',
+      '人材育成',
       'メディアブランディング',
-      '人材紹介',
-      '企業研修'
+      'グループ経営'
     ]
   };
 
@@ -1615,7 +1643,7 @@ document.addEventListener('DOMContentLoaded', () => {
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'トップ', item: `${siteOrigin}/` },
       { '@type': 'ListItem', position: 2, name: '記事一覧', item: `${siteOrigin}/articles.html` },
-      { '@type': 'ListItem', position: 3, name: `${companyShort}の口コミ評判`, item: pageUrl }
+      { '@type': 'ListItem', position: 3, name: `${companyShort}の企業研究レポート`, item: pageUrl }
     ]
   };
 
