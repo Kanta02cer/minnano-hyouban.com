@@ -240,7 +240,7 @@ window.__POST_3340006759735454 = {
   ],
 
   officialUrl: "https://www.medikuru.me/",
-  lineUrl:     "https://liff-gateway.lineml.jp/landing?follow=%40658txruh&lp=n31x4b&liff_id=2008402152-x8WDy4eX&utm_source=minnano-hyouban&utm_medium=referral&utm_campaign=review_article&utm_content=3340006759735454",
+  lineUrl:     "https://liff.line.me/2008402152-x8WDy4eX/landing?follow=%40658txruh&lp=3iFFNz&liff_id=2008402152-x8WDy4eX&utm_source=minnano-hyouban&utm_medium=referral&utm_campaign=review_article&utm_content=3340006759735454",
   ctaTitle:    "採用ブランディングの考え方・3施策の詳細を確認したい方へ",
   ctaSub:      "メディくる採用ブースターでは、採用ブランディングの考え方、ニュース・評判サイト・動画の3施策、導入シーンなどを詳しく確認できます。まずは公式サイトや相談窓口でサービスの詳細を確認することをおすすめします。",
   ctaBtn:      "メディくる公式サイトを見る →",
