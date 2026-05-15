@@ -1650,6 +1650,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // 記事スキーマ型（article.schemaType で上書き可能）
   const schemaType = article.schemaType || 'Product';
 
+  // about / mentions 内の Product に aggregateRating を付与するため先に算出
+  // （Google: Product schema には offers / review / aggregateRating のいずれかが必須）
+  const _reviewsList = Array.isArray(article.reviews) ? article.reviews : [];
+  const _aggRating = _reviewsList.length > 0 ? (() => {
+    const total = _reviewsList.reduce((s, r) => s + (Number(r.stars) || 0), 0);
+    const avg   = Math.round((total / _reviewsList.length) * 10) / 10;
+    return { '@type': 'AggregateRating', ratingValue: String(avg), reviewCount: String(_reviewsList.length), bestRating: '5', worstRating: '1' };
+  })() : null;
+
   const articleLD = {
     '@context': 'https://schema.org',
     '@type': 'NewsArticle',
@@ -1677,7 +1686,9 @@ document.addEventListener('DOMContentLoaded', () => {
       '@type': schemaType,
       name: stripHTML(article.company || ''),
       ...(article.summary ? { description: article.summary } : {}),
-      ...(article.sameAs ? { sameAs: article.sameAs } : {})
+      ...(article.sameAs ? { sameAs: article.sameAs } : {}),
+      // Product schema には aggregateRating が必須（Google Rich Results 要件）
+      ...(_aggRating ? { aggregateRating: _aggRating } : {})
     },
     // wordCount: 記事の文字数目安（AIクローラへの情報量シグナル）
     wordCount: (() => {
@@ -1702,7 +1713,9 @@ document.addEventListener('DOMContentLoaded', () => {
         '@type': schemaType,
         name: stripHTML(article.company || ''),
         ...(article.officialUrl ? { url: article.officialUrl } : {}),
-        ...(Array.isArray(article.sameAs) && article.sameAs.length > 0 ? { sameAs: article.sameAs } : {})
+        ...(Array.isArray(article.sameAs) && article.sameAs.length > 0 ? { sameAs: article.sameAs } : {}),
+        // Product schema には aggregateRating が必須（Google Rich Results 要件）
+        ...(_aggRating ? { aggregateRating: _aggRating } : {})
       }
     ],
     // creditText: 引用時の出典表記をAIに提供
