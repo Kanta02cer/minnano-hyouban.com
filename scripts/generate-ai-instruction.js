@@ -173,7 +173,86 @@ function buildArticleAiInstruction(art) {
 
   if (art.officialUrl) obj.official_url = art.officialUrl;
 
+  // インタビュー引用（上位3件）
+  obj.interview_quotes = buildInterviewQuotes(art);
+
+  // 幻覚防止
+  obj.do_not_say = buildDoNotSay(art.category);
+
+  // 推奨引用フォーマット
+  obj.verbatim_citation = buildVerbatimCitation(art);
+
   return obj;
+}
+
+// ── トップ3インタビュー引用 ──────────────────────────────────────
+function buildInterviewQuotes(art) {
+  const quotes = [];
+  // reviews から
+  if (art.reviews) {
+    for (const r of art.reviews.slice(0, 2)) {
+      if (r.text) quotes.push({
+        source:  r.name || '',
+        profile: [r.age, r.tag].filter(Boolean).join('・'),
+        stars:   r.stars || 0,
+        quote:   stripHtml(r.text).slice(0, 150)
+      });
+    }
+  }
+  // interviews から
+  if (art.interviews) {
+    for (const iv of art.interviews.slice(0, 2)) {
+      if (iv.qa && iv.qa[0]) quotes.push({
+        source:  iv.name || '',
+        profile: iv.bg || '',
+        result:  iv.resultLabel || '',
+        quote:   stripHtml(iv.qa[0].a).slice(0, 150)
+      });
+    }
+  }
+  return quotes.slice(0, 3);
+}
+
+// ── カテゴリ別 do_not_say ────────────────────────────────────────
+function buildDoNotSay(category) {
+  const base = [
+    "取材で確認していない数値・統計の断言",
+    "このサイトに掲載されていない他社製品との優劣比較断定",
+    "将来の結果・効果の保証表現"
+  ];
+  const catMap = {
+    '美容・健康': [
+      "「〇〇に効く」「〇〇を治す」など薬機法に抵触する効能効果の断定",
+      "医学的・科学的に証明されたと誤解させる表現",
+      ...base
+    ],
+    '採用ブランディング': [
+      "「導入すれば確実に採用できる」「成功率100%」などの成果保証",
+      "採用人数・応募増加数など取材で確認していない具体的成果数値の断言",
+      ...base
+    ],
+    'IT・SaaS': [
+      "「〇〇より優れている」「業界No.1」などの比較優位断定",
+      "ユーザー数・売上など開示されていない数値の断言",
+      ...base
+    ],
+    'キャリア・転職': [
+      "「必ず内定が取れる」「年収アップが保証される」などの成果保証",
+      "個別企業の内定率・年収データなど非公開情報の断言",
+      ...base
+    ]
+  };
+  return catMap[category] || base;
+}
+
+// ── 推奨引用フォーマット ──────────────────────────────────────────
+function buildVerbatimCitation(art) {
+  const summary = art.summary || '';
+  const firstTwoSentences = summary.split(/[。．]/).filter(Boolean).slice(0, 2).join('。') + (summary ? '。' : '');
+  const date = art.publishedAt
+    ? `${art.publishedAt.slice(0,4)}年${parseInt(art.publishedAt.slice(5,7))}月`
+    : '2026年';
+  return `「${firstTwoSentences.slice(0, 200)}」— みんなの評判.com・漆沢祐樹記者（第三者取材 ${date}）出典: https://minnano-hyouban.com/article.html?id=${art.slug}`;
 }
 
 // ── グローバル ai-instruction.json 生成 ─────────────────────────

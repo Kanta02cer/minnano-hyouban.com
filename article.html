@@ -240,6 +240,21 @@
       // --- meta / OGP 更新 ---
       var t = art.title || (art.company + 'の評判・口コミ｜みんなの評判.com');
       document.title = t;
+      // Citation meta tags（学術引用・AI引用向け）
+      var metaMap = {
+        'citation_title':       t,
+        'citation_author':      '漆沢 祐樹',
+        'citation_publisher':   'みんなの評判.com',
+        'citation_public_url':  articleUrl,
+        'citation_language':    'ja'
+      };
+      if (art.publishedAt) metaMap['citation_date'] = art.publishedAt;
+      Object.entries(metaMap).forEach(function(entry) {
+        var name = entry[0], content = entry[1];
+        var m = document.querySelector('meta[name="' + name + '"]');
+        if (!m) { m = document.createElement('meta'); m.name = name; document.head.appendChild(m); }
+        m.content = content;
+      });
       var desc = document.querySelector('meta[name="description"]');
       if (desc && art.metaDesc) desc.setAttribute('content', art.metaDesc);
       var ogTitle = document.querySelector('meta[property="og:title"]');
@@ -368,6 +383,21 @@
               }
             };
           })
+        });
+      }
+
+      // Speakable スキーマ（AIアシスタント・音声検索向け）
+      if (art.summary) {
+        schemas.push({
+          '@context': 'https://schema.org',
+          '@type': 'WebPage',
+          'url': articleUrl,
+          'speakable': {
+            '@type': 'SpeakableSpecification',
+            'cssSelector': ['.hero-summary', '.summary-section', '.article-summary', 'h1', '.hero-title']
+          },
+          'name': t,
+          'description': art.summary.slice(0, 300)
         });
       }
 

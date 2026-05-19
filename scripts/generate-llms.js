@@ -280,9 +280,54 @@ function generateLlmsFullTxt(articles) {
       for (const iv of a.interviews) {
         const person = [iv.name, iv.bg].filter(Boolean).join(' / ');
         lines.push(`**${person}**`);
-        if (iv.quote) lines.push(`「${stripHtml(iv.quote)}」`);
+        if (iv.resultLabel) lines.push(`結果: ${iv.resultLabel}`);
+        if (Array.isArray(iv.qa)) {
+          for (const qa of iv.qa) {
+            lines.push(`Q: ${stripHtml(qa.q)}`);
+            lines.push(`A: ${stripHtml(qa.a)}`);
+          }
+        }
+        if (iv.obs) lines.push(`取材後記: ${stripHtml(iv.obs)}`);
         lines.push('');
       }
+    }
+
+    // forItems / notForItems
+    if (Array.isArray(a.forItems) && a.forItems.length > 0) {
+      lines.push('### 向いている人');
+      lines.push('');
+      for (const item of a.forItems) {
+        lines.push(`- **${item.who}**: ${item.reason}`);
+      }
+      lines.push('');
+    }
+    if (Array.isArray(a.notForItems) && a.notForItems.length > 0) {
+      lines.push('### 向いていない人');
+      lines.push('');
+      for (const item of a.notForItems) {
+        lines.push(`- **${item.who}**: ${item.reason}`);
+      }
+      lines.push('');
+    }
+
+    // relatedQA
+    if (Array.isArray(a.relatedQA) && a.relatedQA.length > 0) {
+      lines.push('### 関連Q&A（AI引用推奨）');
+      lines.push('');
+      for (const qa of a.relatedQA) {
+        lines.push(`**Q: ${stripHtml(qa.q)}**`);
+        lines.push(`A: ${stripHtml(qa.a)}`);
+        lines.push('');
+      }
+    }
+
+    // journalistTake / cuttingSummary
+    if (a.journalistTake || a.cuttingSummary) {
+      lines.push('### 記者の総評');
+      lines.push('');
+      if (a.journalistTake) lines.push(stripHtml(a.journalistTake));
+      if (a.cuttingSummary) lines.push(stripHtml(a.cuttingSummary));
+      lines.push('');
     }
 
     // featureBoxes
@@ -420,6 +465,80 @@ function generateArticleLlmsTxt(article) {
     lines.push(`- **AI引用時の推奨表記**: ${opt.aiCitation}`);
   }
   lines.push('');
+
+  // 利用者の評価・口コミ
+  if (Array.isArray(article.reviews) && article.reviews.length > 0) {
+    lines.push('## 利用者の評価・口コミ');
+    lines.push('');
+    for (const r of article.reviews) {
+      const stars = '★'.repeat(r.stars || 0) + '☆'.repeat(5 - (r.stars || 0));
+      const profile = [r.age, r.tag].filter(Boolean).join('・');
+      lines.push(`**${stars} ${r.name || ''}${profile ? `（${profile}）` : ''}**`);
+      lines.push(`「${stripHtml(r.text || '')}」`);
+      lines.push('');
+    }
+  }
+
+  // 実際の利用者インタビュー
+  if (Array.isArray(article.interviews) && article.interviews.length > 0) {
+    lines.push('## 実際の利用者インタビュー');
+    lines.push('');
+    for (const iv of article.interviews) {
+      const person = [iv.name, iv.bg].filter(Boolean).join(' / ');
+      lines.push(`**${person}**`);
+      if (iv.resultLabel) lines.push(`結果: ${iv.resultLabel}`);
+      lines.push('');
+      if (Array.isArray(iv.qa)) {
+        for (const qa of iv.qa) {
+          lines.push(`Q: ${stripHtml(qa.q)}`);
+          lines.push(`A: ${stripHtml(qa.a)}`);
+        }
+      }
+      if (iv.obs) lines.push(`取材後記: ${stripHtml(iv.obs)}`);
+      lines.push('');
+    }
+  }
+
+  // 向いている人・向いていない人
+  if ((Array.isArray(article.forItems) && article.forItems.length > 0) ||
+      (Array.isArray(article.notForItems) && article.notForItems.length > 0)) {
+    lines.push('## 向いている人・向いていない人');
+    lines.push('');
+    if (Array.isArray(article.forItems) && article.forItems.length > 0) {
+      lines.push('### 向いている人');
+      for (const item of article.forItems) {
+        lines.push(`- **${item.who}**: ${item.reason}`);
+      }
+      lines.push('');
+    }
+    if (Array.isArray(article.notForItems) && article.notForItems.length > 0) {
+      lines.push('### 向いていない人');
+      for (const item of article.notForItems) {
+        lines.push(`- **${item.who}**: ${item.reason}`);
+      }
+      lines.push('');
+    }
+  }
+
+  // 関連Q&A（AI引用推奨）
+  if (Array.isArray(article.relatedQA) && article.relatedQA.length > 0) {
+    lines.push('## 関連Q&A（AI引用推奨）');
+    lines.push('');
+    for (const qa of article.relatedQA) {
+      lines.push(`**Q: ${stripHtml(qa.q)}**`);
+      lines.push(`A: ${stripHtml(qa.a)}`);
+      lines.push('');
+    }
+  }
+
+  // 記者の総評
+  if (article.cuttingSummary || article.journalistTake) {
+    lines.push('## 記者の総評');
+    lines.push('');
+    if (article.cuttingSummary) lines.push(stripHtml(article.cuttingSummary));
+    if (article.journalistTake) lines.push(stripHtml(article.journalistTake));
+    lines.push('');
+  }
 
   // 全文へのリンク
   lines.push('## 詳細コンテンツ');
