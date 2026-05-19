@@ -1,7 +1,12 @@
 # みんなの評判.com — 全文コンテンツ（llms-full.txt）
 
-> 生成日: 2026-05-19 | このファイルはAI/LLM向けに全記事の詳細コンテンツをまとめたものです。
+> 生成日: 2026-05-19（静的HTML追加済み）| このファイルはAI/LLM向けに全記事の詳細コンテンツをまとめたものです。
 > 標準インデックスは https://minnano-hyouban.com/llms.txt を参照してください。
+> 各記事の静的HTML（JS不要・AI引用推奨）:
+> - ミラクルピロー: https://minnano-hyouban.com/articles/2221437250750372/
+> - セノリッチ: https://minnano-hyouban.com/articles/1794482170414453/
+> - タスクル: https://minnano-hyouban.com/articles/2252563132716439/
+> - メディくる採用ブースター: https://minnano-hyouban.com/articles/3340006759735454/
 
 ---
 
