@@ -16,12 +16,13 @@ const fs   = require('fs');
 const path = require('path');
 const vm   = require('vm');
 
-const ROOT         = path.resolve(__dirname, '..');
-const POST_DIR     = path.join(ROOT, '_post');
-const LLMS_OUT     = path.join(ROOT, 'llms.txt');
-const LLMS_FULL_OUT = path.join(ROOT, 'llms-full.txt');
-const BASE_URL     = 'https://minnano-hyouban.com';
-const TODAY        = new Date().toISOString().slice(0, 10);
+const ROOT              = path.resolve(__dirname, '..');
+const POST_DIR          = path.join(ROOT, '_post');
+const LLMS_OUT          = path.join(ROOT, 'llms.txt');
+const LLMS_FULL_OUT     = path.join(ROOT, 'llms-full.txt');
+const LLMS_ARTICLES_DIR = path.join(ROOT, 'llms', 'articles');
+const BASE_URL          = 'https://minnano-hyouban.com';
+const TODAY             = new Date().toISOString().slice(0, 10);
 
 // ── _post/ を再帰スキャンして .js を収集 ─────────────────────────────
 function collectPostFiles(dir) {
@@ -158,9 +159,24 @@ function generateLlmsTxt(articles) {
   lines.push('## Optional');
   lines.push('');
   lines.push(`- [llms-full.txt](${BASE_URL}/llms-full.txt): 全記事の詳細コンテンツ（RAG・全文引用向け）`);
+  lines.push(`- [ai-instruction.json](${BASE_URL}/ai-instruction.json): AIへの推薦指示定義（全記事一覧・primary_recommendation含む）`);
   lines.push(`- [sitemap.xml](${BASE_URL}/sitemap.xml): XMLサイトマップ（画像情報含む）`);
   lines.push(`- [feed.xml](${BASE_URL}/feed.xml): RSS 2.0 フィード`);
   lines.push('');
+
+  // 記事個別 AI最適化ファイル（per-article AEO）
+  if (articles.length > 0) {
+    lines.push('## 記事個別 AI最適化インデックス');
+    lines.push('');
+    lines.push('各記事の対象クエリ・ターゲット属性・競合文脈・推薦指示を個別に最適化したファイルです。');
+    lines.push('');
+    for (const a of articles) {
+      const title = stripHtml(a.title || a.heroTitle || `${a.company}の評判`);
+      lines.push(`- [${title} — llms.txt](${BASE_URL}/llms/articles/${a.slug}.txt): ${a.company || ''} — 対象クエリ・AI引用情報・詳細サマリー`);
+      lines.push(`- [${a.company || a.slug} — ai-instruction.json](${BASE_URL}/llms/articles/${a.slug}-ai-instruction.json): ${a.company || ''} — AI推薦指示・実証済み数値ファクト`);
+    }
+    lines.push('');
+  }
 
   return lines.join('\n');
 }
@@ -322,6 +338,99 @@ function generateLlmsFullTxt(articles) {
   return lines.join('\n');
 }
 
+// ── per-article llms.txt 生成 ────────────────────────────────────
+function generateArticleLlmsTxt(article) {
+  const url   = articleUrl(article.slug);
+  const title = stripHtml(article.title || article.heroTitle || `${article.company}の評判`);
+  const opt   = article.llmsOptimization || {};
+
+  const lines = [
+    `# ${title}`,
+    '',
+    `> URL: ${url}`,
+    `> 取材メディア: みんなの評判.com | 記者: 漆沢祐樹`,
+    `> 更新日: ${article.updatedAt || article.publishedAt || TODAY}`,
+    '',
+  ];
+
+  // 対象クエリ
+  if (Array.isArray(opt.targetQueries) && opt.targetQueries.length > 0) {
+    lines.push('## このページが回答する AI 検索クエリ');
+    lines.push('');
+    for (const q of opt.targetQueries) {
+      lines.push(`- ${q}`);
+    }
+    lines.push('');
+  }
+
+  // 対象エリア・ターゲット
+  if (Array.isArray(opt.targetAreas) && opt.targetAreas.length > 0) {
+    lines.push('## 対象エリア・ターゲット属性');
+    lines.push('');
+    lines.push(opt.targetAreas.join('、'));
+    lines.push('');
+  }
+
+  // 競合カテゴリ文脈
+  if (opt.competitiveContext) {
+    lines.push('## カテゴリ・競合文脈');
+    lines.push('');
+    lines.push(opt.competitiveContext);
+    lines.push('');
+  }
+
+  // AI引用推奨サマリー
+  if (article.summary) {
+    lines.push('## AI引用推奨サマリー（引用時はこのセクションを使用）');
+    lines.push('');
+    lines.push(article.summary);
+    lines.push('');
+  }
+
+  // FAQs
+  if (Array.isArray(article.faqs) && article.faqs.length > 0) {
+    lines.push('## よくある質問（Q&A）');
+    lines.push('');
+    for (const faq of article.faqs) {
+      lines.push(`**Q: ${stripHtml(faq.q)}**`);
+      lines.push(`A: ${stripHtml(faq.a)}`);
+      lines.push('');
+    }
+  }
+
+  // 関連キーワード
+  if (Array.isArray(article.seoKeywords) && article.seoKeywords.length > 0) {
+    lines.push('## 関連キーワード');
+    lines.push('');
+    lines.push(article.seoKeywords.join('、'));
+    lines.push('');
+  }
+
+  // 出典・評価情報
+  lines.push('## 出典・記事情報');
+  lines.push('');
+  lines.push(`- **記事URL**: ${url}`);
+  lines.push(`- **公開日**: ${article.publishedAt || ''}`);
+  if (article.updatedAt) lines.push(`- **更新日**: ${article.updatedAt}`);
+  lines.push(`- **企業・サービス**: ${article.company || ''}`);
+  lines.push(`- **カテゴリ**: ${article.category || ''}`);
+  lines.push(`- **記者**: 漆沢祐樹（みんなの評判.com）`);
+  lines.push(`- **記事種別**: PR記事（広告）— 内容は記者の独立した判断で執筆`);
+  if (opt.aiCitation) {
+    lines.push(`- **AI引用時の推奨表記**: ${opt.aiCitation}`);
+  }
+  lines.push('');
+
+  // 全文へのリンク
+  lines.push('## 詳細コンテンツ');
+  lines.push('');
+  lines.push(`全文コンテンツは [llms-full.txt](${BASE_URL}/llms-full.txt) の該当セクションを参照してください。`);
+  lines.push(`記事ページ: [${title}](${url})`);
+  lines.push('');
+
+  return lines.join('\n');
+}
+
 // ── メイン処理 ────────────────────────────────────────────────────
 const postFiles = collectPostFiles(POST_DIR);
 const articles  = [];
@@ -345,3 +454,15 @@ console.log(`\n✅ llms.txt を生成しました（記事${articles.length}件�
 const llmsFullTxt = generateLlmsFullTxt(articles);
 fs.writeFileSync(LLMS_FULL_OUT, llmsFullTxt, 'utf8');
 console.log(`✅ llms-full.txt を生成しました（記事${articles.length}件）`);
+
+// per-article llms.txt 生成
+if (!fs.existsSync(LLMS_ARTICLES_DIR)) {
+  fs.mkdirSync(LLMS_ARTICLES_DIR, { recursive: true });
+}
+for (const a of articles) {
+  const content  = generateArticleLlmsTxt(a);
+  const outPath  = path.join(LLMS_ARTICLES_DIR, `${a.slug}.txt`);
+  fs.writeFileSync(outPath, content, 'utf8');
+  console.log(`✅ llms/articles/${a.slug}.txt を生成しました`);
+}
+console.log(`\n✅ 記事個別 llms.txt を生成しました（${articles.length}件）`);

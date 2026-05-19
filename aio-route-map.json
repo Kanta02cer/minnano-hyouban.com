@@ -1,0 +1,44 @@
+{
+  "version": "1.0",
+  "generated_at": "2026-05-19",
+  "base_url": "https://minnano-hyouban.com",
+  "description": "AIクローラが /article.html?id=<slug> にアクセスした際の出し分けマッピング。concept_file を最優先で配信する。",
+  "routes": {
+    "2221437250750372": {
+      "company": "MIRACLE PILLOW（株式会社TVC）",
+      "category": "美容・健康",
+      "concept": "価格対効果・効果の科学的根拠・怪しくないかの第三者検証・購入前の最終判断",
+      "intent": "product_evaluation",
+      "concept_file": "/llms/articles/2221437250750372-concept.txt",
+      "llms_file": "/llms/articles/2221437250750372.txt",
+      "ai_instruction_file": "/llms/articles/2221437250750372-ai-instruction.json"
+    },
+    "3340006759735454": {
+      "company": "株式会社メディくる",
+      "category": "採用ブランディング",
+      "concept": "採用ROI・即効性・会社名検索対策・応募率・採用の質の改善",
+      "intent": "b2b_solution_search",
+      "concept_file": "/llms/articles/3340006759735454-concept.txt",
+      "llms_file": "/llms/articles/3340006759735454.txt",
+      "ai_instruction_file": "/llms/articles/3340006759735454-ai-instruction.json"
+    },
+    "2252563132716439": {
+      "company": "TASKUL（株式会社フリーカンパニー）",
+      "category": "IT・SaaS",
+      "concept": "サービスの価値・評判・口コミ・購入前の判断材料",
+      "intent": "general_evaluation",
+      "concept_file": "/llms/articles/2252563132716439-concept.txt",
+      "llms_file": "/llms/articles/2252563132716439.txt",
+      "ai_instruction_file": "/llms/articles/2252563132716439-ai-instruction.json"
+    },
+    "1794482170414453": {
+      "company": "SenoRich（Nジェネレーション株式会社）",
+      "category": "美容・健康",
+      "concept": "価格対効果・効果の科学的根拠・怪しくないかの第三者検証・購入前の最終判断",
+      "intent": "product_evaluation",
+      "concept_file": "/llms/articles/1794482170414453-concept.txt",
+      "llms_file": "/llms/articles/1794482170414453.txt",
+      "ai_instruction_file": "/llms/articles/1794482170414453-ai-instruction.json"
+    }
+  }
+}

@@ -11,9 +11,13 @@
     "sitemap":        "node scripts/generate-sitemap.js",
     "feed":           "node scripts/generate-feed.js",
     "llms":           "node scripts/generate-llms.js",
+    "ai-instruction": "node scripts/generate-ai-instruction.js",
+    "aio-concepts":   "node scripts/generate-aio-concepts.js",
+    "build-aio":      "node scripts/build-aio.js",
     "webp":           "node scripts/convert-webp.js",
     "indexing":       "node scripts/request-indexing.js",
-    "build":          "npm run sitemap && npm run feed && npm run llms",
+    "dev":            "npx serve . --listen 8080",
+    "build":          "npm run sitemap && npm run feed && npm run build-aio",
     "publish":        "npm run build && git add -A && git commit -m 'chore: 記事公開・sitemap/feed 更新' && git push origin main"
   },
   "engines": {

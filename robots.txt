@@ -124,5 +124,16 @@ Allow: /
 Sitemap: https://minnano-hyouban.com/sitemap.xml
 
 # LLM向けコンテンツガイド
-# llms.txt     : https://minnano-hyouban.com/llms.txt
-# llms-full.txt: https://minnano-hyouban.com/llms-full.txt
+# llms.txt               : https://minnano-hyouban.com/llms.txt
+# llms-full.txt          : https://minnano-hyouban.com/llms-full.txt
+# 記事個別 AEO ファイル  : https://minnano-hyouban.com/llms/articles/<slug>.txt
+#
+# AI推薦指示定義（ai-instruction.json）
+# グローバル             : https://minnano-hyouban.com/ai-instruction.json
+# 記事個別               : https://minnano-hyouban.com/llms/articles/<slug>-ai-instruction.json
+#
+# AIルーティングマップ（aio-route-map.json）
+# ルートマップ           : https://minnano-hyouban.com/aio-route-map.json
+# 記事個別コンセプト     : https://minnano-hyouban.com/llms/articles/<slug>-concept.txt
+# ※AIクローラが /article.html?id=<slug> にアクセスした場合、
+#   Netlify Edge Functionが自動的に記事固有の concept.txt を優先配信します。

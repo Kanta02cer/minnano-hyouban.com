@@ -18,6 +18,9 @@
   <meta property="og:image" content="images/placeholders/og-career.svg">
   <meta property="og:url" content="https://minnano-hyouban.com/article.html">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="みんなの評判.com | 第三者記者が書く、企業評判メディア">
+  <meta name="twitter:description" content="就職前に知りたい企業のリアルな評判と働く魅力を第三者が届ける。">
+  <meta name="twitter:image" content="https://minnano-hyouban.com/images/urushizawa-face-close.jpg">
   <!-- canonical（JS で記事ごとに上書きされる。クローラー向け静的フォールバック） -->
   <link rel="canonical" href="https://minnano-hyouban.com/article.html">
   <!-- 個別記事はスニペット・アーカイブ共に許可。検索結果での表示を最大化 -->
@@ -25,6 +28,7 @@
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
   <link rel="alternate" type="application/rss+xml" title="みんなの評判.com — 新着記事" href="/feed.xml">
   <!-- AI/LLM向けコンテンツガイド（llmstxt.org 仕様） -->
+  <link rel="alternate" type="text/plain" href="/llms.txt">
   <link rel="llms-txt" href="/llms.txt">
   <link rel="manifest" href="/manifest.json">
   <!-- 静的フォールバック JSON-LD（JS未実行クローラ・AIクローラ向け） -->
@@ -221,13 +225,18 @@
   <script src="_post/medikuru_official/3340006759735454-medikuru.js"></script>
                                                             <script src="data/articles.js"></script>
   <script>
-    // Google クローラー向け：DOMContentLoaded を待たずに title/meta を同期設定
+    // Google クローラー向け：DOMContentLoaded を待たずに title/meta/JSON-LD を同期設定
     (function() {
       var params = new URLSearchParams(location.search);
       var slug = (params.get('id') || '').trim();
       if (!slug || !Array.isArray(window.ARTICLES)) return;
       var art = window.ARTICLES.find(function(a) { return a.slug === slug; });
       if (!art) return;
+
+      var baseUrl = 'https://minnano-hyouban.com';
+      var articleUrl = baseUrl + '/article.html?id=' + encodeURIComponent(slug);
+
+      // --- meta / OGP 更新 ---
       var t = art.title || (art.company + 'の評判・口コミ｜みんなの評判.com');
       document.title = t;
       var desc = document.querySelector('meta[name="description"]');
@@ -236,8 +245,138 @@
       if (ogTitle) ogTitle.setAttribute('content', t);
       var ogDesc = document.querySelector('meta[property="og:description"]');
       if (ogDesc && art.metaDesc) ogDesc.setAttribute('content', art.metaDesc);
+      var ogImage = document.querySelector('meta[property="og:image"]');
+      if (ogImage && art.ogImage) ogImage.setAttribute('content', baseUrl + '/' + art.ogImage);
+      var ogUrl = document.querySelector('meta[property="og:url"]');
+      if (ogUrl) ogUrl.setAttribute('content', articleUrl);
+      var twTitle = document.querySelector('meta[name="twitter:title"]');
+      if (twTitle) twTitle.setAttribute('content', t);
+      var twDesc = document.querySelector('meta[name="twitter:description"]');
+      if (twDesc && art.metaDesc) twDesc.setAttribute('content', art.metaDesc);
+      var twImage = document.querySelector('meta[name="twitter:image"]');
+      if (twImage && art.ogImage) twImage.setAttribute('content', baseUrl + '/' + art.ogImage);
       var canonical = document.querySelector('link[rel="canonical"]');
-      if (canonical) canonical.setAttribute('href', 'https://minnano-hyouban.com/article.html?id=' + encodeURIComponent(slug));
+      if (canonical) canonical.setAttribute('href', articleUrl);
+
+      // --- 平均レーティング計算 ---
+      var avgRating = null, ratingCount = 0;
+      if (art.reviews && art.reviews.length) {
+        var sum = art.reviews.reduce(function(acc, r) { return acc + (r.stars || 0); }, 0);
+        avgRating = Math.round(sum / art.reviews.length * 10) / 10;
+        ratingCount = art.reviews.length;
+      }
+
+      // --- 動的 JSON-LD 生成 ---
+      var schemas = [];
+
+      // BreadcrumbList（記事固有タイトル入り）
+      schemas.push({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        'itemListElement': [
+          { '@type': 'ListItem', 'position': 1, 'name': 'トップ', 'item': baseUrl + '/' },
+          { '@type': 'ListItem', 'position': 2, 'name': '記事一覧', 'item': baseUrl + '/articles.html' },
+          { '@type': 'ListItem', 'position': 3, 'name': art.company || t, 'item': articleUrl }
+        ]
+      });
+
+      if (art.schemaType === 'Product') {
+        // Product スキーマ
+        var product = {
+          '@context': 'https://schema.org',
+          '@type': 'Product',
+          'name': art.brand || art.company,
+          'description': art.summary || art.metaDesc || '',
+          'url': articleUrl,
+          'brand': { '@type': 'Brand', 'name': art.brand || art.company }
+        };
+        if (art.manufacturer) product.manufacturer = { '@type': 'Organization', 'name': art.manufacturer };
+        if (art.heroImg) product.image = baseUrl + '/' + art.heroImg;
+        if (art.sameAs && art.sameAs.length) product.sameAs = art.sameAs;
+        if (avgRating !== null) {
+          product.aggregateRating = {
+            '@type': 'AggregateRating',
+            'ratingValue': String(avgRating),
+            'reviewCount': String(ratingCount),
+            'bestRating': '5',
+            'worstRating': '1'
+          };
+        }
+        if (art.priceInfo) {
+          product.offers = {
+            '@type': 'Offer',
+            'price': art.priceInfo.value,
+            'priceCurrency': art.priceInfo.currency || 'JPY',
+            'url': art.priceInfo.url || articleUrl,
+            'availability': 'https://schema.org/InStock'
+          };
+          if (art.priceInfo.description) product.offers.description = art.priceInfo.description;
+        }
+        schemas.push(product);
+
+      } else {
+        // NewsArticle スキーマ
+        var article = {
+          '@context': 'https://schema.org',
+          '@type': 'NewsArticle',
+          'headline': t,
+          'description': art.metaDesc || art.summary || '',
+          'url': articleUrl,
+          'datePublished': art.publishedAt || '',
+          'dateModified': art.updatedAt || art.publishedAt || '',
+          'inLanguage': 'ja-JP',
+          'isAccessibleForFree': true,
+          'author': {
+            '@type': 'Person',
+            '@id': baseUrl + '/#person-urushizawa',
+            'name': '漆沢 祐樹'
+          },
+          'publisher': {
+            '@type': 'Organization',
+            '@id': baseUrl + '/#organization',
+            'name': 'みんなの評判.com',
+            'logo': { '@type': 'ImageObject', 'url': baseUrl + '/favicon.png', 'width': 512, 'height': 512 }
+          }
+        };
+        if (art.heroImg) article.image = baseUrl + '/' + art.heroImg;
+        if (avgRating !== null) {
+          article.aggregateRating = {
+            '@type': 'AggregateRating',
+            'ratingValue': String(avgRating),
+            'reviewCount': String(ratingCount),
+            'bestRating': '5',
+            'worstRating': '1'
+          };
+        }
+        schemas.push(article);
+      }
+
+      // FAQPage スキーマ（art.faqs が存在する場合に追加）
+      var faqItems = (art.faqs || []).concat(art.relatedQA || []);
+      if (faqItems.length > 0) {
+        schemas.push({
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          'mainEntity': faqItems.map(function(item) {
+            return {
+              '@type': 'Question',
+              'name': item.q,
+              'acceptedAnswer': {
+                '@type': 'Answer',
+                'text': item.a
+              }
+            };
+          })
+        });
+      }
+
+      // --- head へ注入 ---
+      schemas.forEach(function(schema) {
+        var s = document.createElement('script');
+        s.type = 'application/ld+json';
+        s.textContent = JSON.stringify(schema);
+        document.head.appendChild(s);
+      });
     })();
   </script>
   <script>

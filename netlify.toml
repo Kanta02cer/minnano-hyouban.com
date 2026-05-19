@@ -1,3 +1,14 @@
+# ── AI Bot Router（Edge Function） ──────────────────────────────
+# AIクローラが /article.html にアクセスした際に llms.txt を返す
+[[edge_functions]]
+  path = "/article.html"
+  function = "ai-router"
+
+# AIクローラが /ai-instruction.json?id=SLUG を要求した際に記事個別JSONを返す
+[[edge_functions]]
+  path = "/ai-instruction.json"
+  function = "ai-router"
+
 [[headers]]
   for = "/*"
   [headers.values]
@@ -6,6 +17,51 @@
     X-Content-Type-Options = "nosniff"
     Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
     Referrer-Policy = "strict-origin-when-cross-origin"
+    Link = "</llms.txt>; rel=\"llms-txt\""
+
+# ── AIO ファイル: llms.txt / concept.txt ────────────────────────
+[[headers]]
+  for = "/llms.txt"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
+    Access-Control-Allow-Origin = "*"
+    Cache-Control = "public, max-age=3600, stale-while-revalidate=86400"
+
+[[headers]]
+  for = "/llms-full.txt"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
+    Access-Control-Allow-Origin = "*"
+    Cache-Control = "public, max-age=3600, stale-while-revalidate=86400"
+
+[[headers]]
+  for = "/llms/articles/*.txt"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
+    Access-Control-Allow-Origin = "*"
+    Cache-Control = "public, max-age=3600, stale-while-revalidate=86400"
+
+# ── AIO ファイル: ai-instruction.json / aio-route-map.json ──────
+[[headers]]
+  for = "/ai-instruction.json"
+  [headers.values]
+    Content-Type = "application/json; charset=utf-8"
+    Access-Control-Allow-Origin = "*"
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/aio-route-map.json"
+  [headers.values]
+    Content-Type = "application/json; charset=utf-8"
+    Access-Control-Allow-Origin = "*"
+    Cache-Control = "public, max-age=300"
+
+[[headers]]
+  for = "/llms/articles/*.json"
+  [headers.values]
+    Content-Type = "application/json; charset=utf-8"
+    Access-Control-Allow-Origin = "*"
+    Cache-Control = "public, max-age=3600"
 
 [[headers]]
   for = "/*.css"

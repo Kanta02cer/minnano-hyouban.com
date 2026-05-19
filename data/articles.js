@@ -38,8 +38,12 @@ const __ALL_POST_KEYS = [
   "__POST_3340006759735454"   // _post/medikuru_official/3340006759735454-medikuru
 ];
 
-// 個別ファイルから読み込んだデータを集約（publishedAt 降順でソート）
+// 個別ファイルから読み込んだデータを集約（featured 優先 → publishedAt 降順でソート）
 window.ARTICLES = __ALL_POST_KEYS
   .map(key => window[key])
   .filter(Boolean)
-  .sort((a, b) => (b.publishedAt || '').localeCompare(a.publishedAt || ''));
+  .sort((a, b) => {
+    if (a.featured && !b.featured) return -1;
+    if (!a.featured && b.featured) return 1;
+    return (b.publishedAt || '').localeCompare(a.publishedAt || '');
+  });
