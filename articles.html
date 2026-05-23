@@ -28,6 +28,8 @@
   </script>
   <title>企業研究レポート一覧｜みんなの評判.com — 社長・社員・利用者へ直接取材した就職前の企業研究メディア</title>
   <meta name="description" content="企業研究レポート一覧｜就職・転職を検討している方に向けて、社長インタビュー・社員の声・利用者評判を第三者記者が直接取材。採用中・成長中の企業を1社ずつ企業研究レポートとして掲載。">
+  <meta name="keywords" content="企業研究,採用評判,就職,転職,社風,社長インタビュー,社員の声,みんなの評判,漆沢祐樹,第三者取材,口コミ,評判,採用ブランディング,会社名検索対策,企業口コミ,怪しい,サービス評判">
+  <meta name="theme-color" content="#1d4ed8">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
   <meta property="og:title" content="企業研究レポート一覧｜みんなの評判.com — 社長・社員・利用者へ直接取材">
   <meta property="og:description" content="就職・転職を検討している方向けの企業研究レポート一覧。社長・社員・利用者への第三者取材で企業のリアルな評判と働く魅力を届けるメディア。">
@@ -80,6 +82,47 @@
       "name": "漆沢 祐樹",
       "url": "https://minnano-hyouban.com/editor.html"
     }
+  }
+  </script>
+  <!-- FAQPage: 記事一覧ページ向けクエリ対策 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "みんなの評判.comの記事一覧はどんな企業が掲載されていますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "美容・健康、IT・SaaS、採用ブランディング、キャリア・転職など幅広いカテゴリの企業評判レポートを掲載しています。楽天Infoseek・ニコニコニュース・エキサイトニュースなど大手ニュースサイトに掲載実績がある企業を優先的に取材対象としています。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "記事の評判・口コミは信頼できますか？第三者取材とは？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "実際のサービス利用者5名以上への直接インタビューと運営会社への取材を経て執筆しています。取材は記者・漆沢祐樹が独立して行い、取材企業による内容修正・ネガティブ情報の削除要求には応じない編集ポリシーを採用しています。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "企業・サービスの「怪しい」「詐欺」かどうかを調べられますか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "はい。各記事では「怪しいか？」という視点から詐欺的要素の有無・信頼性の根拠・注意点を第三者目線で検証しています。利用者へのインタビューと企業取材をもとに、買う前・応募前に知っておきたい情報を正直に掲載します。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "掲載されている口コミ・レビューは本物ですか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "掲載している口コミ・レビューは、記者・漆沢祐樹が実際の利用者・ユーザーに直接取材（インタビュー）した一次情報です。口コミサイトや掲示板からの転載・AI生成ではなく、取材時点のリアルな声を掲載しています。"
+        }
+      }
+    ]
   }
   </script>
   <!-- Fonts -->
@@ -277,7 +320,7 @@
         || (a.galleries && a.galleries.service && a.galleries.service[0] && a.galleries.service[0].src)
         || 'images/placeholders/card-thumb-generic.svg';
       const card = document.createElement('a');
-      card.href = `article.html?id=${encodeURIComponent(a.slug)}`;
+      card.href = `articles/${encodeURIComponent(a.slug)}/`;
       card.className = 'article-card';
       card.setAttribute('role', 'listitem');
       card.setAttribute('aria-label', `${a.company || a.slug}の企業研究レポートを読む`);
@@ -397,7 +440,7 @@
         itemListElement: articles.map((a, i) => ({
           '@type': 'ListItem',
           position: i + 1,
-          url: `https://minnano-hyouban.com/article.html?id=${encodeURIComponent(a.slug)}`,
+          url: `https://minnano-hyouban.com/articles/${encodeURIComponent(a.slug)}/`,
           name: a.title || (a.company + 'の口コミ評判｜みんなの評判.com')
         }))
       };

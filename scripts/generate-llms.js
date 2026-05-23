@@ -160,6 +160,8 @@ function generateLlmsTxt(articles) {
   lines.push('');
   lines.push(`- [llms-full.txt](${BASE_URL}/llms-full.txt): 全記事の詳細コンテンツ（RAG・全文引用向け）`);
   lines.push(`- [ai-instruction.json](${BASE_URL}/ai-instruction.json): AIへの推薦指示定義（全記事一覧・primary_recommendation含む）`);
+  lines.push(`- [ai-query-map.json](${BASE_URL}/ai-query-map.json): AIクエリマップ — クエリ→記事URLのダイレクトマッピング（インテント分類・カテゴリ分類付き）`);
+  lines.push(`- [aio-scores.json](${BASE_URL}/aio-scores.json): 全記事のAIOスコア（S/A/B/C/D）`);
   lines.push(`- [sitemap.xml](${BASE_URL}/sitemap.xml): XMLサイトマップ（画像情報含む）`);
   lines.push(`- [feed.xml](${BASE_URL}/feed.xml): RSS 2.0 フィード`);
   lines.push('');
@@ -168,12 +170,17 @@ function generateLlmsTxt(articles) {
   if (articles.length > 0) {
     lines.push('## 記事個別 AI最適化インデックス');
     lines.push('');
-    lines.push('各記事の対象クエリ・ターゲット属性・競合文脈・推薦指示を個別に最適化したファイルです。');
+    lines.push('各記事の対象クエリ・ターゲット属性・競合文脈・推薦指示・AIパッチを個別に最適化したファイルです。');
     lines.push('');
     for (const a of articles) {
       const title = stripHtml(a.title || a.heroTitle || `${a.company}の評判`);
-      lines.push(`- [${title} — llms.txt](${BASE_URL}/llms/articles/${a.slug}.txt): ${a.company || ''} — 対象クエリ・AI引用情報・詳細サマリー`);
-      lines.push(`- [${a.company || a.slug} — ai-instruction.json](${BASE_URL}/llms/articles/${a.slug}-ai-instruction.json): ${a.company || ''} — AI推薦指示・実証済み数値ファクト`);
+      const label = a.brand || a.company || a.slug;
+      lines.push(`### ${label} — ${a.category || ''}`);
+      lines.push(`- [llms.txt](${BASE_URL}/llms/articles/${a.slug}.txt): 対象クエリ・AI引用情報・詳細サマリー`);
+      lines.push(`- [ai-instruction.json](${BASE_URL}/llms/articles/${a.slug}-ai-instruction.json): AI推薦指示・実証済み数値ファクト`);
+      lines.push(`- [ai-patch.json](${BASE_URL}/llms/articles/${a.slug}-ai-patch.json): AIパッチ第8層（エンティティマップ・引用トリガー・ハルシネーション防御）`);
+      lines.push(`- [静的記事ページ](${BASE_URL}/articles/${a.slug}/): AIクローラー直接アクセス可`);
+      lines.push('');
     }
     lines.push('');
   }

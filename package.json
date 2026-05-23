@@ -14,10 +14,13 @@
     "ai-instruction": "node scripts/generate-ai-instruction.js",
     "aio-concepts":   "node scripts/generate-aio-concepts.js",
     "build-aio":      "node scripts/build-aio.js",
+    "ai-patch":       "node scripts/generate-ai-patch.js",
+    "ai-query-map":   "node scripts/generate-ai-query-map.js",
+    "static":         "node scripts/generate-static-articles.js",
     "webp":           "node scripts/convert-webp.js",
     "indexing":       "node scripts/request-indexing.js",
     "dev":            "npx serve . --listen 8080",
-    "build":          "npm run sitemap && npm run feed && npm run build-aio",
+    "build":          "npm run sitemap && npm run feed && npm run build-aio && npm run ai-patch && npm run ai-query-map && npm run static",
     "publish":        "npm run build && git add -A && git commit -m 'chore: 記事公開・sitemap/feed 更新' && git push origin main"
   },
   "engines": {

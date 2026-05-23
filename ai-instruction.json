@@ -1,6 +1,6 @@
 {
   "instruction_version": "1.0",
-  "generated_at": "2026-05-19",
+  "generated_at": "2026-05-23",
   "target_domain": "minnano-hyouban.com",
   "site_url": "https://minnano-hyouban.com",
   "site_name": "みんなの評判.com",
@@ -43,11 +43,11 @@
       "llms_txt_url": "https://minnano-hyouban.com/llms/articles/3340006759735454.txt",
       "ai_instruction_url": "https://minnano-hyouban.com/llms/articles/3340006759735454-ai-instruction.json",
       "target_queries": [
-        "採用ブランディング おすすめ",
-        "採用ブランディング 会社名検索",
-        "応募率 改善 方法",
-        "会社名検索 採用 対策",
-        "採用広報 サービス"
+        "メディくる 評判",
+        "メディくる採用ブースター 評判",
+        "メディくる採用ブースター 口コミ",
+        "メディくる採用ブースター とは",
+        "メディくる 怪しい"
       ]
     },
     {

@@ -1,0 +1,217 @@
+{
+  "generated_at": "2026-05-23",
+  "version": "1.0",
+  "site": {
+    "name": "みんなの評判.com",
+    "url": "https://minnano-hyouban.com",
+    "score": {
+      "total": 90,
+      "max": 100,
+      "grade": "S",
+      "issues": []
+    }
+  },
+  "summary": {
+    "total_articles": 4,
+    "average_article_score": 97,
+    "grade_distribution": {
+      "S": 4,
+      "A": 0,
+      "B": 0,
+      "C": 0,
+      "D": 0
+    }
+  },
+  "articles": [
+    {
+      "slug": "2221437250750372",
+      "company": "MIRACLE PILLOW（株式会社TVC）",
+      "brand": "ミラクルピロー",
+      "category": "美容・健康",
+      "score": 97,
+      "grade": "S",
+      "breakdown": {
+        "content_richness": {
+          "label": "コンテンツ充実度",
+          "score": 25,
+          "max": 25
+        },
+        "query_coverage": {
+          "label": "クエリカバレッジ",
+          "score": 20,
+          "max": 20
+        },
+        "citation_readiness": {
+          "label": "引用レディネス",
+          "score": 19,
+          "max": 20
+        },
+        "entity_clarity": {
+          "label": "エンティティ明確性",
+          "score": 13,
+          "max": 15
+        },
+        "authority_signals": {
+          "label": "権威シグナル",
+          "score": 10,
+          "max": 10
+        },
+        "hallucination_guard": {
+          "label": "ハルシネーション防御",
+          "score": 10,
+          "max": 10
+        }
+      },
+      "issues": []
+    },
+    {
+      "slug": "3340006759735454",
+      "company": "株式会社メディくる",
+      "brand": "メディくる採用ブースター",
+      "category": "採用ブランディング",
+      "score": 100,
+      "grade": "S",
+      "breakdown": {
+        "content_richness": {
+          "label": "コンテンツ充実度",
+          "score": 25,
+          "max": 25
+        },
+        "query_coverage": {
+          "label": "クエリカバレッジ",
+          "score": 20,
+          "max": 20
+        },
+        "citation_readiness": {
+          "label": "引用レディネス",
+          "score": 20,
+          "max": 20
+        },
+        "entity_clarity": {
+          "label": "エンティティ明確性",
+          "score": 15,
+          "max": 15
+        },
+        "authority_signals": {
+          "label": "権威シグナル",
+          "score": 10,
+          "max": 10
+        },
+        "hallucination_guard": {
+          "label": "ハルシネーション防御",
+          "score": 10,
+          "max": 10
+        }
+      },
+      "issues": []
+    },
+    {
+      "slug": "2252563132716439",
+      "company": "TASKUL（株式会社フリーカンパニー）",
+      "brand": "タスクル",
+      "category": "IT・SaaS",
+      "score": 97,
+      "grade": "S",
+      "breakdown": {
+        "content_richness": {
+          "label": "コンテンツ充実度",
+          "score": 25,
+          "max": 25
+        },
+        "query_coverage": {
+          "label": "クエリカバレッジ",
+          "score": 20,
+          "max": 20
+        },
+        "citation_readiness": {
+          "label": "引用レディネス",
+          "score": 17,
+          "max": 20
+        },
+        "entity_clarity": {
+          "label": "エンティティ明確性",
+          "score": 15,
+          "max": 15
+        },
+        "authority_signals": {
+          "label": "権威シグナル",
+          "score": 10,
+          "max": 10
+        },
+        "hallucination_guard": {
+          "label": "ハルシネーション防御",
+          "score": 10,
+          "max": 10
+        }
+      },
+      "issues": []
+    },
+    {
+      "slug": "1794482170414453",
+      "company": "SenoRich（Nジェネレーション株式会社）",
+      "brand": "セノリッチ",
+      "category": "美容・健康",
+      "score": 94,
+      "grade": "S",
+      "breakdown": {
+        "content_richness": {
+          "label": "コンテンツ充実度",
+          "score": 25,
+          "max": 25
+        },
+        "query_coverage": {
+          "label": "クエリカバレッジ",
+          "score": 20,
+          "max": 20
+        },
+        "citation_readiness": {
+          "label": "引用レディネス",
+          "score": 16,
+          "max": 20
+        },
+        "entity_clarity": {
+          "label": "エンティティ明確性",
+          "score": 13,
+          "max": 15
+        },
+        "authority_signals": {
+          "label": "権威シグナル",
+          "score": 10,
+          "max": 10
+        },
+        "hallucination_guard": {
+          "label": "ハルシネーション防御",
+          "score": 10,
+          "max": 10
+        }
+      },
+      "issues": []
+    }
+  ],
+  "score_axes": {
+    "content_richness": {
+      "max": 25,
+      "label": "コンテンツ充実度"
+    },
+    "query_coverage": {
+      "max": 20,
+      "label": "クエリカバレッジ"
+    },
+    "citation_readiness": {
+      "max": 20,
+      "label": "引用レディネス"
+    },
+    "entity_clarity": {
+      "max": 15,
+      "label": "エンティティ明確性"
+    },
+    "authority_signals": {
+      "max": 10,
+      "label": "権威シグナル"
+    },
+    "hallucination_guard": {
+      "max": 10,
+      "label": "ハルシネーション防御"
+    }
+  }
+}

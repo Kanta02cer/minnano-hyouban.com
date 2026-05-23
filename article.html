@@ -24,8 +24,8 @@
   <meta name="twitter:image" content="https://minnano-hyouban.com/images/urushizawa-face-close.jpg">
   <!-- canonical（JS で記事ごとに上書きされる。クローラー向け静的フォールバック） -->
   <link rel="canonical" href="https://minnano-hyouban.com/article.html">
-  <!-- 個別記事はスニペット・アーカイブ共に許可。検索結果での表示を最大化 -->
-  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <!-- 個別記事の正規URLは articles/{slug}/ — 動的ページは重複コンテンツ防止のため noindex -->
+  <meta name="robots" content="noindex, follow">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
   <link rel="alternate" type="application/rss+xml" title="みんなの評判.com — 新着記事" href="/feed.xml">
   <!-- AI/LLM向けコンテンツガイド（llmstxt.org 仕様） -->
@@ -235,7 +235,7 @@
       if (!art) return;
 
       var baseUrl = 'https://minnano-hyouban.com';
-      var articleUrl = baseUrl + '/article.html?id=' + encodeURIComponent(slug);
+      var articleUrl = baseUrl + '/articles/' + encodeURIComponent(slug) + '/';
 
       // --- meta / OGP 更新 ---
       var t = art.title || (art.company + 'の評判・口コミ｜みんなの評判.com');

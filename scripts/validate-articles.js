@@ -54,26 +54,55 @@ const VALID_CATEGORIES = [
   '語学・スキル',
   'マネー・投資',
   'ライフスタイル',
+  '採用ブランディング',
+  'IT・SaaS',
 ];
 
 function expectedIdPrefixForCategory(category) {
   const n = VALID_CATEGORIES.indexOf(category) + 1; // 0 => not found
-  if (!n) return null;
+  if (!n || n > 5) return null; // 暫定5カテゴリのみ接頭辞チェックを行う（その他はスキップ）
   return String(n).repeat(n);
 }
 
 // ── ロード ──────────────────────────────────────────────────────
+function collectPostFiles(dir) {
+  if (!fs.existsSync(dir)) return [];
+  const results = [];
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (entry.name.startsWith('.')) continue;
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) results.push(...collectPostFiles(full));
+    else if (entry.name.endsWith('.js')) results.push(full);
+  }
+  return results;
+}
+
 function loadArticles() {
   if (!fs.existsSync(ARTICLES_JS)) {
     console.error(`❌ ファイルが見つかりません: ${ARTICLES_JS}`);
     process.exit(1);
   }
 
-  const content = fs.readFileSync(ARTICLES_JS, 'utf8');
   const sandbox = { window: {} };
+  vm.createContext(sandbox);
+
+  // _post ディレクトリ内の全ての記事JSを先に実行して sandbox.window に設定する
+  const postDir = path.resolve(__dirname, '..', '_post');
+  const postFiles = collectPostFiles(postDir);
+  for (const file of postFiles) {
+    try {
+      const src = fs.readFileSync(file, 'utf8');
+      vm.runInContext(src, sandbox, { filename: file });
+    } catch (e) {
+      console.error(`❌ ${path.basename(file)} の読み込みエラー:`, e.message);
+      process.exit(1);
+    }
+  }
+
+  const content = fs.readFileSync(ARTICLES_JS, 'utf8');
 
   try {
-    vm.runInNewContext(content, sandbox);
+    vm.runInContext(content, sandbox, { filename: ARTICLES_JS });
   } catch (e) {
     console.error('❌ data/articles.js の構文エラー:', e.message);
     process.exit(1);

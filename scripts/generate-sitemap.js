@@ -77,11 +77,13 @@ function resolveImageUrl(u) {
 
 // ── 静的ページ定義 ────────────────────────────────────────────────
 const STATIC_PAGES = [
-  { loc: '/',              lastmod: TODAY, changefreq: 'weekly',  priority: '1.0' },
-  { loc: '/articles.html', lastmod: TODAY, changefreq: 'weekly',  priority: '0.6' },
-  { loc: '/editor.html',   lastmod: TODAY, changefreq: 'monthly', priority: '0.7' },
-  { loc: '/privacy.html',  lastmod: TODAY, changefreq: 'yearly',  priority: '0.4' },
-  { loc: '/disclaimer.html', lastmod: TODAY, changefreq: 'yearly', priority: '0.4' },
+  { loc: '/',                lastmod: TODAY, changefreq: 'weekly',  priority: '1.0' },
+  { loc: '/articles.html',   lastmod: TODAY, changefreq: 'weekly',  priority: '0.6' },
+  { loc: '/editor.html',     lastmod: TODAY, changefreq: 'monthly', priority: '0.7' },
+  { loc: '/guide.html',      lastmod: TODAY, changefreq: 'monthly', priority: '0.5' },
+  { loc: '/tokushoho.html',  lastmod: TODAY, changefreq: 'yearly',  priority: '0.3' },
+  { loc: '/privacy.html',    lastmod: TODAY, changefreq: 'yearly',  priority: '0.4' },
+  { loc: '/disclaimer.html', lastmod: TODAY, changefreq: 'yearly',  priority: '0.4' },
 ];
 
 // ── メイン処理 ────────────────────────────────────────────────────
@@ -118,16 +120,17 @@ for (const page of STATIC_PAGES) {
 }
 
 if (articles.length > 0) {
-  lines.push('  <!-- 個別記事（slug = 16桁数値ID）— 最高優先度で指名検索上位を狙う -->');
+  lines.push('  <!-- 個別記事（静的URL: articles/{slug}/）— canonical と一致させ最高優先度 -->');
   for (const a of articles) {
-    const loc      = `${BASE_URL}/article.html?id=${encodeURIComponent(a.slug)}`;
-    const lastmod  = a.updatedAt || a.publishedAt || TODAY;
-    const imageUrl = resolveImageUrl(a.ogImage);
-    const title    = a.title || (a.company ? `${a.company}の口コミ評判｜みんなの評判.com` : '');
-    const company  = (a.company || '').split(/[（(]/)[0].trim();
+    const staticLoc  = `${BASE_URL}/articles/${encodeURIComponent(a.slug)}/`;
+    const lastmod    = a.updatedAt || a.publishedAt || TODAY;
+    const imageUrl   = resolveImageUrl(a.ogImage);
+    const title      = a.title || (a.company ? `${a.company}の口コミ評判｜みんなの評判.com` : '');
+    const company    = (a.company || '').split(/[（(]/)[0].trim();
 
+    // 静的URL（canonical と一致・priority 最高）
     lines.push('  <url>');
-    lines.push(`    <loc>${xmlEsc(loc)}</loc>`);
+    lines.push(`    <loc>${xmlEsc(staticLoc)}</loc>`);
     lines.push(`    <lastmod>${xmlEsc(lastmod)}</lastmod>`);
     lines.push('    <changefreq>monthly</changefreq>');
     lines.push('    <priority>0.9</priority>');

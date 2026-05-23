@@ -43,10 +43,14 @@ function buildJsonLd(a) {
     ? (a.reviews.reduce((s, r) => s + r.stars, 0) / a.reviews.length).toFixed(1)
     : null;
 
-  // ── FAQPage ──────────────────────────────────────────────────
-  const faqPage = a.faqs && a.faqs.length ? {
+  // ── FAQPage（faqs + relatedQA を統合）──────────────────────────
+  const allFaqs = [
+    ...(a.faqs || []),
+    ...(a.relatedQA || []),
+  ];
+  const faqPage = allFaqs.length ? {
     '@type': 'FAQPage',
-    mainEntity: a.faqs.map(f => ({
+    mainEntity: allFaqs.map(f => ({
       '@type': 'Question',
       name: f.q,
       acceptedAnswer: { '@type': 'Answer', text: f.a }
@@ -242,6 +246,25 @@ function renderReviews(reviews) {
 </section>`;
 }
 
+function renderGallery(galleries) {
+  if (!galleries || !galleries.service || !galleries.service.length) return '';
+  return `
+<section class="article-gallery" aria-label="写真ギャラリー">
+  <h2>取材写真・製品ギャラリー</h2>
+  <p class="review-note" style="margin-bottom: 16px;">記者・漆沢祐樹の現地取材・製品撮影によるアセット一覧です。</p>
+  <div class="gallery-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 16px;">
+    ${galleries.service.map(img => {
+      const src = img.src.startsWith('http') || img.src.startsWith('/') ? img.src : `/${img.src}`;
+      return `
+    <figure style="margin: 0; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; background: #f9fafb; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+      <img src="${esc(src)}" alt="${esc(img.alt)}" style="width: 100%; height: 210px; object-fit: cover; display: block;" loading="lazy">
+      ${img.caption ? `<figcaption style="padding: 10px 14px; font-size: 13px; color: #555; line-height: 1.5; border-top: 1px solid #e5e7eb; background: #fff;">${esc(img.caption)}</figcaption>` : ''}
+    </figure>`;
+    }).join('')}
+  </div>
+</section>`;
+}
+
 function renderFaqs(faqs) {
   if (!faqs || !faqs.length) return '';
   return `
@@ -249,6 +272,20 @@ function renderFaqs(faqs) {
   <h2>よくある質問（FAQ）</h2>
   ${faqs.map((f, i) => `
   <details class="faq-item" ${i < 3 ? 'open' : ''}>
+    <summary class="faq-q"><strong>Q. ${esc(f.q)}</strong></summary>
+    <div class="faq-a"><p>${esc(f.a)}</p></div>
+  </details>`).join('')}
+</section>`;
+}
+
+function renderRelatedQA(relatedQA) {
+  if (!relatedQA || !relatedQA.length) return '';
+  return `
+<section class="faqs" aria-label="関連Q&amp;A">
+  <h2>関連Q&amp;A — よく検索される疑問</h2>
+  <p style="font-size:13px;color:#888;margin-bottom:16px">記者・漆沢祐樹の取材をもとに、よく検索される質問に答えます。</p>
+  ${relatedQA.map((f, i) => `
+  <details class="faq-item">
     <summary class="faq-q"><strong>Q. ${esc(f.q)}</strong></summary>
     <div class="faq-a"><p>${esc(f.a)}</p></div>
   </details>`).join('')}
@@ -266,6 +303,16 @@ function generateHtml(a) {
     ? (a.reviews.reduce((s, r) => s + r.stars, 0) / a.reviews.length).toFixed(1)
     : null;
 
+  // ai-patch.json をインライン埋め込み用に読み込む（存在する場合のみ）
+  const aiPatchPath = path.join(ROOT, 'llms', 'articles', `${a.slug}-ai-patch.json`);
+  const aiPatchData = fs.existsSync(aiPatchPath)
+    ? JSON.parse(fs.readFileSync(aiPatchPath, 'utf8'))
+    : null;
+  const aiPatchInline = aiPatchData ? JSON.stringify(aiPatchData) : null;
+
+  // targetQueries
+  const targetQueries = a.llmsOptimization?.targetQueries || [];
+
   return `<!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -279,6 +326,7 @@ function generateHtml(a) {
   <meta name="description" content="${esc(a.metaDesc)}">
   <meta name="keywords" content="${esc((a.seoKeywords || []).slice(0, 12).join(','))}">
   <meta name="author" content="漆沢 祐樹（みんなの評判.com）">
+  <meta name="theme-color" content="#1d4ed8">
   <meta name="robots" content="index, follow">
 
   <!-- Canonical -->
@@ -304,15 +352,38 @@ function generateHtml(a) {
 
   <!-- AI / LLM クローラー向けガイダンス -->
   <link rel="llms-txt" href="/llms.txt">
-  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM Content Guide">
-  <link rel="alternate" type="application/json" href="/llms/articles/${a.slug}-ai-instruction.json" title="AI Article Instructions">
+  <link rel="alternate" type="text/plain" href="/llms/articles/${a.slug}.txt" title="Article LLM Guide">
+  <link rel="alternate" type="application/json" href="/llms/articles/${a.slug}-ai-instruction.json" title="AI Recommendation Instructions">
+  <link rel="alternate" type="application/json" href="/llms/articles/${a.slug}-ai-patch.json" title="AI Optimization Patch Layer 8">
+  <link rel="alternate" type="application/json" href="/ai-query-map.json" title="Site AI Query Map">
   <meta name="ai-summary" content="${esc(a.summary ? a.summary.slice(0, 200) : a.metaDesc)}">
   <meta name="ai-citation" content="${esc((a.llmsOptimization && a.llmsOptimization.aiCitation) || '')}">
+  <meta name="ai-query-targets" content="${esc(targetQueries.join(', '))}">
+  <meta name="ai-entity-type" content="${esc(a.schemaType || 'NewsArticle')}">
+  <meta name="ai-brand" content="${esc(a.brand || a.company || '')}">
+  <meta name="ai-category" content="${esc(a.category || '')}">
 
   <!-- JSON-LD 構造化データ（FAQPage + ${a.schemaType} + NewsArticle + BreadcrumbList + Organization） -->
   <script type="application/ld+json">
 ${jsonLd}
   </script>
+
+  <!-- AI 引用最適化（SpeakableSpecification） -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".article-summary p", "h1", ".faq-a p", ".review-text"]
+    },
+    "url": "${staticUrl}"
+  }
+  </script>
+  ${aiPatchInline ? `<!-- AI パッチデータ（第8層・インライン） -->
+  <script id="ai-patch-data" type="application/json">
+${aiPatchInline}
+  </script>` : ''}
 
   <!-- Favicon -->
   <link rel="icon" href="/favicon.png" type="image/png">
@@ -447,11 +518,17 @@ ${jsonLd}
       📄 詳細記事・写真ギャラリー・全文を読む（${esc(a.brand || a.company)}）
     </a>
 
+    <!-- 取材写真・製品ギャラリー -->
+    ${renderGallery(a.galleries)}
+
     <!-- 口コミ・レビュー -->
     ${renderReviews(a.reviews)}
 
     <!-- FAQ -->
     ${renderFaqs(a.faqs)}
+
+    <!-- 関連Q&A（長尾クエリ対応・FAQPage JSON-LDに統合済み） -->
+    ${renderRelatedQA(a.relatedQA)}
 
     <!-- CTA -->
     <section class="cta-section">
@@ -474,7 +551,7 @@ ${jsonLd}
           <tr><th style="text-align:left;padding:8px;background:#f9fafb;border:1px solid #e5e7eb">公開日</th><td style="padding:8px;border:1px solid #e5e7eb">${a.publishedAt}</td></tr>
           <tr><th style="text-align:left;padding:8px;background:#f9fafb;border:1px solid #e5e7eb">更新日</th><td style="padding:8px;border:1px solid #e5e7eb">${a.updatedAt}</td></tr>
           <tr><th style="text-align:left;padding:8px;background:#f9fafb;border:1px solid #e5e7eb">記事種別</th><td style="padding:8px;border:1px solid #e5e7eb">PR記事（広告）— 内容は記者の独立した判断で執筆</td></tr>
-          <tr><th style="text-align:left;padding:8px;background:#f9fafb;border:1px solid #e5e7eb">AI最適化</th><td style="padding:8px;border:1px solid #e5e7eb"><a href="/llms/articles/${a.slug}-ai-instruction.json">AI指示JSON</a> ／ <a href="/llms/articles/${a.slug}-concept.txt">コンセプト</a> ／ <a href="/llms/articles/${a.slug}.txt">全文テキスト</a></td></tr>
+          <tr><th style="text-align:left;padding:8px;background:#f9fafb;border:1px solid #e5e7eb">AI最適化</th><td style="padding:8px;border:1px solid #e5e7eb"><a href="/llms/articles/${a.slug}-ai-instruction.json">AI指示JSON</a> ／ <a href="/llms/articles/${a.slug}-concept.txt">コンセプト</a> ／ <a href="/llms/articles/${a.slug}.txt">全文テキスト</a> ／ <a href="/llms/articles/${a.slug}-ai-patch.json">AIパッチ（第8層）</a></td></tr>
         </tbody>
       </table>
     </section>
