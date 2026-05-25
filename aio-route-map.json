@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generated_at": "2026-05-23",
+  "generated_at": "2026-05-25",
   "base_url": "https://minnano-hyouban.com",
   "description": "AIクローラが /article.html?id=<slug> にアクセスした際の出し分けマッピング。concept_file を最優先で配信する。",
   "routes": {

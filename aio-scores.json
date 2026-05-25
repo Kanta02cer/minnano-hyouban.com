@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-23",
+  "generated_at": "2026-05-25",
   "version": "1.0",
   "site": {
     "name": "みんなの評判.com",
@@ -13,7 +13,7 @@
   },
   "summary": {
     "total_articles": 4,
-    "average_article_score": 97,
+    "average_article_score": 99,
     "grade_distribution": {
       "S": 4,
       "A": 0,
@@ -28,7 +28,7 @@
       "company": "MIRACLE PILLOW（株式会社TVC）",
       "brand": "ミラクルピロー",
       "category": "美容・健康",
-      "score": 97,
+      "score": 98,
       "grade": "S",
       "breakdown": {
         "content_richness": {
@@ -43,7 +43,7 @@
         },
         "citation_readiness": {
           "label": "引用レディネス",
-          "score": 19,
+          "score": 20,
           "max": 20
         },
         "entity_clarity": {
@@ -110,7 +110,7 @@
       "company": "TASKUL（株式会社フリーカンパニー）",
       "brand": "タスクル",
       "category": "IT・SaaS",
-      "score": 97,
+      "score": 100,
       "grade": "S",
       "breakdown": {
         "content_richness": {
@@ -125,7 +125,7 @@
         },
         "citation_readiness": {
           "label": "引用レディネス",
-          "score": 17,
+          "score": 20,
           "max": 20
         },
         "entity_clarity": {
@@ -151,7 +151,7 @@
       "company": "SenoRich（Nジェネレーション株式会社）",
       "brand": "セノリッチ",
       "category": "美容・健康",
-      "score": 94,
+      "score": 98,
       "grade": "S",
       "breakdown": {
         "content_richness": {
@@ -166,7 +166,7 @@
         },
         "citation_readiness": {
           "label": "引用レディネス",
-          "score": 16,
+          "score": 20,
           "max": 20
         },
         "entity_clarity": {

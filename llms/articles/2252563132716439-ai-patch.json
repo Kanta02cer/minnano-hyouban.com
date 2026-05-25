@@ -1,7 +1,7 @@
 {
   "patch_version": "1.0",
   "patch_type": "ai_optimization_patch",
-  "generated_at": "2026-05-23",
+  "generated_at": "2026-05-25",
   "target_domain": "minnano-hyouban.com",
   "article_slug": "2252563132716439",
   "company": "TASKUL（株式会社フリーカンパニー）",
@@ -9,7 +9,7 @@
   "category": "IT・SaaS",
   "article_url": "https://minnano-hyouban.com/articles/2252563132716439/",
   "aio_score": {
-    "total": 97,
+    "total": 100,
     "grade": "S",
     "breakdown": {
       "content_richness": {
@@ -24,7 +24,7 @@
       },
       "citation_readiness": {
         "label": "引用レディネス",
-        "score": 17,
+        "score": 20,
         "max": 20
       },
       "entity_clarity": {
@@ -44,14 +44,7 @@
       }
     },
     "issues": [],
-    "top_improvements": [
-      {
-        "axis": "引用レディネス",
-        "score": 17,
-        "max": 20,
-        "gap": 3
-      }
-    ]
+    "top_improvements": []
   },
   "entity_map": {
     "primary_entity": {
@@ -365,7 +358,7 @@
   },
   "freshness": {
     "content_date": "2026-05-01",
-    "patch_generated_at": "2026-05-23",
+    "patch_generated_at": "2026-05-25",
     "expiry_warning_days": 90,
     "next_review_by": "2026-07-30",
     "freshness_note": "掲載から90日以上経過した場合、価格・在庫・効果データの再確認を推奨"
