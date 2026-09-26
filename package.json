@@ -1,7 +1,7 @@
 {
   "name": "minnano-hyouban",
   "version": "1.0.0",
-  "description": "みんなの評判.com — 第三者記者が書く企業評判メディア",
+  "description": "みんなの評判.com — ニュース掲載企業を公開情報から調べる個人運営メディア",
   "private": true,
   "scripts": {
     "add-article":    "node scripts/add-article.js",
@@ -19,9 +19,9 @@
     "static":         "node scripts/generate-static-articles.js",
     "webp":           "node scripts/convert-webp.js",
     "indexing":       "node scripts/request-indexing.js",
-    "dev":            "npx serve . --listen 8080",
-    "build":          "npm run sitemap && npm run feed && npm run build-aio && npm run ai-patch && npm run ai-query-map && npm run static",
-    "publish":        "npm run build && git add -A && git commit -m 'chore: 記事公開・sitemap/feed 更新' && git push origin main"
+    "dev":            "npm run build && npx serve dist --listen 8080",
+    "prebuild":       "node scripts/validate-public-v2.js",
+    "build":          "node scripts/build-public-v2.js"
   },
   "engines": {
     "node": ">=18.0.0"

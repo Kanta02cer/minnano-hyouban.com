@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>表紙デザイン3案｜みんなの評判.com</title>
+  <meta name="description" content="みんなの評判.comの表紙デザイン3案を比較するローカルプレビューです。">
+  <style>
+    :root { color-scheme: light; --ink:#1c2827; --muted:#61706b; --paper:#edece6; --line:#c9cec8; }
+    *,*::before,*::after { box-sizing:border-box; }
+    body { margin:0; color:var(--ink); background:var(--paper); font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif; -webkit-font-smoothing:antialiased; }
+    a { color:inherit; }
+    a:focus-visible { outline:3px solid #b57745; outline-offset:4px; }
+    .wrap { width:min(1200px,calc(100% - 42px)); margin-inline:auto; }
+    header { border-bottom:1px solid var(--line); }
+    .head { display:flex; justify-content:space-between; align-items:center; gap:20px; padding:18px 0; }
+    .logo { font-family:"Yu Mincho","Hiragino Mincho ProN",serif; font-size:22px; font-weight:800; text-decoration:none; }
+    .logo small { font:700 13px/1 sans-serif; }
+    .head span { color:var(--muted); font-size:11px; letter-spacing:.17em; }
+    .intro { padding:clamp(48px,6vw,76px) 0 40px; }
+    .eyebrow { color:#9b6146; font-size:11px; font-weight:800; letter-spacing:.2em; }
+    h1 { margin:15px 0 22px; font:800 clamp(35px,5.3vw,65px)/1.45 "Yu Mincho","Hiragino Mincho ProN",serif; letter-spacing:-.045em; }
+    .intro p:last-child { max-width:690px; color:var(--muted); font-size:14px; line-height:2; }
+    .grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:15px; padding-bottom:85px; }
+    .choice { display:flex; flex-direction:column; min-width:0; background:white; border:1px solid var(--line); text-decoration:none; box-shadow:0 5px 13px rgba(30,47,43,.04); transition:transform .35s ease,box-shadow .35s ease; }
+    .choice:hover { transform:translateY(-7px); box-shadow:0 18px 34px rgba(30,47,43,.13); }
+    .preview { display:flex; flex-direction:column; justify-content:space-between; height:270px; overflow:hidden; padding:25px; }
+    .preview > span { font-size:10px; font-weight:750; letter-spacing:.2em; }
+    .preview strong { display:block; max-width:280px; font:800 clamp(27px,3vw,40px)/1.4 "Yu Mincho","Hiragino Mincho ProN",serif; letter-spacing:-.06em; }
+    .preview i { display:block; height:1px; opacity:.55; }
+    .preview-a { background:#102b2d; color:#f4eddd; background-image:radial-gradient(circle at 87% 67%,transparent 0 62px,#6e93835c 63px 64px,transparent 65px 94px,#6e93835c 95px 96px,transparent 97px); }
+    .preview-a i { background:#a6c3b8; }
+    .preview-b { background:#f3f2ee; color:#181818; }
+    .preview-b strong { font-weight:900; }
+    .preview-b i { background:#181818; box-shadow:0 6px 0 #181818; }
+    .preview-c { background:#ded7c9; color:#20333d; background-image:linear-gradient(130deg,transparent 0 64%,#f4f0e6 64% 87%,transparent 87%); }
+    .preview-c i { background:#ae754b; }
+    .description { padding:24px 25px 25px; flex:1; }
+    .description > span { color:#9b6146; font-size:11px; font-weight:800; letter-spacing:.14em; }
+    h2 { margin:8px 0 10px; font:800 23px/1.5 "Yu Mincho","Hiragino Mincho ProN",serif; }
+    .description p { margin:0; color:var(--muted); font-size:12px; line-height:1.9; }
+    .description b { display:block; margin-top:25px; font-size:12px; }
+    .foot { border-top:1px solid var(--line); padding:20px 0 30px; color:var(--muted); font-size:11px; line-height:1.8; }
+    @media(max-width:850px) { .grid { grid-template-columns:1fr; } .choice { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); } .preview { height:250px; } }
+    @media(max-width:570px) { .head span { display:none; } .intro { padding:65px 0 35px; } .grid { gap:15px; } .choice { display:flex; } .preview { height:245px; } .description { padding:20px 22px 25px; } }
+    @media(prefers-reduced-motion:reduce) { .choice { transition:none; } .choice:hover { transform:none; } }
+  </style>
+</head>
+<body>
+  <header><div class="wrap head"><a class="logo" href="http://localhost:8080/">みんなの評判<small>.com</small></a><span>FRONT PAGE DESIGN REVIEW / 2026.09</span></div></header>
+  <main class="wrap">
+    <div class="intro"><p class="eyebrow">COVER DESIGN / THREE DIRECTIONS</p><h1>報道サイトの表紙を、<br>3つの表情で。</h1><p>同じ記事を、異なる紙面設計とアニメーションで見せる試作です。各案を開いて、見出しの動き・記事への導線・スマートフォンでの見え方を比較できます。</p></div>
+    <div class="grid" aria-label="表紙デザイン案">
+      <a class="choice" href="a/"><div class="preview preview-a"><span>CONCEPT A / NEWSROOM</span><strong>ニュースの<br>見出しより、<br>深く。</strong><i></i></div><div class="description"><span>01 / 深い緑 × 発光する見出し</span><h2>ニュースルーム</h2><p>暗い紙面に見出しと注目記事を浮かべる構成。情報の流れを帯状の動きで伝えます。</p><b>案を見る ↗</b></div></a>
+      <a class="choice" href="b/"><div class="preview preview-b"><span>CONCEPT B / NEWSPAPER</span><strong>ニュースの先に、<br>会社の素顔がある。</strong><i></i></div><div class="description"><span>02 / モノクロ × 報道紙面</span><h2>新聞紙面</h2><p>題字、罫線、段組みで読み物の信頼感を表現。見出しのマーカーが静かに現れます。</p><b>案を見る ↗</b></div></a>
+      <a class="choice" href="c/"><div class="preview preview-c"><span>CONCEPT C / CASE FILES</span><strong>報道の次に、<br>知るべきこと。</strong><i></i></div><div class="description"><span>03 / 紙の重なり × 調査資料</span><h2>調査ファイル</h2><p>企業ごとに人物と事業を分けて収録。積み重なる資料と走査線で調査の深さを見せます。</p><b>案を見る ↗</b></div></a>
+    </div>
+  </main>
+  <footer class="foot"><div class="wrap">このページと3案はローカルの比較用です。選んだ案を調整してから公開用サイトに反映します。</div></footer>
+</body>
+</html>

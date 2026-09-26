@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f3f2ee">
+  <meta name="description" content="ニュースで取り上げられた企業を、公開情報・口コミ・評判・実績から読み解く。みんなの評判.comの表紙デザイン案B。">
+  <title>みんなの評判.com｜表紙案 B・新聞紙面</title>
+  <link rel="icon" href="http://localhost:8080/favicon.svg" type="image/svg+xml">
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f3f2ee;
+      --white: #fafaf8;
+      --ink: #161616;
+      --mid: #525252;
+      --fine: #b9b9b4;
+      --rule: #2c2c2b;
+      --font-sans: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans CJK JP", sans-serif;
+      --font-serif: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif CJK JP", serif;
+      --font-latin: Georgia, "Times New Roman", serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+    body::before { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 10; opacity: .13; background: repeating-linear-gradient(0deg, transparent 0, transparent 3px, #fff 4px, transparent 5px); }
+    a { color: inherit; text-decoration: none; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+    .skip { position: absolute; left: 12px; top: -80px; z-index: 30; background: #fff; border: 2px solid; padding: .6em 1em; }
+    .skip:focus { top: 12px; }
+    .shell { width: min(1420px, calc(100% - 68px)); margin-inline: auto; }
+    .micro { font-size: 10px; line-height: 1.5; letter-spacing: .15em; font-weight: 700; }
+    .latin { font-family: var(--font-latin); }
+
+    .paper-header { background: var(--paper); }
+    .utility { display: flex; justify-content: space-between; align-items: center; min-height: 34px; border-bottom: 1px solid var(--rule); gap: 12px; }
+    .utility p { margin: 0; }
+    .utility span + span::before { content: " / "; opacity: .55; }
+    .masthead { position: relative; padding: 25px 0 19px; border-bottom: 4px double var(--rule); text-align: center; overflow: hidden; }
+    .masthead::before, .masthead::after { content: ""; position: absolute; top: 50%; width: min(15vw, 215px); height: 1px; background: var(--rule); }
+    .masthead::before { left: 0; }
+    .masthead::after { right: 0; }
+    .masthead a { display: inline-block; font-family: var(--font-serif); font-size: clamp(38px, 6.2vw, 91px); font-weight: 900; line-height: 1; letter-spacing: -.11em; white-space: nowrap; padding-right: .11em; }
+    .masthead a span { font-family: var(--font-latin); font-size: .52em; letter-spacing: -.04em; }
+    .masthead p { margin: 10px 0 0; font-size: 9px; letter-spacing: .46em; font-weight: 700; }
+    .site-nav { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--rule); min-height: 44px; }
+    .site-nav ul { display: flex; align-items: center; flex-wrap: wrap; gap: clamp(20px, 3vw, 48px); list-style: none; margin: 0; padding: 0; }
+    .site-nav a { position: relative; display: inline-block; padding: 12px 0; font-size: 11px; font-weight: 700; letter-spacing: .13em; }
+    .site-nav a::after { content: ""; position: absolute; bottom: 8px; left: 0; width: 100%; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform .38s ease; }
+    .site-nav a:hover::after, .site-nav a:focus-visible::after { transform: scaleX(1); transform-origin: left; }
+    .site-nav .nav-note { font-size: 10px; letter-spacing: .12em; color: var(--mid); }
+
+    .hero { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(300px, .58fr); border-bottom: 2px solid var(--rule); }
+    .hero-main { min-width: 0; padding: clamp(32px, 4.3vw, 62px) clamp(24px, 4vw, 66px) 37px 0; }
+    .hero-aside { border-left: 1px solid var(--rule); padding: 39px 0 29px clamp(25px, 3.1vw, 46px); display: flex; flex-direction: column; }
+    .overline { display: flex; gap: 16px; align-items: center; color: var(--mid); margin: 0 0 20px; }
+    .overline::before { content: ""; width: 30px; height: 3px; background: var(--ink); }
+    .hero h1 { margin: 0; max-width: 950px; font-family: var(--font-serif); font-size: clamp(49px, 6.25vw, 96px); font-weight: 900; line-height: 1.25; letter-spacing: -.075em; }
+    .hero h1 span { display: block; }
+    .hero h1 .shaded { display: inline-block; position: relative; z-index: 0; white-space: nowrap; }
+    .hero h1 .shaded::after { content: ""; position: absolute; z-index: -1; bottom: .12em; left: -.02em; right: -.04em; height: .19em; background: #c8c8c1; transform: scaleX(0); transform-origin: left; animation: marker .8s 1.1s cubic-bezier(.2,.8,.2,1) forwards; }
+    .hero-intro { display: flex; align-items: flex-start; gap: clamp(20px, 3.5vw, 48px); margin-top: clamp(29px, 4vw, 48px); padding-top: 19px; border-top: 1px solid var(--rule); }
+    .hero-intro .micro { flex: 0 0 95px; padding-top: 4px; }
+    .hero-intro p { margin: 0; max-width: 670px; font-size: clamp(13px, 1.12vw, 15px); line-height: 2.15; letter-spacing: .045em; }
+    .hero-bottom { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-top: 33px; }
+    .read-button { display: inline-flex; gap: 30px; align-items: center; justify-content: space-between; min-width: 240px; padding: 13px 16px; border: 1px solid var(--ink); background: var(--ink); color: var(--white); font-size: 11px; letter-spacing: .14em; font-weight: 700; transition: color .25s, background .25s, transform .25s; }
+    .read-button:hover { color: var(--ink); background: transparent; transform: translateY(-3px); }
+    .read-button span { font-family: var(--font-latin); font-size: 22px; line-height: .8; font-weight: 400; }
+    .page-no { font-family: var(--font-serif); font-size: 17px; font-style: italic; color: var(--mid); white-space: nowrap; }
+    .aside-header { border-top: 5px solid var(--ink); padding: 10px 0 11px; border-bottom: 1px solid var(--rule); display: flex; align-items: baseline; justify-content: space-between; }
+    .aside-header strong { font-family: var(--font-latin); font-size: 20px; font-style: italic; font-weight: 400; }
+    .aside-header span { color: var(--mid); }
+    .aside-feature { display: block; padding: 21px 0 23px; border-bottom: 1px solid var(--rule); }
+    .aside-feature .num { display: block; font: italic 53px/.95 var(--font-latin); margin: 0 0 13px; }
+    .aside-feature .category { display: block; margin: 0 0 6px; }
+    .aside-feature h2 { font-family: var(--font-serif); font-size: clamp(17px, 1.55vw, 24px); line-height: 1.55; letter-spacing: -.04em; margin: 0; }
+    .aside-feature p { font-size: 11px; line-height: 1.8; color: var(--mid); margin: 9px 0 0; }
+    .aside-feature h2, .article-item h3 { transition: text-decoration-color .25s; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: .15em; }
+    .aside-feature:hover h2, .article-item:hover h3 { text-decoration-color: currentColor; }
+    .aside-tail { display: flex; justify-content: space-between; gap: 8px; align-items: center; margin-top: auto; padding-top: 20px; }
+    .aside-tail span:last-child { font-size: 27px; font-family: var(--font-latin); }
+
+    .section-top { display: flex; justify-content: space-between; align-items: end; gap: 25px; padding: 26px 0 16px; border-bottom: 1px solid var(--rule); }
+    .section-top h2 { display: flex; gap: 19px; align-items: baseline; font: 900 clamp(30px, 3.4vw, 48px)/1.15 var(--font-serif); letter-spacing: -.065em; margin: 0; }
+    .section-top h2 small { font: italic 17px/1 var(--font-latin); letter-spacing: 0; white-space: nowrap; }
+    .section-top p { font-size: 11px; line-height: 1.7; color: var(--mid); margin: 0; text-align: right; }
+    .article-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .article-item { position: relative; display: flex; flex-direction: column; padding: 22px clamp(16px, 2.6vw, 36px) 22px 0; min-height: 186px; border-bottom: 1px solid var(--rule); }
+    .article-item:not(:nth-child(3n+1)) { padding-left: clamp(16px, 2.6vw, 36px); border-left: 1px solid var(--rule); }
+    .article-meta { display: flex; justify-content: space-between; align-items: center; gap: 8px; color: var(--mid); margin-bottom: 10px; }
+    .article-meta span:last-child { font-family: var(--font-latin); letter-spacing: .05em; }
+    .article-item h3 { font: 900 clamp(16px, 1.35vw, 20px)/1.55 var(--font-serif); letter-spacing: -.025em; margin: 0 0 12px; }
+    .article-item p { font-size: 11px; line-height: 1.8; color: var(--mid); margin: 0 0 12px; }
+    .article-item .arrow { margin-top: auto; font: 22px/1 var(--font-latin); align-self: flex-end; transition: transform .25s; }
+    .article-item:hover .arrow { transform: translate(4px, -4px); }
+    .article-item a { position: absolute; inset: 0; }
+    .article-item a:focus-visible { outline-offset: -5px; }
+    .more { display: flex; justify-content: space-between; align-items: center; padding: 17px 0 30px; font-size: 11px; font-weight: 700; letter-spacing: .13em; }
+    .more a { display: inline-flex; align-items: center; gap: 25px; border-bottom: 1px solid var(--ink); padding-bottom: 7px; }
+    .more a span { font: 21px/1 var(--font-latin); transition: transform .25s; }
+    .more a:hover span { transform: translateX(5px); }
+    .more p { color: var(--mid); font-weight: 400; margin: 0; }
+
+    .editor-note { background: var(--ink); color: var(--white); }
+    .editor-inner { display: grid; grid-template-columns: minmax(180px, .28fr) 1fr minmax(170px, .25fr); gap: clamp(20px, 4vw, 60px); padding-block: 33px; align-items: center; }
+    .editor-label { display: flex; align-items: center; gap: 12px; font: italic 18px/1.2 var(--font-latin); }
+    .editor-label::before { content: ""; width: 17px; height: 17px; border: 1px solid currentColor; border-radius: 50%; animation: slowturn 10s linear infinite; background: conic-gradient(transparent 0 65%, var(--white) 65% 68%, transparent 68%); }
+    .editor-inner p { margin: 0; font: 700 clamp(16px, 1.4vw, 21px)/1.7 var(--font-serif); letter-spacing: -.02em; }
+    .editor-inner a { justify-self: end; border-bottom: 1px solid; padding-bottom: 8px; font-size: 11px; letter-spacing: .12em; }
+    .editor-inner a span { margin-left: 12px; font-size: 17px; }
+    .site-footer { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; min-height: 65px; font-size: 10px; color: var(--mid); }
+    .site-footer p { margin: 0; }
+    .site-footer nav { display: flex; flex-wrap: wrap; gap: 20px; }
+    .site-footer a:hover { text-decoration: underline; }
+
+    @keyframes marker { to { transform: scaleX(1); } }
+    @keyframes enter { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes slowturn { to { transform: rotate(360deg); } }
+    @media (prefers-reduced-motion: no-preference) {
+      .masthead a { animation: enter .7s .05s both; }
+      .hero .overline { animation: enter .65s .16s both; }
+      .hero h1 { animation: enter .8s .3s both; }
+      .hero-intro { animation: enter .8s .48s both; }
+      .hero-bottom { animation: enter .8s .58s both; }
+      .hero-aside { animation: enter .8s .65s both; }
+      .js .article-item { opacity: 0; transform: translateY(15px); transition: opacity .55s ease, transform .55s ease; }
+      .js .article-item.is-visible { opacity: 1; transform: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+      .hero h1 .shaded::after { transform: scaleX(1); }
+    }
+    @media (max-width: 1000px) {
+      .masthead::before, .masthead::after { width: 8vw; }
+      .hero { grid-template-columns: 1fr minmax(260px, .56fr); }
+      .hero h1 { font-size: clamp(48px, 6.8vw, 70px); }
+      .hero-main { padding-right: 28px; }
+      .hero-aside { padding-left: 23px; }
+      .hero-intro { display: block; }
+      .hero-intro .micro { display: block; margin-bottom: 8px; }
+    }
+    @media (max-width: 760px) {
+      .shell { width: min(100% - 34px, 640px); }
+      .utility { font-size: 9px; }
+      .utility .right { display: none; }
+      .masthead { padding: 22px 0 17px; }
+      .masthead::before, .masthead::after { display: none; }
+      .masthead a { font-size: clamp(36px, 8.2vw, 62px); }
+      .masthead p { font-size: 8px; letter-spacing: .33em; }
+      .site-nav { overflow-x: auto; gap: 24px; }
+      .site-nav ul { gap: 24px; flex: 0 0 auto; }
+      .site-nav a { font-size: 10px; }
+      .site-nav .nav-note { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-main { padding: 34px 0 29px; }
+      .hero h1 { font-size: clamp(42px, 10vw, 68px); line-height: 1.29; }
+      .hero-intro { margin-top: 30px; }
+      .hero-intro p { font-size: 13px; line-height: 2; }
+      .hero-aside { padding: 23px 0; border-left: 0; border-top: 1px solid var(--rule); display: grid; grid-template-columns: 1fr 1fr; gap: 0 17px; }
+      .aside-header, .aside-tail { grid-column: 1 / -1; }
+      .aside-feature { padding-block: 18px; }
+      .aside-feature:nth-of-type(2) { border-left: 1px solid var(--rule); padding-left: 17px; }
+      .aside-feature .num { font-size: 39px; }
+      .aside-feature h2 { font-size: 15px; }
+      .aside-feature p { display: none; }
+      .article-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .article-item { min-height: 185px; }
+      .article-item:not(:nth-child(3n+1)) { border-left: 0; padding-left: 0; }
+      .article-item:nth-child(2n) { border-left: 1px solid var(--rule); padding-left: 18px; }
+      .article-item:nth-child(2n+1) { padding-right: 18px; }
+      .editor-inner { grid-template-columns: 1fr; gap: 15px; padding-block: 27px; }
+      .editor-inner a { justify-self: start; }
+    }
+    @media (max-width: 470px) {
+      .shell { width: min(100% - 28px, 430px); }
+      .utility { min-height: 30px; }
+      .masthead a { font-size: clamp(34px, 8.25vw, 43px); }
+      .masthead p { letter-spacing: .22em; }
+      .hero h1 { font-size: clamp(40px, 10.3vw, 49px); }
+      .hero-bottom { gap: 10px; }
+      .read-button { min-width: 212px; }
+      .page-no { font-size: 14px; }
+      .section-top { align-items: start; flex-direction: column; gap: 8px; }
+      .section-top h2 { font-size: 30px; }
+      .section-top h2 small { font-size: 15px; }
+      .section-top p { text-align: left; }
+      .article-grid { grid-template-columns: 1fr; }
+      .article-item, .article-item:nth-child(2n), .article-item:nth-child(2n+1) { min-height: 0; padding: 19px 0 20px; border-left: 0; }
+      .article-item h3 { font-size: 18px; }
+      .article-item .arrow { position: absolute; right: 0; bottom: 20px; }
+      .article-item p { padding-right: 30px; }
+      .more p { display: none; }
+      .site-footer { padding-block: 17px; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">本文へ移動</a>
+  <header class="paper-header shell">
+    <div class="utility micro"><p>COMPANY <span>MEDIA</span> REPUTATION</p><p class="right">報道から、企業の輪郭を読む。</p></div>
+    <div class="masthead"><a href="http://localhost:8080/" aria-label="みんなの評判.com トップページ">みんなの評判<span>.com</span></a><p>THE COMPANY REPORT &amp; REVIEW JOURNAL</p></div>
+    <nav class="site-nav" aria-label="メインメニュー">
+      <ul><li><a href="../">表紙3案を比較</a></li><li><a href="http://localhost:8080/articles.html">調査レポート</a></li><li><a href="http://localhost:8080/guide.html">調査の方法</a></li><li><a href="http://localhost:8080/editor.html">編集者</a></li></ul>
+      <span class="nav-note">READ BEYOND THE HEADLINE</span>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero shell" aria-labelledby="lead-title">
+      <div class="hero-main">
+        <p class="overline micro">FRONT PAGE / COMPANY STORIES</p>
+        <h1 id="lead-title"><span>ニュースの先に、</span><span><span class="shaded">会社の素顔</span>がある。</span></h1>
+        <div class="hero-intro"><span class="micro">ABOUT<br>THIS MEDIA</span><p>メディアに取り上げられた企業や代表者のニュースを入口に、その仕事と歩みをもう一歩深く。事業内容、公表された実績、確認できた口コミや評判を、出典とともに読み解きます。</p></div>
+        <div class="hero-bottom"><a class="read-button" href="#reports">記事を読む <span aria-hidden="true">↗</span></a><span class="page-no">3社 / 6記事</span></div>
+      </div>
+      <aside class="hero-aside" aria-label="注目の記事">
+        <div class="aside-header"><strong>Inside this issue</strong><span class="micro">FEATURES</span></div>
+        <a class="aside-feature" href="http://localhost:8080/reports/11906/"><span class="num">01</span><span class="category micro">PEOPLE / カラープラス</span><h2>村田隆行代表とカラープラスの歩み｜口コミ・評判・実績を調査</h2><p>代表者の判断と、公開された事業の広がりをたどる。</p></a>
+        <a class="aside-feature" href="http://localhost:8080/reports/11903/"><span class="num">02</span><span class="category micro">SERVICE / ヨク住ル</span><h2>ヨク住ルの設備支援と保証｜口コミ・評判・実績を調査</h2><p>設備支援、施工の流れ、保証内容を読む。</p></a>
+        <div class="aside-tail micro"><span>REPORTS INSIDE</span><span>↘</span></div>
+      </aside>
+    </section>
+
+    <section id="reports" class="reports shell" aria-labelledby="reports-title">
+      <div class="section-top"><h2 id="reports-title">企業を読む。<small>Reports / 06</small></h2><p>同じ企業でも、代表者と事業のニュースを<br>それぞれの視点から紹介します。</p></div>
+      <div class="article-grid">
+        <article class="article-item"><div class="article-meta micro"><span>01 / 代表者</span><span>09.25</span></div><h3>村田隆行代表とカラープラスの歩み｜口コミ・評判・実績を調査</h3><p>代表者の判断と公表された事業の広がり。</p><span class="arrow" aria-hidden="true">↗</span><a href="http://localhost:8080/reports/11906/" aria-label="村田隆行代表とカラープラスの歩みの記事を読む"></a></article>
+        <article class="article-item"><div class="article-meta micro"><span>02 / 会社・サービス</span><span>09.18</span></div><h3>カラープラスのサービスと店舗展開｜口コミ・評判・実績を調査</h3><p>ヘアカラー専門店の仕組みと店舗展開。</p><span class="arrow" aria-hidden="true">↗</span><a href="http://localhost:8080/reports/11905/" aria-label="カラープラスのサービスと店舗展開の記事を読む"></a></article>
+        <article class="article-item"><div class="article-meta micro"><span>03 / 代表者</span><span>09.23</span></div><h3>宮野和哉氏とヨク住ルの仕事観｜口コミ・評判・実績を調査</h3><p>経歴と顧客への向き合い方を調べる。</p><span class="arrow" aria-hidden="true">↗</span><a href="http://localhost:8080/reports/11904/" aria-label="宮野和哉氏とヨク住ルの仕事観の記事を読む"></a></article>
+        <article class="article-item"><div class="article-meta micro"><span>04 / 会社・サービス</span><span>09.16</span></div><h3>ヨク住ルの設備支援と保証｜口コミ・評判・実績を調査</h3><p>工事の流れ、保証と施工事例。</p><span class="arrow" aria-hidden="true">↗</span><a href="http://localhost:8080/reports/11903/" aria-label="ヨク住ルの設備支援と保証の記事を読む"></a></article>
+        <article class="article-item"><div class="article-meta micro"><span>05 / 会社</span><span>09.21</span></div><h3>光サプライズの全国展開への取り組み｜口コミ・評判・実績を調査</h3><p>顧問の参画と代理店モデル、事業の広がり。</p><span class="arrow" aria-hidden="true">↗</span><a href="http://localhost:8080/reports/11902/" aria-label="光サプライズの全国展開の記事を読む"></a></article>
+        <article class="article-item"><div class="article-meta micro"><span>06 / 会社・サービス</span><span>09.14</span></div><h3>光サプライズのLEDビジョン事業｜口コミ・評判・実績を調査</h3><p>情報発信に使われる事業と公開事例。</p><span class="arrow" aria-hidden="true">↗</span><a href="http://localhost:8080/reports/11901/" aria-label="光サプライズのLEDビジョン事業の記事を読む"></a></article>
+      </div>
+      <div class="more"><a href="http://localhost:8080/articles.html">すべての調査レポートへ <span aria-hidden="true">→</span></a><p>出典・確認日などの詳細は各記事に記載しています。</p></div>
+    </section>
+
+    <section class="editor-note" aria-label="編集方針"><div class="shell editor-inner"><span class="editor-label">Editor's note</span><p>企業を知る入口はニュース。理解を深める手がかりは、出典のある情報です。</p><a href="http://localhost:8080/guide.html">調査の方法 <span aria-hidden="true">→</span></a></div></section>
+  </main>
+  <footer class="site-footer shell"><p>© みんなの評判.com</p><nav aria-label="フッターメニュー"><a href="http://localhost:8080/guide.html">調査の方法</a><a href="http://localhost:8080/editor.html">編集者</a><a href="http://localhost:8080/privacy.html">プライバシー</a></nav><p>記事の情報は掲載・確認時点のものです。</p></footer>
+  <script>
+    if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches && 'IntersectionObserver' in window) {
+      document.documentElement.classList.add('js');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        });
+      }, { rootMargin: '0px 0px 35px 0px', threshold: 0.05 });
+      document.querySelectorAll('.article-item').forEach((item) => observer.observe(item));
+    }
+  </script>
+</body>
+</html>
