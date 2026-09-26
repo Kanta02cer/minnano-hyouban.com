@@ -21,7 +21,8 @@
     "indexing":       "node scripts/request-indexing.js",
     "dev":            "npm run build && npx serve dist --listen 8080",
     "prebuild":       "node scripts/validate-public-v2.js",
-    "build":          "node scripts/build-public-v2.js"
+    "build":          "node scripts/build-public-v2.js",
+    "build:branch-root": "npm run build && node scripts/stage-branch-root.js"
   },
   "engines": {
     "node": ">=18.0.0"
