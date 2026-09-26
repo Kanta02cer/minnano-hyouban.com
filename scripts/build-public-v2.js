@@ -11,7 +11,7 @@ const sourceDir = path.join(root, 'site-v2');
 const outputDir = path.join(root, 'dist');
 const siteUrl = 'https://minnano-hyouban.com';
 const domain = 'minnano-hyouban.com';
-const reportIds = ['11906', '11905', '11904', '11903', '11902', '11901'];
+const reportIds = ['11906', '11905', '11904', '11903', '11902', '11901', '11670', '11669'];
 
 const publicFiles = [
   ['site-v2/index.html', 'index.html'],
