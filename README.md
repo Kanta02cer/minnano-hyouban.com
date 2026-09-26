@@ -15,18 +15,19 @@
 
 この6本は対象企業から掲載料・制作費・取材協力を受けず、2026年9月26日までに確認できたニュースと公開情報から作成しました。掲載数値と公式サイトの口コミは、情報の出所を記事内に記載します。
 
-リポジトリ直下の旧HTML、`_post/`、`data/articles.js`、旧AI関連ファイルは参照・復旧用に残していますが、現在の公開ビルドには入りません。旧4記事は公開一覧と配信物から除外しています。
+リポジトリ直下の旧HTML、`_post/`、`data/articles.js`、旧AI関連ファイルは参照・復旧用に残しています。新しい一覧とサイトマップから旧4記事を外しました。現在の GitHub Pages は `main` のルートを直接配信するため、旧URLの一部には直接アクセスできます。
 
 ## ビルドと確認
 
 Node.js 18以降が必要です。
 
 ```bash
-npm run build
+npm run build:branch-root
+node scripts/stage-branch-root.js --check
 python3 -m http.server 8080 --directory dist
 ```
 
-ブラウザで `http://localhost:8080/` を開きます。`scripts/build-public-v2.js` は公開ファイルを明示的に選んで `dist/` にコピーし、旧記事の参照や公開対象外の内部リンクがある場合は失敗します。`dist/` は生成物なので Git に追加しません。
+ブラウザで `http://localhost:8080/` を開きます。`scripts/build-public-v2.js` は公開ファイルを明示的に選んで `dist/` にコピーし、旧記事の参照や公開対象外の内部リンクがある場合は失敗します。`dist/` は生成物なので Git に追加しません。`scripts/stage-branch-root.js` が生成物を公開元のルートへコピーします。
 `npm run build` の前処理で `scripts/validate-public-v2.js` が全記事のタイトル、canonical、一覧導線を確認します。
 
 ### 表紙
@@ -49,12 +50,12 @@ python3 -m http.server 8081 --directory .
 2. 会社・代表者・サービスの公式資料や公開資料を確認する。数値は発表主体、対象期間、集計方法を可能な限り記す。
 3. 利用者の口コミは出所と選定方法を確認する。公式サイト上の声は企業が紹介した事例として扱う。
 4. 同じ企業の会社・サービス記事と代表者記事は、元記事ごとに `site-v2/reports/<id>/index.html` を分けて作り、相互リンクする。トップ、記事一覧、サイトマップの対象を更新する。公開対象の追加には `scripts/build-public-v2.js` の `reportIds` も更新する。
-5. `npm run build` と表示確認を行う。訂正した場合は、内容に応じて記事内に訂正履歴を残す。
+5. `npm run build:branch-root` と表示確認を行い、生成されたルートの差分もコミットする。訂正した場合は、内容に応じて記事内に訂正履歴を残す。
 
 編集方針は公開ページ `site-v2/guide.html` と `site-v2/editor.html` に記載しています。広告・PRや取材協力が発生した記事では、記事ごとに関係を明示してください。
 
 ## 公開と復旧
 
-`.github/workflows/deploy.yml` は `main` への push で `npm run build` を実行し、`dist/` を GitHub Pages に配信する設定です。公開前に差分、記事の根拠、表示、公開対象ファイルを確認してください。デプロイ完了後は実際のドメインでトップ、6記事、サイトマップ、旧記事の非公開状態を確認します。
+GitHub Pages の公開元は現在 `main` のルートです。`.github/workflows/deploy.yml` は `main` への push 時に、生成物とルートの一致を検証します。公開前に差分、記事の根拠、表示、公開対象ファイルを確認してください。GitHub Pages のビルド・デプロイ完了後は実際のドメインでトップ、記事、サイトマップを確認します。
 
-復旧する場合は、公開直前のコミットを確認してから、そのコミットのワークフローと公開物を再配信します。GitHub Pages の設定や DNS を変更する必要はありません。
+復旧する場合は、公開直前のコミットを確認してから、公開元ルートのファイルを含めて戻します。現行の公開設定や DNS を推測して変更しません。所有権の移管後に GitHub Pages の公開元を Actions に切り替える場合は、先に配信経路と独自ドメインを検証してください。

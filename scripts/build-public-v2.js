@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 'use strict';
 
-// GitHub Pages receives only this allowlist. The old site and its articles
-// remain in the repository for reference, but are not copied into dist/.
+// dist/ contains only this allowlist. Pages currently publishes main/;
+// stage-branch-root.js copies this snapshot there while legacy files remain.
 const fs = require('node:fs');
 const path = require('node:path');
 
