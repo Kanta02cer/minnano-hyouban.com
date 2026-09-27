@@ -15,6 +15,31 @@ if ('caches' in window) {
   )).catch(() => {});
 }
 
+// The archive remains complete HTML without JavaScript. Search only changes
+// what is shown in the browser; crawlers and keyboard users can reach every link.
+const reportSearch = document.querySelector('#report-search');
+if (reportSearch) {
+  const groups = [...document.querySelectorAll('[data-report-group]')];
+  const count = document.querySelector('#search-result-count');
+  const empty = document.querySelector('#search-no-results');
+  reportSearch.addEventListener('input', () => {
+    const term = reportSearch.value.normalize('NFKC').trim().toLocaleLowerCase('ja');
+    let visible = 0;
+    for (const group of groups) {
+      let groupVisible = 0;
+      for (const card of group.querySelectorAll('[data-report-card]')) {
+        const source = (card.dataset.search || '').normalize('NFKC').toLocaleLowerCase('ja');
+        card.hidden = !source.includes(term);
+        if (!card.hidden) groupVisible++;
+      }
+      group.hidden = groupVisible === 0;
+      visible += groupVisible;
+    }
+    if (count) count.textContent = `${visible}記事を表示`;
+    if (empty) empty.hidden = visible !== 0;
+  });
+}
+
 // Animate only elements below the first viewport. Without JavaScript or
 // IntersectionObserver, every section stays visible in its normal position.
 if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {

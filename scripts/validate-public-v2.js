@@ -61,9 +61,11 @@ for (const id of reportIds) {
   check(html.includes(`<meta property="og:url" content="${canonicalUrl}">`), `${file}: OG URL が一致しません。`);
   check(article.mainEntityOfPage === canonicalUrl, `${file}: JSON-LD の URL が一致しません。`);
   check(html.includes('official-visit'), `${file}: 公式サイトへの案内セクションを確認してください。`);
-  check(home.includes(`/reports/${id}/`), `${file}: トップの記事導線がありません。`);
   check(archive.includes(`/reports/${id}/`), `${file}: 記事一覧の導線がありません。`);
 }
+
+check(home.includes('href="/articles.html"'), 'トップから記事一覧への導線がありません。');
+check((home.match(/href="\/reports\/[a-z0-9-]+\/"/g) || []).length >= 8, 'トップの注目記事が不足しています。');
 
 if (problems.length) {
   for (const problem of problems) console.error(`- ${problem}`);

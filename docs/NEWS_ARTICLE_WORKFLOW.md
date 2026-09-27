@@ -22,6 +22,8 @@
 - `<title>`、`og:title`、Article JSON-LD `headline`、`h1` の**それぞれ**に「口コミ」「評判」「実績」を入れる。`description`、canonical、OG URL、構造化データの URL と日付もページ固有に更新する。記事内リンク、同社記事への相互リンク、公式サイト URL を確認する。
 - トップ `site-v2/index.html` と一覧 `site-v2/articles.html` に記事を追加する。`scripts/build-public-v2.js` の `reportIds` に slug を追加する。`npm run build` により `dist/` と `sitemap.xml` が再生成される。表紙はユーザーが選んだ B 案を踏襲する。
 
+2026年9月27日の一括追加分53記事には、公開元URL・公式案内・記事ごとの論点を `content/bulk-report-sources.json` と `content/bulk-report-angles.tsv` に記録しています。この53記事を訂正する場合は両ファイルと `scripts/generate-bulk-reports.py` の会社別説明を先に修正し、再生成してから検証してください。このスクリプトは当時の61記事の導線を再作成するため、後日追加された記事がある場合は安全のため停止します。通常の新規記事は上記の手順で作成します。
+
 ## 検証、公開、記録
 
 ```bash
