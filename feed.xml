@@ -1,72 +1,437 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0"
-  xmlns:atom="http://www.w3.org/2005/Atom"
-  xmlns:media="http://search.yahoo.com/mrss/"
-  xmlns:dc="http://purl.org/dc/elements/1.1/">
-  <channel>
-    <title>みんなの評判.com（みんなの評判ドットコム）</title>
-    <link>https://minnano-hyouban.com/</link>
-    <description>企業・サービスの口コミ評判を第三者記者が直接取材する評判口コミメディア。漆沢祐樹が取材・執筆。</description>
-    <language>ja</language>
-    <lastBuildDate>Mon, 25 May 2026 05:53:08 GMT</lastBuildDate>
-    <managingEditor>urushizawa@medikuru.com (漆沢 祐樹)</managingEditor>
-    <webMaster>urushizawa@medikuru.com (漆沢 祐樹)</webMaster>
-    <image>
-      <url>https://minnano-hyouban.com/favicon.png</url>
-      <title>みんなの評判.com</title>
-      <link>https://minnano-hyouban.com/</link>
-    </image>
-    <atom:link href="https://minnano-hyouban.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <copyright>© 2026 みんなの評判.com</copyright>
-    <ttl>1440</ttl>
-
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+<channel>
+  <title>みんなの評判.com</title>
+  <link>https://minnano-hyouban.com/</link>
+  <description>ニュースと公開情報から企業・代表者・サービスの口コミ・評判・実績を調べる個人運営メディア</description>
+  <language>ja</language>
+  <atom:link href="https://minnano-hyouban.com/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
-    <title>メディくる採用ブースターの評判は？「応募前の会社名検索」を整える採用ブランディング支援を第三者取材｜みんなの評判.com</title>
-    <link>https://minnano-hyouban.com/article.html?id=3340006759735454</link>
-    <guid isPermaLink="true">https://minnano-hyouban.com/article.html?id=3340006759735454</guid>
-    <pubDate>Sat, 23 May 2026 00:00:00 GMT</pubDate>
-    <description><![CDATA[メディくる採用ブースターの評判は？採用ブランディング・会社名検索対策・応募率改善に特化したサービスを第三者記者が取材。ニュース・評判サイト・YouTube動画の3本柱の仕組み、向き不向き、口コミ5件を正直解説。]]></description>
-    <author>urushizawa@medikuru.com (漆沢 祐樹)</author>
-    <category>採用ブランディング</category>
-    <enclosure url="https://minnano-hyouban.com/images/medikuru/reiwa-tiger-intro.png" type="image/png" length="0"/>
-    <media:content url="https://minnano-hyouban.com/images/medikuru/reiwa-tiger-intro.png" medium="image"/>
+    <title>村田隆行代表とカラープラスの歩み｜口コミ・評判・実績を調査 | みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11906/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11906/</guid>
+    <description>村田隆行氏は、カラープラスを展開する株式会社マスターピースの代表者です。ニュースが伝える店舗改善の歩みと会社公表の店舗展開から、実績と口コミ・評判を知るポイントを整理します。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
   </item>
-
   <item>
-    <title>ミラクルピロー 評判・口コミまとめ｜怪しい？とは？効果・価格59,800円を利用者5名への第三者取材で解説｜みんなの評判.com</title>
-    <link>https://minnano-hyouban.com/article.html?id=2221437250750372</link>
-    <guid isPermaLink="true">https://minnano-hyouban.com/article.html?id=2221437250750372</guid>
-    <pubDate>Fri, 17 Apr 2026 00:00:00 GMT</pubDate>
-    <description><![CDATA[ミラクルピローの評判・口コミは？利用者5名中4名が「朝の頭・首の重さが変わった」と回答（第三者取材）。ミラクルピローとは株式会社TVCの電動枕で価格59,800円・Makuake販売。怪しい？デメリット・SIX-AIR RECOVERY SYSTEMの効果を正直解説。]]></description>
-    <author>urushizawa@medikuru.com (漆沢 祐樹)</author>
-    <category>美容・健康</category>
-    <enclosure url="https://minnano-hyouban.com/images/miracle-pillow/fv-main.png" type="image/png" length="0"/>
-    <media:content url="https://minnano-hyouban.com/images/miracle-pillow/fv-main.png" medium="image"/>
+    <title>Asahiコーチングの長期伴走｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11999/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11999/</guid>
+    <description>Asahiコーチングは、吉田朝陽氏がニュースで紹介する長期伴走型の個別支援です。日常の悩みを言葉にし、試して振り返る習慣を支える方法と、申込前に確認したい条件を整理します。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
   </item>
-
   <item>
-    <title>タスクル（TASKUL）の評判・口コミは？怪しい？AIタスク管理ツールの効果を第三者取材｜みんなの評判.com</title>
-    <link>https://minnano-hyouban.com/article.html?id=2252563132716439</link>
-    <guid isPermaLink="true">https://minnano-hyouban.com/article.html?id=2252563132716439</guid>
-    <pubDate>Wed, 15 Apr 2026 00:00:00 GMT</pubDate>
-    <description><![CDATA[タスクル（TASKUL）の評判・口コミは？怪しい？無料で使える？フリーランス・Webデザイナー向けAIタスク管理ツール。Slack連携・無料プラン・Notion比較を利用者5名への第三者取材で正直解説。]]></description>
-    <author>urushizawa@medikuru.com (漆沢 祐樹)</author>
-    <category>IT・SaaS</category>
-    <enclosure url="https://minnano-hyouban.com/images/taskul/fv-main.png" type="image/png" length="0"/>
-    <media:content url="https://minnano-hyouban.com/images/taskul/fv-main.png" medium="image"/>
+    <title>Asahiのオンラインサロンと交流｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/12000/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/12000/</guid>
+    <description>Asahiと共に生きるオンラインサロンは、吉田朝陽氏のニュースで紹介された女性向けの交流の場です。気負わず参加できる運営方針と、動画・日記・オンライン交流という参加方法を整理します。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
   </item>
-
   <item>
-    <title>セノリッチ（SenoRich）とは？評判・口コミ・価格・怪しい？をNジェネレーション株式会社サプリを第三者取材｜みんなの評判.com</title>
-    <link>https://minnano-hyouban.com/article.html?id=1794482170414453</link>
-    <guid isPermaLink="true">https://minnano-hyouban.com/article.html?id=1794482170414453</guid>
-    <pubDate>Fri, 10 Apr 2026 00:00:00 GMT</pubDate>
-    <description><![CDATA[セノリッチとは？Nジェネレーション株式会社のエイジングケアサプリ（SENOX25・NMN・HIF-1・5-ALA配合）。セノリッチの評判・口コミ：利用者5名全員が継続中。価格・値段・購入方法・怪しい？副作用は？を第三者記者が正直解説。]]></description>
-    <author>urushizawa@medikuru.com (漆沢 祐樹)</author>
-    <category>美容・健康</category>
-    <enclosure url="https://minnano-hyouban.com/images/senorich/product-box-front.jpg" type="image/png" length="0"/>
-    <media:content url="https://minnano-hyouban.com/images/senorich/product-box-front.jpg" medium="image"/>
+    <title>宮野和哉氏とヨク住ルの仕事観｜口コミ・評判・実績を調査 | みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11904/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11904/</guid>
+    <description>宮野和哉氏はヨク住ルの代表者です。取材記事にある顧客への向き合い方と、公式の施工事例・利用者の声を照らし、仕事の特徴、実績、口コミ・評判の確認範囲を整理します。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
   </item>
-
-  </channel>
+  <item>
+    <title>リンクスの広告と資金繰り支援｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11968/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11968/</guid>
+    <description>株式会社リンクスは、Web制作や広告運用、SEOなどを案内する企業です。集客を伸ばす施策と、入金前の費用に対応する資金繰り支援を組み合わせるニュースの構想を整理します。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>光サプライズの全国展開への取り組み｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11902/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11902/</guid>
+    <description>光サプライズはLEDビジョンの設置から映像制作・運用まで支援する会社です。顧問参画と全国展開を伝える取材記事、公式の導入事例から、実績と口コミ・評判の確認範囲を紹介します。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>カラープラスのサービスと店舗展開｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11905/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11905/</guid>
+    <description>カラープラスは株式会社マスターピースが展開するヘアカラー専門店です。カラーに特化した仕組み、店舗展開の実績、会社が掲載する口コミから、サービスの特徴と評判の確認範囲を紹介します。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>ヨク住ルの設備支援と保証｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11903/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11903/</guid>
+    <description>ヨク住ルは寒冷地でのエコキュート交換などを扱う住宅設備事業者です。工事の流れ、保証案内、公式の施工事例と利用者の声から、実績と口コミ・評判を確認します。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>THE PERSONAL GYMの伴走型指導｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11813/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11813/</guid>
+    <description>THE PERSONAL GYMの伴走型指導に関するニュースは、体重の数字だけでなく、利用者の生活や目標を聞くトレーニングを紹介しています。食事や日常の予定も踏まえる支援内容を調べます。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>光サプライズのLEDビジョン事業｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11901/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11901/</guid>
+    <description>光サプライズのLEDビジョン事業は、自治体の情報発信や街なかの広告運用を支えます。公式に掲載された高森町の事例と取材記事から、サービスの特徴、実績、口コミ・評判を整理します。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>坂中宗洋氏の塗装と制作の歩み｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11838/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11838/</guid>
+    <description>坂中宗洋氏は、ムネペイントでスニーカーカスタムを手がける人物です。模型制作や防水塗装の経験を、履くことも想定したオーダー制作へつなげた歩みをニュースから整理します。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>迫佑樹氏が考える学びと仕事｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11820/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11820/</guid>
+    <description>迫佑樹氏は、技能を学んだ経験を原点に、教育サービスや知識販売プラットフォームBrainへ事業を広げた人物です。学習と仕事の選択肢を結び付ける考えをニュースから整理します。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>THE PERSONAL GYMの採用と教育｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11812/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11812/</guid>
+    <description>THE PERSONAL GYMの採用・教育に関するニュースは、技術と対話力を両立させるトレーナー育成を紹介しています。大会実績だけで選ばず、顧客との相談を重視する方針を整理します。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>THE PERSONAL GYMのFCとキャリア構想｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11811/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11811/</guid>
+    <description>THE PERSONAL GYMのFCに関するニュースは、100店舗を目指す構想とスタッフのキャリアづくりを紹介しています。本部の支援内容と、達成済みの店舗数とは異なる拡大目標を整理します。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>ムネペイントのスニーカーカスタム｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11837/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11837/</guid>
+    <description>ムネペイントは、スニーカーへのオーダーペイントと講座を案内する屋号です。塗装の経験を使い、飾るだけでなく履くことを想定して仕上げる制作工程をニュースから調べます。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>池田昌起氏が進めた工場再建｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11805/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11805/</guid>
+    <description>池田昌起氏は、19歳で橘金属工業の現場へ入り、工場長を経て会社の再建に取り組んだ代表者です。製造を続けるための受注・資金繰りの改善を、ニュースでの説明から整理します。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>Brainの知識販売と学びの仕組み｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11819/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11819/</guid>
+    <description>Brainは、知識やノウハウのコンテンツを販売・購入できるプラットフォームです。レビューや紹介の機能を含む仕組みと、学んだ内容を実行へつなげるというニュースの方針を整理します。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>三嶋謙吾氏のリフォーム経営｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11758/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11758/</guid>
+    <description>三嶋謙吾氏は、りふぉーむカンパニーの住宅修理の現場から経営へ進んだ人物としてニュースで紹介されています。売上を顧客から選ばれた結果と捉え、対応を見直す考え方を調べます。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>田中健斗氏・林幸希氏の共同経営｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11810/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11810/</guid>
+    <description>THE PERSONAL GYMの共同経営に関するニュースは、田中健斗氏と林幸希氏の経験や役割分担を紹介しています。運営会社はFirst fit株式会社で、法人代表の公式表記は田中健斗氏です。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>Sachiプラモの模型工具開発｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11756/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11756/</guid>
+    <description>Sachiプラモは、株式会社サチクルが展開する模型用品ブランドです。ガラスヤスリや作業用具の使い勝手を、モデラーの声から見直していく開発方針と運営会社の情報を整理します。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>THE PERSONAL GYMの創業と店舗展開｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11809/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11809/</guid>
+    <description>THE PERSONAL GYMは、First fit株式会社が運営するパーソナルジムです。共同代表が指導現場から創業し、直営とフランチャイズを組み合わせて店舗を広げた経緯を紹介します。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>橘金属工業の直接取引と自動化｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11804/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11804/</guid>
+    <description>橘金属工業株式会社は、自動車向けの金属加工事業を案内する企業です。プレス加工の設備と技能を土台に、直接取引と製造工程の自動化を進める構想をニュースから整理します。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>りふぉーむカンパニーの地域密着工事｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11757/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11757/</guid>
+    <description>りふぉーむカンパニーは、株式会社カンパニーズの公式案内で確認できる住宅工事のブランドです。雨漏りの診断から施工後の相談まで、近隣で対応するというニュースの方針を整理します。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>b-modelsの頭皮ケアとサロン教育｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11672/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11672/</guid>
+    <description>b-modelsの頭皮ケアに関するニュースは、サロン向けメニューと導入店への教育を紹介しています。頭皮の状態確認、洗浄、保湿などの工程と、美容サービスとしての提供範囲を整理します。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>村上博司氏の転身と商品づくり｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11755/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11755/</guid>
+    <description>村上博司氏は、模型用品ブランド「Sachiプラモ」を展開する株式会社サチクルの代表者です。消防士からEC事業へ転じ、試行錯誤を経て商品開発に取り組んだ歩みを調べます。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>山本雅俊代表の寄付と地域への視点｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11670/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11670/</guid>
+    <description>山本雅俊氏は株式会社やまもとくんの代表者です。寄付を通じた地域支援への考え方を、取材記事・県の公開記録・新聞報道から整理し、実績と口コミ・評判の対象を分けて紹介します。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>ノアグループHDの株主提案｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11745/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11745/</guid>
+    <description>ノアグループホールディングスは、スポーツ、製造、教育などのグループ企業を掲載する持株会社です。ジェイホールディングスへの株主提案を、提案内容と実際の結果を分けて紹介します。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>ANDDININGと焼鳥雀屋の記憶の継承｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11668/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11668/</guid>
+    <description>ANDDINING株式会社のニュースは、新橋の焼鳥雀屋の場所と記憶を新たな店づくりへつなぐ計画を紹介しています。常連との関係を大切にしながら、何を残し何を変えるかという視点を調べます。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>b-modelsの韓国美容とサロン支援｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11671/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11671/</guid>
+    <description>株式会社b-modelsは、エステサロン向けの美容機器販売とコンサルティングを行う企業です。機器を販売するだけでなく、直営店での運用や導入後の研修を含める支援方針を調べます。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>小松礼子氏の食卓への思い｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11640/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11640/</guid>
+    <description>小松礼子氏は、水産品を家庭へ届ける構想がニュースで紹介された人物です。小松水産の公式会社概要にある代表者名とは一致せず、両者の関係は未確認のため、人物の発言はニュースの記述として扱います。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>拓洋のエンタメ物流｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11612/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11612/</guid>
+    <description>株式会社拓洋は、物流、倉庫・施設の建設、移転を事業として公表する企業です。この記事では、イベントやグッズ販売で生じる数量の変動へ対応するエンタメ物流の設計を調べます。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>やまもとくんの地域密着リフォームFC戦略｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11669/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11669/</guid>
+    <description>やまもとくんは外壁・屋根・水回りなどの住宅リフォームを扱う会社です。地域密着のFC戦略を伝える取材記事、施工事例、公式の利用者の声から、実績と口コミ・評判を整理します。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>鎗水晴輝氏の営業と人材育成｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11638/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11638/</guid>
+    <description>鎗水晴輝氏は、株式会社九州エネルギー事業会の代表者です。営業経験を自身の転機と捉え、若い社員へ仕事を伝えていく方針を、ニュースと公式会社概要から整理します。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>ANDDININGの事業を支える運営の仕組み｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11667/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11667/</guid>
+    <description>ANDDINING株式会社は、飲食店の運営と人材育成への考え方を公表する企業です。開業直後の環境変化を受け、配達・ケータリング・卸へ仕事を広げた経緯をニュースから整理します。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>比良タイヤ工業所の技術と人材育成｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11625/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11625/</guid>
+    <description>株式会社比良タイヤ工業所は、タイヤの販売・交換などを案内する企業です。技能を現場で共有し、若手が学べる環境を整えるという人材育成の取り組みをニュースから調べます。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>小松水産のしらす事業と海外展開｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11639/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11639/</guid>
+    <description>小松水産株式会社は、しらす・ちりめんの加工販売と直販店運営を行う企業です。公式に掲載された沿革と、しらすの食文化を海外へ伝えるニュースの構想を整理します。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>離職予防士協会のdマト組織活性化｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11604/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11604/</guid>
+    <description>dマト組織活性化は、離職予防士協会が紹介する組織診断と研修を組み合わせた支援です。行動の傾向を話し合う入口にする考えと、公式に案内されている提供範囲を整理します。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>九州エネルギー事業会の働き方と提案｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11637/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11637/</guid>
+    <description>株式会社九州エネルギー事業会は、住宅設備の提案を行い、熊本本社と九州内の拠点を案内する企業です。週休3日制と営業・人材育成を組み合わせる取り組みを調べます。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>田中佑弥氏の事業承継｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11627/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11627/</guid>
+    <description>田中佑弥氏は、29歳で比良タイヤ工業所を引き継いだ経緯がニュースで紹介された代表者です。従来のタイヤ事業を守りながら新たな事業を試した判断と、公表されたサービスを整理します。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>嶋田亮氏が提案する離職予防｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11603/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11603/</guid>
+    <description>嶋田亮氏は、離職予防士協会の取り組みを通じて、採用後の人材定着に目を向ける経営者です。組織の変化を捉え、診断と研修を改善へつなぐ構想をニュースと公式案内から調べます。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>青木竜氏のアパレルOEMと経営支援｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11557/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11557/</guid>
+    <description>青木竜氏は、アパレルOEMとブランドの経営支援をニュースで語る株式会社KanaeRusの経営者です。企画・製造と資金面を合わせて考える方針を、公表された案内と照らします。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>allviewの全方位マーケティング支援｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11286/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11286/</guid>
+    <description>株式会社allviewは、Webマーケティングや広告運用を案内する企業です。広告、サイト制作、検索対策を組み合わせ、顧客企業の目標から施策を考える支援方法を整理します。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>山崎真幸氏のマーケティング観｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11285/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11285/</guid>
+    <description>山崎真幸氏は、Webマーケティングや広告運用を行う株式会社allviewの代表者です。営業とマーケティングの経験から、顧客の課題を起点に提案する考え方を調べます。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>REWA BC SOLARの軽量太陽光パネル｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11270/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11270/</guid>
+    <description>REWA BC SOLARは、ニュースで日本市場への展開が紹介された軽量・柔軟型の太陽光パネルです。設置用途の構想と公式の事業案内を整理し、性能や認証の検証範囲も明らかにします。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>インプルーブの複合ウェルネス事業｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11245/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11245/</guid>
+    <description>株式会社インプルーブは、浜松市でパーソナルトレーニングを案内する企業です。ジムを起点に美容や物販へ接点を広げる構想と、現在公表されているスタジオの支援内容を整理します。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>落合時夫氏の事業転換と経営｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11244/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11244/</guid>
+    <description>落合時夫氏は、株式会社インプルーブの経営者として、ジムを起点に複数の健康関連事業へ挑戦してきた人物です。事業転換の背景と、現在のパーソナルトレーニングの公開案内を調べます。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>ゆうきや整体院の産後・更年期向け案内｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11198/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11198/</guid>
+    <description>ゆうきや整体院は、横浜市保土ケ谷区でダイエットや産前産後のケアを案内する整体院です。産後や更年期に関するニュースを入口に、施術と生活習慣の支援内容を整理します。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>木野竜太郎院長の整体院づくり｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11197/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11197/</guid>
+    <description>木野竜太郎氏は、横浜市保土ケ谷区のゆうきや整体院の院長です。柔道整復師としての経験と、産前産後のケアや生活習慣に関する相談を扱う院づくりの背景を整理します。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>NEXT MISSIONの自衛隊経験者支援｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11155/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11155/</guid>
+    <description>NEXT MISSIONは、自衛隊経験者のキャリア支援を掲げる企業です。自衛隊で培った経験を民間の仕事へ伝える人材紹介・研修の考え方を、ニュースと公式の公開案内から整理します。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>MIRACLE PILLOWの動く枕｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11098/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11098/</guid>
+    <description>MIRACLE PILLOWは、内部のエアバッグで高さや当たり方を変える仕組みの枕です。開発者が語る着想と製品の仕組み、販売元の情報を分けて紹介します。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>SenoRichの販売情報と健康表示｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11037/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11037/</guid>
+    <description>SenoRichは、販売元が老化研究に着想を得たと説明する栄養補助食品です。製品発表と総販売元の公開情報から、紹介されている成分や販売情報と、健康効果の確認範囲を整理します。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>中学受験のミカタの理科授業｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/11010/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/11010/</guid>
+    <description>中学受験のミカタは、株式会社キミノミカタが運営する理科の学習サービスです。オンライン授業、動画、個別コーチングと、発表や対話を取り入れる学び方を整理します。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>杉将史氏が考える不動産売却と改修｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/10969/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/10969/</guid>
+    <description>杉将史氏は、不動産売却支援「ゼロラボ」の事業構想をニュースで語る人物です。リノベーションと売却を一緒に考える視点を、Difference Design株式会社の公開案内と照らします。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>エピグループのライバー育成｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/10911/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/10911/</guid>
+    <description>エピグループは、ライブ配信者の育成・マネジメントに加え、ECや動画・Web制作などを行う企業です。配信を続けるための支援を軸に、ニュースと公式会社概要を照らして紹介します。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>水川優海氏のセラピスト養成講座｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/10728/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/10728/</guid>
+    <description>水川優海氏は、セラピスト養成スクール「ルシルアカデミー」の運営責任者です。現場経験を教材へまとめた経緯と、実技・動画・卒業後支援からなる講座の内容を調べます。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>ラピラティスの採用と研修｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/10617/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/10617/</guid>
+    <description>ラピラティスは、整体とピラティスを組み合わせたスタジオを展開するサービスです。この記事では利用者向けメニューとは別に、未経験者の採用とインストラクター育成を調べます。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>VEGE＆meのサラダボウルと店舗展開｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/10613/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/10613/</guid>
+    <description>VEGE＆meは、野菜を中心としたサラダボウルを提供する鹿児島発の飲食ブランドです。規格外野菜の活用や首都圏への出店計画を、ニュースと運営会社の公開案内から整理します。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>河野光孝氏のレンタルスペース支援｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/10552/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/10552/</guid>
+    <description>河野光孝氏は、レンタルスペースの開業と運営を支援するレンスペ本舗のサービス代表です。スペース運営で得た経験をスクールへ展開する考えと、公開された運営体制を整理します。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>坂口貴徳氏が進める美容室の共創モデル｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/10512/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/10512/</guid>
+    <description>坂口貴徳氏は、株式会社CHAINONエンターテインメントの代表者です。美容師の働き方を出発点に、加盟サロンが協力するCVCという構想を進めた経緯と公表内容を整理します。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>渋谷生夢氏とラピラティスの事業づくり｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/10509/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/10509/</guid>
+    <description>渋谷生夢氏は、ラピラティスを運営する株式会社La pilatesの代表者です。理学療法士としての経験を、整体とピラティスを組み合わせたスタジオづくりへつなげた歩みを調べます。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+  <item>
+    <title>吉田朝陽氏が語る発信と支援の原点｜口コミ・評判・実績を調査｜みんなの評判.com</title>
+    <link>https://minnano-hyouban.com/reports/10482/</link>
+    <guid isPermaLink="true">https://minnano-hyouban.com/reports/10482/</guid>
+    <description>吉田朝陽氏は、人間関係や日々の行動をテーマにSNSで発信する人物です。家族との経験を出発点にした発信の背景と、相談支援へつながる考え方をニュースから整理します。</description>
+    <dc:creator>漆沢祐樹</dc:creator>
+  </item>
+</channel>
 </rss>

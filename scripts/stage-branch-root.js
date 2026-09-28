@@ -8,6 +8,7 @@ const path = require('node:path');
 const root = path.resolve(__dirname, '..');
 const dist = path.join(root, 'dist');
 const manifestPath = path.join(root, '.published-root-files.json');
+const retiredManifestPath = path.join(root, 'content/retired-public-files.json');
 const checkOnly = process.argv.includes('--check');
 
 function listFiles(dir, prefix = '') {
@@ -37,9 +38,31 @@ const previous = fs.existsSync(manifestPath)
 if (!Array.isArray(previous) || previous.some(file => typeof file !== 'string')) {
   throw new Error('Invalid branch-root manifest.');
 }
-for (const file of [...previous, ...current]) checkedPath(file);
+const retired = JSON.parse(fs.readFileSync(retiredManifestPath, 'utf8'));
+if (!Array.isArray(retired) || retired.some(file => typeof file !== 'string') || new Set(retired).size !== retired.length) {
+  throw new Error('Invalid retired-public-files manifest.');
+}
+const retiredAiPath = /^(?:ai-instruction\.json|ai-query-map\.json|aio-route-map\.json|aio-scores\.json|llms-full\.txt|llms\/articles\/\d{16}(?:\.txt|-(?:concept\.txt|ai-(?:instruction|patch)\.json)))$/;
+for (const file of retired) {
+  if (!retiredAiPath.test(file) || current.includes(file)) throw new Error(`Unsafe retired AI file path: ${file}`);
+  const target = checkedPath(file);
+  let ancestor = root;
+  for (const part of file.split('/')) {
+    ancestor = path.join(ancestor, part);
+    if (fs.existsSync(ancestor) && fs.lstatSync(ancestor).isSymbolicLink()) {
+      throw new Error(`Retired path contains a symlink: ${file}`);
+    }
+  }
+  if (fs.existsSync(target) && (!fs.lstatSync(target).isFile() || fs.lstatSync(target).isSymbolicLink())) {
+    throw new Error(`Retired path is not a regular file: ${file}`);
+  }
+}
+for (const file of [...previous, ...current, ...retired]) checkedPath(file);
 
 if (checkOnly) {
+  for (const file of retired) {
+    if (fs.existsSync(checkedPath(file))) throw new Error(`Retired AI file is still public: ${file}`);
+  }
   if (JSON.stringify(previous) !== JSON.stringify(current)) throw new Error('Published file list differs from dist/.');
   for (const file of current) {
     const target = checkedPath(file);
@@ -49,6 +72,8 @@ if (checkOnly) {
   }
   console.log(`Branch-root snapshot verified (${current.length} files).`);
 } else {
+  // Delete only explicitly reviewed obsolete files, never legacy article folders.
+  for (const file of retired) fs.rmSync(checkedPath(file), { force: true });
   for (const file of previous.filter(file => !current.includes(file))) fs.rmSync(checkedPath(file), { force: true });
   for (const file of current) {
     const target = checkedPath(file);

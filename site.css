@@ -304,6 +304,47 @@ button, input { font: inherit; }
   .report-facts dt { padding-bottom: 2px; border-bottom: 0; }
   .report-facts dd { padding-top: 0; }
 }
+/* Source-backed introductions stay visible without JavaScript. */
+.media-spotlight { display: grid; grid-template-columns: 106px minmax(0, 1fr); gap: 24px; padding: 28px; margin-bottom: 28px; background: #152f32; color: #fff; border-top: 4px solid #b9985e; }
+.media-spotlight-label { display: flex; flex-direction: column; gap: 18px; border-right: 1px solid #547174; padding-right: 18px; }
+.media-spotlight-label > span { font-size: 10px; letter-spacing: .12em; }
+.media-spotlight-label strong { font: 54px/1 Georgia, serif; }
+.media-spotlight-label small { display: block; margin-top: 10px; font: 12px/1.5 sans-serif; }
+.media-spotlight h2 { margin: 0 0 12px; font-size: clamp(18px, 2vw, 24px); line-height: 1.5; color: inherit; }
+.media-spotlight .media-news-title { margin: 0 0 8px; font-size: 15px; line-height: 1.85; overflow-wrap: anywhere; }
+.media-spotlight .media-date { margin: 0 0 16px; color: #c5d4d5; font-size: 12px; }
+.media-links { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 0; }
+.media-links li { margin: 0; }
+.media-links a { display: block; padding: 8px 11px; border: 1px solid #759293; color: #fff; font-size: 12px; line-height: 1.5; text-decoration: none; }
+.media-links a:hover, .media-links a:focus-visible { background: #2b5053; border-color: #fff; }
+.media-spotlight .media-context { margin: 15px 0 0; color: #c5d4d5; font-size: 11px; line-height: 1.9; }
+.research-brief { border: 1px solid #d5ddd8; padding: 28px; background: #f4f6f2; scroll-margin-top: 32px; }
+.research-brief h2 { margin: 7px 0 18px; font-size: clamp(21px, 2.5vw, 28px); line-height: 1.55; overflow-wrap: anywhere; }
+.research-brief .brief-introduction { font-size: 16px; line-height: 1.95; margin: 0 0 22px; }
+.brief-answer { border-top: 1px solid #d5ddd8; padding: 20px 0; scroll-margin-top: 32px; }
+.brief-answer:last-child { padding-bottom: 0; }
+.brief-answer h3 { font-size: 16px; line-height: 1.6; margin: 0 0 8px; color: #1b5451; }
+.brief-answer > p { margin: 0; font-size: 15px; line-height: 1.95; }
+.brief-answer .brief-source { font-size: 12px; line-height: 1.8; margin-top: 8px; overflow-wrap: anywhere; }
+.report-byline { display: flex; flex-wrap: wrap; column-gap: 18px; row-gap: 4px; margin: 20px 0 16px; font-size: 12px; line-height: 1.8; color: #576765; }
+.report-byline small { width: 100%; font-size: 11px; }
+.report-toc { display: flex; flex-wrap: wrap; gap: 8px 18px; padding-bottom: 22px; margin-bottom: 24px; border-bottom: 1px solid #d5ddd8; font-size: 13px; }
+#report-detail { display: block; scroll-margin-top: 30px; }
+.home-media-note { display: flex; gap: 26px; align-items: start; padding: 25px 0; border-top: 1px solid #bfc3bb; border-bottom: 1px solid #bfc3bb; margin-top: 28px; }
+.home-media-note h2 { font-size: 17px; line-height: 1.75; min-width: 12em; margin: 0; }
+.home-media-note p { font-size: 14px; line-height: 1.95; margin: 0; }
+.home-media-note a { text-underline-offset: 4px; }
+@media (max-width: 620px) {
+  .media-spotlight { grid-template-columns: 1fr; gap: 16px; padding: 23px 20px; }
+  .media-spotlight-label { flex-direction: row; align-items: center; justify-content: space-between; border-right: 0; border-bottom: 1px solid #547174; padding: 0 0 14px; }
+  .media-spotlight-label strong { font-size: 35px; display: flex; align-items: baseline; gap: 8px; }
+  .media-spotlight-label small { display: inline; margin: 0; }
+  .media-links a { font-size: 11px; }
+  .research-brief { padding: 23px 20px; }
+  .research-brief .brief-introduction, .brief-answer > p { font-size: 14px; }
+  .home-media-note { display: block; }
+  .home-media-note h2 { margin-bottom: 12px; }
+}
 /* Motion stays decorative: article text and source links remain readable immediately. */
 @media (prefers-reduced-motion: no-preference) {
   .hero-copy .eyebrow { animation: rise-in .55s cubic-bezier(.2,.7,.2,1) both; }

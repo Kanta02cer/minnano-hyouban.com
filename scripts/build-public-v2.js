@@ -2,7 +2,7 @@
 'use strict';
 
 // dist/ contains only this allowlist. Pages currently publishes main/;
-// stage-branch-root.js copies this snapshot there while legacy files remain.
+// stage-branch-root.js copies this snapshot there and retires obsolete AI files.
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -39,10 +39,62 @@ const publicPages = [
   ...reportIds.map(id => `/reports/${id}/`),
 ];
 
+function decodeText(value) {
+  const entities = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' ' };
+  return value.replace(/&(#x[0-9a-f]+|#\d+|amp|lt|gt|quot|apos|nbsp);/gi, (match, entity) => {
+    if (!entity.startsWith('#')) return entities[entity.toLowerCase()];
+    const point = entity[1].toLowerCase() === 'x' ? parseInt(entity.slice(2), 16) : Number(entity.slice(1));
+    return point > 0 && point <= 0x10ffff ? String.fromCodePoint(point) : match;
+  }).replace(/\s+/g, ' ').trim();
+}
+
+function pageMetadata(page) {
+  const relative = page === '/' ? 'index.html' : page.replace(/^\//, '').replace(/\/$/, '/index.html');
+  const html = fs.readFileSync(path.join(sourceDir, relative), 'utf8');
+  const title = decodeText(html.match(/<title>([\s\S]*?)<\/title>/i)?.[1] || '');
+  const descriptionTag = [...html.matchAll(/<meta\b[^>]*>/gi)]
+    .map(match => match[0]).find(tag => /\bname=["']description["']/i.test(tag)) || '';
+  const description = decodeText(descriptionTag.match(/\bcontent=(["'])([\s\S]*?)\1/i)?.[2] || '');
+  const nodes = [...html.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)]
+    .flatMap(match => {
+      const data = JSON.parse(match[1]);
+      return Array.isArray(data) ? data : data['@graph'] || [data];
+    });
+  const datedNode = nodes.find(node => {
+    const types = Array.isArray(node['@type']) ? node['@type'] : [node['@type']];
+    return types.some(type => ['Article', 'WebPage', 'CollectionPage', 'ProfilePage', 'AboutPage'].includes(type))
+      && /^\d{4}-\d{2}-\d{2}(?:T[^\s]+)?$/.test(node.dateModified || '')
+      && Number.isFinite(Date.parse(node.dateModified));
+  });
+  const articleNode = nodes.find(node => (Array.isArray(node['@type']) ? node['@type'] : [node['@type']]).includes('Article'));
+  // A date without a recorded time is not converted to an invented RSS time.
+  const published = articleNode?.datePublished || articleNode?.dateCreated;
+  const pubDate = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$/.test(published || '')
+    && Number.isFinite(Date.parse(published)) ? new Date(published).toUTCString() : null;
+  return { page, title, description, lastmod: datedNode?.dateModified, pubDate };
+}
+
+const metadata = publicPages.map(pageMetadata);
+const xml = text => text.replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;' }[char]));
+const markdown = text => text.replace(/[\\[\]<>]/g, char => `\\${char}`);
+const articleIndex = metadata.filter(item => item.page.startsWith('/reports/'))
+  .map(item => `- [${markdown(item.title)}](${siteUrl}${item.page}): ${item.description}`).join('\n');
+
+// The four withdrawn articles used a separate, obsolete review format.
+// Keep their URLs readable as withdrawal notices, without preserving old claims.
+const archiveNotices = Object.fromEntries([
+  'article.html',
+  ...['1794482170414453', '2221437250750372', '2252563132716439', '3340006759735454']
+    .map(id => `articles/${id}/index.html`),
+].map(file => [file, `<!doctype html>\n<html lang="ja">\n<head>\n  <meta charset="utf-8">\n  <meta name="viewport" content="width=device-width, initial-scale=1">\n  <meta name="robots" content="noindex, follow">\n  <title>旧記事の公開終了 | みんなの評判.com</title>\n  <meta name="description" content="この旧記事の公開は終了しました。現在の調査記事は記事一覧からご覧いただけます。">\n  <link rel="icon" href="/favicon.svg" type="image/svg+xml">\n  <link rel="stylesheet" href="/site.css">\n</head>\n<body>\n  <header class="site-header"><div class="wrap" style="padding-block:1.5rem"><a class="brand" href="/">みんなの評判.com</a></div></header>\n  <main class="wrap" style="padding-block:5rem;max-width:48rem">\n    <h1>旧記事の公開を終了しました</h1>\n    <p>現在は、ニュース記事と公式サイトなどの公開情報を調べ、企業・代表者・サービスを紹介しています。</p>\n    <p><a href="/articles.html">現在の調査記事一覧を見る</a></p>\n  </main>\n</body>\n</html>\n`]));
+
 const generatedFiles = {
+  ...archiveNotices,
   'CNAME': `${domain}\n`,
   'robots.txt': `User-agent: *\nAllow: /\n\nSitemap: ${siteUrl}/sitemap.xml\n`,
-  'sitemap.xml': `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${publicPages.map(page => `  <url><loc>${siteUrl}${page}</loc></url>`).join('\n')}\n</urlset>\n`,
+  'sitemap.xml': `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${metadata.map(item => `  <url><loc>${siteUrl}${item.page}</loc>${item.lastmod ? `<lastmod>${xml(item.lastmod)}</lastmod>` : ''}</url>`).join('\n')}\n</urlset>\n`,
+  'llms.txt': `# みんなの評判.com\n\n> ネットニュースで紹介された企業・代表者・サービスについて、ニュース記事と公式サイトなどの公開情報を調べる個人運営メディアです。\n\n## サイトについて\n\n- 運営者・編集責任者: 漆沢祐樹\n- [編集責任者](${siteUrl}/editor.html)\n- [調査方法と記事の読み方](${siteUrl}/guide.html)\n- [記事一覧](${siteUrl}/articles.html)\n- [サイトマップ](${siteUrl}/sitemap.xml)\n\nこのファイルは公開記事の案内です。各記事の本文に、情報源、確認日、ニュースで報じられた内容、企業が公表した内容、口コミの確認範囲を記載しています。複数媒体への同一記事の掲載と、独立した取材・利用者による評価は区別しています。\n\n## 公開記事\n\n${articleIndex}\n`,
+  'feed.xml': `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">\n<channel>\n  <title>みんなの評判.com</title>\n  <link>${siteUrl}/</link>\n  <description>ニュースと公開情報から企業・代表者・サービスの口コミ・評判・実績を調べる個人運営メディア</description>\n  <language>ja</language>\n  <atom:link href="${siteUrl}/feed.xml" rel="self" type="application/rss+xml"/>\n${metadata.filter(item => item.page.startsWith('/reports/')).map(item => `  <item>\n    <title>${xml(item.title)}</title>\n    <link>${siteUrl}${item.page}</link>\n    <guid isPermaLink="true">${siteUrl}${item.page}</guid>\n    <description>${xml(item.description)}</description>\n    <dc:creator>漆沢祐樹</dc:creator>${item.pubDate ? `\n    <pubDate>${item.pubDate}</pubDate>` : ''}\n  </item>`).join('\n')}\n</channel>\n</rss>\n`,
 };
 
 function assertRegularFile(file) {
@@ -93,6 +145,7 @@ function build() {
     fs.copyFileSync(path.join(root, src), path.join(outputDir, dest));
   }
   for (const [dest, content] of Object.entries(generatedFiles)) {
+    fs.mkdirSync(path.dirname(path.join(outputDir, dest)), { recursive: true });
     fs.writeFileSync(path.join(outputDir, dest), content, 'utf8');
   }
 

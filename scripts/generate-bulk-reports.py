@@ -200,6 +200,7 @@ def page(item, note, related):
         warning = '<p>健康食品については、<a href="https://www.caa.go.jp/policies/policy/consumer_safety/food_safety/food_safety_portal/health_food/">消費者庁の情報</a>も参照できます。販売元の説明だけで治療効果を判断しないことが大切です。</p>'
     if id_ == '11745':
         warning = '<p>株主提案の現状は、対象上場会社の最新の適時開示や株主総会資料で改めて確認してください。この記事は投資判断を勧めるものではありません。</p>'
+    corporate_source = '<p><a href="https://brain-holdings.com/">運営会社グループの会社情報</a>も参照しています（確認：2026年9月27日）。</p>' if id_ in ['11819', '11820'] else ''
     return f'''<!doctype html>
 <html lang="ja">
 <head>
@@ -217,7 +218,7 @@ def page(item, note, related):
     <div class="wrap report-layout"><article class="report-main">
       <section class="report-section" aria-labelledby="overview"><p class="section-kicker">OVERVIEW</p><h2 id="overview">ニュースで取り上げられたテーマ</h2><p><a href="{esc(news_url)}" rel="noopener noreferrer">元記事</a>は{date}に掲載されました。{esc(note['focus'])}同じ内容のニュースは{media_count}媒体で読むことができます。掲載の広がりは確認できる実績ですが、{media_count}件の独立した取材や、サービス品質への第三者認証を意味するものではありません。</p></section>{related_html}
       <section class="report-section" aria-labelledby="news-detail"><p class="section-kicker">THE NEWS</p><h2 id="news-detail">記事が伝える取り組み</h2><p>{esc(NEWS_DETAILS[id_])}</p></section>
-      <section class="report-section" aria-labelledby="company"><p class="section-kicker">COMPANY &amp; SERVICE</p><h2 id="company">公開案内から見る事業</h2><p>{esc(official_text(item))}</p><p>サービスの内容、対象地域、価格や提供条件は更新される場合があります。利用や取引を考えるときは、<a href="{esc(details)}" rel="noopener noreferrer">現在の公開案内</a>で詳しく確認できます。</p></section>
+      <section class="report-section" aria-labelledby="company"><p class="section-kicker">COMPANY &amp; SERVICE</p><h2 id="company">公開案内から見る事業</h2><p>{esc(official_text(item))}</p>{corporate_source}<p>サービスの内容、対象地域、価格や提供条件は更新される場合があります。利用や取引を考えるときは、<a href="{esc(details)}" rel="noopener noreferrer">現在の公開案内</a>で詳しく確認できます。</p></section>
       <section class="report-section" aria-labelledby="angle"><p class="section-kicker">WHAT TO CHECK</p><h2 id="angle">読み解くときの視点</h2><p>{esc(note['check'])}</p><p>ニュースで紹介された背景と、実際に提供されるサービスの条件を分けて見ると、{esc(company)}の取り組みを具体的に理解できます。</p>{warning}</section>
       <section class="report-section" aria-labelledby="record"><p class="section-kicker">PUBLICLY SOURCED RECORD</p><h2 id="record">確認できた実績の範囲</h2><div class="card"><dl class="report-facts"><dt>ニュース掲載</dt><dd>同じテーマの記事が{media_count}媒体に掲載されています。掲載先へのリンクは下にまとめました。</dd><dt>事業案内</dt><dd><a href="{esc(details)}" rel="noopener noreferrer">公開ページ</a>で{esc(company)}の事業や提供内容を確認できます。ページ上の実績・数値は公表主体と時点を確認してください。</dd></dl></div></section>
       <section class="report-section" aria-labelledby="reviews"><p class="section-kicker">REPUTATION</p><h2 id="reviews">口コミ・評判をどう読むか</h2><p>当サイトが独自に集め、本人確認まで行った利用者の口コミはありません。公式サイトに利用者の声や事例が掲載されている場合も、それは事業者が選んで公開した情報です。ニュースへの掲載は知名度を知る手がかりになりますが、顧客全体の満足度や成果を示す調査ではありません。</p><p>実際に利用する際は、自分に近い条件の事例、費用、契約後の対応を確認することを勧めます。</p></section>
@@ -319,6 +320,7 @@ def main():
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_text(page(item, notes[id_], related), encoding='utf-8')
     archive_and_home(sources, notes)
+    print('Next: node scripts/enhance-search-pages.js (required before validation/build)')
     print(f'Generated {len(sources)} reviewed report pages.')
 
 
