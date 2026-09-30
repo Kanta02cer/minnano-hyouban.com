@@ -22,6 +22,7 @@
 - `<title>`、`og:title`、Article JSON-LD `headline`、`h1` の**それぞれ**に「口コミ」「評判」「実績」を入れる。`description`、canonical、OG URL、構造化データの URL と日付もページ固有に更新する。記事内リンク、同社記事への相互リンク、公式サイト URL を確認する。
 - 記事の対象と、根拠のある特徴・実績・口コミの確認範囲を、`content/search-briefs-bulk.json` または `content/search-briefs-original.json` の記事IDに記録する。前者は2026年9月27日の一括追加53記事、後者は既存8記事とその後の個別記事用。各項目の形と編集上の注意は `docs/SEARCH_CITATION.md` を参照する。新しい記事も必ず要約データを用意し、対象名・役割・出典を本文と照合する。
 - 原稿と検索要約を編集したら `node scripts/enhance-search-pages.js` を実行する。冒頭の表示要約、掲載媒体欄、著者・日付、メタ説明と構造化データの共通部分を反映する。生成された `SEARCH_BRIEF_START` から `SEARCH_BRIEF_END` は直接直さず、要約データから再生成する。要約データの `publishedDate` は当サイトの初回公開日、`modifiedDate` は実際の編集更新日とし、ニュース掲載日・資料確認日とは分ける。既存8記事と以後の個別記事は `content/original-report-coverage.json` に元ニュースの `title`、`date`、確認済みURLだけの `media` を追加する。一括追加53記事は `content/bulk-report-sources.json` の媒体情報を使う。
+- `content/report-reader-guides.json` に記事ごとのまとめ2段落とFAQ（原則8〜10問）を作る。会社・人物・サービスの紹介、当該ニュースの具体的な取り組み、時点付きの実績、口コミの確認範囲、掲載媒体、公式情報への導線など、読者の判断に役立つ質問を選ぶ。各段落・回答には根拠の外部URLと出典名を付ける。記事間で同じ質問を水増しせず、同じ会社の別ニュースでも論点を分ける。`READER_GUIDE_START` から `READER_GUIDE_END` はデータから再生成する。本文にない新情報を加える場合は原資料を調査し、本文と資料欄も更新する。
 - 個別媒体情報の `type`、一括媒体情報の `coverageType` は、署名等で取材を確認したものだけ「取材記事」、それ以外は「ニュース記事」とする。冒頭の掲載媒体欄はこの区分と確認済みURLから生成し、検証で表示と照合する。
 - トップ `site-v2/index.html` と一覧 `site-v2/articles.html` に記事を追加する。`scripts/build-public-v2.js` の `reportIds` に slug を追加する。`npm run build` により `dist/` と `sitemap.xml` が再生成される。表紙はユーザーが選んだ B 案を踏襲する。
 

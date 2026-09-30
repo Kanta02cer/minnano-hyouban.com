@@ -4,6 +4,7 @@
 // Visible, reviewed summaries and matching metadata. No crawler-only content.
 const fs = require('node:fs');
 const path = require('node:path');
+const {validateGuide, renderGuide} = require('./lib/report-reader-guide');
 const root = path.resolve(__dirname, '..');
 const base = 'https://minnano-hyouban.com';
 const read = file => fs.readFileSync(path.join(root, file), 'utf8');
@@ -13,6 +14,7 @@ const plain = value => decode(value.replace(/<[^>]*>/g, '')).trim();
 const json = value => JSON.stringify(value).replace(/</g, '\\u003c');
 const jaDate = value => value.replace(/^(\d{4})-0?(\d+)-0?(\d+)$/, '$1年$2月$3日');
 const briefs = {...JSON.parse(read('content/search-briefs-bulk.json')), ...JSON.parse(read('content/search-briefs-original.json'))};
+const guides = JSON.parse(read('content/report-reader-guides.json'));
 const bulk = JSON.parse(read('content/bulk-report-sources.json'));
 const coverage = Object.fromEntries(bulk.map(item => [item.id, {title:item.newsTitle, date:item.newsDate, media:item.media, type:item.coverageType}]));
 Object.assign(coverage, JSON.parse(read('content/original-report-coverage.json')));
@@ -35,11 +37,13 @@ function graphTag(nodes) {
 for (const id of reportIds) {
   const b = briefs[id], c = coverage[id];
   if (!b || !c) throw new Error(`Missing reviewed brief or media coverage: ${id}`);
+  validateGuide(guides[id], id);
   for (const key of ['publishedDate','modifiedDate']) {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(b[key] || '')) throw new Error(`Missing ${key}: ${id}`);
   }
   const file = `site-v2/reports/${id}/index.html`, url = `${base}/reports/${id}/`;
   let html = read(file).replace(/\n<!-- SEARCH_BRIEF_START -->[\s\S]*?<!-- SEARCH_BRIEF_END -->\n/g, '');
+  html = html.replace(/\n<!-- READER_GUIDE_START -->[\s\S]*?<!-- READER_GUIDE_END -->\n/g, '');
   html = html.replace(/<script type="application\/ld\+json" data-search-graph>[\s\S]*?<\/script>\n/g, '');
   const oldArticle = JSON.parse(html.match(/<script\s+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/)[1]);
   const heading = oldArticle.headline;
@@ -68,11 +72,12 @@ for (const id of reportIds) {
   <div class="brief-answers">${answers}</div>
 </section>
 <p class="report-byline">執筆・編集：<a href="/editor.html">漆沢祐樹</a><span>公開：<time datetime="${b.publishedDate}">${jaDate(b.publishedDate)}</time></span><span>記事更新：<time datetime="${b.modifiedDate}">${jaDate(b.modifiedDate)}</time></span><small>資料の確認時点は本文・出典欄に記載しています。</small></p>
-<nav class="report-toc" aria-label="記事の案内"><a href="#brief-strengths">特徴・強み</a><a href="#brief-record">実績</a><a href="#brief-reputation">口コミ・評判</a><a href="#report-detail">詳しい調査内容 ↓</a></nav>
+<nav class="report-toc" aria-label="記事の案内"><a href="#brief-strengths">特徴・強み</a><a href="#brief-record">実績</a><a href="#brief-reputation">口コミ・評判</a><a href="#report-detail">詳しい調査内容</a><a href="#report-summary">まとめ</a><a href="#report-faq">よくある質問</a></nav>
 <span id="report-detail"></span>
 <!-- SEARCH_BRIEF_END -->
 `;
   html = replaceOnce(html, /(<(?:article|div)\b[^>]*class="report-main(?: [^"]*)?"[^>]*>)/, (_, opening) => opening + briefHtml, `${id} main`);
+  html = replaceOnce(html, /(<section\b[^>]*class="[^"]*\bofficial-visit\b[^"]*"[^>]*>)/, (_, opening) => renderGuide(guides[id], subjectLabel) + opening, `${id} official visit`);
   html = replaceOnce(html, /<meta name="description" content="[^"]*">/, `<meta name="description" content="${esc(b.introduction)}">`, `${id} description`);
   html = replaceOnce(html, /<meta property="og:description" content="[^"]*">/, `<meta property="og:description" content="${esc(b.introduction)}">`, `${id} og description`);
   const body = html.match(/<body\b[^>]*>([\s\S]*?)<\/body>/)[1];
@@ -111,5 +116,5 @@ for (const filename of ['index.html','articles.html','editor.html','guide.html',
   pending.set(file,html);
 }
 // Validate all source records before touching any file; reruns are byte-stable.
-for (const [file,html] of pending) fs.writeFileSync(path.join(root,file),html);
+for (const [file,html] of pending) fs.writeFileSync(path.join(root,file),html.replace(/[\t ]+$/gm, ''));
 console.log(`Updated visible summaries, media coverage and metadata for ${reportIds.length} reports and 6 site pages.`);

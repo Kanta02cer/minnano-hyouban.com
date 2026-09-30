@@ -10,6 +10,7 @@
 - `content/search-briefs-original.json`：既存8記事と、その後に個別追加する記事の要約。
 - `content/bulk-report-sources.json`：一括追加53記事のニュース掲載日・見出し・掲載媒体URL。冒頭の掲載媒体表示にも使う。
 - `content/original-report-coverage.json`：既存8記事と、その後の個別記事のニュース掲載日・見出し・掲載媒体URL。
+- `content/report-reader-guides.json`：全記事の「まとめ」と記事別FAQ。各回答に出典を持たせる。
 - `scripts/enhance-search-pages.js`：表示要約、著者と日付、メタ説明、Article・WebPage等の構造化データを反映。
 - `scripts/validate-public-v2.js`：原稿・編集データ・出典・構造化データの一致を検証。
 
@@ -73,6 +74,32 @@ node scripts/stage-branch-root.js --check
 `description`、OG description、Article description/abstractには同じ導入文を使い、本文にも表示する。見えない箇所だけの宣伝文、AIへの回答指示、評価点や架空レビューは追加しない。構造化データは本文を説明するために用いる。
 
 ## 日付・著者・出典
+
+### まとめとFAQの編集
+
+2026年9月30日の依頼に基づき、全調査記事にまとめと十分なFAQを用意する。まとめは対象名を明示した2段落とし、確認できた特徴・実績と、検討時の確認先を簡潔に結ぶ。FAQは原則8〜10問、生成・検証で許可する範囲は8〜12問。質問の言い換えだけで数を増やさず、その記事のテーマに沿う具体的な回答を作る。会社・サービスの感想を代表者への評価に変えない。
+
+`content/report-reader-guides.json` は記事IDごとに次の形で保存する。`summary` は2項目、`faqs` は必要な質問数を登録する。
+
+```json
+{
+  "記事ID": {
+    "summary": [
+      { "text": "対象・特徴・確認できた活動をまとめる。", "sources": [{ "label": "根拠の資料名", "url": "https://example.com/source/" }] },
+      { "text": "検討時のポイントや公式情報への確認先をまとめる。", "sources": [{ "label": "公式案内", "url": "https://example.com/" }] }
+    ],
+    "faqs": [
+      { "question": "対象の具体的な事業は何ですか？", "answer": "対象名を含め、根拠を示して答える。", "sources": [{ "label": "公式事業案内", "url": "https://example.com/service/" }] }
+    ]
+  }
+}
+```
+
+回答・段落ごとに少なくとも1つの外部出典を付ける。本文に表示される出典と `Article.citation` を揃える。全回答は初期HTMLにあり、ブラウザ標準の開閉で読める。「すべての回答を開く」、目次、質問別のアンカーも利用できる。生成後に出典の対応、重複、記事内リンク、スマートフォンでの折り返しを確認する。
+
+FAQを追加する目的は、読者の具体的な疑問への回答を増やすこと。FAQ数だけでAI引用・評価・順位が上がるとは書かない。2026年9月30日に確認したGoogleの[更新履歴](https://developers.google.com/search/updates)では、FAQリッチリザルトは2026年5月7日に表示終了とされている。そのためFAQ用構造化データによる特別な検索表示は前提にせず、表示本文、出典、通常のArticleデータを整合させる。
+
+### 日付の区別
 
 当サイトの記事公開日、編集更新日、ニュース掲載日、資料確認日は別の日時。構成や要約を編集したときは編集更新日を変更する。過去の資料を再取得・再確認していなければ、資料確認日を今日へ書き換えない。公表値に付く時点も残す。
 

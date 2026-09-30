@@ -4,6 +4,7 @@
 // Source-level checks for each public report. Run before npm run build.
 const fs = require('node:fs');
 const path = require('node:path');
+const {validateGuide} = require('./lib/report-reader-guide');
 
 const root = path.resolve(__dirname, '..');
 const read = file => fs.readFileSync(path.join(root, file), 'utf8');
@@ -95,6 +96,9 @@ for (const file of ['content/search-briefs-bulk.json', 'content/search-briefs-or
   } catch (error) { problems.push(`${file}: 検索要約を読み取れません (${error.message})。`); }
 }
 const coverage = {};
+let readerGuides = {};
+try { readerGuides = JSON.parse(read('content/report-reader-guides.json')); }
+catch (error) { problems.push(`まとめ・FAQデータを読み取れません (${error.message})。`); }
 try {
   const bulk = JSON.parse(read('content/bulk-report-sources.json'));
   for (const item of bulk) {
@@ -129,6 +133,7 @@ for (const file of ['index.html', 'articles.html', 'guide.html', 'editor.html', 
 }
 for (const id of Object.keys(briefs)) check(reportIds.includes(id), `検索要約 ${id} の公開記事がありません。`);
 for (const id of Object.keys(coverage)) check(reportIds.includes(id), `掲載媒体情報 ${id} の公開記事がありません。`);
+for (const id of Object.keys(readerGuides)) check(reportIds.includes(id), `まとめ・FAQ ${id} の公開記事がありません。`);
 for (const id of reportIds) {
   const file = `site-v2/reports/${id}/index.html`;
   if (!fs.existsSync(path.join(root, file))) {
@@ -151,6 +156,36 @@ for (const id of reportIds) {
   check(html.includes(`<meta property="og:url" content="${canonicalUrl}">`), `${file}: OG URL が一致しません。`);
   check(article.mainEntityOfPage === canonicalUrl, `${file}: JSON-LD の URL が一致しません。`);
   checkIndexable(html, file);
+  const guide = readerGuides[id];
+  try { validateGuide(guide, id); }
+  catch (error) { problems.push(`${file}: ${error.message}`); }
+  if (guide?.summary && guide?.faqs) {
+    const sections = [...html.matchAll(/<!-- READER_GUIDE_START -->([\s\S]*?)<!-- READER_GUIDE_END -->/g)];
+    check(sections.length === 1, `${file}: まとめ・FAQの表示領域は1つ必要です。`);
+    const rendered = sections[0]?.[1] || '';
+    const summary = contentOf(rendered, /<section\b[^>]*id="report-summary"[^>]*>([\s\S]*?)<\/section>/);
+    const faq = contentOf(rendered, /<section\b[^>]*id="report-faq"[^>]*>([\s\S]*?)<\/section>/);
+    check(!!summary && !!faq, `${file}: まとめとFAQの静的HTMLが必要です。`);
+    const faqItems = [...faq.matchAll(/<details\b[^>]*class="faq-item"[^>]*>([\s\S]*?)<\/details>/g)];
+    check(faqItems.length === guide.faqs.length, `${file}: FAQの表示数が編集データと一致しません。`);
+    for (const [index, item] of [...guide.summary, ...guide.faqs].entries()) {
+      const body = index < 2 ? summary : faqItems[index - 2]?.[1] || '';
+      check(containsText(body, item.text ?? item.answer), `${file}: まとめ・FAQ ${index + 1} の本文が編集データと一致しません。`);
+      if (index >= 2) check(containsText(contentOf(body, /<summary>([\s\S]*?)<\/summary>/), item.question), `${file}: FAQの質問が一致しません。`);
+      const anchors = [...body.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi)]
+        .map(([, attrs, text]) => ({...attributes(attrs), label: plainText(text)}));
+      for (const source of item.sources || []) {
+        check(anchors.some(anchor => anchor.href === source.url && sameText(anchor.label, source.label)), `${file}: 回答の出典リンクが一致しません (${source.label})。`);
+        if (externalUrl(source.url)) check(article.citation?.includes(source.url), `${file}: まとめ・FAQの出典が Article.citation にありません。`);
+        else check(reportIds.some(other => source.url === `/reports/${other}/`), `${file}: FAQの関連記事リンクが公開記事と一致しません。`);
+      }
+    }
+    check(html.includes('href="#report-summary"') && html.includes('href="#report-faq"'), `${file}: まとめ・FAQへの目次リンクがありません。`);
+    check(!/<(?:section|div)\b[^>]*(?:id="report-(?:summary|faq)"[^>]*\bhidden|aria-hidden="true")/.test(rendered), `${file}: 回答領域を非表示にしないでください。`);
+  }
+  const elementIds = [...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
+  check(new Set(elementIds).size === elementIds.length, `${file}: HTMLのidが重複しています。`);
+  for (const match of html.matchAll(/href="#([^"]+)"/g)) check(elementIds.includes(match[1]), `${file}: 記事内リンク #${match[1]} の移動先がありません。`);
   const brief = briefs[id];
   const mediaRecord = coverage[id];
   check(!!brief, `${file}: 記事別の検索要約がありません。`);
@@ -239,5 +274,5 @@ if (problems.length) {
   console.error(`検証失敗: ${problems.length} 件`);
   process.exitCode = 1;
 } else {
-  console.log(`調査記事 ${reportIds.length} 件のタイトル・URL・一覧導線・表示要約・出典・構造化データを確認しました。`);
+  console.log(`調査記事 ${reportIds.length} 件のタイトル・URL・一覧導線・表示要約・まとめ・FAQ・出典・構造化データを確認しました。`);
 }

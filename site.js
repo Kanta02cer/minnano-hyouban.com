@@ -1,5 +1,40 @@
 'use strict';
 
+// Native details keep every answer in the initial HTML. These controls only
+// make reading many answers, following a deep link, and printing easier.
+const faqItems = [...document.querySelectorAll('.report-faq .faq-item')];
+const faqToggle = document.querySelector('.faq-toggle-all');
+if (faqToggle && faqItems.length) {
+  const syncFaqToggle = () => {
+    const allOpen = faqItems.every(item => item.open);
+    faqToggle.setAttribute('aria-expanded', String(allOpen));
+    faqToggle.textContent = allOpen ? 'すべての回答を閉じる' : 'すべての回答を開く';
+  };
+  faqToggle.hidden = false;
+  faqToggle.addEventListener('click', () => {
+    const open = !faqItems.every(item => item.open);
+    faqItems.forEach(item => { item.open = open; });
+    syncFaqToggle();
+  });
+  faqItems.forEach(item => item.addEventListener('toggle', syncFaqToggle));
+  const openLinkedAnswer = () => {
+    const target = faqItems.find(item => `#${item.id}` === location.hash);
+    if (target) { target.open = true; syncFaqToggle(); }
+  };
+  window.addEventListener('hashchange', openLinkedAnswer);
+  openLinkedAnswer();
+  let beforePrint = null;
+  window.addEventListener('beforeprint', () => {
+    beforePrint = faqItems.map(item => item.open);
+    faqItems.forEach(item => { item.open = true; });
+  });
+  window.addEventListener('afterprint', () => {
+    if (beforePrint) faqItems.forEach((item, index) => { item.open = beforePrint[index]; });
+    beforePrint = null;
+    syncFaqToggle();
+  });
+}
+
 // Retire the former site's service worker and its own cache on the first visit
 // after the redesign. This does not collect or transmit browsing information.
 if ('serviceWorker' in navigator) {
