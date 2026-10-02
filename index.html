@@ -9,7 +9,7 @@
   <link rel="canonical" href="https://minnano-hyouban.com/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/site.css">
-  <link rel="stylesheet" href="/home-b.css">
+  <link rel="stylesheet" href="/home-b.css?v=20261002-c2">
   <script src="/site.js" defer></script>
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="みんなの評判.com">
@@ -22,7 +22,7 @@
   <a class="skip" href="#main">本文へ移動</a>
   <header class="paper-header shell">
     <div class="utility micro"><p>COMPANY <span>MEDIA</span> REPUTATION</p><p class="right">報道から、企業の輪郭を読む。</p></div>
-    <div class="masthead"><a href="/" aria-label="みんなの評判.com トップページ">みんなの評判<span>.com</span></a><p>THE COMPANY REPORT &amp; REVIEW JOURNAL</p></div>
+    <div class="masthead"><a href="/" aria-label="みんなの評判.com トップページ">みんなの評判<span class="masthead-domain">.com</span></a><p>THE COMPANY REPORT &amp; REVIEW JOURNAL</p></div>
     <nav class="site-nav" aria-label="メインメニュー">
       <ul><li><a href="/" aria-current="page">トップ</a></li><li><a href="/articles.html">調査レポート</a></li><li><a href="/guide.html">調査の方法</a></li><li><a href="/editor.html">編集者</a></li></ul>
       <span class="nav-note">READ BEYOND THE HEADLINE</span>
@@ -66,6 +66,48 @@
   </main>
   <footer class="paper-footer shell"><p>© みんなの評判.com</p><nav aria-label="フッターメニュー"><a href="/articles.html">調査レポート</a><a href="/guide.html">調査の方法</a><a href="/editor.html">編集者</a><a href="/privacy.html">プライバシーポリシー</a><a href="/disclaimer.html">免責事項</a></nav><p>記事の情報は掲載・確認時点のものです。</p></footer>
   <script>
+    // Decorative signal interference follows the original typography exactly.
+    // Preserve text and line boxes; cloned bands are ignored by assistive readers.
+    (() => {
+      const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const targets = [...document.querySelectorAll('.masthead a, #lead-title > span')];
+      for (const target of targets) {
+        const copy = document.createElement('span');
+        copy.className = 'signal-copy';
+        copy.setAttribute('aria-hidden', 'true');
+        for (const child of [...target.childNodes]) copy.append(child.cloneNode(true));
+        target.append(copy);
+        target.classList.add('signal-text', 'signal-active');
+      }
+      const control = document.createElement('button');
+      control.type = 'button';
+      control.className = 'signal-control';
+      let paused = false;
+      try { paused = localStorage.getItem('mhcom-text-motion') === 'paused'; } catch {}
+      const sync = () => {
+        document.body.classList.toggle('signal-paused', paused);
+        control.hidden = preference.matches;
+        control.textContent = paused ? '文字の動きを再開' : '文字の動きを止める';
+      };
+      control.addEventListener('click', () => {
+        paused = !paused;
+        try { localStorage.setItem('mhcom-text-motion', paused ? 'paused' : 'playing'); } catch {}
+        sync();
+      });
+      document.querySelector('.utility').append(control);
+      preference.addEventListener('change', sync);
+      sync();
+      const visibility = () => document.body.classList.toggle('signal-sleep', document.hidden);
+      document.addEventListener('visibilitychange', visibility);
+      visibility();
+      if ('IntersectionObserver' in window) {
+        const signalObserver = new IntersectionObserver(entries => {
+          entries.forEach(entry => entry.target.classList.toggle('signal-active', entry.isIntersecting));
+        });
+        targets.forEach(target => signalObserver.observe(target));
+      }
+    })();
+
     if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches && 'IntersectionObserver' in window) {
       document.documentElement.classList.add('js');
       const observer = new IntersectionObserver((entries) => {

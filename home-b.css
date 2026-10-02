@@ -35,7 +35,7 @@
     .home-b .masthead::before { left: 0; }
     .home-b .masthead::after { right: 0; }
     .home-b .masthead a { display: inline-block; font-family: var(--font-serif); font-size: clamp(38px, 6.2vw, 91px); font-weight: 900; line-height: 1; letter-spacing: -.11em; white-space: nowrap; padding-right: .11em; }
-    .home-b .masthead a span { font-family: var(--font-latin); font-size: .52em; letter-spacing: -.04em; }
+    .home-b .masthead .masthead-domain { font-family: var(--font-latin); font-size: .52em; letter-spacing: -.04em; }
     .home-b .masthead p { margin: 10px 0 0; font-size: 9px; letter-spacing: .46em; font-weight: 700; }
     .home-b .site-nav { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--rule); min-height: 44px; }
     .home-b .site-nav ul { display: flex; align-items: center; flex-wrap: wrap; gap: clamp(20px, 3vw, 48px); list-style: none; margin: 0; padding: 0; }
@@ -113,6 +113,88 @@
     @keyframes home-b-marker { to { transform: scaleX(1); } }
     @keyframes home-b-enter { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes home-b-slowturn { to { transform: rotate(360deg); } }
+
+    /* C2: the letters shake for about one second, then stay still for two.
+       Transforms preserve the original line boxes and paragraph spacing. */
+    .home-b .signal-text {
+      position: relative; isolation: isolate; transform-origin: 50% 55%;
+      --signal-cycle: 3.1s; --signal-jolt: clamp(4px, .085em, 9px); --signal-state: paused;
+    }
+    .home-b .signal-copy { display: none; user-select: none; }
+    .home-b .signal-control {
+      flex: 0 0 auto; padding: 5px 0 5px 12px; border: 0; border-left: 1px solid var(--fine);
+      background: transparent; color: var(--mid); font: inherit; font-size: 9px;
+      letter-spacing: .06em; cursor: pointer;
+    }
+    .home-b .signal-control[hidden] { display: none; }
+    .home-b .utility .right { margin-left: auto; }
+    @media (prefers-reduced-motion: no-preference) {
+      .home-b .masthead a.signal-text, .home-b #lead-title > .signal-text {
+        animation: home-b-text-jitter var(--signal-cycle) steps(1, end) infinite;
+        animation-play-state: var(--signal-state);
+      }
+      .home-b .signal-text::before {
+        content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none;
+        background: repeating-linear-gradient(0deg, transparent 0 2px, var(--paper) 2px 3px, transparent 3px 7px);
+        opacity: 0; animation: home-b-text-grain var(--signal-cycle) steps(1, end) infinite;
+        animation-play-state: var(--signal-state);
+      }
+      .home-b .signal-text > .signal-copy {
+        display: block; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+        font: inherit; letter-spacing: inherit; text-align: inherit; text-shadow: 1px 0 currentColor;
+        background: var(--paper); opacity: 0;
+        animation: home-b-text-bands var(--signal-cycle) steps(1, end) infinite;
+        animation-play-state: var(--signal-state);
+      }
+      .home-b .masthead a > .signal-copy { padding-right: .11em; }
+      .home-b .signal-copy .shaded::after { display: none; }
+      .home-b .signal-active { --signal-state: running; }
+    }
+    .home-b.signal-sleep .signal-text, .home-b.signal-sleep .signal-text::before,
+    .home-b.signal-sleep .signal-copy { animation-play-state: paused !important; }
+    .home-b.signal-paused .signal-text { animation: none !important; transform: none !important; }
+    .home-b.signal-paused .signal-text::before, .home-b.signal-paused .signal-copy { display: none; }
+    @media (prefers-reduced-motion: reduce), print {
+      .home-b .signal-text { animation: none !important; transform: none !important; }
+      .home-b .signal-text::before, .home-b .signal-text > .signal-copy, .home-b .signal-control { display: none; }
+    }
+
+    @keyframes home-b-text-jitter{0%, 32%, 100% {transform:none}
+      2.00% {transform:translate(calc(var(--signal-jolt) * -0.55),calc(var(--signal-jolt) * -0.45)) skewX(0deg)}
+      5.00% {transform:translate(calc(var(--signal-jolt) * 0.75),calc(var(--signal-jolt) * 0.35)) skewX(0deg)}
+      8.00% {transform:translate(calc(var(--signal-jolt) * -0.4),calc(var(--signal-jolt) * 0.6)) skewX(0deg)}
+      11.00% {transform:translate(calc(var(--signal-jolt) * 0.55),calc(var(--signal-jolt) * -0.5)) skewX(0deg)}
+      14.00% {transform:translate(calc(var(--signal-jolt) * -0.85),calc(var(--signal-jolt) * 0.25)) skewX(0deg)}
+      17.00% {transform:translate(calc(var(--signal-jolt) * 0.45),calc(var(--signal-jolt) * -0.6)) skewX(0deg)}
+      20.00% {transform:translate(calc(var(--signal-jolt) * -0.35),calc(var(--signal-jolt) * 0.3)) skewX(0deg)}
+      23.00% {transform:translate(calc(var(--signal-jolt) * 0.65),calc(var(--signal-jolt) * 0.5)) skewX(0deg)}
+      26.00% {transform:translate(calc(var(--signal-jolt) * -0.5),calc(var(--signal-jolt) * -0.25)) skewX(0deg)}
+      29.00% {transform:translate(calc(var(--signal-jolt) * 0.25),calc(var(--signal-jolt) * 0.1)) skewX(0deg)}
+    }
+    @keyframes home-b-text-bands{0%, 32%, 100% {opacity:0;transform:none;clip-path:inset(50% 0 50%)}
+      2.00% {opacity:.7;transform:translateX(calc(var(--signal-jolt) * 0.605));clip-path:inset(14% 0 73%)}
+      5.00% {opacity:.7;transform:translateX(calc(var(--signal-jolt) * -0.825));clip-path:inset(44% 0 43%)}
+      8.00% {opacity:.7;transform:translateX(calc(var(--signal-jolt) * 0.44));clip-path:inset(68% 0 19%)}
+      11.00% {opacity:.7;transform:translateX(calc(var(--signal-jolt) * -0.605));clip-path:inset(25% 0 62%)}
+      14.00% {opacity:.7;transform:translateX(calc(var(--signal-jolt) * 0.935));clip-path:inset(56% 0 31%)}
+      17.00% {opacity:.7;transform:translateX(calc(var(--signal-jolt) * -0.495));clip-path:inset(14% 0 73%)}
+      20.00% {opacity:.7;transform:translateX(calc(var(--signal-jolt) * 0.385));clip-path:inset(44% 0 43%)}
+      23.00% {opacity:.7;transform:translateX(calc(var(--signal-jolt) * -0.715));clip-path:inset(68% 0 19%)}
+      26.00% {opacity:.7;transform:translateX(calc(var(--signal-jolt) * 0.55));clip-path:inset(25% 0 62%)}
+      29.00% {opacity:.7;transform:translateX(calc(var(--signal-jolt) * -0.275));clip-path:inset(56% 0 31%)}
+    }
+    @keyframes home-b-text-grain{0%, 32%, 100% {opacity:0;background-position:0 0}
+      2.00% {opacity:.22;background-position:-1px 0px}
+      5.00% {opacity:.22;background-position:0px 3px}
+      8.00% {opacity:.22;background-position:1px 6px}
+      11.00% {opacity:.22;background-position:-1px 9px}
+      14.00% {opacity:.22;background-position:0px 1px}
+      17.00% {opacity:.22;background-position:1px 4px}
+      20.00% {opacity:.22;background-position:-1px 7px}
+      23.00% {opacity:.22;background-position:0px 10px}
+      26.00% {opacity:.22;background-position:1px 2px}
+      29.00% {opacity:.22;background-position:-1px 5px}
+    }
     @media (prefers-reduced-motion: no-preference) {
       .home-b .masthead a { animation: home-b-enter .7s .05s both; }
       .home-b .paper-hero .overline { animation: home-b-enter .65s .16s both; }
