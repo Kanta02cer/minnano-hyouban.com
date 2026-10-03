@@ -703,10 +703,10 @@
     "newsDate": "2026-05-07",
     "company": "NEXT MISSION",
     "legalName": "株式会社Next Mission",
-    "representative": "安藤功一郎・森崇嘉",
-    "business": "自衛隊経験者の人材紹介、研修、人事コンサルティング",
+    "representative": "森崇嘉・安藤功一郎",
+    "business": "自衛官・元自衛官のキャリア支援、人材紹介、AIを活用したHRテック事業",
     "officialUrl": "https://next-mission.co.jp/",
-    "officialDetailUrl": "https://next-mission.co.jp/",
+    "officialDetailUrl": "https://next-mission.co.jp/top",
     "media": {
       "Global News Asia": "https://www.globalnewsasia.com/article.php?country=4&id=11155",
       "楽天インフォシーク": "https://news.infoseek.co.jp/article/globalnewsasia_11155/",
@@ -721,13 +721,14 @@
     "company": "MIRACLE PILLOW",
     "legalName": "株式会社TVC",
     "representative": "稲本慎也",
-    "business": "就寝時の姿勢・休息を支援する枕の通信販売",
+    "business": "6つのエアバッグを備えた電動枕の通信販売",
     "officialUrl": "https://shop.miracle-pillow.jp/",
     "officialDetailUrl": "https://shop.miracle-pillow.jp/pages/company",
     "media": {
       "Global News Asia": "https://www.globalnewsasia.com/article.php?country=4&id=11098",
       "楽天インフォシーク": "https://news.infoseek.co.jp/article/globalnewsasia_11098/",
-      "エキサイトニュース": "https://www.excite.co.jp/news/article/Global_news_asia_11098/"
+      "エキサイトニュース": "https://www.excite.co.jp/news/article/Global_news_asia_11098/",
+      "ニコニコニュース": "https://news.nicovideo.jp/watch/nw19176917"
     },
     "coverageType": "ニュース記事"
   },

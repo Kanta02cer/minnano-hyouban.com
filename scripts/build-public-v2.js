@@ -120,9 +120,10 @@ function build() {
     throw new Error('公開元に旧サイトの記事への参照が残っています。');
   }
 
-  // The user's 2026-10-04 request permits this service profile, not a change
-  // of the site's operator or the return of the retired contact channel.
-  const medikuruPages = new Set(['index.html', 'articles.html', 'reports/11607/index.html']);
+  // The user's 2026-10-04 requests permit the service profile and factual
+  // relationship disclosures. The site's operator and retired contact stay unchanged.
+  const relationshipPages = new Set(['reports/11098/index.html', 'reports/11155/index.html']);
+  const medikuruPages = new Set(['index.html', 'articles.html', 'reports/11607/index.html', ...relationshipPages]);
   for (const [src, dest] of publicFiles.filter(([, file]) => /\.(?:html|css|js)$/.test(file))) {
     const text = fs.readFileSync(path.join(root, src), 'utf8');
     if (/メディくる|medikuru/i.test(text) && !medikuruPages.has(dest)) {
@@ -134,8 +135,23 @@ function build() {
     if (/メディくる|medikuru/i.test(sharedChrome) || /[a-z0-9._%+-]+@medikuru\.com/i.test(text)) {
       throw new Error(`${src}: 旧運営名・共通問い合わせ先を復活させないでください。`);
     }
-    if (dest !== 'reports/11607/index.html' && /(?:[a-z0-9-]+\.)?medikuru\.com/i.test(text)) {
-      throw new Error(`${src}: メディくるの公式導線は指定サービス記事内に置いてください。`);
+    let officialLinkScope = text;
+    if (relationshipPages.has(dest)) {
+      const disclosures = [...text.matchAll(/<section\b(?=[^>]*\bid=["']editorial-relationship["'])[^>]*>[\s\S]*?<\/section>/gi)];
+      if (disclosures.length !== 1) {
+        throw new Error(`${src}: 編集者との事業上の関係は editorial-relationship 節に明記してください。`);
+      }
+      for (const [, url] of disclosures[0][0].matchAll(/\bhref=["']([^"']+)["']/gi)) {
+        if (/(?:[a-z0-9-]+\.)?medikuru\.com/i.test(url) && url !== 'https://medikuru.com/') {
+          throw new Error(`${src}: 関係開示の出典にはメディくる公式会社情報のURLだけを使用してください。`);
+        }
+      }
+      // Citation JSON-LD is generated from visible source links by the enhancer.
+      officialLinkScope = text.replace(disclosures[0][0], '')
+        .replace(/<script\b(?=[^>]*\btype=["']application\/ld\+json["'])[^>]*>[\s\S]*?<\/script>/gi, '');
+    }
+    if (dest !== 'reports/11607/index.html' && /(?:[a-z0-9-]+\.)?medikuru\.com/i.test(officialLinkScope)) {
+      throw new Error(`${src}: メディくるの公式導線は指定サービス記事、または指定記事の関係開示の出典だけに置いてください。`);
     }
   }
 

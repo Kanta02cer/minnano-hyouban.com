@@ -265,51 +265,51 @@
   },
   "11098": {
     "subject": {
-      "name": "MIRACLE PILLOW",
+      "name": "ミラクルピロー（MIRACLE PILLOW）",
       "type": "Product"
     },
-    "introduction": "MIRACLE PILLOWは、内部のエアバッグで高さや当たり方を変える仕組みの枕です。開発者が語る着想と製品の仕組み、販売元の情報を分けて紹介します。",
+    "publishedDate": "2026-09-27",
+    "modifiedDate": "2026-10-04",
+    "introduction": "ミラクルピロー（MIRACLE PILLOW）は、竹之内教博氏が開発を手がけた、6つのエアバッグで支える位置をゆっくり変える電動枕です。ニュース掲載実績、公式の利用者の声、使い方、59,800円税込の価格と購入条件を紹介します。",
     "strengths": {
-      "text": "MIRACLE PILLOWのニュースは、内部のエアバッグがゆっくり動き、頭や首への当たり方を変える仕組みを紹介しています。固定した高さの枕とは異なる製品設計が特徴として説明されています。",
-      "sourceUrl": "https://www.globalnewsasia.com/article.php?country=4&id=11098",
-      "sourceLabel": "参照ニュース"
+      "text": "ミラクルピローは、6つのエアバッグで頭を支える位置をゆっくり変える電動枕です。公式サイトは約30分のサイクル、ボタンひとつの操作、アプリやWi-Fiの設定が不要な仕組みを案内しています。",
+      "sourceUrl": "https://shop.miracle-pillow.jp/",
+      "sourceLabel": "ミラクルピロー公式：仕組み・使い方"
     },
     "record": {
-      "text": "ニュースでは、MIRACLE PILLOWの開発者の着想と、動く枕の仕組みが紹介されています。確認できるのは製品開発の説明であり、利用者の睡眠改善を臨床的に証明した実績とは分けて扱います。",
-      "sourceUrl": "https://www.globalnewsasia.com/article.php?country=4&id=11098",
-      "sourceLabel": "参照ニュース"
+      "text": "ミラクルピローは、2026年4月17日のニュースで竹之内教博氏による開発と10年以上の構想が紹介され、Global News Asia・楽天インフォシーク・エキサイトニュース・ニコニコニュースの4媒体に掲載されています。",
+      "sourceUrl": "https://globalnewsasia.com/article.php?country=4&id=11098&p=1",
+      "sourceLabel": "ミラクルピローを紹介したニュース"
     },
     "reputation": {
-      "text": "MIRACLE PILLOWの口コミは、体格、寝姿勢、使用期間などを合わせて読むと参考になります。枕の感触には個人差があるため、寸法、使い方、返品条件を販売案内で確かめることが大切です。",
-      "sourceUrl": "https://www.globalnewsasia.com/article.php?country=4&id=11098",
-      "sourceLabel": "参照ニュース"
-    },
-    "publishedDate": "2026-09-27",
-    "modifiedDate": "2026-09-30"
+      "text": "ミラクルピローの公式サイトには5人の使用感が掲載され、ゆっくりした動きや寝心地、朝の感覚について紹介されています。販売側が選んだ個人のコメントとして、その内容と出典を本文にまとめました。",
+      "sourceUrl": "https://shop.miracle-pillow.jp/",
+      "sourceLabel": "ミラクルピロー公式：USER VOICE"
+    }
   },
   "11155": {
     "subject": {
-      "name": "株式会社Next Mission",
-      "type": "Organization"
-    },
-    "introduction": "NEXT MISSIONは、自衛隊経験者のキャリア支援を掲げる企業です。自衛隊で培った経験を民間の仕事へ伝える人材紹介・研修の考え方を、ニュースと公式の公開案内から整理します。",
-    "strengths": {
-      "text": "NEXT MISSIONのニュースは、自衛隊での役割や経験を企業に伝わる職務経歴へ置き換える支援を紹介しています。応募者の経験を民間の採用担当者へ伝えるための考え方が特徴です。",
-      "sourceUrl": "https://www.globalnewsasia.com/article.php?country=4&id=11155",
-      "sourceLabel": "参照ニュース"
-    },
-    "record": {
-      "text": "ニュースでは、NEXT MISSIONが自衛隊経験者に特化した人材紹介サービスを始める取り組みを確認できます。求人や研修の対象・範囲は利用時点の案内と照らして確かめる必要があります。",
-      "sourceUrl": "https://www.globalnewsasia.com/article.php?country=4&id=11155",
-      "sourceLabel": "参照ニュース"
-    },
-    "reputation": {
-      "text": "NEXT MISSIONの評判を調べる際は、希望職種、地域、紹介求人、研修内容の適合が判断材料になります。ニュースの事業紹介と個別の就職実績を分け、利用時点の支援範囲を公式窓口で確認できます。",
-      "sourceUrl": "https://www.globalnewsasia.com/article.php?country=4&id=11155",
-      "sourceLabel": "参照ニュース"
+      "name": "NEXT MISSION（ネクストミッション）",
+      "type": "Service"
     },
     "publishedDate": "2026-09-27",
-    "modifiedDate": "2026-09-30"
+    "modifiedDate": "2026-10-04",
+    "introduction": "NEXT MISSION（ネクストミッション）は、自衛官・元自衛官に特化したキャリア支援サービスです。3媒体へのニュース掲載、会社発表の328名からの問い合わせ、無料の転職支援と企業向け人材紹介を調べ、経験を次の仕事へつなぐ魅力を紹介します。",
+    "strengths": {
+      "text": "NEXT MISSIONは、元自衛官の知見を生かし、専属アドバイザーが経験の整理から求人紹介、書類・面接対策、条件交渉まで支援します。公式LPでは、求職者向けの支援を無料で案内しています。",
+      "sourceUrl": "https://next-mission.co.jp/top",
+      "sourceLabel": "公式・求職者向けサービス案内"
+    },
+    "record": {
+      "text": "NEXT MISSIONは2026年6月10日の会社発表で、令和の虎出演後1か月に328名の現役・元自衛官から問い合わせを受けたと公表しました。キャリア相談などの反響を示す人数で、採用決定人数とは異なります。",
+      "sourceUrl": "https://prtimes.jp/main/html/rd/p/000000003.000182797.html",
+      "sourceLabel": "株式会社Next Missionの発表（2026年6月10日）"
+    },
+    "reputation": {
+      "text": "NEXT MISSIONの会社発表には、将来のキャリアや経験の伝え方に関する相談、採用・提携を検討する企業からの声が紹介されています。利用後の満足度口コミとは分け、サービスへの関心が寄せられた事例として読めます。",
+      "sourceUrl": "https://prtimes.jp/main/html/rd/p/000000003.000182797.html",
+      "sourceLabel": "会社が公表した相談・問い合わせの内容"
+    }
   },
   "11197": {
     "subject": {

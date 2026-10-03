@@ -1504,116 +1504,124 @@
   "11098": {
     "summary": [
       {
-        "text": "MIRACLE PILLOWは、内部のエアバッグを動かし、頭や首への当たり方を変える仕組みがニュースで紹介された枕です。固定した高さだけで支える枕とは異なる設計の発想と、開発者がどのような着想から製品づくりへ進んだかを知ることができます。",
+        "text": "ミラクルピローは、竹之内教博氏が手がけた、6つのエアバッグで頭を支える位置をゆっくり変える電動枕です。開発の着想と10年以上にわたる構想はニュースでも紹介され、公式サイトでは動きの動画や5人の使用感を確認できます。商品設計と利用者の感触をあわせて知ることができるブランドです。",
         "sources": [
           {
-            "label": "紹介されたニュース",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11098"
+            "label": "製品を紹介したニュース",
+            "url": "https://globalnewsasia.com/article.php?country=4&id=11098&p=1"
+          },
+          {
+            "label": "公式サイト・利用者の声",
+            "url": "https://shop.miracle-pillow.jp/"
           }
         ]
       },
       {
-        "text": "販売サイトの会社概要には、通信販売を行う株式会社TVCが運営会社として記載されています。MIRACLE PILLOWの購入を検討する際は、仕組みへの関心に加え、寸法、使い方、返品条件を確かめると比較しやすくなります。口コミは体格や寝姿勢、使用期間と合わせ、睡眠改善の臨床的な証明とは分けて読めます。",
+        "text": "公式商品ページの表示価格は59,800円（税込、2026年10月4日確認）。販売元は株式会社TVCです。高さの調整方法、カバーの手入れ、使用対象、返品・交換条件まで確認すると、自分の寝具や生活に合うか考えやすくなります。公式の口コミは選定された個人の感想として読み、現在の商品案内と照らし合わせて検討できます。",
         "sources": [
           {
-            "label": "紹介されたニュース",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11098"
+            "label": "公式商品ページ",
+            "url": "https://shop.miracle-pillow.jp/products/%E3%83%9F%E3%83%A9%E3%82%AF%E3%83%AB%E3%83%94%E3%83%AD%E3%83%BC"
           },
           {
-            "label": "公式・公開案内",
+            "label": "会社概要",
             "url": "https://shop.miracle-pillow.jp/pages/company"
+          },
+          {
+            "label": "公式の取引条件",
+            "url": "https://shop.miracle-pillow.jp/pages/legal-notice"
           }
         ]
       }
     ],
     "faqs": [
       {
-        "question": "MIRACLE PILLOWはどのような枕ですか？",
-        "answer": "MIRACLE PILLOWは、内部のエアバッグがゆっくり動き、頭や首への当たり方を変える仕組みの枕としてニュースで紹介されています。高さを固定する設計とは異なる発想が、製品の特徴として説明されています。",
+        "question": "ミラクルピローはどのような枕ですか？",
+        "answer": "ミラクルピロー（MIRACLE PILLOW）は、内部に6つのエアバッグを備え、頭を支える位置をゆっくり変える電動枕です。公式サイトは、体圧や熱が一か所に集中しにくい状態を目指した設計として紹介しています。",
         "sources": [
           {
-            "label": "紹介されたニュース",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11098"
+            "label": "公式の製品説明",
+            "url": "https://shop.miracle-pillow.jp/"
           }
         ]
       },
       {
-        "question": "MIRACLE PILLOWの動く仕組みはどこが特徴ですか？",
-        "answer": "MIRACLE PILLOWのニュースでは、内部のエアバッグが動くことで、頭や首に触れる位置や当たり方を変える設計が説明されています。実際の使い方を知りたい場合は、販売案内で使用方法と合わせて確認できます。",
+        "question": "竹之内教博氏はミラクルピローとどう関わっていますか？",
+        "answer": "2026年4月17日のニュースは、竹之内教博氏が開発を手がけた商品としてミラクルピローを紹介しています。リラクゼーション事業での経験から睡眠中の支え方に着目し、構想から完成まで10年以上をかけたとされています。",
         "sources": [
           {
-            "label": "紹介されたニュース",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11098"
+            "label": "開発背景を紹介したニュース",
+            "url": "https://globalnewsasia.com/article.php?country=4&id=11098&p=1"
+          }
+        ]
+      },
+      {
+        "question": "ミラクルピローの口コミ・評判はどこで読めますか？",
+        "answer": "ミラクルピローの公式サイトに5人のUSER VOICEが掲載されています。ゆっくりした動き、横向き寝での感触、朝の使用感などが語られています。販売側が選定した個人のコメントであり、当サイト独自の聞き取りや利用者全体の評価点ではありません。",
+        "sources": [
+          {
+            "label": "公式掲載の利用者の声",
+            "url": "https://shop.miracle-pillow.jp/"
+          }
+        ]
+      },
+      {
+        "question": "ミラクルピローはどうやって使いますか？",
+        "answer": "公式の案内では、専用のACアダプターと外付けポンプを使用し、ボタンを押して作動させます。アプリやWi-Fiの設定は不要です。電源を入れて約1分後に緑色ランプが消えても、ゆっくりした動作は続く仕様と説明されています。",
+        "sources": [
+          {
+            "label": "公式の使い方・FAQ",
+            "url": "https://shop.miracle-pillow.jp/"
+          }
+        ]
+      },
+      {
+        "question": "ミラクルピローの価格はいくらですか？",
+        "answer": "2026年10月4日に確認した公式商品ページの表示価格は、59,800円（税込）です。本体と交換用枕カバーのセットとして案内されています。公式サイトにはLINE登録によるクーポン案内もあるため、適用条件・最新価格は購入時のページで確認できます。",
+        "sources": [
+          {
+            "label": "公式商品ページ",
+            "url": "https://shop.miracle-pillow.jp/products/%E3%83%9F%E3%83%A9%E3%82%AF%E3%83%AB%E3%83%94%E3%83%AD%E3%83%BC"
           },
           {
-            "label": "公式サイト・サービス案内",
+            "label": "公式サイト",
             "url": "https://shop.miracle-pillow.jp/"
           }
         ]
       },
       {
-        "question": "MIRACLE PILLOWのニュースでは開発について何が分かりますか？",
-        "answer": "MIRACLE PILLOWのニュースは、開発者が語る着想と製品の仕組みを紹介しています。製品開発の背景を知る材料として読め、使用者の睡眠がどの程度変わったかを測定した臨床資料とは区別できます。",
+        "question": "高さの調整やお手入れはできますか？",
+        "answer": "公式FAQでは、高く感じる場合に内部の下敷きスポンジを取り外し、低くする方法を案内しています。枕カバーは2枚付属し、外カバーを取り外して洗濯できます。本体は防水ではないため、丸洗いやドライクリーニングはしないよう示されています。",
         "sources": [
           {
-            "label": "紹介されたニュース",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11098"
-          }
-        ]
-      },
-      {
-        "question": "MIRACLE PILLOWの販売サイトはどの会社が運営していますか？",
-        "answer": "MIRACLE PILLOWの販売サイトの会社概要には、通信販売を行う株式会社TVCが運営会社として記載されています。購入時は会社情報に加え、商品ページの仕様や取引条件も合わせて確認できます。",
-        "sources": [
-          {
-            "label": "公式・公開案内",
-            "url": "https://shop.miracle-pillow.jp/pages/company"
-          }
-        ]
-      },
-      {
-        "question": "MIRACLE PILLOWのサイズや使い方はどこで確認できますか？",
-        "answer": "MIRACLE PILLOWの寸法や使用方法は、販売サイトの商品案内で確認できます。会社概要は運営者の情報を示すページなので、普段の寝姿勢や寝具に合うかを考える際は、製品ごとの説明を参照できます。",
-        "sources": [
-          {
-            "label": "公式サイト・サービス案内",
+            "label": "公式の製品仕様・注意事項",
             "url": "https://shop.miracle-pillow.jp/"
           }
         ]
       },
       {
-        "question": "MIRACLE PILLOWの口コミを見るときは何を比べるとよいですか？",
-        "answer": "MIRACLE PILLOWの口コミは、利用者の体格、寝姿勢、使用期間を合わせて読むと参考になります。枕の当たり方には個人差があるため、感触の好みと、自分の寝具や使い方に近い体験を比較できます。",
+        "question": "ミラクルピローの購入前に、使用上の注意はありますか？",
+        "answer": "公式サイトは、植込み型医療機器等を使用している方、重度の睡眠時無呼吸症候群と診断されている方、妊娠中の方、乳幼児・小児は使用しないよう案内しています。頸椎・頭部・脊椎の治療中や疾患のある方は医師へ相談するなど、購入前に公式の注意事項を確認してください。",
         "sources": [
           {
-            "label": "紹介されたニュース",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11098"
-          }
-        ]
-      },
-      {
-        "question": "MIRACLE PILLOWの紹介記事で睡眠改善の効果は確認できますか？",
-        "answer": "MIRACLE PILLOWの紹介記事で確認できるのは、開発の着想と製品の構造です。利用者の睡眠改善を臨床的に証明した実績としては扱っていないため、設計の特徴と健康効果の根拠を分けて読むことができます。",
-        "sources": [
-          {
-            "label": "紹介されたニュース",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11098"
-          }
-        ]
-      },
-      {
-        "question": "MIRACLE PILLOWの購入前に返品条件はどこで確認できますか？",
-        "answer": "MIRACLE PILLOWの返品条件や具体的な使用方法は、販売サイトの商品・取引案内で確認する必要があります。購入前に寸法、使用上の条件、返品できる場合と手続きの範囲を確かめると検討しやすくなります。",
-        "sources": [
-          {
-            "label": "公式サイト・サービス案内",
+            "label": "公式の使用上の注意",
             "url": "https://shop.miracle-pillow.jp/"
           }
         ]
       },
       {
-        "question": "MIRACLE PILLOWを取り上げたニュースは、どのメディアで読めますか？",
-        "answer": "MIRACLE PILLOWについて取り上げた2026年4月17日掲載のニュースは、Global News Asia、楽天インフォシーク、エキサイトニュースの3媒体で確認できます。同じ記事の掲載先として、取り組みの背景を読むことができます。",
+        "question": "ミラクルピローの返品・交換条件はどうなっていますか？",
+        "answer": "2026年10月4日確認の公式表記では、注文後の返品・交換・キャンセルは原則受け付けていません。商品の不備・不良品は、到着から15日以内に連絡し、不備を確認できた場合に交換するとしています。商品ごとの案内がある場合は、購入時の条件も確認できます。",
+        "sources": [
+          {
+            "label": "特定商取引法に基づく表記",
+            "url": "https://shop.miracle-pillow.jp/pages/legal-notice"
+          }
+        ]
+      },
+      {
+        "question": "ミラクルピローを紹介するニュースはどこで読めますか？",
+        "answer": "2026年4月17日付のミラクルピローのニュースは、Global News Asia・楽天インフォシーク・エキサイトニュース・ニコニコニュースの4媒体で読むことができます。同じニュースの掲載先で、商品の開発背景や動く仕組みが紹介されています。",
         "sources": [
           {
             "label": "Global News Asia",
@@ -1626,6 +1634,24 @@
           {
             "label": "エキサイトニュース",
             "url": "https://www.excite.co.jp/news/article/Global_news_asia_11098/"
+          },
+          {
+            "label": "ニコニコニュース",
+            "url": "https://news.nicovideo.jp/watch/nw19176917"
+          }
+        ]
+      },
+      {
+        "question": "ミラクルピローを販売している会社はどこですか？",
+        "answer": "公式の会社概要・特定商取引法の表記では、販売会社は株式会社TVC、代表取締役は稲本慎也氏です。2019年11月設立で、通信販売業を行っています。竹之内教博氏はニュースで製品開発を手がけた人物として紹介されています。",
+        "sources": [
+          {
+            "label": "公式の会社概要",
+            "url": "https://shop.miracle-pillow.jp/pages/company"
+          },
+          {
+            "label": "開発背景のニュース",
+            "url": "https://globalnewsasia.com/article.php?country=4&id=11098&p=1"
           }
         ]
       }
@@ -1634,127 +1660,153 @@
   "11155": {
     "summary": [
       {
-        "text": "NEXT MISSIONは、自衛隊で培った経験を、民間企業に伝わる職務経歴へ置き換えるキャリア支援をニュースで紹介されています。自衛隊経験者に特化することで、隊内での役割や経験と、企業が求める仕事との接点を整理しようとする点が特徴です。",
+        "text": "NEXT MISSIONは、自衛官が積み重ねた経験を民間企業で伝わる強みへ整理し、次のキャリアにつなぐサービスです。元自衛官と経営者の視点を組み合わせ、求職者の準備と企業の採用を双方から支える取り組みが、外部ニュースでも紹介されています。",
         "sources": [
           {
-            "label": "紹介されたニュース",
+            "label": "Global News Asiaのニュース",
             "url": "https://www.globalnewsasia.com/article.php?country=4&id=11155"
+          },
+          {
+            "label": "株式会社Next Missionの発表（2026年5月11日）",
+            "url": "https://prtimes.jp/main/html/rd/p/000000001.000182797.html"
           }
         ]
       },
       {
-        "text": "株式会社Next Missionの公開案内とニュースからは、人材紹介や研修などを通じた支援の考え方を確認できます。利用者は希望職種、地域、支援の範囲を、採用企業は仕事内容と求める経験を整理すると相談しやすくなります。実際の紹介求人や利用条件は、現在の公式案内で確かめることができます。",
+        "text": "会社は2026年6月、番組出演後1か月で328名から問い合わせを受けたと公表しています。関心の広がりに加え、求職者向けには無料の個別相談や応募支援を案内。自分の強みを整理したい方も、自衛隊経験者の採用を考える企業も、公式窓口から相談できます。",
         "sources": [
           {
-            "label": "紹介されたニュース",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11155"
+            "label": "株式会社Next Missionの発表（2026年6月10日）",
+            "url": "https://prtimes.jp/main/html/rd/p/000000003.000182797.html"
           },
           {
-            "label": "公式サイト・サービス案内",
-            "url": "https://next-mission.co.jp/"
+            "label": "公式・求職者向けサービス案内",
+            "url": "https://next-mission.co.jp/top"
+          },
+          {
+            "label": "公式・企業向けサービス案内",
+            "url": "https://next-mission.co.jp/tob"
           }
         ]
       }
     ],
     "faqs": [
       {
-        "question": "NEXT MISSIONはどのような人を支援する会社ですか？",
-        "answer": "NEXT MISSIONは、自衛隊経験者のキャリア支援を掲げる企業です。ニュースでは、自衛隊での役割や経験を民間企業に伝わる職務経歴へ置き換え、人材紹介につなげる取り組みが紹介されています。",
+        "question": "NEXT MISSIONはどのようなサービスですか？",
+        "answer": "自衛官・元自衛官に特化したキャリア支援と人材紹介です。自衛隊での経験を企業に伝わる言葉に整理し、本人の希望と企業の採用ニーズを結びます。",
         "sources": [
           {
-            "label": "紹介されたニュース",
+            "label": "Global News Asiaのニュース",
             "url": "https://www.globalnewsasia.com/article.php?country=4&id=11155"
           }
         ]
       },
       {
-        "question": "NEXT MISSIONのキャリア支援の特徴は何ですか？",
-        "answer": "NEXT MISSIONの特徴は、自衛隊の仕事で得た経験を、民間の採用担当者が理解しやすい形に整理する考え方です。ニュースは、職務の名称だけでは伝わりにくい経験を、企業への説明へつなげる支援に注目しています。",
+        "question": "NEXT MISSIONの代表者は誰ですか？",
+        "answer": "公式会社概要には、森崇嘉氏と安藤功一郎氏が代表者として記載されています。ニュースでは、森氏の自衛隊経験と安藤氏の経営者ネットワークを組み合わせた支援体制が紹介されています。",
         "sources": [
           {
-            "label": "紹介されたニュース",
+            "label": "公式・求職者向けサービス案内",
+            "url": "https://next-mission.co.jp/top"
+          },
+          {
+            "label": "Global News Asiaのニュース",
             "url": "https://www.globalnewsasia.com/article.php?country=4&id=11155"
           }
         ]
       },
       {
-        "question": "NEXT MISSIONではどのような事業が紹介されていますか？",
-        "answer": "NEXT MISSIONについては、自衛隊経験者の人材紹介、研修、人事コンサルティングが事業として紹介されています。利用する立場や目的により必要な支援が異なるため、現在の対象と提供範囲を公式窓口で確認できます。",
+        "question": "求職者は無料で利用できますか？",
+        "answer": "公式LPでは、求職者の相談、履歴書作成、面接対策などの支援を無料と案内しています。全国からの相談に対応し、オンラインの個別面談から進められます。",
         "sources": [
           {
-            "label": "紹介されたニュース",
+            "label": "公式・求職者向けサービス案内",
+            "url": "https://next-mission.co.jp/top"
+          }
+        ]
+      },
+      {
+        "question": "在職中や、転職するか迷っている段階でも相談できますか？",
+        "answer": "公式LPは、任期中の方や情報収集から始めたい方も対象としています。転職の決断を前提にせず、経験や希望を整理する相談から利用できます。",
+        "sources": [
+          {
+            "label": "公式・求職者向けサービス案内",
+            "url": "https://next-mission.co.jp/top"
+          }
+        ]
+      },
+      {
+        "question": "求人の紹介以外に、どのような支援がありますか？",
+        "answer": "専属アドバイザーによる強みの整理、履歴書・職務経歴書の作成支援、面接準備、年収・入社時期などの条件交渉が案内されています。公式の利用手順には、入社までの準備と必要に応じた入社後フォローもあります。",
+        "sources": [
+          {
+            "label": "公式・求職者向けサービス案内",
+            "url": "https://next-mission.co.jp/top"
+          }
+        ]
+      },
+      {
+        "question": "採用企業にはどのようなメリットがありますか？",
+        "answer": "NEXT MISSIONは、自衛隊経験者と接点を持ち、仕事内容や価値観への相互理解を深める機会を提供しています。採用要件の整理から候補者とのマッチング、選考・入社後フォローまでの支援を会社が公表しています。",
+        "sources": [
+          {
+            "label": "公式・企業向けサービス案内",
+            "url": "https://next-mission.co.jp/tob"
+          },
+          {
+            "label": "株式会社Next Missionの発表（2026年5月11日）",
+            "url": "https://prtimes.jp/main/html/rd/p/000000001.000182797.html"
+          }
+        ]
+      },
+      {
+        "question": "企業側の料金はどのような仕組みですか？",
+        "answer": "2026年5月7日のニュースでは、採用決定まで企業側の費用負担がない成功報酬型と紹介されています。現在の紹介手数料、支払い時期、返金条件などは、企業向けの公式窓口で見積りと契約条件を確認できます。",
+        "sources": [
+          {
+            "label": "Global News Asiaのニュース",
             "url": "https://www.globalnewsasia.com/article.php?country=4&id=11155"
           },
           {
-            "label": "公式サイト・サービス案内",
-            "url": "https://next-mission.co.jp/"
+            "label": "公式・企業向けサービス案内",
+            "url": "https://next-mission.co.jp/tob"
           }
         ]
       },
       {
-        "question": "NEXT MISSIONのニュースで確認できる取り組みは何ですか？",
-        "answer": "NEXT MISSIONのニュースからは、自衛隊経験者に特化した人材紹介サービスを始める取り組みと、経験を企業へ伝える支援方針を確認できます。紹介求人や就職後の成果は、利用時点の情報と分けて確認できます。",
+        "question": "NEXT MISSIONでは、どのような実績が公表されていますか？",
+        "answer": "会社発表では、2026年5月に令和の虎で希望額2,000万円のパーフェクトALLを達成し、6月には出演後1か月で328名から問い合わせを受けたとしています。前者は番組内の結果、後者は問い合わせ人数で、採用実績の人数ではありません。",
         "sources": [
           {
-            "label": "紹介されたニュース",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11155"
-          }
-        ]
-      },
-      {
-        "question": "NEXT MISSIONに転職相談をする前に何を整理すればよいですか？",
-        "answer": "NEXT MISSIONへ相談する場合は、自衛隊で担当した役割、得意な仕事、希望職種、働きたい地域を整理すると支援内容を比較しやすくなります。実際に紹介される求人条件と、自分が受けられる支援を確認できます。",
-        "sources": [
-          {
-            "label": "紹介されたニュース",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11155"
+            "label": "株式会社Next Missionの発表（2026年5月12日）",
+            "url": "https://prtimes.jp/main/html/rd/p/000000002.000182797.html"
           },
           {
-            "label": "公式サイト・サービス案内",
-            "url": "https://next-mission.co.jp/"
+            "label": "株式会社Next Missionの発表（2026年6月10日）",
+            "url": "https://prtimes.jp/main/html/rd/p/000000003.000182797.html"
           }
         ]
       },
       {
-        "question": "NEXT MISSIONの評判はどのような点で比較できますか？",
-        "answer": "NEXT MISSIONの評判を調べる際は、相談者の希望職種、地域、紹介された求人、受けた研修や支援内容を合わせて見ると参考になります。ニュースの事業方針に加え、自分に近い条件での経験を確認できます。",
+        "question": "NEXT MISSIONの口コミ・評判はどのように確認できますか？",
+        "answer": "今回確認した公式LPには、利用後の個別体験談や満足度調査は見当たりませんでした。会社発表では、キャリア相談の内容や企業からの採用・提携への関心が紹介されています。利用者の感想と問い合わせの反響を分けて読むと、事業の現在地をつかめます。",
         "sources": [
           {
-            "label": "紹介されたニュース",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11155"
-          }
-        ]
-      },
-      {
-        "question": "NEXT MISSIONを採用企業が検討するときの確認点は何ですか？",
-        "answer": "NEXT MISSIONを採用企業が検討する場合は、募集する仕事、必要な経験、紹介の対象、採用後まで含む支援範囲を確認すると有用です。自衛隊での経験が自社の業務にどうつながるかを、具体的に相談できます。",
-        "sources": [
-          {
-            "label": "紹介されたニュース",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11155"
+            "label": "公式・求職者向けサービス案内",
+            "url": "https://next-mission.co.jp/top"
           },
           {
-            "label": "公式サイト・サービス案内",
-            "url": "https://next-mission.co.jp/"
+            "label": "株式会社Next Missionの発表（2026年6月10日）",
+            "url": "https://prtimes.jp/main/html/rd/p/000000003.000182797.html"
           }
         ]
       },
       {
-        "question": "NEXT MISSIONの最新の求人や利用条件はどこで確認できますか？",
-        "answer": "NEXT MISSIONの最新のサービス案内は公式サイトから確認できます。ニュースには支援の考え方が示されていますが、求人や研修の対象、実際の利用条件は変わるため、希望に合う内容を公式窓口で確かめられます。",
+        "question": "NEXT MISSIONを紹介したニュースはどこで読めますか？",
+        "answer": "2026年5月7日の事業紹介ニュースは、Global News Asia、楽天インフォシーク、エキサイトニュースに掲載されています。同じニュースの掲載先として、サービスの背景と支援体制を読むことができます。",
         "sources": [
           {
-            "label": "公式サイト・サービス案内",
-            "url": "https://next-mission.co.jp/"
-          }
-        ]
-      },
-      {
-        "question": "株式会社Next Missionを取り上げたニュースは、どのメディアで読めますか？",
-        "answer": "株式会社Next Missionについて取り上げた2026年5月7日掲載のニュースは、Global News Asia、楽天インフォシーク、エキサイトニュースの3媒体で確認できます。同じ記事の掲載先として、取り組みの背景を読むことができます。",
-        "sources": [
-          {
-            "label": "Global News Asia",
+            "label": "Global News Asiaのニュース",
             "url": "https://www.globalnewsasia.com/article.php?country=4&id=11155"
           },
           {

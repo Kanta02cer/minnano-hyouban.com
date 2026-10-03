@@ -3,7 +3,8 @@
 
 The source metadata deliberately contains no private customer-list classification.
 Editorial summaries live in content/bulk-report-angles.tsv and can be edited there.
-Run this script after changing either file, then validate and build the site.
+Individually rewritten reports keep their HTML as the source of truth.
+The original navigation guard still stops generation when newer articles exist.
 """
 
 import html
@@ -14,6 +15,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 DATE = '2026-09-27'
+# Rewritten individually on 2026-10-04; never replace these with the old template.
+INDIVIDUALLY_EDITED_REPORTS = {'11098', '11155'}
 EXISTING = {
     '11906': ('カラープラス', '村田隆行代表とカラープラスの歩み', '代表者', '2026-09-25', '赤字の1号店から多店舗モデルへ。代表者の判断と公表された事業の広がりを調べます。'),
     '11905': ('カラープラス', 'カラープラスのサービスと店舗展開', '会社・サービス', '2026-09-18', 'ヘアカラー専門店の仕組み、店舗情報、公開された利用者の声を調べます。'),
@@ -130,6 +133,8 @@ def read_data():
     if len(ids) != 53 or len(ids) != len(set(ids)) or set(ids) != set(notes):
         raise ValueError('Bulk source IDs and editorial notes differ')
     existing_ids = {path.parent.name for path in (ROOT / 'site-v2/reports').glob('*/index.html')}
+    if INDIVIDUALLY_EDITED_REPORTS - existing_ids:
+        raise ValueError('Individually edited report HTML is missing; restore it instead of regenerating it')
     if existing_ids - (set(ids) | set(EXISTING)):
         raise ValueError('Newer articles are present: this one-time bulk generator cannot overwrite their navigation')
     return sources, notes
@@ -315,13 +320,15 @@ def main():
         all_by_company[item['company']].append((item['id'], notes[item['id']]['heading']))
     for item in sources:
         id_ = item['id']
+        if id_ in INDIVIDUALLY_EDITED_REPORTS:
+            continue
         related = [pair for pair in all_by_company[item['company']] if pair[0] != id_]
         target = ROOT / 'site-v2/reports' / id_ / 'index.html'
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_text(page(item, notes[id_], related), encoding='utf-8')
     archive_and_home(sources, notes)
     print('Next: node scripts/enhance-search-pages.js (required before validation/build)')
-    print(f'Generated {len(sources)} reviewed report pages.')
+    print(f'Generated {len(sources) - len(INDIVIDUALLY_EDITED_REPORTS)} reviewed report pages; preserved {len(INDIVIDUALLY_EDITED_REPORTS)} individually edited pages.')
 
 
 if __name__ == '__main__':
