@@ -428,3 +428,9 @@ button, input { font: inherit; }
 @media print {
   .motion-pending, .motion-visible { opacity: 1 !important; transform: none !important; animation: none !important; }
 }
+
+/* Longer service subtitles keep natural line breaks at narrow widths. */
+.report-hero h1 .report-title-qualifier-long { white-space: normal; text-wrap: balance; }
+#editorial-relationship { margin-top: 24px; }
+#editorial-relationship h2 { margin: 0 0 8px; font-size: 17px; }
+#editorial-relationship p { margin: 0; font-size: 14px; line-height: 1.9; }

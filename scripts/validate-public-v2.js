@@ -141,6 +141,16 @@ for (const id of reportIds) {
     continue;
   }
   const html = read(file);
+  if (id === '11607') {
+    const relationship = contentOf(html, /<section\b[^>]*\bid="editorial-relationship"[^>]*>([\s\S]*?)<\/section>/i);
+    const relationshipText = compact(plainText(relationship));
+    check(['編集責任者', '漆沢祐樹', 'メディくる', '代表取締役'].every(word => relationshipText.includes(word)),
+      `${file}: 編集責任者と紹介企業の関係を editorial-relationship セクションで明記してください。`);
+    check(!/\b(?:hidden|aria-hidden\s*=\s*["']true["'])/i.test(relationship)
+      && !/<section\b[^>]*\bid="editorial-relationship"[^>]*\b(?:hidden|aria-hidden)/i.test(html),
+      `${file}: 編集責任者との関係欄を非表示にしないでください。`);
+    check(home.includes('/reports/11607/'), `${file}: 依頼されたサービス記事のトップページ導線がありません。`);
+  }
   const canonicalUrl = `https://minnano-hyouban.com/reports/${id}/`;
   const title = contentOf(html, /<title>([\s\S]*?)<\/title>/i);
   const ogTitle = contentOf(html, /<meta\s+property="og:title"\s+content="([^"]*)"/i);

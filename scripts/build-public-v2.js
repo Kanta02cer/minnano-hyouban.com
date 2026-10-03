@@ -11,7 +11,7 @@ const sourceDir = path.join(root, 'site-v2');
 const outputDir = path.join(root, 'dist');
 const siteUrl = 'https://minnano-hyouban.com';
 const domain = 'minnano-hyouban.com';
-const reportIds = ['11906', '11999', '12000', '11904', '11968', '11902', '11905', '11903', '11813', '11901', '11838', '11820', '11812', '11811', '11837', '11805', '11819', '11758', '11810', '11756', '11809', '11804', '11757', '11672', '11755', '11670', '11745', '11668', '11671', '11640', '11612', '11669', '11638', '11667', '11625', '11639', '11604', '11637', '11627', '11603', '11557', '11286', '11285', '11270', '11245', '11244', '11198', '11197', '11155', '11098', '11037', '11010', '10969', '10911', '10728', '10617', '10613', '10552', '10512', '10509', '10482'];
+const reportIds = ['11906', '11999', '12000', '11904', '11968', '11902', '11905', '11903', '11813', '11901', '11838', '11820', '11812', '11811', '11837', '11805', '11819', '11758', '11810', '11756', '11809', '11804', '11757', '11672', '11755', '11670', '11745', '11668', '11671', '11640', '11612', '11669', '11638', '11667', '11625', '11639', '11607', '11604', '11637', '11627', '11603', '11557', '11286', '11285', '11270', '11245', '11244', '11198', '11197', '11155', '11098', '11037', '11010', '10969', '10911', '10728', '10617', '10613', '10552', '10512', '10509', '10482'];
 
 const publicFiles = [
   ['site-v2/index.html', 'index.html'],
@@ -116,8 +116,27 @@ function build() {
     .filter(([, dest]) => /\.(?:html|css|js)$/.test(dest))
     .map(([src]) => fs.readFileSync(path.join(root, src), 'utf8'))
     .join('\n');
-  if (/メディくる|(?:^|["'/(])articles\/\d{16}(?:\/|["'?#])|article\.html\?id=|_post\//i.test(publicText)) {
-    throw new Error('公開元に旧サイトの記事・運営名への参照が残っています。');
+  if (/(?:^|["'/(])articles\/\d{16}(?:\/|["'?#])|article\.html\?id=|_post\//i.test(publicText)) {
+    throw new Error('公開元に旧サイトの記事への参照が残っています。');
+  }
+
+  // The user's 2026-10-04 request permits this service profile, not a change
+  // of the site's operator or the return of the retired contact channel.
+  const medikuruPages = new Set(['index.html', 'articles.html', 'reports/11607/index.html']);
+  for (const [src, dest] of publicFiles.filter(([, file]) => /\.(?:html|css|js)$/.test(file))) {
+    const text = fs.readFileSync(path.join(root, src), 'utf8');
+    if (/メディくる|medikuru/i.test(text) && !medikuruPages.has(dest)) {
+      throw new Error(`${src}: メディくるの紹介は指定記事とその一覧導線だけに追加できます。`);
+    }
+    const outsideMain = text.replace(/<main\b[^>]*>[\s\S]*?<\/main>/gi, '');
+    const sharedChrome = [...outsideMain.matchAll(/<(header|footer)\b[^>]*>[\s\S]*?<\/\1>/gi)]
+      .map(match => match[0]).join('\n');
+    if (/メディくる|medikuru/i.test(sharedChrome) || /[a-z0-9._%+-]+@medikuru\.com/i.test(text)) {
+      throw new Error(`${src}: 旧運営名・共通問い合わせ先を復活させないでください。`);
+    }
+    if (dest !== 'reports/11607/index.html' && /(?:[a-z0-9-]+\.)?medikuru\.com/i.test(text)) {
+      throw new Error(`${src}: メディくるの公式導線は指定サービス記事内に置いてください。`);
+    }
   }
 
   const allowedPaths = new Set([

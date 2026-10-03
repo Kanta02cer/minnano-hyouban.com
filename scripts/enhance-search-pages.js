@@ -105,7 +105,7 @@ for (const filename of ['index.html','articles.html','editor.html','guide.html',
   const title = plain(html.match(/<title>([\s\S]*?)<\/title>/)[1]);
   const page = {'@type':filename === 'articles.html' ? 'CollectionPage' : 'WebPage','@id':`${url}#webpage`,url,name:title,inLanguage:'ja',isPartOf:{'@id':website['@id']},publisher:{'@id':editor['@id']}};
   // This is the date this metadata/content revision was prepared, not each build time.
-  page.dateModified = '2026-09-28';
+  page.dateModified = ['index.html', 'articles.html'].includes(filename) ? '2026-10-04' : '2026-09-28';
   if (filename === 'editor.html') page.about = {'@id':editor['@id']};
   const nodes = [website,editor,page];
   if (filename === 'articles.html') {

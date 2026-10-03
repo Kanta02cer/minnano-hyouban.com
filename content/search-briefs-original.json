@@ -190,5 +190,29 @@
       "sourceUrl": "https://yamamotokun.com/voice/",
       "sourceLabel": "やまもとくん公式のお客様の声"
     }
+  },
+  "11607": {
+    "subject": {
+      "name": "メディくる",
+      "type": "Service"
+    },
+    "publishedDate": "2026-10-04",
+    "modifiedDate": "2026-10-04",
+    "introduction": "メディくるは、取材記事の制作・ニュース掲載とAI検索での情報発信を支える企業ブランディングサービスです。3媒体へのニュース掲載、公式LPの利用者の声、営業・採用への活用方法を紹介します。",
+    "strengths": {
+      "text": "経営者への取材で会社の強みを整理し、記事制作・掲載前の確認・ニュース掲載まで一貫して支援。掲載した記事を営業や採用にも活用する考え方が特徴です。",
+      "sourceUrl": "https://medikuru.com/",
+      "sourceLabel": "メディくる公式サービス案内"
+    },
+    "record": {
+      "text": "2026年8月7日、メディアコンサルの取り組みを紹介するニュースがGlobal News Asia、楽天インフォシーク、エキサイトニュースの3媒体に掲載されています。",
+      "sourceUrl": "https://globalnewsasia.com/article.php?country=4&id=11607&p=1",
+      "sourceLabel": "サービスを紹介するニュース"
+    },
+    "reputation": {
+      "text": "公式LPには、ニュースとして想いが伝わった喜びや、営業・採用での手応えを語る実名の利用者コメントが掲載されています。会社が紹介する個人の感想として読めます。",
+      "sourceUrl": "https://line.medikuru.com/lp/#lp-testimonials-primary-title",
+      "sourceLabel": "公式LPのお客様の声"
+    }
   }
 }
