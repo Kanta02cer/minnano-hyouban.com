@@ -434,3 +434,6 @@ button, input { font: inherit; }
 #editorial-relationship { margin-top: 24px; }
 #editorial-relationship h2 { margin: 0 0 8px; font-size: 17px; }
 #editorial-relationship p { margin: 0; font-size: 14px; line-height: 1.9; }
+
+/* Keep meaningful words together in article card headings. */
+.report-card .title-phrase, .home-b .article-item .title-phrase { white-space: nowrap; }

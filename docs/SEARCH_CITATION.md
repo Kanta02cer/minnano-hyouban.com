@@ -59,7 +59,9 @@ npm run build:branch-root
 node scripts/stage-branch-root.js --check
 ```
 
-一括生成53記事のうち、後日個別に書き直した11098（MIRACLE PILLOW）・11155（NEXT MISSION）は、`site-v2/reports/<id>/index.html` の本文を編集上の正本として保持する。旧一括生成は `INDIVIDUALLY_EDITED_REPORTS` の2記事を上書きしない。これらの訂正時は `content/bulk-report-sources.json`、`content/bulk-report-angles.tsv`、`content/search-briefs-bulk.json`、`content/report-reader-guides.json` と個別本文を揃え、`node scripts/enhance-search-pages.js` を実行する。元の初回公開日を維持し、更新日だけ実際の編集日にする。
+一括生成53記事のうち、後日個別に書き直した11098（MIRACLE PILLOW）・11155（NEXT MISSION）は、`site-v2/reports/<id>/index.html` の本文を編集上の正本として保持する。旧一括生成は `INDIVIDUALLY_EDITED_REPORTS` に登録した記事を上書きしない。これらの訂正時は `content/bulk-report-sources.json`、`content/bulk-report-angles.tsv`、`content/search-briefs-bulk.json`、`content/report-reader-guides.json` と個別本文を揃え、`node scripts/enhance-search-pages.js` を実行する。元の初回公開日を維持し、更新日だけ実際の編集日にする。
+
+2026年10月4日に11970（内山成児代表）を追加した際、11968（株式会社リンクス）も `INDIVIDUALLY_EDITED_REPORTS` に登録した。11968の保全は、個別に追加した11970への関連リンクを旧一括生成で失わないための措置であり、11098・11155の本文全面更新とは区別する。関連リンクを変更する際も個別HTMLと実際の更新日を揃える。
 
 それ以外の一括生成記事は、先にニュース・公式情報・会社別説明を訂正する。後日追加記事がある場合に一括生成スクリプトが止まる既存の保護は維持し、停止条件を迂回しない。生成・個別編集のどちらでも、要約データと本文を合わせて検証する。11098・11155の事業関係開示と出典リンクの範囲は `docs/NEWS_ARTICLE_WORKFLOW.md` に従う。
 

@@ -214,5 +214,29 @@
       "sourceUrl": "https://line.medikuru.com/lp/#lp-testimonials-primary-title",
       "sourceLabel": "公式LPのお客様の声"
     }
+  },
+  "11970": {
+    "subject": {
+      "name": "内山成児",
+      "type": "Person"
+    },
+    "publishedDate": "2026-10-04",
+    "modifiedDate": "2026-10-04",
+    "introduction": "内山成児氏は株式会社リンクスの代表取締役です。4媒体に掲載された取材記事と公式の事業案内から、起業・会社売却を経て企業支援へ進んだ歩み、Web制作や広告運用の特徴、口コミ・評判を確認できる範囲を紹介します。",
+    "strengths": {
+      "text": "リンクスの公式案内では、LPの企画・制作から公開後の改善、広告運用までを相談できます。内山氏が率いる会社の特徴として、顧客を呼び込む施策と、問い合わせにつながるWebページを合わせて考えられる点が挙げられます。",
+      "sourceUrl": "https://rinkus.co.jp/lp/",
+      "sourceLabel": "リンクス公式のLP制作・運用案内"
+    },
+    "record": {
+      "text": "内山成児氏の起業・売却から企業再生支援への歩みが、2026年9月28日の取材記事として4媒体に掲載されています。公式には2018年の経営統合とリンクスへの社名変更も公表されています。",
+      "sourceUrl": "https://www.globalnewsasia.com/article.php?country=4&id=11970",
+      "sourceLabel": "内山成児氏の経歴を紹介する取材記事"
+    },
+    "reputation": {
+      "text": "今回確認した公式サイト・LP・取材記事では、内山氏本人に対する利用者の口コミを十分に確認できませんでした。経歴や会社の提供内容を知る資料として読み、相談時には自社に近い支援事例を確かめると判断しやすくなります。",
+      "sourceUrl": "https://rinkus.co.jp/service.php",
+      "sourceLabel": "確認したリンクス公式のサービス案内"
+    }
   }
 }

@@ -256,7 +256,7 @@
       .home-b .masthead a { font-size: clamp(34px, 8.25vw, 43px); }
       .home-b .masthead p { letter-spacing: .22em; }
       .home-b .paper-hero h1 { font-size: clamp(34px, 10.3vw, 49px); }
-      .home-b .paper-hero-bottom { gap: 10px; }
+      .home-b .paper-hero-bottom { gap: 10px; flex-wrap: wrap; }
       .home-b .read-button { min-width: 212px; }
       .home-b .page-no { font-size: 14px; }
       .home-b .section-top { align-items: start; flex-direction: column; gap: 8px; }

@@ -16,7 +16,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 DATE = '2026-09-27'
 # Rewritten individually on 2026-10-04; never replace these with the old template.
-INDIVIDUALLY_EDITED_REPORTS = {'11098', '11155'}
+INDIVIDUALLY_EDITED_REPORTS = {'11098', '11155', '11968'}
 EXISTING = {
     '11906': ('カラープラス', '村田隆行代表とカラープラスの歩み', '代表者', '2026-09-25', '赤字の1号店から多店舗モデルへ。代表者の判断と公表された事業の広がりを調べます。'),
     '11905': ('カラープラス', 'カラープラスのサービスと店舗展開', '会社・サービス', '2026-09-18', 'ヘアカラー専門店の仕組み、店舗情報、公開された利用者の声を調べます。'),
