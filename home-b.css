@@ -274,3 +274,11 @@
       .home-b .more p { display: none; }
       .home-b .paper-footer { padding-block: 17px; }
     }
+
+/* 2026-10-07: sister-media palette swap; layout and C2 remain unchanged. */
+.home-b {--paper:#f5efe5;--white:#fffaf2;--ink:#34322e;--mid:#756653;--fine:#c2b5a1;--rule:#655c4c;--marker:#dcc2a4;--accent:#865633;}
+.home-b .paper-hero h1 .shaded{color:var(--accent)}
+.home-b .paper-hero h1 .shaded::after{background:var(--marker)}
+.home-b .read-button{background:var(--accent);border-color:var(--accent)}
+.home-b .read-button:hover{background:transparent;color:var(--accent)}
+.home-b .aside-feature .num{color:var(--accent)}
