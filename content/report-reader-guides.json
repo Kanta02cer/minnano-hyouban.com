@@ -8772,5 +8772,169 @@
         ]
       }
     ]
+  },
+  "12042": {
+    "summary": [
+      {
+        "text": "AI点呼さんは、株式会社京阪物流が運営する物流業務支援サービスです。AIロジサポート株式会社への社名変更予定とともに、運送現場の経験をサービス開発に生かす取り組みが4媒体で紹介されました。会社の背景と提供内容を合わせて知れる点が、今回のニュースの読みどころです。",
+        "sources": [
+          {
+            "url": "https://www.globalnewsasia.com/article.php?country=4&id=12042",
+            "label": "2026年10月5日の取材記事"
+          },
+          {
+            "url": "https://tenkobot.vercel.app/privacy",
+            "label": "AI点呼さん公式・運営主体"
+          }
+        ]
+      },
+      {
+        "text": "公式アプリ案内では、業務報告や順番に連絡する仕組み、車両管理などを確認できます。口コミや効果の数値は今回の調査では十分に確認できていないため、導入検討では自社の連絡体制・共有範囲・費用を照らし合わせると、サービスとの相性を考えやすくなります。",
+        "sources": [
+          {
+            "url": "https://play.google.com/store/apps/details?id=com.mellkun.tenkobot",
+            "label": "AI点呼さん公式アプリ案内"
+          },
+          {
+            "url": "https://tenkobot.vercel.app/terms",
+            "label": "AI点呼さん利用規約"
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "AIロジサポートと京阪物流は、どのような関係ですか？",
+        "answer": "2026年10月5日のニュースは、運営母体がAIロジサポート株式会社への社名変更を予定していると伝えています。10月7日に確認した公式の運営者表記は株式会社京阪物流です。",
+        "sources": [
+          {
+            "url": "https://www.globalnewsasia.com/article.php?country=4&id=12042",
+            "label": "社名変更予定を伝える取材記事"
+          },
+          {
+            "url": "https://tenkobot.vercel.app/privacy",
+            "label": "公式の運営主体表記"
+          }
+        ]
+      },
+      {
+        "question": "AI点呼さんは、誰が運営しているサービスですか？",
+        "answer": "公式規約の提供会社は株式会社京阪物流です。同社の会社概要では、代表者を吉岡泰生氏、事業内容を配送・トラック輸送と紹介しています。",
+        "sources": [
+          {
+            "url": "https://tenkobot.vercel.app/terms",
+            "label": "AI点呼さん利用規約"
+          },
+          {
+            "url": "https://keihan-logistics.video-c.jp/",
+            "label": "京阪物流・会社概要"
+          }
+        ]
+      },
+      {
+        "question": "AI点呼さんでは、どのような業務をまとめられますか？",
+        "answer": "公式アプリ案内では、業務報告、位置情報の共有、日報のPDF出力、車両管理などを紹介しています。日々の記録や確認の流れを整理したい事業者向けの機能です。",
+        "sources": [
+          {
+            "url": "https://play.google.com/store/apps/details?id=com.mellkun.tenkobot",
+            "label": "公式アプリ・機能案内"
+          }
+        ]
+      },
+      {
+        "question": "通知リレーとは、どのような仕組みですか？",
+        "answer": "報告がない場合などに、設定した順番で連絡をつなぐ仕組みです。ニュースはルールに基づく通知と説明しており、すべてをAIが判断するという意味ではありません。",
+        "sources": [
+          {
+            "url": "https://www.globalnewsasia.com/article.php?country=4&id=12042",
+            "label": "通知機能を説明する取材記事"
+          }
+        ]
+      },
+      {
+        "question": "AI点呼さんの料金の目安はありますか？",
+        "answer": "10月5日のニュースでは、スタッフ6人で月額8,000円（税別）から、電話は1回30円、SMSは1通15円と紹介されています。掲載時の料金例のため、現在のプランや従量料金の条件は提供会社に確認してください。",
+        "sources": [
+          {
+            "url": "https://www.globalnewsasia.com/article.php?country=4&id=12042",
+            "label": "ニュース掲載時の料金例"
+          },
+          {
+            "url": "https://tenkobot.vercel.app/terms",
+            "label": "料金・従量課金に関する公式規約"
+          }
+        ]
+      },
+      {
+        "question": "位置情報の共有は、いつ行われますか？",
+        "answer": "公式ポリシーは、共有を有効にしたコースで、始業から終業まで取得すると説明しています。初回の本人同意や協力会社への共有条件も記載されています。",
+        "sources": [
+          {
+            "url": "https://tenkobot.vercel.app/privacy",
+            "label": "AI点呼さんプライバシーポリシー"
+          }
+        ]
+      },
+      {
+        "question": "点呼関連の機能は、すべて提供開始済みですか？",
+        "answer": "10月5日のニュースでは、自動点呼オプションは認定申請中で、認定後に開始予定とされています。業務報告や通知機能と分けて、現在利用できる範囲を提供会社へ確認する必要があります。",
+        "sources": [
+          {
+            "url": "https://www.globalnewsasia.com/article.php?country=4&id=12042",
+            "label": "点呼オプションの提供予定を伝える記事"
+          }
+        ]
+      },
+      {
+        "question": "AIロジサポートの取り組みは、どの媒体に掲載されましたか？",
+        "answer": "Global News Asia、楽天インフォシーク、エキサイトニュース、ニコニコニュースで確認しました。同じ取材記事の掲載先として、本記事の媒体欄からそれぞれ参照できます。",
+        "sources": [
+          {
+            "url": "https://www.globalnewsasia.com/article.php?country=4&id=12042",
+            "label": "Global News Asia"
+          },
+          {
+            "url": "https://news.infoseek.co.jp/article/globalnewsasia_12042/",
+            "label": "楽天インフォシーク"
+          },
+          {
+            "url": "https://www.excite.co.jp/news/article/Global_news_asia_12042/",
+            "label": "エキサイトニュース"
+          },
+          {
+            "url": "https://news.nicovideo.jp/watch/nw19844536",
+            "label": "ニコニコニュース"
+          }
+        ]
+      },
+      {
+        "question": "AI点呼さんの口コミや導入実績は確認できますか？",
+        "answer": "今回確認した公開資料では、利用者の具体的な口コミ、導入社数、業務時間の削減実績は十分に確認できませんでした。ニュース掲載の事実を、利用者による評価や効果の保証に置き換えてはいません。",
+        "sources": [
+          {
+            "url": "https://play.google.com/store/apps/details?id=com.mellkun.tenkobot",
+            "label": "確認した公式アプリ案内"
+          },
+          {
+            "url": "https://www.globalnewsasia.com/article.php?country=4&id=12042",
+            "label": "確認した取材記事"
+          }
+        ]
+      },
+      {
+        "question": "公式情報を見ながら、何から導入を検討するとよいですか？",
+        "answer": "連絡の順番、業務記録の項目、位置情報の共有範囲、利用人数を先に整理すると、必要な機能や費用を相談しやすくなります。公式アプリ案内と利用規約を入口に確認できます。",
+        "sources": [
+          {
+            "url": "https://play.google.com/store/apps/details?id=com.mellkun.tenkobot",
+            "label": "公式アプリ案内"
+          },
+          {
+            "url": "https://tenkobot.vercel.app/terms",
+            "label": "利用規約"
+          }
+        ]
+      }
+    ]
   }
 }

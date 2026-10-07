@@ -238,5 +238,29 @@
       "sourceUrl": "https://rinkus.co.jp/service.php",
       "sourceLabel": "確認したリンクス公式のサービス案内"
     }
+  },
+  "12042": {
+    "subject": {
+      "name": "株式会社京阪物流",
+      "type": "Organization"
+    },
+    "publishedDate": "2026-10-07",
+    "modifiedDate": "2026-10-07",
+    "introduction": "AIロジサポート株式会社への社名変更予定を報じられた京阪物流は、物流業務支援サービス「AI点呼さん」を運営しています。4媒体の掲載ニュースと公式情報から、確認・連絡業務を支える特徴、掲載実績、口コミ・評判の確認範囲を紹介します。",
+    "strengths": {
+      "text": "業務報告、通知リレー、車両管理をまとめて扱えることが特徴です。担当者が個別に確認している作業を整理したい運送事業者にとって、検討の入口になるサービスです。",
+      "sourceUrl": "https://play.google.com/store/apps/details?id=com.mellkun.tenkobot",
+      "sourceLabel": "AI点呼さん・開発者による公式アプリ案内"
+    },
+    "record": {
+      "text": "2026年10月5日、現場経験を生かした物流DXの取り組みが4媒体に掲載されました。代表の吉岡泰生氏が、運送会社の運営で感じた課題をサービスづくりにつなげた経緯が紹介されています。",
+      "sourceUrl": "https://www.globalnewsasia.com/article.php?country=4&id=12042",
+      "sourceLabel": "物流DXへの取り組みを紹介する取材記事"
+    },
+    "reputation": {
+      "text": "今回調べたニュース・公式資料では、具体的な利用者の口コミや導入効果の数値を十分に確認できませんでした。掲載実績とサービスの機能を知り、自社の運用に合うかを確かめるための資料として紹介します。",
+      "sourceUrl": "https://play.google.com/store/apps/details?id=com.mellkun.tenkobot",
+      "sourceLabel": "確認した公式アプリ掲載ページ"
+    }
   }
 }
