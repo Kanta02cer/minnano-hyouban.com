@@ -2,11 +2,12 @@
   "10482": {
     "summary": [
       {
-        "text": "吉田朝陽氏の発信で注目したいのは、家族や自身の経験を、人間関係や日常の行動を考える短い動画へつなげている点です。2025年10月のニュースでは、心理学に関心を持ち、SNSを通じて悩みと向き合う考え方を伝えるまでの経緯が紹介されています。",
+        "text": "吉田朝陽氏は2025年の取材で、心理学の発信を共感だけで終えず、日々の生活で試すきっかけにしたいと語っています。身近な場面の説明と視聴者との対話を重視する姿勢は、現在のサービスを理解する際にも、活動の目的を知る材料になります。",
         "sources": [
           {
-            "label": "紹介されたニュース",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=10482"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "吉田朝陽氏（Asahi）の取材記録（記録日：2025-10-17）"
           }
         ]
       },
@@ -110,20 +111,24 @@
         ]
       },
       {
-        "question": "吉田朝陽氏を取り上げたニュースは、どのメディアで読めますか？",
-        "answer": "吉田朝陽氏について取り上げた2025年10月24日掲載のニュースは、Global News Asia、楽天インフォシーク、エキサイトニュースの3媒体で確認できます。同じ記事の掲載先として、取り組みの背景を読むことができます。",
+        "question": "Asahi氏は心理学の発信で何を目指しているのですか？",
+        "answer": "2025年の取材では、共感だけで終わらず、視聴者が生活の中で試してみようと思える内容を目指すと説明しています。これは発信者の目的であり、すべての視聴者の変化を保証する説明ではありません。",
         "sources": [
           {
-            "label": "Global News Asia",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=10482"
-          },
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "吉田朝陽氏（Asahi）の取材記録（記録日：2025-10-17）"
+          }
+        ]
+      },
+      {
+        "question": "取材で話した将来の商品は、すでに提供されていたのですか？",
+        "answer": "2025年の記録では、商品やサービスの展開は将来の構想として話されています。取材時点の計画と、現在購入・利用できるものは区別して公式情報で確認してください。",
+        "sources": [
           {
-            "label": "楽天インフォシーク",
-            "url": "https://news.infoseek.co.jp/article/globalnewsasia_10482/"
-          },
-          {
-            "label": "エキサイトニュース",
-            "url": "https://www.excite.co.jp/news/article/Global_news_asia_10482/"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "吉田朝陽氏（Asahi）の取材記録（記録日：2025-10-17）"
           }
         ]
       }
@@ -676,11 +681,12 @@
   "10617": {
     "summary": [
       {
-        "text": "ラピラティスの採用ニュースは、異業種から来た人を研修で育て、インストラクターの仕事へつなげる方針を紹介しています。整体とピラティスを組み合わせるサービスを支えるために、人材を育てる仕組みに力を向けている点が読み取れます。",
+        "text": "渋谷生夢代表の取材記録には、顧客からの紹介でピラティスを学び、整体と組み合わせた内容を届けようとした背景が残されています。パーソナルレッスンの形式と、オーナーがスタッフを支える運営方針は、サービスの具体像を知る材料になります。",
         "sources": [
           {
-            "label": "紹介されたニュース",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=10617"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "渋谷生夢代表の取材記録（記録日：2025-10-23）"
           }
         ]
       },
@@ -792,20 +798,24 @@
         ]
       },
       {
-        "question": "ラピラティスを取り上げたニュースは、どのメディアで読めますか？",
-        "answer": "ラピラティスについて取り上げた2025年11月27日掲載のニュースは、Global News Asia、楽天インフォシーク、エキサイトニュースの3媒体で確認できます。同じ記事の掲載先として、取り組みの背景を読むことができます。",
+        "question": "整体とピラティスを組み合わせた背景は何ですか？",
+        "answer": "渋谷代表は、担当していた整体の顧客からピラティスを紹介され、自分でも学ぶなかで両者を組み合わせて届けたいと考えたと説明しています。",
         "sources": [
           {
-            "label": "Global News Asia",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=10617"
-          },
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "渋谷生夢代表の取材記録（記録日：2025-10-23）"
+          }
+        ]
+      },
+      {
+        "question": "フランチャイズ運営で大切にしていることは何ですか？",
+        "answer": "取材では、オーナーがスタッフを支え、スタッフが顧客に向き合う関係を重視すると語っています。収益だけでなく、人材育成の考え方を加盟段階から共有する方針です。",
+        "sources": [
           {
-            "label": "楽天インフォシーク",
-            "url": "https://news.infoseek.co.jp/article/globalnewsasia_10617/"
-          },
-          {
-            "label": "エキサイトニュース",
-            "url": "https://www.excite.co.jp/news/article/Global_news_asia_10617/"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "渋谷生夢代表の取材記録（記録日：2025-10-23）"
           }
         ]
       }
@@ -948,15 +958,12 @@
   "10911": {
     "summary": [
       {
-        "text": "エピグループは、ライブ配信者の発掘とともに、教育や管理を通じて活動の継続を支える方針をニュースで紹介されています。公式会社概要では、配信者のマネジメント、TikTok LIVE導入支援、EC、動画・Web制作などが公表され、配信を複数の事業から支える提供範囲が分かります。",
+        "text": "中村彰宏代表の取材記録では、ライバー自身の経験を起点に、配信の内容・機能の使い方と、一対一で相談できる関係づくりを重視する姿勢が説明されています。活動の継続と、受けられる支援の具体的な内容を合わせて検討する材料になります。",
         "sources": [
           {
-            "label": "紹介されたニュース",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=10911"
-          },
-          {
-            "label": "公式・公開案内",
-            "url": "https://epi-group.ne.jp/company/"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "中村彰宏代表（えぴろ氏）の取材記録（記録日：2026-02-02）"
           }
         ]
       },
@@ -1064,20 +1071,24 @@
         ]
       },
       {
-        "question": "株式会社Epi Groupを取り上げたニュースは、どのメディアで読めますか？",
-        "answer": "株式会社Epi Groupについて取り上げた2026年2月18日掲載のニュースは、Global News Asia、楽天インフォシーク、エキサイトニュースの3媒体で確認できます。同じ記事の掲載先として、取り組みの背景を読むことができます。",
+        "question": "ライバーには、どのようなことを教える方針ですか？",
+        "answer": "取材では、視聴者が楽しめる配信、応援してもらう関係づくり、TikTokの機能の使い方などを挙げています。実際の支援範囲や担当体制は、所属前に個別に確認してください。",
         "sources": [
           {
-            "label": "Global News Asia",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=10911"
-          },
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "中村彰宏代表（えぴろ氏）の取材記録（記録日：2026-02-02）"
+          }
+        ]
+      },
+      {
+        "question": "教育で一対一の関わりを大切にする理由は何ですか？",
+        "answer": "中村代表は、相談相手への信頼があってこそ助言を受け止めてもらえると考え、資料や仕組みに加えて話を聞く関わりを重視すると説明しています。",
+        "sources": [
           {
-            "label": "楽天インフォシーク",
-            "url": "https://news.infoseek.co.jp/article/globalnewsasia_10911/"
-          },
-          {
-            "label": "エキサイトニュース",
-            "url": "https://www.excite.co.jp/news/article/Global_news_asia_10911/"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "中村彰宏代表（えぴろ氏）の取材記録（記録日：2026-02-02）"
           }
         ]
       }
@@ -1224,15 +1235,12 @@
   "11010": {
     "summary": [
       {
-        "text": "中学受験のミカタは、理科の知識を学ぶ時間に、生徒が発表し、対話する機会を組み合わせる教育方針をニュースで紹介されています。公式案内ではオンライン授業、動画、個別コーチングを確認でき、子どもがどのように学び、考えを伝えるかという観点から特徴を捉えられます。",
+        "text": "根木大輔代表の取材記録では、発表や小グループの座談会を通じて子どもの言葉を引き出し、保護者も学び方に気づけるオンライン授業の工夫が語られています。通塾を続けながら、理科の学習と親子の関わり方を補う選択肢として、内容と負担を確かめて検討できます。",
         "sources": [
           {
-            "label": "紹介されたニュース",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11010"
-          },
-          {
-            "label": "公式・公開案内",
-            "url": "https://tyuugakujuken-no-mikata.com/about/"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "根木大輔代表の取材記録（記録日：2026-03-16）"
           }
         ]
       },
@@ -1332,20 +1340,24 @@
         ]
       },
       {
-        "question": "中学受験のミカタを取り上げたニュースは、どのメディアで読めますか？",
-        "answer": "中学受験のミカタについて取り上げた2026年3月26日掲載のニュースは、Global News Asia、楽天インフォシーク、エキサイトニュースの3媒体で確認できます。同じ記事の掲載先として、取り組みの背景を読むことができます。",
+        "question": "オンラインで子ども同士が話す機会はありますか？",
+        "answer": "取材では、希望者の座談会で小グループに分かれ、テーマについて話した後に全体で共有する方法が紹介されています。現在の実施方法は授業案内で確認してください。",
         "sources": [
           {
-            "label": "Global News Asia",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11010"
-          },
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "根木大輔代表の取材記録（記録日：2026-03-16）"
+          }
+        ]
+      },
+      {
+        "question": "保護者にとっては、どのような参加の意味がありますか？",
+        "answer": "家庭での授業を通じ、子どもの発言や問題の読み方など、普段と異なる学習の様子に気づけると説明しています。何を手助けし、何を本人に任せるか考える機会としても位置づけられています。",
+        "sources": [
           {
-            "label": "楽天インフォシーク",
-            "url": "https://news.infoseek.co.jp/article/globalnewsasia_11010/"
-          },
-          {
-            "label": "エキサイトニュース",
-            "url": "https://www.excite.co.jp/news/article/Global_news_asia_11010/"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "根木大輔代表の取材記録（記録日：2026-03-16）"
           }
         ]
       }
@@ -1954,15 +1966,12 @@
   "11198": {
     "summary": [
       {
-        "text": "ゆうきや整体院は、横浜市保土ケ谷区でダイエットや産前産後のケアを案内しています。ニュースでは、施術に加えて食事や生活習慣の見直しも相談に含める取り組みが紹介され、日々の過ごし方まで視野に入れた支援内容が特徴として読み取れます。",
+        "text": "提供された木野竜太郎院長の取材記録では、産後の食事準備の難しさなど、生活の具体的な場面を踏まえて助言する考え方が語られています。施術と日常の取り組みを組み合わせる方針が特徴で、個々の体調や利用条件は相談時の確認が必要です。",
         "sources": [
           {
-            "label": "紹介されたニュース",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11198"
-          },
-          {
-            "label": "公式・公開案内",
-            "url": "https://yuukiya-seitai.com/"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "木野竜太郎院長の取材記録（記録日：2026-05-19）"
           }
         ]
       },
@@ -2058,20 +2067,24 @@
         ]
       },
       {
-        "question": "ゆうきや整体院を取り上げたニュースは、どのメディアで読めますか？",
-        "answer": "ゆうきや整体院について取り上げた2026年6月3日掲載のニュースは、Global News Asia、楽天インフォシーク、エキサイトニュースの3媒体で確認できます。同じ記事の掲載先として、取り組みの背景を読むことができます。",
+        "question": "食事については、どのように相談できますか？",
+        "answer": "取材記録では、育児中の一日の食事や調理の負担を聞き、生活のなかで続けられる方法を考えると説明しています。一律の食事例ではなく、自身の生活や体調を伝えて相談する形です。",
         "sources": [
           {
-            "label": "Global News Asia",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11198"
-          },
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "木野竜太郎院長の取材記録（記録日：2026-05-19）"
+          }
+        ]
+      },
+      {
+        "question": "施術だけでダイエットが完了する考え方ですか？",
+        "answer": "木野院長は取材で、施術だけで体重や体型の目標が達成されるとは考えず、食生活への取り組みも組み合わせると説明しています。結果や適切な内容は人によって異なります。",
+        "sources": [
           {
-            "label": "楽天インフォシーク",
-            "url": "https://news.infoseek.co.jp/article/globalnewsasia_11198/"
-          },
-          {
-            "label": "エキサイトニュース",
-            "url": "https://www.excite.co.jp/news/article/Global_news_asia_11198/"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "木野竜太郎院長の取材記録（記録日：2026-05-19）"
           }
         ]
       }
@@ -2210,11 +2223,12 @@
   "11245": {
     "summary": [
       {
-        "text": "株式会社インプルーブは、浜松市のパーソナルトレーニングを起点に、美容や物販などへサービスを広げる構想をニュースで紹介されています。顧客がジムで過ごす時間に加え、普段の暮らしにも接点をつくる発想が、複数の健康関連事業を組み合わせる方針につながっています。",
+        "text": "落合時夫代表の取材記録からは、インプルーブが自店でのジム・エステ運営経験を、集客、継続、採用・育成などの経営相談に生かしていることが分かります。機器や商材も自店での利用経験を踏まえて説明しており、支援を検討する際は自分の店舗の課題と相談範囲を照合できます。",
         "sources": [
           {
-            "label": "紹介されたニュース",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11245"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "落合時夫代表の取材記録（記録日：2026-05-26）"
           }
         ]
       },
@@ -2314,20 +2328,24 @@
         ]
       },
       {
-        "question": "株式会社インプルーブを取り上げたニュースは、どのメディアで読めますか？",
-        "answer": "株式会社インプルーブについて取り上げた2026年6月16日掲載のニュースは、Global News Asia、楽天インフォシーク、エキサイトニュースの3媒体で確認できます。同じ記事の掲載先として、取り組みの背景を読むことができます。",
+        "question": "ジム経営の相談では、集客以外も扱いますか？",
+        "answer": "取材時の説明では、契約や継続率、多店舗展開、採用・育成、メニューの見直しなども相談テーマに挙げています。具体的な支援範囲は、開業前か営業中かなどの状況を伝えて確認してください。",
         "sources": [
           {
-            "label": "Global News Asia",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11245"
-          },
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "落合時夫代表の取材記録（記録日：2026-05-26）"
+          }
+        ]
+      },
+      {
+        "question": "紹介している美容機器は自社開発ですか？",
+        "answer": "取材では、メーカーの機器を自店で使った後、販売代理店として関わるようになったと説明しています。機器の開発元と、店舗での導入・活用を支援する立場は区別して確認できます。",
+        "sources": [
           {
-            "label": "楽天インフォシーク",
-            "url": "https://news.infoseek.co.jp/article/globalnewsasia_11245/"
-          },
-          {
-            "label": "エキサイトニュース",
-            "url": "https://www.excite.co.jp/news/article/Global_news_asia_11245/"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "落合時夫代表の取材記録（記録日：2026-05-26）"
           }
         ]
       }
@@ -2600,11 +2618,12 @@
   "11286": {
     "summary": [
       {
-        "text": "株式会社allviewのニュースは、広告、サイト制作、検索対策を全体の目標から組み合わせる支援方法を紹介しています。複数の施策を別々に考えるのではなく、企業の課題に対してそれぞれが担う役割を整理するという点が、サービスの特徴として読み取れます。",
+        "text": "allviewの取材記録では、発注先の分断を減らす一貫対応、定期的な対話、利用者の視点での表現づくりが語られています。Web制作や広告を個別に頼む前に、事業の課題と商談までの流れから相談したい企業にとって、支援内容を判断する具体的な材料になります。",
         "sources": [
           {
-            "label": "紹介されたニュース",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11286"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "山崎真幸代表の取材記録（記録日：2026-06-15）"
           }
         ]
       },
@@ -2712,20 +2731,24 @@
         ]
       },
       {
-        "question": "株式会社allviewを取り上げたニュースは、どのメディアで読めますか？",
-        "answer": "株式会社allviewについて取り上げた2026年6月29日掲載のニュースは、Global News Asia、楽天インフォシーク、エキサイトニュースの3媒体で確認できます。同じ記事の掲載先として、取り組みの背景を読むことができます。",
+        "question": "制作や広告の仕様が決まる前でも相談できますか？",
+        "answer": "山崎代表は、新しいサービスの認知をどう広げるかという段階から設計するケースがあると説明しています。依頼したい制作物だけでなく、現状の課題や目標を整理して相談できます。",
         "sources": [
           {
-            "label": "Global News Asia",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11286"
-          },
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "山崎真幸代表の取材記録（記録日：2026-06-15）"
+          }
+        ]
+      },
+      {
+        "question": "運用中はどのように状況を共有しますか？",
+        "answer": "取材では、2週間に一度の打ち合わせと週次レポートを運用例として挙げています。すべての契約に共通する保証ではないため、自社の契約での報告頻度と対応範囲を確認してください。",
+        "sources": [
           {
-            "label": "楽天インフォシーク",
-            "url": "https://news.infoseek.co.jp/article/globalnewsasia_11286/"
-          },
-          {
-            "label": "エキサイトニュース",
-            "url": "https://www.excite.co.jp/news/article/Global_news_asia_11286/"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "山崎真幸代表の取材記録（記録日：2026-06-15）"
           }
         ]
       }
@@ -3006,11 +3029,12 @@
   "11604": {
     "summary": [
       {
-        "text": "dマト組織活性化は、行動の傾向を把握し、組織の課題を話し合う入口として診断を使う支援です。ニュースでは研修と組み合わせる仕組みが紹介されており、結果を職場での対話と改善にどう生かすかが、サービスを理解するポイントです。",
+        "text": "嶋田亮代表理事の取材記録では、社員・上司・組織の認識のずれをアンケートから把握し、現場の声を改善テーマに変える進め方が説明されています。dマト組織活性化を検討する際は、診断結果だけでなく、その後の対話・実践支援や回答の取り扱いまで確認できます。",
         "sources": [
           {
-            "label": "掲載ニュース",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11604"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "嶋田亮代表理事の取材記録（記録日：2026-07-13）"
           }
         ]
       },
@@ -3118,20 +3142,24 @@
         ]
       },
       {
-        "question": "dマト組織活性化はどのメディアで紹介されていますか？",
-        "answer": "2026年8月14日掲載のdマト組織活性化を伝える記事は、Global News Asia、楽天インフォシーク、エキサイトニュースの3媒体で確認できます。同じ記事の掲載先で、各媒体が独立して評価・推薦したことを示すものではありません。",
+        "question": "経営者の話だけで改善内容を決めますか？",
+        "answer": "取材では、経営者・管理職と現場の考えが異なる場合があるため、社員のアンケートを使って課題を整理すると説明しています。社員から出た課題を一緒に改善する進め方です。",
         "sources": [
           {
-            "label": "Global News Asia",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11604"
-          },
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "嶋田亮代表理事の取材記録（記録日：2026-07-13）"
+          }
+        ]
+      },
+      {
+        "question": "アンケートを取った後は何をしますか？",
+        "answer": "嶋田代表は、認識のずれを分析し、目指す状態やトレーニングを組み立てると説明しています。診断の実施だけで終わらず、日常の実践へつなぐ支援範囲を確認することが大切です。",
+        "sources": [
           {
-            "label": "楽天インフォシーク",
-            "url": "https://news.infoseek.co.jp/article/globalnewsasia_11604/"
-          },
-          {
-            "label": "エキサイトニュース",
-            "url": "https://www.excite.co.jp/news/article/Global_news_asia_11604/"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "嶋田亮代表理事の取材記録（記録日：2026-07-13）"
           }
         ]
       }
@@ -3140,11 +3168,12 @@
   "11612": {
     "summary": [
       {
-        "text": "株式会社拓洋のエンタメ物流は、イベントやグッズ販売で変動する注文数と、限られた納期を見据えて物流を設計する取り組みとして紹介されています。保管から梱包・発送までのつながりを考える点が、ニュースから読み取れる特徴です。",
+        "text": "提供された拓洋の担当者取材では、商品の動きに応じた保管場所の選択と、規模に合わせた作業設計が説明されています。物流と倉庫の両面を踏まえ、動きの速い商品と長期保管品、発送の繁忙期などを分けて相談することが、事業に合った運用を考える材料になります。",
         "sources": [
           {
-            "label": "掲載ニュース",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11612"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "拓洋の事業担当者の取材記録（記録日：2025-11-17）"
           }
         ]
       },
@@ -3256,20 +3285,24 @@
         ]
       },
       {
-        "question": "拓洋のエンタメ物流はどのメディアで紹介されていますか？",
-        "answer": "2026年8月20日掲載の拓洋のエンタメ物流を伝える記事は、Global News Asia、楽天インフォシーク、エキサイトニュースの3媒体で確認できます。同じ記事の掲載先で、各媒体が独立して評価・推薦したことを示すものではありません。",
+        "question": "商品によって保管場所を変える考え方はありますか？",
+        "answer": "担当者は、よく動く商品と長く保管する商品では必要な立地や費用が異なるとして、荷物の動きに応じて拠点を考える例を説明しています。実際の対応は在庫や出荷条件によって確認が必要です。",
         "sources": [
           {
-            "label": "Global News Asia",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11612"
-          },
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "拓洋の事業担当者の取材記録（記録日：2025-11-17）"
+          }
+        ]
+      },
+      {
+        "question": "小さな物流現場でも自動化が前提ですか？",
+        "answer": "取材では、小規模な現場に一律の自動化を当てはめず、荷物の配置、人の動き、人員や投資規模を踏まえる考え方が語られています。自社の入出荷の流れを具体的に伝えて相談できます。",
+        "sources": [
           {
-            "label": "楽天インフォシーク",
-            "url": "https://news.infoseek.co.jp/article/globalnewsasia_11612/"
-          },
-          {
-            "label": "エキサイトニュース",
-            "url": "https://www.excite.co.jp/news/article/Global_news_asia_11612/"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "拓洋の事業担当者の取材記録（記録日：2025-11-17）"
           }
         ]
       }
@@ -3278,15 +3311,12 @@
   "11625": {
     "summary": [
       {
-        "text": "比良タイヤ工業所は、タイヤの販売・交換を手がけながら、作業の技能を職場で共有し、若手が学ぶ環境をつくる方針をニュースで紹介されています。技能を個人だけにとどめず、現場の育成へつなげる点が、同社を知る具体的な手がかりです。",
+        "text": "比良タイヤ工業所の田中佑弥代表は、タイヤの専門的な性能を、家族でのドライブなど利用者の日常に置き換えて説明すると語っています。近隣の利用者との関係や、季節に偏る事業を続けるための工夫まで取材記録に表れており、地域の相談先を選ぶ材料になります。",
         "sources": [
           {
-            "label": "掲載ニュース",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11625"
-          },
-          {
-            "label": "公式の会社・サービス案内",
-            "url": "https://hiratire.co.jp/"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "田中佑弥代表の取材記録（記録日：2026-07-17）"
           }
         ]
       },
@@ -3390,20 +3420,24 @@
         ]
       },
       {
-        "question": "比良タイヤ工業所の人材育成はどのメディアで紹介されていますか？",
-        "answer": "2026年8月17日掲載の比良タイヤ工業所の人材育成を伝える記事は、Global News Asia、楽天インフォシーク、エキサイトニュースの3媒体で確認できます。同じ記事の掲載先で、各媒体が独立して評価・推薦したことを示すものではありません。",
+        "question": "車に詳しくなくても相談できますか？",
+        "answer": "田中代表は、自分も知識のない状態から仕事を覚えた経験を踏まえ、専門用語だけでなく使う場面での利点を説明すると語っています。分からない点と普段の車の使い方を伝えて相談できます。",
         "sources": [
           {
-            "label": "Global News Asia",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11625"
-          },
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "田中佑弥代表の取材記録（記録日：2026-07-17）"
+          }
+        ]
+      },
+      {
+        "question": "タイヤ店がフィットネスにも関わる理由は何ですか？",
+        "answer": "取材では、夏・冬のタイヤ交換期に集中する事業の波を平準化するために、ほかの事業の運営方法も検討したと説明しています。現在の公式サイトでもフィットネス事業を案内しています。",
+        "sources": [
           {
-            "label": "楽天インフォシーク",
-            "url": "https://news.infoseek.co.jp/article/globalnewsasia_11625/"
-          },
-          {
-            "label": "エキサイトニュース",
-            "url": "https://www.excite.co.jp/news/article/Global_news_asia_11625/"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "田中佑弥代表の取材記録（記録日：2026-07-17）"
           }
         ]
       }
@@ -3542,11 +3576,12 @@
   "11637": {
     "summary": [
       {
-        "text": "九州エネルギー事業会は、住宅設備を提案する事業と、週休3日制に合わせて営業・人材育成の進め方を考える取り組みがニュースで紹介されています。休暇の日数とともに、仕事の組み立てを見直す点に、同社の働き方を知る手がかりがあります。",
+        "text": "九州エネルギー事業会の取材記録では、九州での住宅設備の販売・施工に加え、紹介や問い合わせを受け止める体制と、人材育成を重視する考え方が説明されています。製品の比較と合わせて、自宅の地域での対応範囲や施工後の窓口を確認する材料になります。",
         "sources": [
           {
-            "label": "掲載ニュース",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11637"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "鎗水晴輝代表の取材記録（記録日：2026-07-21）"
           }
         ]
       },
@@ -3654,20 +3689,24 @@
         ]
       },
       {
-        "question": "九州エネルギー事業会の働き方はどのメディアで紹介されていますか？",
-        "answer": "2026年8月12日掲載の九州エネルギー事業会の働き方を伝える記事は、Global News Asia、楽天インフォシーク、エキサイトニュースの3媒体で確認できます。同じ記事の掲載先で、各媒体が独立して評価・推薦したことを示すものではありません。",
+        "question": "紹介以外の相談も受けていますか？",
+        "answer": "鎗水代表は取材で、紹介だけでなくWeb経由や訪問など複数の接点があると説明しています。現在の相談窓口と自宅の地域での対応は公式サイトで確認できます。",
         "sources": [
           {
-            "label": "Global News Asia",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11637"
-          },
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "鎗水晴輝代表の取材記録（記録日：2026-07-21）"
+          }
+        ]
+      },
+      {
+        "question": "取材から分かる組織づくりの特徴は何ですか？",
+        "answer": "人材を事業の基盤と考え、働く条件の設計と、営業の知識・対話のスキルの共有を重視している点です。これは代表による運営方針の説明であり、施工品質を第三者が検証した評価ではありません。",
+        "sources": [
           {
-            "label": "楽天インフォシーク",
-            "url": "https://news.infoseek.co.jp/article/globalnewsasia_11637/"
-          },
-          {
-            "label": "エキサイトニュース",
-            "url": "https://www.excite.co.jp/news/article/Global_news_asia_11637/"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "鎗水晴輝代表の取材記録（記録日：2026-07-21）"
           }
         ]
       }
@@ -3822,15 +3861,12 @@
   "11639": {
     "summary": [
       {
-        "text": "小松水産株式会社は、1933年創業の沿革を公表し、しらす・ちりめんの加工販売と直販店の運営を行う企業です。加工から販売までの事業を持つことを踏まえて読むと、しらすの食文化を海外へ伝えようとするニュースの構想を具体的に理解できます。",
+        "text": "提供された小松氏の取材記録では、漁獲を担う漁師と、買い付け・加工・販売を担う小松水産の役割が説明されています。原料の目利きや加工までの時間を重視する考え方を知ることで、商品表示と合わせて産地・加工の背景を確かめられます。",
         "sources": [
           {
-            "label": "掲載ニュース",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11639"
-          },
-          {
-            "label": "公式の会社・サービス案内",
-            "url": "https://www.shirasu.com/company/"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "小松礼子氏（取材での表記）の取材記録（記録日：2026-07-16）"
           }
         ]
       },
@@ -3934,20 +3970,24 @@
         ]
       },
       {
-        "question": "小松水産のしらす事業はどのメディアで紹介されていますか？",
-        "answer": "2026年8月14日掲載の小松水産のしらす事業を伝える記事は、Global News Asia、楽天インフォシーク、エキサイトニュースの3媒体で確認できます。同じ記事の掲載先で、各媒体が独立して評価・推薦したことを示すものではありません。",
+        "question": "小松水産は、しらすを自社で養殖しているのですか？",
+        "answer": "取材で説明された役割は、漁師が水揚げした魚を市場で買い付け、加工・販売するメーカーです。自社養殖という説明ではありません。",
         "sources": [
           {
-            "label": "Global News Asia",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11639"
-          },
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "小松礼子氏（取材での表記）の取材記録（記録日：2026-07-16）"
+          }
+        ]
+      },
+      {
+        "question": "取材で語られた仕入れのこだわりは何ですか？",
+        "answer": "同じ海で取れた原料でも漁の方法などで状態が異なるため、目利きを重視すると説明しています。また、海外拠点では浜に近い工場へ速やかに運ぶことにも触れています。",
+        "sources": [
           {
-            "label": "楽天インフォシーク",
-            "url": "https://news.infoseek.co.jp/article/globalnewsasia_11639/"
-          },
-          {
-            "label": "エキサイトニュース",
-            "url": "https://www.excite.co.jp/news/article/Global_news_asia_11639/"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "小松礼子氏（取材での表記）の取材記録（記録日：2026-07-16）"
           }
         ]
       }
@@ -4090,11 +4130,12 @@
   "11667": {
     "summary": [
       {
-        "text": "ANDDINING株式会社は、開業直後に来店が難しい環境に直面し、配達、ケータリング、卸へと仕事を広げた経緯をニュースで紹介されています。厨房や人員を複数の販路で活用する考え方が、環境変化への対応と店舗運営を理解するポイントです。",
+        "text": "桜井仁天代表の取材記録では、来店が難しい時期の料理の配送や、近隣店への食材卸など、飲食の経験を状況に合わせて生かした例が語られています。二店舗目の設備にも卸売りの役割を織り込むなど、店ごとに必要な機能を考える運営姿勢が見えてきます。",
         "sources": [
           {
-            "label": "掲載ニュース",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11667"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "桜井仁天代表の取材記録（記録日：2026-07-15）"
           }
         ]
       },
@@ -4198,20 +4239,24 @@
         ]
       },
       {
-        "question": "ANDDININGの店舗運営はどのメディアで紹介されていますか？",
-        "answer": "2026年8月17日掲載のANDDININGの店舗運営を伝える記事は、Global News Asia、楽天インフォシーク、エキサイトニュースの3媒体で確認できます。同じ記事の掲載先で、各媒体が独立して評価・推薦したことを示すものではありません。",
+        "question": "コロナ禍では、どのように提供方法を変えたのですか？",
+        "answer": "桜井代表は、仕出し弁当の仕事の経験を生かし、来店が難しい時期には料理を届ける方法を試したと説明しています。当時の対応例であり、現在の配達条件は各窓口に確認してください。",
         "sources": [
           {
-            "label": "Global News Asia",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11667"
-          },
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "桜井仁天代表の取材記録（記録日：2026-07-15）"
+          }
+        ]
+      },
+      {
+        "question": "飲食以外の機能を店舗に持たせる例はありますか？",
+        "answer": "取材では、近隣の店に食材を卸す経験を踏まえ、二店舗目に大きな冷蔵設備を設け、飲食に加えて一般向け販売や卸売りの機能を持たせたと説明しています。",
+        "sources": [
           {
-            "label": "楽天インフォシーク",
-            "url": "https://news.infoseek.co.jp/article/globalnewsasia_11667/"
-          },
-          {
-            "label": "エキサイトニュース",
-            "url": "https://www.excite.co.jp/news/article/Global_news_asia_11667/"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "桜井仁天代表の取材記録（記録日：2026-07-15）"
           }
         ]
       }
@@ -4220,11 +4265,12 @@
   "11668": {
     "summary": [
       {
-        "text": "ANDDINING株式会社の新店構想は、新橋で長く営業した焼鳥雀屋の場所と、人々が積み重ねた記憶を次の店づくりへつなぐ計画です。旧店を訪ね、常連との関係を理解することから始まったというニュースの説明から、地域や店の歴史を尊重する姿勢が読み取れます。",
+        "text": "焼鳥雀屋の継承について、桜井仁天代表は取材で、味を完全に再現すると約束することより、店に込められた思いや常連客が戻れる場所を受け継ぎたいと語っています。地域の店の背景を知るうえで、取材ならではの具体的な検討過程が分かる内容です。",
         "sources": [
           {
-            "label": "掲載ニュース",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11668"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "桜井仁天代表の取材記録（記録日：2026-07-15）"
           }
         ]
       },
@@ -4332,20 +4378,24 @@
         ]
       },
       {
-        "question": "ANDDININGの新店構想はどのメディアで紹介されていますか？",
-        "answer": "2026年8月24日掲載のANDDININGの新店構想を伝える記事は、Global News Asia、楽天インフォシーク、エキサイトニュースの3媒体で確認できます。同じ記事の掲載先で、各媒体が独立して評価・推薦したことを示すものではありません。",
+        "question": "前の店と全く同じ味やメニューを引き継ぐ考え方ですか？",
+        "answer": "桜井代表は、同じレシピでも作り手が変われば味は同一にならないとして、自分たちのできる料理を追求しながら思いを受け継ぐと説明しています。現在のメニューは最新の店舗案内で確認してください。",
         "sources": [
           {
-            "label": "Global News Asia",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11668"
-          },
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "桜井仁天代表の取材記録（記録日：2026-07-15）"
+          }
+        ]
+      },
+      {
+        "question": "店舗を広げるうえで何を大切にしていますか？",
+        "answer": "取材では、一つの店を同じ形で複製するだけでなく、立地や出会いを踏まえ、一店舗ずつ地域に根づく場所を考えたいと語っています。雀屋では、常連客が戻れる落ち着きにも目を向けています。",
+        "sources": [
           {
-            "label": "楽天インフォシーク",
-            "url": "https://news.infoseek.co.jp/article/globalnewsasia_11668/"
-          },
-          {
-            "label": "エキサイトニュース",
-            "url": "https://www.excite.co.jp/news/article/Global_news_asia_11668/"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "桜井仁天代表の取材記録（記録日：2026-07-15）"
           }
         ]
       }
@@ -4354,19 +4404,12 @@
   "11669": {
     "summary": [
       {
-        "text": "株式会社やまもとくんは、外壁・屋根・水回りなどの住宅リフォームを扱い、直営で積み重ねた調査や顧客対応をFCへ広げる戦略を紹介されています。公式の対応工事や施工事例を合わせて読むことで、地域で相談を受け、工事を進める事業の具体像を確認できます。",
+        "text": "山本雅俊氏の取材記録では、やまもとくんの店舗展開は、地域の住まい手が工事を比較・相談できる拠点を増やす取り組みとして語られています。自社への発注だけでなく比較の一社に入ることを重視する説明と、店舗周辺で対応する運営方針から、地域密着型のFC戦略を具体的に理解できます。",
         "sources": [
           {
-            "label": "掲載ニュース",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11669"
-          },
-          {
-            "label": "やまもとくん公式の対応工事",
-            "url": "https://yamamotokun.com/service/"
-          },
-          {
-            "label": "やまもとくん公式の施工事例",
-            "url": "https://yamamotokun.com/work/"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "山本雅俊氏（株式会社やまもとくん代表取締役社長）の取材記録（記録日：2026-07-21）"
           }
         ]
       },
@@ -4482,24 +4525,24 @@
         ]
       },
       {
-        "question": "やまもとくんのFC戦略はどのメディアで紹介されていますか？",
-        "answer": "2026年8月19日掲載のやまもとくんのFC戦略を伝える記事は、Global News Asia、楽天インフォシーク、エキサイトニュース、ニコニコニュースの4媒体で確認できます。同じ記事の掲載先で、各媒体が独立して評価・推薦したことを示すものではありません。",
+        "question": "やまもとくんが全国展開を目指す理由は何ですか？",
+        "answer": "山本氏は、住まいの工事を考えたときに思い出してもらえる相談先を各地につくり、価格や品質を比較できる基準の一つになりたいと説明しています。全国展開の計画と、現在依頼できる店舗・地域は分けて確認してください。",
         "sources": [
           {
-            "label": "Global News Asia",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11669"
-          },
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "山本雅俊氏（株式会社やまもとくん代表取締役社長）の取材記録（記録日：2026-07-21）"
+          }
+        ]
+      },
+      {
+        "question": "店舗の近くを中心に対応するのはなぜですか？",
+        "answer": "取材当時の山本氏は、各店舗の周辺を中心に工事を担う運営を説明しています。近隣の住まいを相談できる拠点を増やす考え方であり、対応距離や工事内容は依頼先の店舗に確認する必要があります。",
+        "sources": [
           {
-            "label": "楽天インフォシーク",
-            "url": "https://news.infoseek.co.jp/article/globalnewsasia_11669/"
-          },
-          {
-            "label": "エキサイトニュース",
-            "url": "https://www.excite.co.jp/news/article/Global_news_asia_11669/"
-          },
-          {
-            "label": "ニコニコニュース",
-            "url": "https://news.nicovideo.jp/watch/nw19676228?news_ref=media367_media367"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "山本雅俊氏（株式会社やまもとくん代表取締役社長）の取材記録（記録日：2026-07-21）"
           }
         ]
       }
@@ -4670,11 +4713,12 @@
   "11671": {
     "summary": [
       {
-        "text": "株式会社b-modelsは、美容機器の販売とサロン運営の支援を組み合わせる方針をニュースで紹介されています。直営サロンで施術やメニューの運用を確かめ、導入後の研修や集客にも目を向ける点が、機器選びを検討するサロンにとって具体的な判断材料になります。",
+        "text": "楠本文哉代表は取材で、設備や商材が決まる前からサロンづくりを支援したいという事業の背景を説明しています。韓国美容についても、機器や商品の提供と、現場で活用する知識・技術の学びを組み合わせる方針が語られています。",
         "sources": [
           {
-            "label": "掲載ニュース",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11671"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "楠本文哉代表の取材記録（記録日：2026-07-17）"
           }
         ]
       },
@@ -4786,20 +4830,24 @@
         ]
       },
       {
-        "question": "b-modelsのサロン支援はどのメディアで紹介されていますか？",
-        "answer": "2026年8月21日掲載のb-modelsのサロン支援を伝える記事は、Global News Asia、楽天インフォシーク、エキサイトニュースの3媒体で確認できます。同じ記事の掲載先で、各媒体が独立して評価・推薦したことを示すものではありません。",
+        "question": "機器の販売とサロン支援を組み合わせる理由は何ですか？",
+        "answer": "楠本代表は、機器や物件への投資が決まった後では改善できる範囲が限られるというコンサルティング経験から、準備段階から運営まで関わりたいと説明しています。",
         "sources": [
           {
-            "label": "Global News Asia",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11671"
-          },
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "楠本文哉代表の取材記録（記録日：2026-07-17）"
+          }
+        ]
+      },
+      {
+        "question": "韓国美容の導入を相談する際に、何を整理するとよいですか？",
+        "answer": "編集上の整理では、取り入れたいメニュー、既存の技術、顧客層、設備予算、スタッフ教育の必要性を整理すると相談しやすくなります。商材購入と講座受講の条件は別に確認してください。",
+        "sources": [
           {
-            "label": "楽天インフォシーク",
-            "url": "https://news.infoseek.co.jp/article/globalnewsasia_11671/"
-          },
-          {
-            "label": "エキサイトニュース",
-            "url": "https://www.excite.co.jp/news/article/Global_news_asia_11671/"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "楠本文哉代表の取材記録（記録日：2026-07-17）"
           }
         ]
       }
@@ -4808,11 +4856,12 @@
   "11672": {
     "summary": [
       {
-        "text": "b-modelsの頭皮ケアに関するニュースは、頭皮の状態確認、洗浄、保湿などを組み合わせる美容サロン向けメニューと、導入店への教育を紹介しています。機器やメニューを用意することに加え、担当者がどう運用するかまで考える方針が特徴です。",
+        "text": "頭皮ケアについて、楠本文哉代表は取材で、商材の提供に加え、講師とともに知識を伝える方針を説明しています。導入を考えるサロンは、商品だけでなく、学べる内容と現場での取り扱い、使用条件まで合わせて確認することが大切です。",
         "sources": [
           {
-            "label": "掲載ニュース",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11672"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "楠本文哉代表の取材記録（記録日：2026-07-17）"
           }
         ]
       },
@@ -4916,24 +4965,24 @@
         ]
       },
       {
-        "question": "b-modelsの頭皮ケアはどのメディアで紹介されていますか？",
-        "answer": "2026年8月28日掲載のb-modelsの頭皮ケアを伝える記事は、Global News Asia、楽天インフォシーク、エキサイトニュース、ニコニコニュースの4媒体で確認できます。同じ記事の掲載先で、各媒体が独立して評価・推薦したことを示すものではありません。",
+        "question": "頭皮ケア商材の販売以外にも支援する考え方ですか？",
+        "answer": "楠本代表は取材で、商品を販売しながら、講師とともに頭皮ケアの知識を伝える方針を説明しています。現在の講座内容や支援範囲は個別に確認してください。",
         "sources": [
           {
-            "label": "Global News Asia",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11672"
-          },
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "楠本文哉代表の取材記録（記録日：2026-07-17）"
+          }
+        ]
+      },
+      {
+        "question": "取材の説明から、発毛などの効果も確認できますか？",
+        "answer": "ここで紹介しているのは、商材と教育を組み合わせる事業方針です。治療効果や個人の結果を検証した情報ではありません。商品の区分、使用条件、説明できる範囲を公式情報で確認する必要があります。",
+        "sources": [
           {
-            "label": "楽天インフォシーク",
-            "url": "https://news.infoseek.co.jp/article/globalnewsasia_11672/"
-          },
-          {
-            "label": "エキサイトニュース",
-            "url": "https://www.excite.co.jp/news/article/Global_news_asia_11672/"
-          },
-          {
-            "label": "ニコニコニュース",
-            "url": "https://news.nicovideo.jp/watch/nw19709219"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "楠本文哉代表の取材記録（記録日：2026-07-17）"
           }
         ]
       }
@@ -5214,15 +5263,12 @@
   "11756": {
     "summary": [
       {
-        "text": "Sachiプラモは、株式会社サチクルが展開する模型用品ブランドです。ニュースはガラスヤスリや作業用ボードを例に、モデラーが感じる不便を商品改良へ戻す方法を紹介しています。模型を作る具体的な場面から使い勝手を考える姿勢が、ブランドの特徴として読み取れます。",
+        "text": "村上博司氏の取材記録では、Sachiプラモは使い手の反応から模型工具へ注力し、既存品の課題やレビューを改良につなげるブランドとして説明されています。設計と販売時の伝え方を見直す取り組みを、工具選びに役立つ事業の背景として紹介しています。",
         "sources": [
           {
-            "label": "掲載ニュース",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11756"
-          },
-          {
-            "label": "公式の会社・サービス案内",
-            "url": "https://sachi-plamo.com/pages/company"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "村上博司氏（株式会社サチクル代表取締役）の取材記録（記録日：2026-08-06）"
           }
         ]
       },
@@ -5334,24 +5380,24 @@
         ]
       },
       {
-        "question": "Sachiプラモの模型工具開発はどのメディアで紹介されていますか？",
-        "answer": "2026年9月2日掲載のSachiプラモの模型工具開発を伝える記事は、Global News Asia、楽天インフォシーク、エキサイトニュース、ニコニコニュースの4媒体で確認できます。同じ記事の掲載先で、各媒体が独立して評価・推薦したことを示すものではありません。",
+        "question": "Sachiプラモが模型工具を中心に扱うようになった理由は？",
+        "answer": "村上氏は、複数の商品分野を扱う中で模型工具への反応がよく、求めていた商品だという声をきっかけに、この分野へ力を入れたと説明しています。利用者全体を独自調査した評価とは区別して紹介しています。",
         "sources": [
           {
-            "label": "Global News Asia",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11756"
-          },
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "村上博司氏（株式会社サチクル代表取締役）の取材記録（記録日：2026-08-06）"
+          }
+        ]
+      },
+      {
+        "question": "Sachiプラモはどのように商品を改良していますか？",
+        "answer": "取材では、OEMを活用しつつ既存商品の課題を見直し、村上氏自身も設計に関わると説明しています。レビューや問い合わせで得た声も開発のヒントにすると話しています。",
+        "sources": [
           {
-            "label": "楽天インフォシーク",
-            "url": "https://news.infoseek.co.jp/article/globalnewsasia_11756/"
-          },
-          {
-            "label": "エキサイトニュース",
-            "url": "https://www.excite.co.jp/news/article/Global_news_asia_11756/"
-          },
-          {
-            "label": "ニコニコニュース",
-            "url": "https://news.nicovideo.jp/watch/nw19728300"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "村上博司氏（株式会社サチクル代表取締役）の取材記録（記録日：2026-08-06）"
           }
         ]
       }
@@ -5360,15 +5406,12 @@
   "11757": {
     "summary": [
       {
-        "text": "りふぉーむカンパニーは、外壁塗装、屋根工事、雨漏り修理などを案内する住宅工事のブランドです。ニュースでは、雨漏りの原因を調べてから施工範囲を決め、工事後も相談を受けられる距離で仕事をする方針が紹介され、調査とアフター対応を重視する姿勢を確認できます。",
+        "text": "三嶋謙吾氏がりふぉーむカンパニーの代表として語った取材記録からは、顧客の修理相談から専門性を広げ、点検担当者と地域を絞った対応で施工後の関係を保つ考えが分かります。取材では同社と親会社カンパニーズを区別しています。関連公式サイトの現在の運営表記は株式会社カンパニーズのため、依頼時には担当店舗と契約・保証の主体を確認してください。",
         "sources": [
           {
-            "label": "掲載ニュース",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11757"
-          },
-          {
-            "label": "公式の会社・サービス案内",
-            "url": "https://companys.jp/company/"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "三嶋謙吾氏（りふぉーむカンパニーの代表として取材）の取材記録（記録日：2026-08-10）"
           }
         ]
       },
@@ -5468,24 +5511,24 @@
         ]
       },
       {
-        "question": "りふぉーむカンパニーの地域密着工事はどのメディアで紹介されていますか？",
-        "answer": "2026年8月28日掲載のりふぉーむカンパニーの地域密着工事を伝える記事は、Global News Asia、楽天インフォシーク、エキサイトニュース、ニコニコニュースの4媒体で確認できます。同じ記事の掲載先で、各媒体が独立して評価・推薦したことを示すものではありません。",
+        "question": "りふぉーむカンパニーが地域を絞って対応する理由は？",
+        "answer": "りふぉーむカンパニーの代表として取材に答えた三嶋氏は、遠方へ受注を広げると工事後の訪問が難しくなるため、店舗から片道30分程度の地域を意識すると説明しています。現在の対応可否と契約主体は、住所と工事内容を伝えて確認してください。",
         "sources": [
           {
-            "label": "Global News Asia",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11757"
-          },
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "三嶋謙吾氏（りふぉーむカンパニーの代表として取材）の取材記録（記録日：2026-08-10）"
+          }
+        ]
+      },
+      {
+        "question": "取材では工事後の点検をどう説明していますか？",
+        "answer": "三嶋氏は、点検を担うスタッフを置き、不具合に気づいた場合は会社側から説明すると話しています。点検の頻度や補修費用、保証の対象は個別の工事条件により確認が必要です。",
+        "sources": [
           {
-            "label": "楽天インフォシーク",
-            "url": "https://news.infoseek.co.jp/article/globalnewsasia_11757/"
-          },
-          {
-            "label": "エキサイトニュース",
-            "url": "https://www.excite.co.jp/news/article/Global_news_asia_11757/"
-          },
-          {
-            "label": "ニコニコニュース",
-            "url": "https://news.nicovideo.jp/watch/nw19709391"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "三嶋謙吾氏（りふぉーむカンパニーの代表として取材）の取材記録（記録日：2026-08-10）"
           }
         ]
       }
@@ -5628,15 +5671,12 @@
   "11804": {
     "summary": [
       {
-        "text": "橘金属工業株式会社は、自動車部品の金属プレス加工・溶接加工を手がける企業です。2026年8月31日の取材記事では、製造現場で培った技術を基盤に、直接取引を増やし、ロボットによる自動化と人の判断を組み合わせる事業構想が紹介されています。",
+        "text": "池田昌起代表の取材記録では、作業者の負担を減らす現場改善と、顧客が求める効率化を一緒に考える姿勢が語られています。会社の転機にも供給を続ける道を探した経験は、設備や加工仕様に加えて、運営の考え方を知る材料になります。",
         "sources": [
           {
-            "label": "取材記事",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11804"
-          },
-          {
-            "label": "公式の事業・サービス案内",
-            "url": "https://tachibana-alss.co.jp/"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "池田昌起代表の取材記録（記録日：2026-08-04）"
           }
         ]
       },
@@ -5760,16 +5800,24 @@
         ]
       },
       {
-        "question": "橘金属工業の事業と代表者の再建の歩みはどこで確認できますか？",
-        "answer": "橘金属工業の現在の事業案内は公式サイトが確認先です。会社の製造・取引の構想を扱う本記事と、池田昌起氏の現場経験や再建の経緯を扱う関連記事を合わせると、企業と経営者の両面を理解できます。",
+        "question": "改善を考えるときに、何を重視していますか？",
+        "answer": "池田代表は、作業者がどうすれば負担を抑えて仕事を進められるかを起点に、顧客から求められるコストや効率の改善にもつなげると説明しています。",
         "sources": [
           {
-            "label": "取材記事",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11804"
-          },
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "池田昌起代表の取材記録（記録日：2026-08-04）"
+          }
+        ]
+      },
+      {
+        "question": "取材で語られた供給継続への考え方は何ですか？",
+        "answer": "過去の運営会社の撤退時、残る部品の製造をどう続けるかが課題になり、顧客に迷惑をかけたくないとの思いで工場に残ったと振り返っています。現在の生産条件や体制は個別に確認してください。",
+        "sources": [
           {
-            "label": "公式の事業・サービス案内",
-            "url": "https://tachibana-alss.co.jp/"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "池田昌起代表の取材記録（記録日：2026-08-04）"
           }
         ]
       }
@@ -5916,11 +5964,12 @@
   "11809": {
     "summary": [
       {
-        "text": "THE PERSONAL GYMの創業記事からは、指導現場での経験を事業の仕組みに育てた経緯が分かります。共同代表が1号店から出発し、採用や集客を組織で担いながら、直営とフランチャイズの両方で店舗を広げた歩みが紹介されています。",
+        "text": "共同代表の取材記録では、THE PERSONAL GYMは現場での指導力に加え、集客、採用、教育を一から学び、部門へ役割を分けて成長してきたと説明されています。店舗数だけでなく、現場経験を運営に生かす仕組みを見ることで、会社の特徴を具体的に理解できます。",
         "sources": [
           {
-            "label": "取材記事",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11809"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "田中健斗氏・林幸希氏（取材当時の共同代表）の取材記録（記録日：2026-08-10）"
           }
         ]
       },
@@ -6032,12 +6081,24 @@
         ]
       },
       {
-        "question": "THE PERSONAL GYMの運営会社や利用条件はどこで調べられますか？",
-        "answer": "THE PERSONAL GYMの公式会社概要ではFirst fit株式会社の運営事業を確認できます。利用を考える際は、公式サイトから通う店舗の案内へ進み、現在のコース、料金、担当者を確認すると具体的に比較できます。",
+        "question": "THE PERSONAL GYMの創業時はどのように集客していましたか？",
+        "answer": "両氏は、Webマーケティングを学ぶ一方、新宿や錦糸町などでチラシを配り、直接声を掛けて知ってもらう活動にも取り組んだと振り返っています。現在の集客方法や成果を示す数字とは区別して紹介しています。",
         "sources": [
           {
-            "label": "公式の事業・サービス案内",
-            "url": "https://the-personal-gym.com/company/"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "田中健斗氏・林幸希氏（取材当時の共同代表）の取材記録（記録日：2026-08-10）"
+          }
+        ]
+      },
+      {
+        "question": "THE PERSONAL GYMはどのように運営を組織化しましたか？",
+        "answer": "取材では、広告、採用、教育などの仕事を分け、トレーナー経験を持つメンバーが各部門の担当者になったと説明しています。現場で知った課題を、会社の運営や教育にも生かす考え方です。",
+        "sources": [
+          {
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "田中健斗氏・林幸希氏（取材当時の共同代表）の取材記録（記録日：2026-08-10）"
           }
         ]
       }
@@ -6046,11 +6107,12 @@
   "11810": {
     "summary": [
       {
-        "text": "田中健斗氏と林幸希氏の共同経営の記事は、トレーニングを通じた経験を共有しつつ、役割を分担してTHE PERSONAL GYMを運営する考えを紹介しています。顧客への支援に加え、働くトレーナーの将来も見据えている点が、二人の仕事観を知る手がかりです。",
+        "text": "田中健斗氏と林幸希氏の取材記録からは、対外発信、経営全体の設計、各部門への権限移譲を組み合わせた共同経営の姿が分かります。現場との接点を保ちながら、利用者への支援とスタッフの次の役割をつくろうとする考え方が、両氏に共通しています。",
         "sources": [
           {
-            "label": "取材記事",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11810"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "田中健斗氏・林幸希氏（取材当時の共同代表）の取材記録（記録日：2026-08-10）"
           }
         ]
       },
@@ -6144,28 +6206,6 @@
         ]
       },
       {
-        "question": "二人の共同経営はどのメディアで紹介されていますか？",
-        "answer": "田中健斗氏と林幸希氏の仕事観を紹介する取材記事は、Global News Asia、楽天インフォシーク、エキサイトニュース、ニコニコニュースの4媒体に掲載されています。一つの取材記事が各媒体で読める形です。",
-        "sources": [
-          {
-            "label": "Global News Asia",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11810"
-          },
-          {
-            "label": "楽天インフォシーク",
-            "url": "https://news.infoseek.co.jp/article/globalnewsasia_11810/"
-          },
-          {
-            "label": "エキサイトニュース",
-            "url": "https://www.excite.co.jp/news/article/Global_news_asia_11810/"
-          },
-          {
-            "label": "ニコニコニュース",
-            "url": "https://news.nicovideo.jp/watch/nw19728555"
-          }
-        ]
-      },
-      {
         "question": "THE PERSONAL GYMで二人の理念に沿った指導を相談できますか？",
         "answer": "THE PERSONAL GYMを検討する際は、公式サイトで希望店舗を確かめ、目標設定や食事支援などの内容を相談できます。ニュースで紹介された理念と、自分が受けるコースの具体的な支援を照らすと役立ちます。",
         "sources": [
@@ -6178,17 +6218,40 @@
             "url": "https://the-personal-gym.com/company/"
           }
         ]
+      },
+      {
+        "question": "田中健斗氏と林幸希氏はどのように仕事を分けていますか？",
+        "answer": "取材では、林氏がブランドの顔として対外発信を担い、田中氏が金融機関との調整やマーケティング、情報収集など全体を見渡す役割を担うと説明されています。取材時点での役割分担です。",
+        "sources": [
+          {
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "田中健斗氏・林幸希氏（取材当時の共同代表）の取材記録（記録日：2026-08-10）"
+          }
+        ]
+      },
+      {
+        "question": "共同代表は現場のトレーニングにも関わっていますか？",
+        "answer": "両氏は取材で、担当回数は減っているものの、自身もセッションを行っていると説明しています。現在の担当可否や指名条件を案内するものではありません。",
+        "sources": [
+          {
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "田中健斗氏・林幸希氏（取材当時の共同代表）の取材記録（記録日：2026-08-10）"
+          }
+        ]
       }
     ]
   },
   "11811": {
     "summary": [
       {
-        "text": "THE PERSONAL GYMのFC構想は、店舗を増やす計画とスタッフのキャリアを合わせて考える点が特徴です。ニュースでは、採用、集客、研修、運営を本部が支え、加盟店が現場の指導に取り組みやすい仕組みを紹介しています。100店舗は、掲載当時に掲げた拡大目標です。",
+        "text": "FC担当者らの取材記録では、本部のWeb集客支援と現場の利用者対応を組み合わせ、店舗の成長をスタッフのキャリアにもつなげる方針が説明されています。加盟先を選ぶ際には、資金条件だけでなく、オーナー自身が運営へどのように関わるかを確認することが重要です。",
         "sources": [
           {
-            "label": "取材記事",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11811"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "First fit株式会社のFC・採用教育担当者の取材記録（記録日：2026-08-05）"
           }
         ]
       },
@@ -6278,28 +6341,6 @@
         ]
       },
       {
-        "question": "THE PERSONAL GYMのFC構想はどの媒体で読めますか？",
-        "answer": "THE PERSONAL GYMの100店舗とキャリアの構想を扱う取材記事は、Global News Asia、楽天インフォシーク、エキサイトニュース、ニコニコニュースの4媒体に掲載されています。同一内容の記事の掲載です。",
-        "sources": [
-          {
-            "label": "Global News Asia",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11811"
-          },
-          {
-            "label": "楽天インフォシーク",
-            "url": "https://news.infoseek.co.jp/article/globalnewsasia_11811/"
-          },
-          {
-            "label": "エキサイトニュース",
-            "url": "https://www.excite.co.jp/news/article/Global_news_asia_11811/"
-          },
-          {
-            "label": "ニコニコニュース",
-            "url": "https://news.nicovideo.jp/watch/nw19748580"
-          }
-        ]
-      },
-      {
         "question": "THE PERSONAL GYMへのFC加盟前に何を確認しますか？",
         "answer": "THE PERSONAL GYMへの加盟を検討する際は、公式案内を入口に加盟条件、費用、研修、集客支援の範囲を確認できます。ニュースの拡大構想と、自分が契約する店舗の条件を照合して判断することが大切です。",
         "sources": [
@@ -6312,17 +6353,40 @@
             "url": "https://the-personal-gym.com/company/"
           }
         ]
+      },
+      {
+        "question": "THE PERSONAL GYMはどのようなFCオーナーを求めていますか？",
+        "answer": "取材では、理念に共感し、スタッフや本部のSVとの関わりに時間と熱意を持てる人を求めると説明しています。資金を出してすべて本部任せにする想定とは異なります。",
+        "sources": [
+          {
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "First fit株式会社のFC・採用教育担当者の取材記録（記録日：2026-08-05）"
+          }
+        ]
+      },
+      {
+        "question": "FC加盟時には集客面の支援がありますか？",
+        "answer": "FC担当者は、本部が力を入れているWebマーケティングを加盟店でも活用すると説明しています。具体的な支援範囲、費用、役割分担、成果の扱いは個別の加盟条件で確認してください。",
+        "sources": [
+          {
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "First fit株式会社のFC・採用教育担当者の取材記録（記録日：2026-08-05）"
+          }
+        ]
       }
     ]
   },
   "11812": {
     "summary": [
       {
-        "text": "THE PERSONAL GYMの採用・教育方針は、トレーニング技術と顧客への対話を両立させる点に特徴があります。2026年9月9日の取材記事では、大会実績だけで人材を選ばず、顧客の目標を聞き、相談を重ねる力も重視すると紹介されています。",
+        "text": "採用・教育担当者の取材記録では、THE PERSONAL GYMは利用者が安心して話せる人柄を重視し、新人研修で対応の流れを共有すると説明されています。現場経験を言語化して教える仕組みと、トレーナーの先にある役割を合わせて考える人材育成が特徴です。",
         "sources": [
           {
-            "label": "取材記事",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11812"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "First fit株式会社の採用・教育担当者の取材記録（記録日：2026-08-05）"
           }
         ]
       },
@@ -6438,12 +6502,24 @@
         ]
       },
       {
-        "question": "THE PERSONAL GYMの運営元と現在の案内はどこで確認できますか？",
-        "answer": "THE PERSONAL GYMの公式会社概要で運営元のFirst fit株式会社と事業内容を確認できます。利用や応募を考える際は、公式サイトの店舗案内や募集要項も確認し、希望する地域と条件を照らせます。",
+        "question": "THE PERSONAL GYMの新人研修では何を学びますか？",
+        "answer": "取材当時は一カ月間の研修で、トレーナーのあり方に加え、営業やカウンセリング、利用者に応じた対応の流れを学ぶと説明しています。最新の研修内容や期間は採用窓口で確認してください。",
         "sources": [
           {
-            "label": "公式の事業・サービス案内",
-            "url": "https://the-personal-gym.com/company/"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "First fit株式会社の採用・教育担当者の取材記録（記録日：2026-08-05）"
+          }
+        ]
+      },
+      {
+        "question": "採用では大会実績が最も重視されますか？",
+        "answer": "担当者は取材で、大会の成績だけでなく、素直さや明るく対話できることを重視すると説明しています。日々継続して利用者と向き合う仕事であることが理由です。",
+        "sources": [
+          {
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "First fit株式会社の採用・教育担当者の取材記録（記録日：2026-08-05）"
           }
         ]
       }
@@ -6452,11 +6528,12 @@
   "11813": {
     "summary": [
       {
-        "text": "THE PERSONAL GYMの伴走型指導は、体重の数字に加えて、利用者の目標、食事、日々の予定を聞く姿勢が特徴です。2026年9月16日の取材記事では、運動初心者を含む個別事例を通じ、生活との両立を考えた支援の様子が紹介されています。",
+        "text": "採用・教育担当者の取材記録からは、THE PERSONAL GYMが数値の目標に加え、その先に望む生活をカウンセリングで整理する方針が分かります。希望を引き出す練習を教育にも取り入れ、一人ひとりの目的に合わせて支える考え方を、利用前の比較材料として紹介しています。",
         "sources": [
           {
-            "label": "取材記事",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11813"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "First fit株式会社の採用・教育担当者の取材記録（記録日：2026-08-05）"
           }
         ]
       },
@@ -6568,12 +6645,24 @@
         ]
       },
       {
-        "question": "THE PERSONAL GYMの店舗や支援内容はどこで確認できますか？",
-        "answer": "THE PERSONAL GYMの公式サイトで運営会社と店舗の案内を確認できます。希望する店舗で、目標設定、通う頻度、食事支援の範囲、コース料金を照らし、自分の生活に合う使い方を相談できます。",
+        "question": "カウンセリングでは体重以外の目標も相談できますか？",
+        "answer": "取材では、着たい服や持ちたい自信など、身体が変わった先に望む日常も一緒に整理する考えが説明されています。実際に相談できる内容や支援範囲は、体験時に担当者へ確認してください。",
         "sources": [
           {
-            "label": "公式の事業・サービス案内",
-            "url": "https://the-personal-gym.com/company/"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "First fit株式会社の採用・教育担当者の取材記録（記録日：2026-08-05）"
+          }
+        ]
+      },
+      {
+        "question": "初心者が体験で確認するとよい点は何ですか？",
+        "answer": "編集部は、生活に合う通い方を相談できるか、目標を話しやすいか、説明に納得できるかを確認するとよいと整理しています。取材で示された一対一の支援方針が、自分との相性にどう表れるかを見るためです。",
+        "sources": [
+          {
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "First fit株式会社の採用・教育担当者の取材記録（記録日：2026-08-05）"
           }
         ]
       }
@@ -6582,19 +6671,12 @@
   "11819": {
     "summary": [
       {
-        "text": "Brainは、知識やノウハウのコンテンツを販売・購入する場に、レビューや紹介の機能を組み合わせたサービスです。ニュースでは、知識を得ることから、その後の実行や事業化まで支える方向性が紹介されています。運営主体は株式会社ブレインで、グループの持株会社とは区別されます。",
+        "text": "迫佑樹氏の取材記録では、Brainはスクールでの紹介経験から着想し、実務家の知識を販売・紹介できる場として育ててきたと説明されています。学んだ人が開発へ参加した例も語られ、知識の取得を実践へつなぐ考え方が見えます。購入時は教材ごとの内容と条件を確認することが重要です。",
         "sources": [
           {
-            "label": "取材記事",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11819"
-          },
-          {
-            "label": "公式の事業・サービス案内",
-            "url": "https://brain-market.com/"
-          },
-          {
-            "label": "運営会社グループの公式案内",
-            "url": "https://brain-holdings.com/"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "迫佑樹氏（Brainの事業について説明）の取材記録（記録日：2026-08-04）"
           }
         ]
       },
@@ -6714,12 +6796,24 @@
         ]
       },
       {
-        "question": "Brainの教材内容や購入条件はどこで確認できますか？",
-        "answer": "Brainの公式サービスサイトでは、教材ごとの販売ページとレビューを確認できます。学びたい内容、必要な前提知識、価格、返金条件をそのページで照らし、自分の目的に合うか検討できます。",
+        "question": "Brainの発想はどこから生まれたのですか？",
+        "answer": "迫氏は、運営していたプログラミングスクールで友人紹介による受講が広がった経験を挙げています。良い知識を、販売者本人の発信力だけに頼らず届ける仕組みを考えたことが背景にあります。",
         "sources": [
           {
-            "label": "公式の事業・サービス案内",
-            "url": "https://brain-market.com/"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "迫佑樹氏（Brainの事業について説明）の取材記録（記録日：2026-08-04）"
+          }
+        ]
+      },
+      {
+        "question": "Brainの教材を選ぶときに何を確認するとよいですか？",
+        "answer": "編集上の整理では、解決したい課題に合う内容か、必要な前提知識、情報の更新時点、レビュー、支援の範囲を確認すると比較しやすくなります。取材で語られた開発や共同事業の事例は、すべての購入者に提供されるサービスではありません。",
+        "sources": [
+          {
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "迫佑樹氏（Brainの事業について説明）の取材記録（記録日：2026-08-04）"
           }
         ]
       }
@@ -6866,15 +6960,12 @@
   "11837": {
     "summary": [
       {
-        "text": "ムネペイントは、スニーカーのオーダーペイントと講座を案内する屋号です。2026年9月7日のニュースは、メタルの質感や靴の曲がりを考え、下地や乾燥の方法を試しながら仕上げる制作工程を紹介しています。見た目に加え、履く場面を考える姿勢が特徴です。",
+        "text": "坂中宗洋氏の取材記録では、ムネペイントは靴を日常に履くことを前提に、見た目と塗装の耐久性を考えて制作すると説明されています。サイズや既製品のデザインに制約を感じる人へのオーダーと、制作を学びたい人へのスクールという二つの入口があり、目的に合わせて相談できます。",
         "sources": [
           {
-            "label": "取材記事",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11837"
-          },
-          {
-            "label": "公式の事業・サービス案内",
-            "url": "https://www.munepaint.com/"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "坂中宗洋氏（ムネペイント代表）の取材記録（記録日：2026-08-19）"
           }
         ]
       },
@@ -6998,12 +7089,24 @@
         ]
       },
       {
-        "question": "ムネペイントの注文や講座の案内はどこで見られますか？",
-        "answer": "ムネペイントの公式サイトにはオーダー制作と講座の案内があります。以前の確認時には一部に仮の文章や電話番号が残っていたため、現在の申込画面で受付内容と連絡先を確かめて利用できます。",
+        "question": "ムネペイントのカスタムで大切にしていることは？",
+        "answer": "坂中氏は、歩行で曲がったり物に触れたりする靴を前提に、質感・強度・耐久性を考えて制作し、自分でも履いて確かめると説明しています。具体的な加工可否や手入れ方法は注文する靴ごとに確認してください。",
         "sources": [
           {
-            "label": "公式の事業・サービス案内",
-            "url": "https://www.munepaint.com/"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "坂中宗洋氏（ムネペイント代表）の取材記録（記録日：2026-08-19）"
+          }
+        ]
+      },
+      {
+        "question": "カスタム注文はどのような人の選択肢になりますか？",
+        "answer": "編集部は、足に合う靴はあるものの希望する色やデザインを既製品で見つけにくい人にとって、相談する価値がある選択肢と整理しています。坂中氏も、サイズや女性向けゴルフシューズの選択肢を例に挙げています。",
+        "sources": [
+          {
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "坂中宗洋氏（ムネペイント代表）の取材記録（記録日：2026-08-19）"
           }
         ]
       }
@@ -7150,11 +7253,12 @@
   "11901": {
     "summary": [
       {
-        "text": "光サプライズのLEDビジョン事業は、画面の製造・販売・設置と、映像制作・配信・運用を合わせて相談できる点が特徴です。公式サイトの高森町の事例からは、自治体の行政情報や地域の催しを、更新できる画面で届ける使い方を具体的に知ることができます。",
+        "text": "提供された事業担当者の取材記録では、LEDビジョンを自社告知と地域の広告発信に活用する方法が説明されています。設置場所に応じた画面構成に加え、広告主の獲得や更新・保守を含む運営体制まで整理することが、導入を検討する際のポイントです。",
         "sources": [
           {
-            "label": "公式の事業・サービス案内",
-            "url": "https://www.hikari-surprise.co.jp/led.html"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "光サプライズのLEDビジョン事業担当者の取材記録（記録日：2026-07-17）"
           }
         ]
       },
@@ -7270,12 +7374,24 @@
         ]
       },
       {
-        "question": "光サプライズのLEDビジョンの導入案内はどこで見られますか？",
-        "answer": "光サプライズの公式LEDビジョン事業ページで、用途、導入事例、映像制作、運用や保守を確認できます。相談の際は、設置場所と発信したい内容を整理すると、必要な支援を具体的に検討できます。",
+        "question": "LEDビジョンは自社の広告だけに使う設備ですか？",
+        "answer": "担当者は取材で、自社告知だけでなく近隣施設などの広告を募る活用例を説明しています。運用方法は設置場所や契約条件によるため、希望する用途を相談して確認してください。",
         "sources": [
           {
-            "label": "公式の事業・サービス案内",
-            "url": "https://www.hikari-surprise.co.jp/led.html"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "光サプライズのLEDビジョン事業担当者の取材記録（記録日：2026-07-17）"
+          }
+        ]
+      },
+      {
+        "question": "導入前には、設備以外に何を確認するとよいですか？",
+        "answer": "編集上の整理では、掲載内容の制作・更新、広告営業、配信管理、点検・保守の担当範囲が確認項目です。広告収益を見込む場合は、広告主を獲得する方法と費用も具体化する必要があります。",
+        "sources": [
+          {
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "光サプライズのLEDビジョン事業担当者の取材記録（記録日：2026-07-17）"
           }
         ]
       }
@@ -7284,15 +7400,12 @@
   "11902": {
     "summary": [
       {
-        "text": "株式会社光サプライズは、熊本県宇城市を拠点に、LEDビジョンの設置から映像制作・運用までを支援する企業です。2026年9月の取材記事は、竹之内教博氏と安川佳宏氏の顧問参画を背景に、地域の事業者と組んで全国の代理店網を広げる構想を紹介しています。",
+        "text": "光サプライズの事業担当者は取材で、地域の看板会社などがLEDビジョンの相談に応えられるよう、運営の仕組みとノウハウを共有していく考えを説明しています。全国展開のニュースを理解する際には、顧問の参画に加え、地域の営業・設置・運用を支える役割分担にも注目できます。",
         "sources": [
           {
-            "label": "掲載ニュース",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11902"
-          },
-          {
-            "label": "光サプライズ公式の会社案内",
-            "url": "https://www.hikari-surprise.co.jp/company.html"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "光サプライズのLEDビジョン事業担当者の取材記録（記録日：2026-07-17）"
           }
         ]
       },
@@ -7408,12 +7521,24 @@
         ]
       },
       {
-        "question": "光サプライズへの導入や代理店参加はどこで調べられますか？",
-        "answer": "光サプライズの公式事業ページで、LEDビジョンの用途、導入例、運用支援、代理店募集を確認できます。希望する設置場所や事業内容に合わせ、支援範囲と費用、契約条件を照合すると具体的に検討できます。",
+        "question": "代理店展開には、どのような背景がありますか？",
+        "answer": "担当者は、地域の看板会社がLEDビジョンの相談を受けても知識不足で対応できない例を聞き、培ってきた仕組みやノウハウを伝えながら展開したいと説明しています。",
         "sources": [
           {
-            "label": "公式の事業・サービス案内",
-            "url": "https://www.hikari-surprise.co.jp/led.html"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "光サプライズのLEDビジョン事業担当者の取材記録（記録日：2026-07-17）"
+          }
+        ]
+      },
+      {
+        "question": "新規事業として検討する場合は何を相談するとよいですか？",
+        "answer": "営業先、設置場所、費用、設置・保守の担当、広告運営の方法と支援範囲を具体的に確認することが検討材料になります。収益は地域需要や営業の状況によって異なります。",
+        "sources": [
+          {
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "光サプライズのLEDビジョン事業担当者の取材記録（記録日：2026-07-17）"
           }
         ]
       }
@@ -7422,15 +7547,12 @@
   "11903": {
     "summary": [
       {
-        "text": "ヨク住ルは、エコキュートの交換を入口に、住まいの条件に合わせた設置と工事後の支援を案内しています。寒冷地の配管や保温まで考える姿勢がニュースで紹介され、公式サイトでは相談から設置、アフターフォローまでの流れを確認できます。",
+        "text": "宮野和哉氏の取材記録では、ヨク住ルは新築住宅の給排水・暖房工事の経験を設備更新に生かし、寒冷地で必要な施工を省かず行うことを重視しています。交換後にも別の住宅設備の相談を受けるという説明から、機器単体に加えて長く付き合う相談先を探す際の比較ポイントが見えてきます。",
         "sources": [
           {
-            "label": "掲載ニュース",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11903"
-          },
-          {
-            "label": "ヨク住ル公式の設置の流れ",
-            "url": "https://yoku-suru.jp/ecocute-flow/"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "宮野和哉氏（合同会社宮野設備代表社員）の取材記録（記録日：2026-08-25）"
           }
         ]
       },
@@ -7532,28 +7654,6 @@
         ]
       },
       {
-        "question": "ヨク住ルの設備支援はどのメディアに掲載されていますか？",
-        "answer": "ヨク住ルの寒冷地の配管や設備支援を扱うニュースは、Global News Asia、楽天インフォシーク、エキサイトニュース、ニコニコニュースの4媒体で読めます。同じサービス記事の掲載先です。",
-        "sources": [
-          {
-            "label": "Global News Asia",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11903"
-          },
-          {
-            "label": "楽天インフォシーク",
-            "url": "https://news.infoseek.co.jp/article/globalnewsasia_11903/"
-          },
-          {
-            "label": "エキサイトニュース",
-            "url": "https://www.excite.co.jp/news/article/Global_news_asia_11903/"
-          },
-          {
-            "label": "ニコニコニュース",
-            "url": "https://news.nicovideo.jp/watch/nw19777373"
-          }
-        ]
-      },
-      {
         "question": "ヨク住ルの料金や対応地域を調べるにはどうしますか？",
         "answer": "ヨク住ルの公式サイトで商品、対応地域、工事の流れを確認できます。具体的な費用は機器や住まいの条件で変わるため、必要な工事、保証の対象、追加費用の有無を見積もり時に確かめると役立ちます。",
         "sources": [
@@ -7564,6 +7664,28 @@
           {
             "label": "ヨク住ル公式の設置の流れ",
             "url": "https://yoku-suru.jp/ecocute-flow/"
+          }
+        ]
+      },
+      {
+        "question": "ヨク住ルが設備交換を始めた背景は何ですか？",
+        "answer": "宮野氏は、既存住宅の設備更新に需要を感じたことと、住まい手に直接向き合う仕事を広げたかったことを説明しています。新築住宅の給排水・暖房工事で得た経験を生かす事業として取り組んでいます。",
+        "sources": [
+          {
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "宮野和哉氏（合同会社宮野設備代表社員）の取材記録（記録日：2026-08-25）"
+          }
+        ]
+      },
+      {
+        "question": "エコキュート交換後に別の設備も相談できますか？",
+        "answer": "宮野氏は取材で、工事後にエアコン、暖房、トイレや排水の相談を受ける例を挙げています。すべての工事・地域を一律に引き受けるという意味ではないため、希望する内容と住所を伝えて対応範囲を確認してください。",
+        "sources": [
+          {
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "宮野和哉氏（合同会社宮野設備代表社員）の取材記録（記録日：2026-08-25）"
           }
         ]
       }
@@ -7718,15 +7840,12 @@
   "11905": {
     "summary": [
       {
-        "text": "カラープラスは、株式会社マスターピースが展開するヘアカラー専門店です。カットやパーマを行わず、カラーの施術とセルフブローを組み合わせています。美容室と自宅染めの間で、定期的な髪色の手入れを考える人が選びやすい仕組みとしてニュースでも紹介されています。",
+        "text": "村田隆行氏の取材記録からは、カラープラスが白髪を手入れする周期、気軽に入りやすい店づくり、家庭と両立できる美容師の働き方を組み合わせてきたことが分かります。編集部は、日常のカラーを専門家に任せたい人が、施術範囲と店舗ごとの条件を比較する際に役立つ特徴と整理しています。",
         "sources": [
           {
-            "label": "掲載ニュース",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11905"
-          },
-          {
-            "label": "公式の事業・サービス案内",
-            "url": "https://haircolor-plus.com/"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "村田隆行氏（株式会社マスターピース代表取締役）の取材記録（記録日：2026-08-19）"
           }
         ]
       },
@@ -7858,16 +7977,24 @@
         ]
       },
       {
-        "question": "カラープラスの近くの店舗や予約方法はどこで調べられますか？",
-        "answer": "カラープラス公式の店舗検索・ご予約ページで、地域ごとの店舗と案内を確認できます。希望する店舗の場所、営業時間、メニュー、予約方法を照らすと、普段の髪色の手入れに使いやすいか検討できます。",
+        "question": "カラープラスの店づくりにはどんな考えがありますか？",
+        "answer": "村田氏は取材で、華美な演出より分かりやすさを重視し、買い物のついでにも立ち寄れる雰囲気を意識すると説明しています。日常的な白髪の手入れとして通えることを大切にした設計です。",
         "sources": [
           {
-            "label": "カラープラス公式の店舗検索",
-            "url": "https://haircolor-plus.com/salon/"
-          },
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "村田隆行氏（株式会社マスターピース代表取締役）の取材記録（記録日：2026-08-19）"
+          }
+        ]
+      },
+      {
+        "question": "カラープラスは美容師の働き方をどう工夫していますか？",
+        "answer": "取材当時の村田氏の説明では、子育て中の美容師が働ける時間帯や指名制を設けない働き方を意識し、日曜定休の店舗も設けています。具体的な勤務条件や営業日は店舗ごとに確認が必要です。",
+        "sources": [
           {
-            "label": "カラープラス公式のメニュー・料金",
-            "url": "https://haircolor-plus.com/menu/"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "村田隆行氏（株式会社マスターピース代表取締役）の取材記録（記録日：2026-08-19）"
           }
         ]
       }
@@ -8168,11 +8295,12 @@
   "11999": {
     "summary": [
       {
-        "text": "Asahiコーチングは、吉田朝陽氏がニュースで紹介した長期伴走型の個別支援です。悩みを言葉にし、日常で試して振り返ることを重視し、時間をかけて向き合う習慣を支える考え方が示されています。半年10回または1年20回は、掲載当時の会員向けセッションの構想です。",
+        "text": "提供されたAsahi氏の取材記録では、本人の悩みから具体的な行動を考え、取り組みを振り返る個別コーチングの流れが説明されています。サロンでの共通の学びを、自分自身の次の一歩へつなげたい人に向けた支援として理解できます。",
         "sources": [
           {
-            "label": "掲載ニュース",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=11999"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "Asahi氏（吉田朝陽氏）の取材記録（記録日：2026-09-02）"
           }
         ]
       },
@@ -8284,12 +8412,24 @@
         ]
       },
       {
-        "question": "Asahiコーチングの現在の料金や申込条件はどこで確認しますか？",
-        "answer": "Asahiコーチングについては、吉田朝陽氏の公開プロフィールにSNSや相談先のリンクがあります。リンク集だけでは料金や会員条件を確認しきれないため、実際の申込案内で期間、費用、対応範囲を確かめられます。",
+        "question": "個別コーチングとオンラインサロンはどう違いますか？",
+        "answer": "Asahi氏は、サロンで共通の内容を学ぶことに対し、コーチングは本人だけの悩みから具体的な行動を考え、継続して振り返る場と説明しています。",
         "sources": [
           {
-            "label": "吉田朝陽氏の公開プロフィール",
-            "url": "https://lit.link/asahishikashitenai"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "Asahi氏（吉田朝陽氏）の取材記録（記録日：2026-09-02）"
+          }
+        ]
+      },
+      {
+        "question": "長期伴走では、何を繰り返すのですか？",
+        "answer": "取材記録では、悩みを聞く、次に取る行動を考える、実践後にフィードバックするという流れを説明しています。現在の期間や面談回数、支援範囲は個別相談で確認してください。",
+        "sources": [
+          {
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "Asahi氏（吉田朝陽氏）の取材記録（記録日：2026-09-02）"
           }
         ]
       }
@@ -8298,11 +8438,12 @@
   "12000": {
     "summary": [
       {
-        "text": "Asahiと共に生きるオンラインサロンは、女性が日常の中で気負わず参加できる交流の場としてニュースで紹介されています。短い動画、日記、オンライン交流など参加方法を複数用意し、参加や発言を強制しないという運営方針が特徴です。",
+        "text": "Asahi氏の取材記録では、ライブやZoom、日記、短い動画などを通じ、日々の生活の中で学びに触れるサロンの構成が説明されています。一人で努力を続けることに加え、交流や定期的な接点を取り入れたい人にとって、利用方法を考える材料になります。",
         "sources": [
           {
-            "label": "掲載ニュース",
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=12000"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "Asahi氏（吉田朝陽氏）の取材記録（記録日：2026-09-02）"
           }
         ]
       },
@@ -8418,12 +8559,24 @@
         ]
       },
       {
-        "question": "Asahiのオンラインサロンへの参加条件はどこで調べられますか？",
-        "answer": "Asahiのオンラインサロンは、吉田朝陽氏の公開プロフィールにある案内先を入口に確認できます。リンク集だけでは条件が分からないため、現在の募集案内で月額費用、退会方法、個人情報の扱いを確かめます。",
+        "question": "取材で説明されたサロンの内容は何ですか？",
+        "answer": "ライブやZoomでの交流、日記、短い動画などが挙げられています。実際に利用できる内容や配信の予定は変更される可能性があるため、現在の案内で確認してください。",
         "sources": [
           {
-            "label": "吉田朝陽氏の公開プロフィール",
-            "url": "https://lit.link/asahishikashitenai"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "Asahi氏（吉田朝陽氏）の取材記録（記録日：2026-09-02）"
+          }
+        ]
+      },
+      {
+        "question": "毎日の生活に、どのように取り入れる考え方ですか？",
+        "answer": "Asahi氏は、短い内容や配信の案内を届け、学ぶことや参加することのきっかけを作ると説明しています。自分に無理のない参加ペースと、利用条件を確認して検討できます。",
+        "sources": [
+          {
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "Asahi氏（吉田朝陽氏）の取材記録（記録日：2026-09-02）"
           }
         ]
       }
@@ -8776,15 +8929,12 @@
   "12042": {
     "summary": [
       {
-        "text": "AI点呼さんは、株式会社京阪物流が運営する物流業務支援サービスです。AIロジサポート株式会社への社名変更予定とともに、運送現場の経験をサービス開発に生かす取り組みが4媒体で紹介されました。会社の背景と提供内容を合わせて知れる点が、今回のニュースの読みどころです。",
+        "text": "吉岡泰生氏の取材記録では、AI点呼さんは少人数の運送会社で起床や出勤を確認し続ける負担から生まれたと説明されています。報告がない場合の通知と、人が対応する流れを整理し、必要な業務情報を取り出しやすくする構想が特徴です。現在の提供機能や法令上の認定状況は、導入前に個別に確認する必要があります。",
         "sources": [
           {
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=12042",
-            "label": "2026年10月5日の取材記事"
-          },
-          {
-            "url": "https://tenkobot.vercel.app/privacy",
-            "label": "AI点呼さん公式・運営主体"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "吉岡泰生氏（株式会社京阪物流代表・取材当時）の取材記録（記録日：2026-09-16）"
           }
         ]
       },
@@ -8886,28 +9036,6 @@
         ]
       },
       {
-        "question": "AIロジサポートの取り組みは、どの媒体に掲載されましたか？",
-        "answer": "Global News Asia、楽天インフォシーク、エキサイトニュース、ニコニコニュースで確認しました。同じ取材記事の掲載先として、本記事の媒体欄からそれぞれ参照できます。",
-        "sources": [
-          {
-            "url": "https://www.globalnewsasia.com/article.php?country=4&id=12042",
-            "label": "Global News Asia"
-          },
-          {
-            "url": "https://news.infoseek.co.jp/article/globalnewsasia_12042/",
-            "label": "楽天インフォシーク"
-          },
-          {
-            "url": "https://www.excite.co.jp/news/article/Global_news_asia_12042/",
-            "label": "エキサイトニュース"
-          },
-          {
-            "url": "https://news.nicovideo.jp/watch/nw19844536",
-            "label": "ニコニコニュース"
-          }
-        ]
-      },
-      {
         "question": "AI点呼さんの口コミや導入実績は確認できますか？",
         "answer": "今回確認した公開資料では、利用者の具体的な口コミ、導入社数、業務時間の削減実績は十分に確認できませんでした。ニュース掲載の事実を、利用者による評価や効果の保証に置き換えてはいません。",
         "sources": [
@@ -8922,16 +9050,24 @@
         ]
       },
       {
-        "question": "公式情報を見ながら、何から導入を検討するとよいですか？",
-        "answer": "連絡の順番、業務記録の項目、位置情報の共有範囲、利用人数を先に整理すると、必要な機能や費用を相談しやすくなります。公式アプリ案内と利用規約を入口に確認できます。",
+        "question": "AI点呼さんを開発した現場の課題は何ですか？",
+        "answer": "吉岡氏は、LINEで起床・出勤の報告を待ち、未連絡なら電話する確認業務の負担を挙げています。少人数では急な欠員への対応に時間が必要なため、早く異常へ気づくことを重視したと説明しています。",
         "sources": [
           {
-            "url": "https://play.google.com/store/apps/details?id=com.mellkun.tenkobot",
-            "label": "公式アプリ案内"
-          },
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "吉岡泰生氏（株式会社京阪物流代表・取材当時）の取材記録（記録日：2026-09-16）"
+          }
+        ]
+      },
+      {
+        "question": "自動通知はすべてAIが判断しているのですか？",
+        "answer": "吉岡氏は取材で、通知にはあらかじめ決めた処理を使う部分があると補足しています。通知の仕組みと、業務情報を取り出すAI事務員の機能を分けて理解する必要があります。詳細な対応範囲は公式窓口に確認してください。",
+        "sources": [
           {
-            "url": "https://tenkobot.vercel.app/terms",
-            "label": "利用規約"
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "吉岡泰生氏（株式会社京阪物流代表・取材当時）の取材記録（記録日：2026-09-16）"
           }
         ]
       }

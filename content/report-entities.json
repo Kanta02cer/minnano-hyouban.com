@@ -1,0 +1,891 @@
+{
+  "schemaVersion": 1,
+  "articles": {
+    "10482": [
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/10482/#subject",
+        "name": "吉田朝陽"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/10482/#named-entity-2",
+        "name": "株式会社Asahi"
+      }
+    ],
+    "10509": [
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/10509/#subject",
+        "name": "渋谷生夢"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/10509/#named-entity-2",
+        "name": "株式会社La pilates"
+      },
+      {
+        "@type": "Service",
+        "@id": "https://minnano-hyouban.com/reports/10509/#named-entity-3",
+        "name": "ラピラティス"
+      }
+    ],
+    "10512": [
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/10512/#subject",
+        "name": "坂口貴徳"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/10512/#named-entity-2",
+        "name": "株式会社CHAINONエンターテインメント"
+      }
+    ],
+    "10552": [
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/10552/#subject",
+        "name": "河野光孝"
+      },
+      {
+        "@type": "Thing",
+        "@id": "https://minnano-hyouban.com/reports/10552/#named-entity-2",
+        "name": "レンスペ本舗"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/10552/#named-entity-3",
+        "name": "株式会社ThreePoint"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/10552/#named-entity-4",
+        "name": "井上幸美"
+      }
+    ],
+    "10613": [
+      {
+        "@type": "Service",
+        "@id": "https://minnano-hyouban.com/reports/10613/#subject",
+        "name": "VEGE＆me"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/10613/#named-entity-2",
+        "name": "合同会社KBcreation"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/10613/#named-entity-3",
+        "name": "樺山周作"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/10613/#named-entity-4",
+        "name": "川林雄城"
+      }
+    ],
+    "10617": [
+      {
+        "@type": "Service",
+        "@id": "https://minnano-hyouban.com/reports/10617/#subject",
+        "name": "ラピラティス"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/10617/#named-entity-2",
+        "name": "株式会社La pilates"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/10617/#named-entity-3",
+        "name": "渋谷生夢"
+      }
+    ],
+    "10728": [
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/10728/#subject",
+        "name": "水川優海"
+      },
+      {
+        "@type": "Service",
+        "@id": "https://minnano-hyouban.com/reports/10728/#named-entity-2",
+        "name": "ルシルアカデミー"
+      }
+    ],
+    "10911": [
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/10911/#subject",
+        "name": "株式会社Epi Group"
+      }
+    ],
+    "10969": [
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/10969/#subject",
+        "name": "杉将史"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/10969/#named-entity-2",
+        "name": "Difference Design株式会社"
+      },
+      {
+        "@type": "Service",
+        "@id": "https://minnano-hyouban.com/reports/10969/#named-entity-3",
+        "name": "ゼロラボ"
+      }
+    ],
+    "11010": [
+      {
+        "@type": "Service",
+        "@id": "https://minnano-hyouban.com/reports/11010/#subject",
+        "name": "中学受験のミカタ"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11010/#named-entity-2",
+        "name": "株式会社キミノミカタ"
+      }
+    ],
+    "11037": [
+      {
+        "@type": "Product",
+        "@id": "https://minnano-hyouban.com/reports/11037/#subject",
+        "name": "SenoRich"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11037/#named-entity-2",
+        "name": "日本医療製薬株式会社"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11037/#named-entity-3",
+        "name": "Nジェネレーション株式会社"
+      }
+    ],
+    "11098": [
+      {
+        "@type": "Product",
+        "@id": "https://minnano-hyouban.com/reports/11098/#subject",
+        "name": "ミラクルピロー（MIRACLE PILLOW）"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11098/#named-entity-2",
+        "name": "株式会社TVC"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11098/#named-entity-3",
+        "name": "稲本慎也"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11098/#named-entity-4",
+        "name": "竹之内教博"
+      }
+    ],
+    "11155": [
+      {
+        "@type": "Service",
+        "@id": "https://minnano-hyouban.com/reports/11155/#subject",
+        "name": "NEXT MISSION（ネクストミッション）"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11155/#named-entity-2",
+        "name": "株式会社Next Mission"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11155/#named-entity-3",
+        "name": "森崇嘉"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11155/#named-entity-4",
+        "name": "安藤功一郎"
+      }
+    ],
+    "11197": [
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11197/#subject",
+        "name": "木野竜太郎"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11197/#named-entity-2",
+        "name": "ゆうきや整体院"
+      }
+    ],
+    "11198": [
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11198/#subject",
+        "name": "ゆうきや整体院"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11198/#named-entity-2",
+        "name": "木野竜太郎"
+      }
+    ],
+    "11244": [
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11244/#subject",
+        "name": "落合時夫"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11244/#named-entity-2",
+        "name": "株式会社インプルーブ"
+      }
+    ],
+    "11245": [
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11245/#subject",
+        "name": "株式会社インプルーブ"
+      }
+    ],
+    "11270": [
+      {
+        "@type": "Product",
+        "@id": "https://minnano-hyouban.com/reports/11270/#subject",
+        "name": "REWA BC SOLAR"
+      }
+    ],
+    "11285": [
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11285/#subject",
+        "name": "山崎真幸"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11285/#named-entity-2",
+        "name": "株式会社allview"
+      }
+    ],
+    "11286": [
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11286/#subject",
+        "name": "株式会社allview"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11286/#named-entity-2",
+        "name": "山崎真幸"
+      }
+    ],
+    "11557": [
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11557/#subject",
+        "name": "青木竜"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11557/#named-entity-2",
+        "name": "株式会社KanaeRus"
+      }
+    ],
+    "11603": [
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11603/#subject",
+        "name": "嶋田亮"
+      },
+      {
+        "@type": "Thing",
+        "@id": "https://minnano-hyouban.com/reports/11603/#named-entity-2",
+        "name": "離職予防士協会"
+      }
+    ],
+    "11604": [
+      {
+        "@type": "Service",
+        "@id": "https://minnano-hyouban.com/reports/11604/#subject",
+        "name": "dマト組織活性化"
+      },
+      {
+        "@type": "Thing",
+        "@id": "https://minnano-hyouban.com/reports/11604/#named-entity-2",
+        "name": "離職予防士協会"
+      }
+    ],
+    "11607": [
+      {
+        "@type": "Service",
+        "@id": "https://minnano-hyouban.com/reports/11607/#subject",
+        "name": "メディくる"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11607/#named-entity-2",
+        "name": "安藤功一郎"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11607/#named-entity-3",
+        "name": "漆沢祐樹"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11607/#named-entity-4",
+        "name": "竹之内教博"
+      }
+    ],
+    "11612": [
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11612/#subject",
+        "name": "株式会社拓洋"
+      }
+    ],
+    "11625": [
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11625/#subject",
+        "name": "株式会社比良タイヤ工業所"
+      }
+    ],
+    "11627": [
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11627/#subject",
+        "name": "田中佑弥"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11627/#named-entity-2",
+        "name": "株式会社比良タイヤ工業所"
+      }
+    ],
+    "11637": [
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11637/#subject",
+        "name": "株式会社九州エネルギー事業会"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11637/#named-entity-2",
+        "name": "鎗水晴輝"
+      }
+    ],
+    "11638": [
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11638/#subject",
+        "name": "鎗水晴輝"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11638/#named-entity-2",
+        "name": "株式会社九州エネルギー事業会"
+      }
+    ],
+    "11639": [
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11639/#subject",
+        "name": "小松水産株式会社"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11639/#named-entity-2",
+        "name": "小松礼子"
+      }
+    ],
+    "11640": [
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11640/#subject",
+        "name": "小松礼子"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11640/#named-entity-2",
+        "name": "小松水産株式会社"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11640/#named-entity-3",
+        "name": "二本栁礼子"
+      }
+    ],
+    "11667": [
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11667/#subject",
+        "name": "ANDDINING株式会社"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11667/#named-entity-2",
+        "name": "桜井仁天"
+      }
+    ],
+    "11668": [
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11668/#subject",
+        "name": "ANDDINING株式会社"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11668/#named-entity-2",
+        "name": "桜井仁天"
+      }
+    ],
+    "11669": [
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11669/#subject",
+        "name": "株式会社やまもとくん"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11669/#named-entity-2",
+        "name": "山本雅俊"
+      }
+    ],
+    "11670": [
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11670/#subject",
+        "name": "山本雅俊"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11670/#named-entity-2",
+        "name": "株式会社やまもとくん"
+      }
+    ],
+    "11671": [
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11671/#subject",
+        "name": "株式会社b-models"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11671/#named-entity-2",
+        "name": "楠本文哉"
+      }
+    ],
+    "11672": [
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11672/#subject",
+        "name": "株式会社b-models"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11672/#named-entity-2",
+        "name": "楠本文哉"
+      }
+    ],
+    "11745": [
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11745/#subject",
+        "name": "ノアグループホールディングス株式会社"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11745/#named-entity-2",
+        "name": "大西雅之"
+      }
+    ],
+    "11755": [
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11755/#subject",
+        "name": "村上博司"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11755/#named-entity-2",
+        "name": "株式会社サチクル"
+      },
+      {
+        "@type": "Brand",
+        "@id": "https://minnano-hyouban.com/reports/11755/#named-entity-3",
+        "name": "Sachiプラモ"
+      }
+    ],
+    "11756": [
+      {
+        "@type": "Brand",
+        "@id": "https://minnano-hyouban.com/reports/11756/#subject",
+        "name": "Sachiプラモ"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11756/#named-entity-2",
+        "name": "株式会社サチクル"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11756/#named-entity-3",
+        "name": "村上博司"
+      }
+    ],
+    "11757": [
+      {
+        "@type": "Service",
+        "@id": "https://minnano-hyouban.com/reports/11757/#subject",
+        "name": "りふぉーむカンパニー"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11757/#named-entity-2",
+        "name": "株式会社カンパニーズ"
+      }
+    ],
+    "11758": [
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11758/#subject",
+        "name": "三嶋謙吾"
+      },
+      {
+        "@type": "Service",
+        "@id": "https://minnano-hyouban.com/reports/11758/#named-entity-2",
+        "name": "りふぉーむカンパニー"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11758/#named-entity-3",
+        "name": "株式会社カンパニーズ"
+      }
+    ],
+    "11804": [
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11804/#subject",
+        "name": "橘金属工業株式会社"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11804/#named-entity-2",
+        "name": "池田昌起"
+      }
+    ],
+    "11805": [
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11805/#subject",
+        "name": "池田昌起"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11805/#named-entity-2",
+        "name": "橘金属工業株式会社"
+      }
+    ],
+    "11809": [
+      {
+        "@type": "Service",
+        "@id": "https://minnano-hyouban.com/reports/11809/#subject",
+        "name": "THE PERSONAL GYM"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11809/#named-entity-2",
+        "name": "First fit株式会社"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11809/#named-entity-3",
+        "name": "田中健斗"
+      }
+    ],
+    "11810": [
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11810/#subject",
+        "name": "First fit株式会社"
+      },
+      {
+        "@type": "Service",
+        "@id": "https://minnano-hyouban.com/reports/11810/#named-entity-2",
+        "name": "THE PERSONAL GYM"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11810/#named-entity-3",
+        "name": "田中健斗"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11810/#named-entity-4",
+        "name": "林幸希"
+      }
+    ],
+    "11811": [
+      {
+        "@type": "Service",
+        "@id": "https://minnano-hyouban.com/reports/11811/#subject",
+        "name": "THE PERSONAL GYM"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11811/#named-entity-2",
+        "name": "First fit株式会社"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11811/#named-entity-3",
+        "name": "田中健斗"
+      }
+    ],
+    "11812": [
+      {
+        "@type": "Service",
+        "@id": "https://minnano-hyouban.com/reports/11812/#subject",
+        "name": "THE PERSONAL GYM"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11812/#named-entity-2",
+        "name": "First fit株式会社"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11812/#named-entity-3",
+        "name": "田中健斗"
+      }
+    ],
+    "11813": [
+      {
+        "@type": "Service",
+        "@id": "https://minnano-hyouban.com/reports/11813/#subject",
+        "name": "THE PERSONAL GYM"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11813/#named-entity-2",
+        "name": "First fit株式会社"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11813/#named-entity-3",
+        "name": "田中健斗"
+      }
+    ],
+    "11819": [
+      {
+        "@type": "Service",
+        "@id": "https://minnano-hyouban.com/reports/11819/#subject",
+        "name": "Brain"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11819/#named-entity-2",
+        "name": "株式会社ブレイン"
+      }
+    ],
+    "11820": [
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11820/#subject",
+        "name": "迫佑樹"
+      },
+      {
+        "@type": "Service",
+        "@id": "https://minnano-hyouban.com/reports/11820/#named-entity-2",
+        "name": "Brain"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11820/#named-entity-3",
+        "name": "株式会社ブレイン"
+      }
+    ],
+    "11837": [
+      {
+        "@type": "Service",
+        "@id": "https://minnano-hyouban.com/reports/11837/#subject",
+        "name": "ムネペイント"
+      }
+    ],
+    "11838": [
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11838/#subject",
+        "name": "坂中宗洋"
+      },
+      {
+        "@type": "Service",
+        "@id": "https://minnano-hyouban.com/reports/11838/#named-entity-2",
+        "name": "ムネペイント"
+      }
+    ],
+    "11901": [
+      {
+        "@type": "Service",
+        "@id": "https://minnano-hyouban.com/reports/11901/#subject",
+        "name": "光サプライズのLEDビジョン事業"
+      }
+    ],
+    "11902": [
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11902/#subject",
+        "name": "株式会社光サプライズ"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11902/#named-entity-2",
+        "name": "竹之内教博"
+      }
+    ],
+    "11903": [
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11903/#subject",
+        "name": "ヨク住ル"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11903/#named-entity-2",
+        "name": "宮野和哉"
+      }
+    ],
+    "11904": [
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11904/#subject",
+        "name": "宮野和哉"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11904/#named-entity-2",
+        "name": "ヨク住ル"
+      }
+    ],
+    "11905": [
+      {
+        "@type": "Service",
+        "@id": "https://minnano-hyouban.com/reports/11905/#subject",
+        "name": "カラープラス"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11905/#named-entity-2",
+        "name": "株式会社マスターピース"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11905/#named-entity-3",
+        "name": "村田隆行"
+      }
+    ],
+    "11906": [
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11906/#subject",
+        "name": "村田隆行",
+        "jobTitle": "代表取締役",
+        "worksFor": {
+          "@id": "https://minnano-hyouban.com/reports/11906/#airreach-company"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11906/#airreach-company",
+        "name": "株式会社マスターピース",
+        "brand": {
+          "@id": "https://minnano-hyouban.com/reports/11906/#airreach-brand"
+        }
+      },
+      {
+        "@type": "Brand",
+        "@id": "https://minnano-hyouban.com/reports/11906/#airreach-brand",
+        "name": "カラープラス",
+        "url": "https://haircolor-plus.com/"
+      }
+    ],
+    "11968": [
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11968/#subject",
+        "name": "株式会社リンクス"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11968/#named-entity-2",
+        "name": "内山成児"
+      }
+    ],
+    "11970": [
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11970/#subject",
+        "name": "内山成児"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11970/#named-entity-2",
+        "name": "株式会社リンクス"
+      }
+    ],
+    "11999": [
+      {
+        "@type": "Service",
+        "@id": "https://minnano-hyouban.com/reports/11999/#subject",
+        "name": "Asahiコーチング"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/11999/#named-entity-2",
+        "name": "吉田朝陽"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/11999/#named-entity-3",
+        "name": "株式会社Asahi"
+      }
+    ],
+    "12000": [
+      {
+        "@type": "Service",
+        "@id": "https://minnano-hyouban.com/reports/12000/#subject",
+        "name": "Asahiと共に生きるオンラインサロン"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/12000/#named-entity-2",
+        "name": "吉田朝陽"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/12000/#named-entity-3",
+        "name": "株式会社Asahi"
+      }
+    ],
+    "12042": [
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/12042/#subject",
+        "name": "株式会社京阪物流"
+      },
+      {
+        "@type": "Service",
+        "@id": "https://minnano-hyouban.com/reports/12042/#named-entity-2",
+        "name": "AI点呼さん"
+      }
+    ]
+  }
+}

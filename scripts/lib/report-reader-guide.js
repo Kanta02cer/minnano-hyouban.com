@@ -1,8 +1,9 @@
 'use strict';
+const {validateInterviewReference,sourceHref} = require('./report-interviews');
 
 // Editorial copy is reviewed in JSON; these checks catch missing answers and
 // unsafe/missing references before any public HTML is replaced.
-function validateGuide(guide, id) {
+function validateGuide(guide, id, interview) {
   const fail = message => { throw new Error(`Reader guide ${id}: ${message}`); };
   const text = value => typeof value === 'string' && value.trim().length > 0 && !/[<>]/.test(value);
   if (!guide || !Array.isArray(guide.summary) || guide.summary.length !== 2) fail('two summary paragraphs are required');
@@ -19,6 +20,12 @@ function validateGuide(guide, id) {
     if (!Array.isArray(item.sources) || !item.sources.length) fail(`item ${index + 1} needs evidence`);
     let external = false;
     for (const source of item.sources) {
+      if (source.kind === 'interview') {
+        validateInterviewReference(source, interview, id);
+        external = true; // Reviewed original record, displayed on this article.
+        continue;
+      }
+      if (source.kind && source.kind !== 'external') fail('unknown evidence type');
       if (!text(source.label) || !text(source.url)) fail('source label and URL are required');
       const internal = /^\/reports\/[a-z0-9-]+\/$/.test(source.url);
       let url;
@@ -32,7 +39,7 @@ function validateGuide(guide, id) {
 }
 
 const esc = value => String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-const references = sources => `<p class="reader-guide-sources">出典：${sources.map(source => `<a href="${esc(source.url)}">${esc(source.label)}</a>`).join(' / ')}</p>`;
+const references = sources => `<p class="reader-guide-sources">出典：${sources.map(source => `<a href="${esc(sourceHref(source))}">${esc(source.label)}</a>`).join(' / ')}</p>`;
 
 function renderGuide(guide, subjectLabel) {
   return `

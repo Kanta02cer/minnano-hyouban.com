@@ -5,6 +5,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const {validateGuide, renderGuide} = require('./lib/report-reader-guide');
+const {validateInterview, validateInterviewReference, sourceHref, interviewCitation, renderInterview} = require('./lib/report-interviews');
 const root = path.resolve(__dirname, '..');
 const base = 'https://minnano-hyouban.com';
 const read = file => fs.readFileSync(path.join(root, file), 'utf8');
@@ -15,6 +16,8 @@ const json = value => JSON.stringify(value).replace(/</g, '\\u003c');
 const jaDate = value => value.replace(/^(\d{4})-0?(\d+)-0?(\d+)$/, '$1年$2月$3日');
 const briefs = {...JSON.parse(read('content/search-briefs-bulk.json')), ...JSON.parse(read('content/search-briefs-original.json'))};
 const guides = JSON.parse(read('content/report-reader-guides.json'));
+const interviews = JSON.parse(read('content/report-interviews.json'));
+const entities = JSON.parse(read('content/report-entities.json')).articles;
 const bulk = JSON.parse(read('content/bulk-report-sources.json'));
 const coverage = Object.fromEntries(bulk.map(item => [item.id, {title:item.newsTitle, date:item.newsDate, media:item.media, type:item.coverageType}]));
 Object.assign(coverage, JSON.parse(read('content/original-report-coverage.json')));
@@ -37,13 +40,17 @@ function graphTag(nodes) {
 for (const id of reportIds) {
   const b = briefs[id], c = coverage[id];
   if (!b || !c) throw new Error(`Missing reviewed brief or media coverage: ${id}`);
-  validateGuide(guides[id], id);
+  const interview = interviews[id];
+  if (interview) validateInterview(interview, id);
+  validateGuide(guides[id], id, interview);
   for (const key of ['publishedDate','modifiedDate']) {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(b[key] || '')) throw new Error(`Missing ${key}: ${id}`);
   }
   const file = `site-v2/reports/${id}/index.html`, url = `${base}/reports/${id}/`;
   let html = read(file).replace(/\n<!-- SEARCH_BRIEF_START -->[\s\S]*?<!-- SEARCH_BRIEF_END -->\n/g, '');
   html = html.replace(/\n<!-- READER_GUIDE_START -->[\s\S]*?<!-- READER_GUIDE_END -->\n/g, '');
+  html = html.replace(/\n<!-- INTERVIEW_NOTES_START -->[\s\S]*?<!-- INTERVIEW_NOTES_END -->\n/g, '');
+  html = html.replace(/<span id="report-detail"><\/span>/g, '');
   html = html.replace(/<script type="application\/ld\+json" data-search-graph>[\s\S]*?<\/script>\n/g, '');
   const oldArticle = JSON.parse(html.match(/<script\s+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/)[1]);
   const heading = oldArticle.headline;
@@ -54,8 +61,11 @@ for (const id of reportIds) {
     ['reputation','口コミ・評判は？'],
   ].map(([key,label]) => {
     const answer = b[key];
-    if (!answer?.text || !answer.sourceLabel || !/^https?:\/\//.test(answer.sourceUrl)) throw new Error(`Invalid ${id} ${key}`);
-    return `<div class="brief-answer" id="brief-${key}"><h3>${label}</h3><p>${esc(answer.text)}</p><p class="brief-source">出典：<a href="${esc(answer.sourceUrl)}">${esc(answer.sourceLabel)}</a> <span aria-hidden="true">↗</span></p></div>`;
+    const source = answer?.source || {url:answer?.sourceUrl,label:answer?.sourceLabel};
+    if (!answer?.text || !source.label) throw new Error(`Invalid ${id} ${key}`);
+    if (source.kind === 'interview') validateInterviewReference(source, interview, id);
+    else if (!/^https?:\/\//.test(source.url)) throw new Error(`Invalid ${id} ${key} source`);
+    return `<div class="brief-answer" id="brief-${key}"><h3>${label}</h3><p>${esc(answer.text)}</p><p class="brief-source">出典：<a href="${esc(sourceHref(source))}">${esc(source.label)}</a> <span aria-hidden="true">↗</span></p></div>`;
   }).join('\n');
   const mediaLinks = Object.entries(c.media).map(([name,url]) => `<li><a href="${esc(url)}">${esc(name)} <span aria-hidden="true">↗</span></a></li>`).join('');
   const count = Object.keys(c.media).length;
@@ -76,14 +86,18 @@ for (const id of reportIds) {
 <span id="report-detail"></span>
 <!-- SEARCH_BRIEF_END -->
 `;
-  html = replaceOnce(html, /(<(?:article|div)\b[^>]*class="report-main(?: [^"]*)?"[^>]*>)/, (_, opening) => opening + briefHtml, `${id} main`);
+  const tocBrief = interview ? briefHtml.replace('<a href="#report-detail">詳しい調査内容</a>', '<a href="#interview-notes">インタビューの詳細</a><a href="#company-profile">会社情報</a><a href="#report-detail">詳しい調査内容</a>') : briefHtml;
+  const introContent = interview ? tocBrief.replace('<span id="report-detail"></span>', '') + renderInterview(interview, id) + '<span id="report-detail"></span>' : tocBrief;
+  html = replaceOnce(html, /(<(?:article|div)\b[^>]*class="report-main(?: [^"]*)?"[^>]*>)/, (_, opening) => opening + introContent, `${id} main`);
   html = replaceOnce(html, /(<section\b[^>]*class="[^"]*\bofficial-visit\b[^"]*"[^>]*>)/, (_, opening) => renderGuide(guides[id], subjectLabel) + opening, `${id} official visit`);
   html = replaceOnce(html, /<meta name="description" content="[^"]*">/, `<meta name="description" content="${esc(b.introduction)}">`, `${id} description`);
   html = replaceOnce(html, /<meta property="og:description" content="[^"]*">/, `<meta property="og:description" content="${esc(b.introduction)}">`, `${id} og description`);
   const body = html.match(/<body\b[^>]*>([\s\S]*?)<\/body>/)[1];
   const citations = [...new Set([...body.matchAll(/<a\b[^>]*href="(https?:\/\/[^\"]+)"/g)]
     .map(match => decode(match[1])).filter(source => new URL(source).origin !== base))];
-  const article = {...oldArticle,'@id':`${url}#article`,url,description:b.introduction,abstract:b.introduction,datePublished:b.publishedDate,dateModified:b.modifiedDate,author:editor,publisher:editor,about:subject,citation:citations,isPartOf:{'@id':website['@id']}};
+  if (interview) citations.push(interviewCitation(interview, url));
+  const about = entities[id] || subject;
+  const article = {...oldArticle,'@id':`${url}#article`,url,description:b.introduction,abstract:b.introduction,datePublished:b.publishedDate,dateModified:b.modifiedDate,author:editor,publisher:editor,about,citation:citations,isPartOf:{'@id':website['@id']}};
   html = replaceOnce(html, /<script\s+type="application\/ld\+json"[^>]*>[\s\S]*?<\/script>/, `<script type="application/ld+json">${json(article)}</script>`, `${id} Article`);
   const breadcrumb = {'@type':'BreadcrumbList','@id':`${url}#breadcrumb`,itemListElement:[
     {'@type':'ListItem',position:1,name:'トップ',item:`${base}/`},
@@ -105,7 +119,7 @@ for (const filename of ['index.html','articles.html','editor.html','guide.html',
   const title = plain(html.match(/<title>([\s\S]*?)<\/title>/)[1]);
   const page = {'@type':filename === 'articles.html' ? 'CollectionPage' : 'WebPage','@id':`${url}#webpage`,url,name:title,inLanguage:'ja',isPartOf:{'@id':website['@id']},publisher:{'@id':editor['@id']}};
   // This is the date this metadata/content revision was prepared, not each build time.
-  page.dateModified = ['index.html', 'articles.html'].includes(filename) ? '2026-10-07' : '2026-09-28';
+  page.dateModified = ['index.html', 'articles.html', 'guide.html'].includes(filename) ? '2026-10-12' : '2026-09-28';
   if (filename === 'editor.html') page.about = {'@id':editor['@id']};
   const nodes = [website,editor,page];
   if (filename === 'articles.html') {

@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 'use strict';
 
-// dist/ contains only this allowlist. Pages currently publishes main/;
-// stage-branch-root.js copies this snapshot there and retires obsolete AI files.
+// dist/ contains only this allowlist. The live domain is served by XServer.
+// stage-branch-root.js maintains the reviewed GitHub mirror; deployment is separate.
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -93,7 +93,7 @@ const generatedFiles = {
   'CNAME': `${domain}\n`,
   'robots.txt': `User-agent: *\nAllow: /\n\nSitemap: ${siteUrl}/sitemap.xml\n`,
   'sitemap.xml': `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${metadata.map(item => `  <url><loc>${siteUrl}${item.page}</loc>${item.lastmod ? `<lastmod>${xml(item.lastmod)}</lastmod>` : ''}</url>`).join('\n')}\n</urlset>\n`,
-  'llms.txt': `# みんなの評判.com\n\n> ネットニュースで紹介された企業・代表者・サービスについて、ニュース記事と公式サイトなどの公開情報を調べる個人運営メディアです。\n\n## サイトについて\n\n- 運営者・編集責任者: 漆沢祐樹\n- [編集責任者](${siteUrl}/editor.html)\n- [調査方法と記事の読み方](${siteUrl}/guide.html)\n- [記事一覧](${siteUrl}/articles.html)\n- [サイトマップ](${siteUrl}/sitemap.xml)\n\nこのファイルは公開記事の案内です。各記事の本文に、情報源、確認日、ニュースで報じられた内容、企業が公表した内容、口コミの確認範囲を記載しています。複数媒体への同一記事の掲載と、独立した取材・利用者による評価は区別しています。\n\n## 公開記事\n\n${articleIndex}\n`,
+  'llms.txt': `# みんなの評判.com\n\n> ネットニュースで紹介された企業・代表者・サービスについて、ニュース記事・公式情報・提供された取材記録から企業の具体像を調べる個人運営メディアです。\n\n## サイトについて\n\n- 運営者・編集責任者: 漆沢祐樹\n- [編集責任者](${siteUrl}/editor.html)\n- [調査方法と記事の読み方](${siteUrl}/guide.html)\n- [記事一覧](${siteUrl}/articles.html)\n- [サイトマップ](${siteUrl}/sitemap.xml)\n\nこのファイルは公開記事の案内です。各記事の本文に、情報源、確認日、ニュースで報じられた内容、企業が公表した内容、口コミの確認範囲を記載しています。複数媒体への同一記事の掲載と、独立した取材・利用者による評価は区別しています。\n\n## 公開記事\n\n${articleIndex}\n`,
   'feed.xml': `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">\n<channel>\n  <title>みんなの評判.com</title>\n  <link>${siteUrl}/</link>\n  <description>ニュースと公開情報から企業・代表者・サービスの口コミ・評判・実績を調べる個人運営メディア</description>\n  <language>ja</language>\n  <atom:link href="${siteUrl}/feed.xml" rel="self" type="application/rss+xml"/>\n${metadata.filter(item => item.page.startsWith('/reports/')).map(item => `  <item>\n    <title>${xml(item.title)}</title>\n    <link>${siteUrl}${item.page}</link>\n    <guid isPermaLink="true">${siteUrl}${item.page}</guid>\n    <description>${xml(item.description)}</description>\n    <dc:creator>漆沢祐樹</dc:creator>${item.pubDate ? `\n    <pubDate>${item.pubDate}</pubDate>` : ''}\n  </item>`).join('\n')}\n</channel>\n</rss>\n`,
 };
 

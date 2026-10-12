@@ -5,6 +5,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const {validateGuide} = require('./lib/report-reader-guide');
+const {validateInterview, validateInterviewReference, sourceHref, interviewCitation, renderInterview} = require('./lib/report-interviews');
 
 const root = path.resolve(__dirname, '..');
 const read = file => fs.readFileSync(path.join(root, file), 'utf8');
@@ -97,6 +98,9 @@ for (const file of ['content/search-briefs-bulk.json', 'content/search-briefs-or
 }
 const coverage = {};
 let readerGuides = {};
+let interviews = {}, entities = {};
+try { interviews = JSON.parse(read('content/report-interviews.json')); entities = JSON.parse(read('content/report-entities.json')).articles; }
+catch (error) { problems.push(`取材・対象データを読み取れません (${error.message})。`); }
 try { readerGuides = JSON.parse(read('content/report-reader-guides.json')); }
 catch (error) { problems.push(`まとめ・FAQデータを読み取れません (${error.message})。`); }
 try {
@@ -134,6 +138,8 @@ for (const file of ['index.html', 'articles.html', 'guide.html', 'editor.html', 
 for (const id of Object.keys(briefs)) check(reportIds.includes(id), `検索要約 ${id} の公開記事がありません。`);
 for (const id of Object.keys(coverage)) check(reportIds.includes(id), `掲載媒体情報 ${id} の公開記事がありません。`);
 for (const id of Object.keys(readerGuides)) check(reportIds.includes(id), `まとめ・FAQ ${id} の公開記事がありません。`);
+for (const id of Object.keys(interviews)) check(reportIds.includes(id), `取材記録 ${id} の公開記事がありません。`);
+for (const id of Object.keys(entities)) check(reportIds.includes(id), `対象データ ${id} の公開記事がありません。`);
 for (const id of reportIds) {
   const file = `site-v2/reports/${id}/index.html`;
   if (!fs.existsSync(path.join(root, file))) {
@@ -167,7 +173,17 @@ for (const id of reportIds) {
   check(article.mainEntityOfPage === canonicalUrl, `${file}: JSON-LD の URL が一致しません。`);
   checkIndexable(html, file);
   const guide = readerGuides[id];
-  try { validateGuide(guide, id); }
+  const interview = interviews[id];
+  const expectedInterview = interview ? interviewCitation(interview, canonicalUrl) : null;
+  if (interview) {
+    try {
+      validateInterview(interview, id);
+      check(html.includes(renderInterview(interview, id).trim()), `${file}: 取材本文・会社情報が編集原稿と一致しません。`);
+      check(article.citation?.some(source => JSON.stringify(source) === JSON.stringify(expectedInterview)), `${file}: 公開用取材出典が構造化データにありません。`);
+      for (const faq of interview.faqs) check(guide?.faqs?.some(item => item.question === faq.question && item.answer === faq.answer && item.sources.some(s => s.kind === 'interview')), `${file}: 取材FAQが反映されていません。`);
+    } catch (error) { problems.push(`${file}: ${error.message}`); }
+  } else check(!html.includes('<!-- INTERVIEW_NOTES_START -->'), `${file}: 未登録の取材情報があります。`);
+  try { validateGuide(guide, id, interview); }
   catch (error) { problems.push(`${file}: ${error.message}`); }
   if (guide?.summary && guide?.faqs) {
     const sections = [...html.matchAll(/<!-- READER_GUIDE_START -->([\s\S]*?)<!-- READER_GUIDE_END -->/g)];
@@ -185,8 +201,9 @@ for (const id of reportIds) {
       const anchors = [...body.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi)]
         .map(([, attrs, text]) => ({...attributes(attrs), label: plainText(text)}));
       for (const source of item.sources || []) {
-        check(anchors.some(anchor => anchor.href === source.url && sameText(anchor.label, source.label)), `${file}: 回答の出典リンクが一致しません (${source.label})。`);
-        if (externalUrl(source.url)) check(article.citation?.includes(source.url), `${file}: まとめ・FAQの出典が Article.citation にありません。`);
+        check(anchors.some(anchor => anchor.href === sourceHref(source) && sameText(anchor.label, source.label)), `${file}: 回答の出典リンクが一致しません (${source.label})。`);
+        if (source.kind === 'interview') check(!!interview && source.interviewId === 'interview-notes', `${file}: 未登録の取材出典があります。`);
+        else if (externalUrl(source.url)) check(article.citation?.includes(source.url), `${file}: まとめ・FAQの出典が Article.citation にありません。`);
         else check(reportIds.some(other => source.url === `/reports/${other}/`), `${file}: FAQの関連記事リンクが公開記事と一致しません。`);
       }
     }
@@ -208,21 +225,26 @@ for (const id of reportIds) {
     check(!/(?:\s|^)hidden(?:\s|=|>)|aria-hidden=["']true["']|display\s*:\s*none|visibility\s*:\s*hidden/i.test(briefSection), `${file}: 検索要約が非表示になっています。`);
     check(containsText(markedBrief, brief.introduction), `${file}: 要約の導入文が編集データと一致しません。`);
     check(sameText(article.abstract, brief.introduction), `${file}: Article.abstract が読者向けの導入文と一致しません。`);
-    check(article.about?.name === brief.subject?.name && article.about?.['@type'] === brief.subject?.type,
+    const aboutNodes = Array.isArray(article.about) ? article.about : [article.about];
+    check(aboutNodes.some(node => node?.name === brief.subject?.name && node?.['@type'] === brief.subject?.type),
       `${file}: Article.about が記事の対象と一致しません。`);
+    if (entities[id]) check(JSON.stringify(article.about) === JSON.stringify(entities[id]), `${file}: 公開済み対象パッチが編集データと一致しません。`);
     check(article.datePublished === brief.publishedDate && article.dateModified === brief.modifiedDate,
       `${file}: 公開・更新日が記事別の編集データと一致しません。`);
     const citations = Array.isArray(article.citation) ? article.citation : [];
-    check(citations.length >= 1 && citations.every(externalUrl), `${file}: Article.citation に有効な外部資料URLが必要です。`);
+    check(citations.some(externalUrl) && citations.every(source => externalUrl(source) || (expectedInterview && JSON.stringify(source) === JSON.stringify(expectedInterview))), `${file}: Article.citation に無効または未登録の出典があります。`);
     const anchors = [...markedBrief.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi)]
       .map(([, attrs, body]) => ({ ...attributes(attrs), label: plainText(body) }));
     for (const key of ['strengths', 'record', 'reputation']) {
       const answer = brief[key] || {};
       check(typeof answer.text === 'string' && containsText(markedBrief, answer.text), `${file}: ${key} の回答が編集データと一致しません。`);
-      check(externalUrl(answer.sourceUrl), `${file}: ${key} の出典は有効な外部URLにしてください。`);
-      check(!!answer.sourceLabel && anchors.some(anchor => anchor.href === answer.sourceUrl && sameText(anchor.label, answer.sourceLabel)),
+      const source = answer.source || {url:answer.sourceUrl,label:answer.sourceLabel};
+      if (source.kind === 'interview') {
+        try { validateInterviewReference(source, interview, id); } catch (error) { problems.push(`${file}: ${error.message}`); }
+      } else check(externalUrl(source.url), `${file}: ${key} の出典は有効な外部URLにしてください。`);
+      check(!!source.label && anchors.some(anchor => anchor.href === sourceHref(source) && sameText(anchor.label, source.label)),
         `${file}: ${key} の回答に対応する出典リンクがありません。`);
-      check(citations.includes(answer.sourceUrl), `${file}: ${key} の資料が Article.citation にありません。`);
+      if (source.kind !== 'interview') check(citations.includes(source.url), `${file}: ${key} の資料が Article.citation にありません。`);
     }
     if (mediaRecord) {
       const spotlights = [...markedBrief.matchAll(/<section\b[^>]*class=["'][^"']*\bmedia-spotlight\b[^"']*["'][^>]*>([\s\S]*?)<\/section>/gi)];
