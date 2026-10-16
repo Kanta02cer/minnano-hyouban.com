@@ -886,6 +886,68 @@
         "@id": "https://minnano-hyouban.com/reports/12042/#named-entity-2",
         "name": "AI点呼さん"
       }
+    ],
+    "12043": [
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/12043/#subject",
+        "name": "吉岡泰生",
+        "jobTitle": "代表者",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "株式会社京阪物流",
+          "url": "https://keihan-logistics.video-c.jp/"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/12043/#named-entity-2",
+        "name": "株式会社京阪物流",
+        "url": "https://keihan-logistics.video-c.jp/"
+      },
+      {
+        "@type": "Service",
+        "@id": "https://minnano-hyouban.com/reports/12043/#named-entity-3",
+        "name": "AI点呼さん",
+        "url": "https://tenkobot.vercel.app/"
+      }
+    ],
+    "12104": [
+      {
+        "@type": "Organization",
+        "@id": "https://minnano-hyouban.com/reports/12104/#subject",
+        "name": "株式会社Levela",
+        "url": "https://levela.co.jp/"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://minnano-hyouban.com/reports/12104/#named-entity-2",
+        "name": "駒居康樹",
+        "jobTitle": "代表取締役",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "株式会社Levela",
+          "url": "https://levela.co.jp/"
+        }
+      },
+      {
+        "@type": "Service",
+        "@id": "https://minnano-hyouban.com/reports/12104/#named-entity-3",
+        "name": "SnsClub",
+        "provider": {
+          "@type": "Organization",
+          "name": "株式会社Levela"
+        }
+      },
+      {
+        "@type": "Service",
+        "@id": "https://minnano-hyouban.com/reports/12104/#named-entity-4",
+        "name": "エスキャン",
+        "provider": {
+          "@type": "Organization",
+          "name": "株式会社Levela"
+        }
+      }
     ]
   }
 }

@@ -9072,5 +9072,319 @@
         ]
       }
     ]
+  },
+  "12043": {
+    "summary": [
+      {
+        "text": "吉岡泰生氏の取材記録からは、日々の管理を整える発想と、自分に集まる確認業務を仕組みに移したいという開発の背景が分かります。京阪物流での運営経験を、少人数の運送会社が検討できる業務支援へつなげようとする点が、人物と事業を合わせて見る際の特徴です。",
+        "sources": [
+          {
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "吉岡泰生氏の提供された取材記録（表示日：2026年9月16日）"
+          }
+        ]
+      },
+      {
+        "text": "吉岡氏の歩みは4媒体の取材記事で紹介されています。公式情報では京阪物流の代表者・所在地と、AI点呼さんの機能・利用条件を確認できます。人物像と実際の提供内容を合わせて読み、自社の連絡手順、費用、導入後の対応を相談することが、具体的な検討につながります。",
+        "sources": [
+          {
+            "url": "https://www.globalnewsasia.com/article.php?country=4&id=12043",
+            "label": "吉岡泰生氏を紹介する取材記事"
+          },
+          {
+            "url": "https://keihan-logistics.video-c.jp/",
+            "label": "京阪物流・公式会社概要"
+          },
+          {
+            "url": "https://tenkobot.vercel.app/terms",
+            "label": "AI点呼さん・利用規約"
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "吉岡泰生氏は、どの会社の代表ですか？",
+        "answer": "2026年10月16日に確認した京阪物流の公式会社概要では、代表者を吉岡泰生氏と記載しています。所在地は京都市伏見区、設立は2023年5月です。",
+        "sources": [
+          {
+            "url": "https://keihan-logistics.video-c.jp/",
+            "label": "京阪物流・公式会社概要"
+          }
+        ]
+      },
+      {
+        "question": "AIロジサポートと京阪物流は別の会社ですか？",
+        "answer": "人物ニュースは、京阪物流の吉岡氏が社名をAIロジサポート株式会社へ変更する予定と伝えています。10月16日に確認した会社概要とAI点呼さんの利用規約は株式会社京阪物流の表記でした。本記事では、社名変更の完了を確認済みとして扱っていません。",
+        "sources": [
+          {
+            "url": "https://www.globalnewsasia.com/article.php?country=4&id=12043",
+            "label": "社名変更予定を伝える人物ニュース"
+          },
+          {
+            "url": "https://tenkobot.vercel.app/terms",
+            "label": "AI点呼さん・利用規約"
+          }
+        ]
+      },
+      {
+        "question": "吉岡氏のニュースは、どの媒体で読めますか？",
+        "answer": "2026年10月12日の人物紹介記事は、Global News Asia、楽天インフォシーク、エキサイトニュース、ニコニコニュースで確認できます。同じ取材記事の4つの掲載先で、各媒体による別々の評価や推薦を意味しません。",
+        "sources": [
+          {
+            "url": "https://www.globalnewsasia.com/article.php?country=4&id=12043",
+            "label": "Global News Asia"
+          },
+          {
+            "url": "https://news.infoseek.co.jp/article/globalnewsasia_12043/",
+            "label": "楽天インフォシーク"
+          },
+          {
+            "url": "https://www.excite.co.jp/news/article/Global_news_asia_12043/",
+            "label": "エキサイトニュース"
+          },
+          {
+            "url": "https://news.nicovideo.jp/watch/nw19869816",
+            "label": "ニコニコニュース"
+          }
+        ]
+      },
+      {
+        "question": "吉岡氏が開発に取り組む「AI点呼さん」は何ですか？",
+        "answer": "運送・配送業の業務管理アプリです。公式アプリ案内には、業務報告、位置情報の共有、管理者などへの通知リレー、車両管理、日報のPDF出力などが掲載されています。機能は開発者の案内に基づくもので、当サイトが実地検証した結果ではありません。",
+        "sources": [
+          {
+            "url": "https://play.google.com/store/apps/details?id=com.mellkun.tenkobot&hl=ja",
+            "label": "AI点呼さん・公式アプリ案内"
+          }
+        ]
+      },
+      {
+        "question": "どのような会社を対象とするサービスですか？",
+        "answer": "公式アプリ案内は、ドライバー1〜30名規模の中小事業者や、紙の日報をデジタル化したい会社、協力会社との情報共有を強化したい会社を挙げています。自社の人数だけでなく、連絡手順や記録方法との適合を確認すると検討しやすくなります。",
+        "sources": [
+          {
+            "url": "https://play.google.com/store/apps/details?id=com.mellkun.tenkobot&hl=ja",
+            "label": "公式アプリ案内・対象事業者"
+          }
+        ]
+      },
+      {
+        "question": "利用料金や契約条件は、どこで確認できますか？",
+        "answer": "公式利用規約では、組織が選ぶプラン・オプションに加え、電話通知などの従量料金を案内しています。現在の見積りは、利用する人数と通知方法を整理し、公式窓口で確認してください。",
+        "sources": [
+          {
+            "url": "https://tenkobot.vercel.app/terms",
+            "label": "AI点呼さん・料金に関する利用規約"
+          }
+        ]
+      },
+      {
+        "question": "導入時に位置情報の共有範囲は確認できますか？",
+        "answer": "公式プライバシーポリシーでは、管理者がコースごとの共有を有効にした場合、始業から終業まで位置情報を取得すると説明しています。協力会社への共有設定や、利用者本人への説明・同意の手順も確認できます。",
+        "sources": [
+          {
+            "url": "https://tenkobot.vercel.app/privacy",
+            "label": "AI点呼さん・プライバシーポリシー"
+          }
+        ]
+      },
+      {
+        "question": "吉岡泰生氏の口コミ・評判や、導入効果は確認できますか？",
+        "answer": "今回確認したニュース、公式会社概要、アプリ掲載ページでは、本人に対する具体的な顧客口コミや、削減時間・導入社数の検証資料は十分に確認できませんでした。公表されている機能や掲載実績を参考に、自社に近い導入例とサポート範囲を公式窓口へ相談するとよいでしょう。",
+        "sources": [
+          {
+            "url": "https://www.globalnewsasia.com/article.php?country=4&id=12043",
+            "label": "確認した人物紹介記事"
+          },
+          {
+            "url": "https://play.google.com/store/apps/details?id=com.mellkun.tenkobot&hl=ja",
+            "label": "確認した公式アプリ掲載ページ"
+          }
+        ]
+      },
+      {
+        "question": "吉岡泰生氏は、なぜ運送事業からアプリ開発へ移ろうとしたのですか？",
+        "answer": "提供された取材記録では、運送事業を運営するなかで、自分に集まる確認・集計業務の負担を感じたと説明しています。取材当時は運送事業を縮小し、その経験を生かしたアプリ開発へ移行する過程にありました。",
+        "sources": [
+          {
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "吉岡泰生氏の提供された取材記録（表示日：2026年9月16日）"
+          }
+        ]
+      },
+      {
+        "question": "吉岡氏が、機能を考えるときに重視したことは何ですか？",
+        "answer": "取材では、従業員の出勤傾向や車両の走行距離など、経営者が調べたい情報を取り出せることを重視しています。記録を残すだけでなく、管理者が次の判断に使えるようにするという、本人が説明した開発の視点です。",
+        "sources": [
+          {
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "吉岡泰生氏の提供された取材記録（表示日：2026年9月16日）"
+          }
+        ]
+      }
+    ]
+  },
+  "12104": {
+    "summary": [
+      {
+        "text": "株式会社LevelaのSnsClubでは、学習者が投稿を始め、改善を続けるための支援を重視していると駒居康樹氏は説明しています。提供された取材記録からは、最初の作業の細分化、停滞時の声かけ、講師間の相談、指導内容の確認という運営上の工夫が読み取れます。",
+        "sources": [
+          {
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "駒居康樹氏の提供取材記録（表示日：2026年8月21日）"
+          }
+        ]
+      },
+      {
+        "text": "駒居代表を取り上げたニュースは4媒体に掲載され、Levelaの事業背景を知る入口になっています。受講を考える際は、掲載実績と学習成果を分けて捉え、自分が取り組める時間、必要な支援、費用・契約条件を公式窓口で確認することが、サービス選びにつながります。",
+        "sources": [
+          {
+            "label": "駒居康樹代表を紹介した取材記事",
+            "url": "https://www.globalnewsasia.com/article.php?country=4&id=12104"
+          },
+          {
+            "label": "Levela公式・サービス案内",
+            "url": "https://levela.co.jp/service/"
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "株式会社Levelaは、どんな会社ですか？",
+        "answer": "株式会社Levelaは、駒居康樹氏が代表取締役を務めるオンライン教育の会社です。公式サイトではSnsClubとエスキャンを案内しています。",
+        "sources": [
+          {
+            "label": "Levela公式・会社概要",
+            "url": "https://levela.co.jp/about/"
+          },
+          {
+            "label": "Levela公式・サービス案内",
+            "url": "https://levela.co.jp/service/"
+          }
+        ]
+      },
+      {
+        "question": "SnsClubでは、何を学べますか？",
+        "answer": "駒居氏は、投稿づくり、フォロワーを増やす考え方、その後の収益化を半年間かけて学ぶスクールと説明しています。詳しいカリキュラムは公式案内で確認できます。",
+        "sources": [
+          {
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "駒居康樹氏の提供取材記録（表示日：2026年8月21日）"
+          },
+          {
+            "label": "SnsClub公式案内",
+            "url": "https://levela.co.jp/snsclub/lp/01/"
+          }
+        ]
+      },
+      {
+        "question": "エスキャンは、SnsClubとどう違いますか？",
+        "answer": "公式案内では、SnsClubは6か月のスクール、エスキャンはSNSの学習・実践を支える月額制サロンです。学ぶ期間と受けられる支援を比較して選べます。",
+        "sources": [
+          {
+            "label": "Levela公式・2つのサービス案内",
+            "url": "https://levela.co.jp/service/"
+          }
+        ]
+      },
+      {
+        "question": "Levelaや駒居代表には、どのような掲載実績がありますか？",
+        "answer": "2026年10月15日の駒居康樹代表の取材記事は、Global News Asia、楽天インフォシーク、エキサイトニュース、ニコニコニュースで確認できました。同一記事の4媒体掲載です。",
+        "sources": [
+          {
+            "label": "Global News Asia掲載記事",
+            "url": "https://www.globalnewsasia.com/article.php?country=4&id=12104"
+          },
+          {
+            "label": "楽天インフォシーク掲載記事",
+            "url": "https://news.infoseek.co.jp/article/globalnewsasia_12104/"
+          },
+          {
+            "label": "エキサイトニュース掲載記事",
+            "url": "https://www.excite.co.jp/news/article/Global_news_asia_12104/"
+          },
+          {
+            "label": "ニコニコニュース掲載記事",
+            "url": "https://news.nicovideo.jp/watch/nw19880150"
+          }
+        ]
+      },
+      {
+        "question": "LevelaやSnsClubの口コミ・評判は確認しましたか？",
+        "answer": "本記事はニュース、公式説明、提供された取材記録を確認しています。当サイトが独立した受講生調査や口コミの集計を行ったものではなく、代表者の説明を受講生全体の評価として扱っていません。",
+        "sources": [
+          {
+            "label": "確認したLevela公式情報",
+            "url": "https://levela.co.jp/about/"
+          },
+          {
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "駒居康樹氏の提供取材記録（表示日：2026年8月21日）"
+          }
+        ]
+      },
+      {
+        "question": "フォロワー増加や収益化は保証されていますか？",
+        "answer": "この記事では成果を保証していません。駒居氏も、学習者が実際に投稿することを重視すると説明しています。自分の目的、投稿に使える時間、契約上の条件を確かめて判断してください。",
+        "sources": [
+          {
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "駒居康樹氏の提供取材記録（表示日：2026年8月21日）"
+          }
+        ]
+      },
+      {
+        "question": "初心者は、最初から独自の投稿を作る必要がありますか？",
+        "answer": "駒居氏は、まず基本的な作り方を実践し、その後に独自の工夫を加える指導方針を説明しています。自己流で迷っている人は、基本を学ぶ段階でどのような助言を受けられるか相談できます。",
+        "sources": [
+          {
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "駒居康樹氏の提供取材記録（表示日：2026年8月21日）"
+          }
+        ]
+      },
+      {
+        "question": "料金や受講条件は、どこで確認できますか？",
+        "answer": "SnsClubの公式案内には無料カウンセリングへの導線があります。支払総額、期間、支援内容、解約・返金条件を申し込み前に確認してください。本記事では未確認の現行料金を掲載していません。",
+        "sources": [
+          {
+            "label": "SnsClub公式案内",
+            "url": "https://levela.co.jp/snsclub/lp/01/"
+          }
+        ]
+      },
+      {
+        "question": "SnsClubは、初めての投稿をどう支援していますか？",
+        "answer": "駒居康樹氏の取材記録では、最初の投稿を完成させる作業を細かな課題に分け、学習が止まった場合には講師やサポート担当が声をかけると説明しています。取材当時の運営方法であり、現在の支援範囲は入会前に確認してください。",
+        "sources": [
+          {
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "駒居康樹氏の提供取材記録（表示日：2026年8月21日）"
+          }
+        ]
+      },
+      {
+        "question": "講師によって得意分野が異なる場合は、どう対応しますか？",
+        "answer": "駒居氏は、講師同士がコミュニティで相談し、専門外の発信分野について別の講師の知見を借りられると説明しています。マネージャーによる指導内容の確認も語られていますが、現在の担当体制は公式窓口で確かめてください。",
+        "sources": [
+          {
+            "kind": "interview",
+            "interviewId": "interview-notes",
+            "label": "駒居康樹氏の提供取材記録（表示日：2026年8月21日）"
+          }
+        ]
+      }
+    ]
   }
 }

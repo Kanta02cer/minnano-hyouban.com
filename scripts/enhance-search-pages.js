@@ -52,7 +52,9 @@ for (const id of reportIds) {
   html = html.replace(/\n<!-- INTERVIEW_NOTES_START -->[\s\S]*?<!-- INTERVIEW_NOTES_END -->\n/g, '');
   html = html.replace(/<span id="report-detail"><\/span>/g, '');
   html = html.replace(/<script type="application\/ld\+json" data-search-graph>[\s\S]*?<\/script>\n/g, '');
-  const oldArticle = JSON.parse(html.match(/<script\s+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/)[1]);
+  const articleMatch = html.match(/<script\s+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/);
+  if (!articleMatch) throw new Error(`Missing source Article metadata: ${id}`);
+  const oldArticle = JSON.parse(articleMatch[1]);
   const heading = oldArticle.headline;
   const subject = {'@type':b.subject.type, '@id':`${url}#subject`, name:b.subject.name};
   const answers = [
@@ -119,7 +121,7 @@ for (const filename of ['index.html','articles.html','editor.html','guide.html',
   const title = plain(html.match(/<title>([\s\S]*?)<\/title>/)[1]);
   const page = {'@type':filename === 'articles.html' ? 'CollectionPage' : 'WebPage','@id':`${url}#webpage`,url,name:title,inLanguage:'ja',isPartOf:{'@id':website['@id']},publisher:{'@id':editor['@id']}};
   // This is the date this metadata/content revision was prepared, not each build time.
-  page.dateModified = ['index.html', 'articles.html', 'guide.html'].includes(filename) ? '2026-10-12' : '2026-09-28';
+  page.dateModified = ['index.html', 'articles.html'].includes(filename) ? '2026-10-16' : filename === 'guide.html' ? '2026-10-12' : '2026-09-28';
   if (filename === 'editor.html') page.about = {'@id':editor['@id']};
   const nodes = [website,editor,page];
   if (filename === 'articles.html') {
