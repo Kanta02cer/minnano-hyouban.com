@@ -255,7 +255,8 @@ def report(source, article_id, entry):
         if attrs.get("id") == "company-profile":
             company = raw
         elif "original-deck" in classes:
-            misc.append(raw)
+            # Reviewed leads repeat facts retained in the article and new intro.
+            continue
         elif "legacy-context" in classes:
             references.append(raw)
         elif "official-visit" in classes:
@@ -267,10 +268,6 @@ def report(source, article_id, entry):
                 stories.append(raw)
         else:
             misc.append(raw)
-    # Keep the original introduction if the newly edited lead is different.
-    old_deck = re.search(r'<p\b[^>]*class="[^"]*(?:report-deck|lede)[^"]*"[^>]*>([\s\S]*?)</p>', source)
-    if old_deck and plain(old_deck[1]) != entry["lead"] and not any("original-deck" in x for x in misc):
-        misc.insert(0, '<p class="original-deck">' + old_deck[1] + "</p>")
     # Source-backed dates and author remain visible at the start.
     byline = re.search(r'<p\b[^>]*class="report-byline"[^>]*>[\s\S]*?</p>', brief)
     byline_html = byline[0] if byline else ""
