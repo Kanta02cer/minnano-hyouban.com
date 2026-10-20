@@ -6,8 +6,10 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { validateMeasurement } = require('./validate-measurement');
+const {validateHeldReports} = require('./lib/held-reports');
 
 const root = path.resolve(__dirname, '..');
+validateHeldReports(root);
 const sourceDir = path.join(root, 'site-v2');
 const outputDir = path.join(root, 'dist');
 const siteUrl = 'https://minnano-hyouban.com';
@@ -25,6 +27,9 @@ const publicFiles = [
   ['site-v2/site.css', 'site.css'],
   ['site-v2/home-b.css', 'home-b.css'],
   ['site-v2/site.js', 'site.js'],
+  ...['brand-story.css', 'brand-story.js', 'sachi-plamo-murakami-11755.jpg',
+    'hira-tire-tanaka-11627.jpg', 'brain-sako-11820.jpg']
+    .map(file => [`site-v2/${file}`, file]),
   ...['media-clicks.js', 'media-analytics-bootstrap.js', 'media-analytics-entry.js', 'media-consent.css']
     .map(file => [`site-v2/${file}`, file]),
   ['site-v2/sw.js', 'sw.js'],

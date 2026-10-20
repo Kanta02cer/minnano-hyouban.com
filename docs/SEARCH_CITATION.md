@@ -6,6 +6,11 @@
 
 ## 編集データと生成順序
 
+2026-10-20採用の見出し分離・文章基準・記事単位の編集手順は `BRAND_STORY_WORKFLOW.md` に従う。HTML titleは検索意図を保ち、H1・OG・Article.headline・一覧は読者向けの見出しと一致させる。65記事の個別本文を旧一括生成で置換しない。11906は保留を維持する。
+
+- `content/report-presentation.json`：表示見出し、対象名、導入、実際の編集日、レビュー済み本文訂正。
+- `scripts/apply-brand-design.py`：既存の根拠付き本文へ編集記事レイアウトを適用し、一覧と見出しを整える。
+
 - `content/search-briefs-bulk.json`：2026年9月27日の一括追加53記事の要約。
 - `content/search-briefs-original.json`：既存8記事と、その後に個別追加する記事の要約。
 - `content/bulk-report-sources.json`：一括追加53記事のニュース掲載日・見出し・掲載媒体URL。冒頭の掲載媒体表示にも使う。
@@ -53,13 +58,13 @@ JSONは記事IDをキーとし、次の形を使う。例の値を公開原稿�
 原稿・要約データ・記事一覧を更新してから、以下の順に実行する。
 
 ```bash
-node scripts/enhance-search-pages.js
+node scripts/enhance-search-pages.js --id 対象ID
 node scripts/validate-public-v2.js
 npm run build:branch-root
 node scripts/stage-branch-root.js --check
 ```
 
-一括生成53記事のうち、後日個別に書き直した11098（MIRACLE PILLOW）・11155（NEXT MISSION）は、`site-v2/reports/<id>/index.html` の本文を編集上の正本として保持する。旧一括生成は `INDIVIDUALLY_EDITED_REPORTS` に登録した記事を上書きしない。これらの訂正時は `content/bulk-report-sources.json`、`content/bulk-report-angles.tsv`、`content/search-briefs-bulk.json`、`content/report-reader-guides.json` と個別本文を揃え、`node scripts/enhance-search-pages.js` を実行する。元の初回公開日を維持し、更新日だけ実際の編集日にする。
+一括生成53記事のうち、後日個別に書き直した11098（MIRACLE PILLOW）・11155（NEXT MISSION）は、`site-v2/reports/<id>/index.html` の本文を編集上の正本として保持する。旧一括生成は `INDIVIDUALLY_EDITED_REPORTS` に登録した記事を上書きしない。これらの訂正時は `content/bulk-report-sources.json`、`content/bulk-report-angles.tsv`、`content/search-briefs-bulk.json`、`content/report-reader-guides.json` と個別本文を揃え、`node scripts/enhance-search-pages.js --id 対象ID` を実行する。元の初回公開日を維持し、更新日だけ実際の編集日にする。
 
 2026年10月4日に11970（内山成児代表）を追加した際、11968（株式会社リンクス）も `INDIVIDUALLY_EDITED_REPORTS` に登録した。11968の保全は、個別に追加した11970への関連リンクを旧一括生成で失わないための措置であり、11098・11155の本文全面更新とは区別する。関連リンクを変更する際も個別HTMLと実際の更新日を揃える。
 

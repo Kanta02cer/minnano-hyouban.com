@@ -14,6 +14,8 @@ from collections import defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+if (ROOT / 'content/report-presentation.json').exists():
+    raise SystemExit('2026-10-20採用の個別本文を保護するため、旧一括生成は停止しました。docs/BRAND_STORY_WORKFLOW.mdに従って記事単位で編集してください。')
 DATE = '2026-09-27'
 # Rewritten individually on 2026-10-04; never replace these with the old template.
 INDIVIDUALLY_EDITED_REPORTS = {'11098', '11155', '11968'}

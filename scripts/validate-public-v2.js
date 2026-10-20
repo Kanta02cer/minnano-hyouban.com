@@ -4,10 +4,12 @@
 // Source-level checks for each public report. Run before npm run build.
 const fs = require('node:fs');
 const path = require('node:path');
+const {validateHeldReports} = require('./lib/held-reports');
 const {validateGuide} = require('./lib/report-reader-guide');
 const {validateInterview, validateInterviewReference, sourceHref, interviewCitation, renderInterview} = require('./lib/report-interviews');
 
 const root = path.resolve(__dirname, '..');
+validateHeldReports(root);
 const read = file => fs.readFileSync(path.join(root, file), 'utf8');
 const problems = [];
 const requiredWords = ['口コミ', '評判', '実績'];
@@ -164,8 +166,18 @@ for (const id of reportIds) {
   const jsonText = contentOf(html, /<script\s+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/i);
   let article = {};
   try { article = JSON.parse(jsonText); } catch { problems.push(`${file}: Article JSON-LD を解析できません。`); }
-  for (const [field, value] of [['title', title], ['og:title', ogTitle], ['h1', h1], ['JSON-LD headline', article.headline || '']]) {
+  const branded = html.includes('data-brand-story="20261020"');
+  const titleFields = branded ? [['title', title]] : [['title', title], ['og:title', ogTitle], ['h1', h1], ['JSON-LD headline', article.headline || '']];
+  for (const [field, value] of titleFields) {
     check(requiredWords.every(word => value.includes(word)), `${file}: ${field} に「口コミ・評判・実績」が揃っていません。`);
+  }
+  if (branded) {
+    const presentation = JSON.parse(read('content/report-presentation.json'))[id];
+    check(!!presentation?.identity && !!presentation?.heading && !!presentation?.lead, `${file}: 編集見出しの原稿がありません。`);
+    const headline = presentation ? `${presentation.identity}｜${presentation.heading}` : '';
+    check(sameText(h1, headline) && sameText(ogTitle, headline) && sameText(article.headline || '', headline),
+      `${file}: 表示H1・OG・Article.headlineが編集見出しと一致しません。`);
+    check(containsText(html, presentation?.lead || ''), `${file}: 編集した導入が本文にありません。`);
   }
   check(article['@type'] === 'Article', `${file}: JSON-LD の @type が Article ではありません。`);
   check(html.includes(`<link rel="canonical" href="${canonicalUrl}">`), `${file}: canonical URL が一致しません。`);
@@ -178,7 +190,9 @@ for (const id of reportIds) {
   if (interview) {
     try {
       validateInterview(interview, id);
-      check(html.includes(renderInterview(interview, id).trim()), `${file}: 取材本文・会社情報が編集原稿と一致しません。`);
+      const renderedInterview = renderInterview(interview, id).trim();
+      const expectedSections = branded ? [...renderedInterview.matchAll(/<section\b[\s\S]*?<\/section>/g)].map(m => m[0]) : [renderedInterview];
+      check(expectedSections.every(section => html.includes(section)), `${file}: 取材本文・会社情報が編集原稿と一致しません。`);
       check(article.citation?.some(source => JSON.stringify(source) === JSON.stringify(expectedInterview)), `${file}: 公開用取材出典が構造化データにありません。`);
       for (const faq of interview.faqs) check(guide?.faqs?.some(item => item.question === faq.question && item.answer === faq.answer && item.sources.some(s => s.kind === 'interview')), `${file}: 取材FAQが反映されていません。`);
     } catch (error) { problems.push(`${file}: ${error.message}`); }

@@ -806,9 +806,18 @@
         "@type": "Organization",
         "@id": "https://minnano-hyouban.com/reports/11906/#airreach-company",
         "name": "株式会社マスターピース",
+        "address": {
+          "@type": "PostalAddress",
+          "postalCode": "910-0001",
+          "addressRegion": "福井県",
+          "addressLocality": "福井市",
+          "streetAddress": "大願寺2丁目8-8 la136本館5F",
+          "addressCountry": "JP"
+        },
         "brand": {
           "@id": "https://minnano-hyouban.com/reports/11906/#airreach-brand"
-        }
+        },
+        "url": "https://master-peace.jp/"
       },
       {
         "@type": "Brand",

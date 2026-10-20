@@ -56,14 +56,16 @@
 
 - 代表者ニュースと会社・サービスニュースが**異なる話題**なら、`site-v2/reports/<slug>/index.html` を別々に作って相互リンクする。単なる同一記事の転載先は別ページにしない。既存 URL の記事を更新するときは URL を維持する。新規 slug はニュース固有の ID が使えるならそれを、なければ一意の英数字とハイフンで作る。
 - 既存のレポートを雛形にし、概要、会社・サービス説明、ニュースから分かる点、確認できる実績、口コミの確認範囲、公式サイト CTA、掲載媒体、資料一覧、情報の限界を対象に合わせて書く。根拠がない欄は主張を作らず、確認できた範囲を明記する。
-- `<title>`、`og:title`、Article JSON-LD `headline`、`h1` の**それぞれ**に「口コミ」「評判」「実績」を入れる。`description`、canonical、OG URL、構造化データの URL と日付もページ固有に更新する。記事内リンク、同社記事への相互リンク、公式サイト URL を確認する。
+- 2026-10-20採用：検索用 `<title>` は内容に即して「口コミ」「評判」「実績」を残す。`h1`、`og:title`、Article `headline` は会社・人物固有の行動や工夫を伝える読者向け見出しとして一致させる。対象名は見出しの近くにも明示し、`content/report-presentation.json` へ登録する。`description`、canonical、OG URL、構造化データの URL と日付もページ固有に更新する。記事内リンク、同社記事への相互リンク、公式サイト URL を確認する。
 - 記事の対象と、根拠のある特徴・実績・口コミの確認範囲を、`content/search-briefs-bulk.json` または `content/search-briefs-original.json` の記事IDに記録する。前者は2026年9月27日の一括追加53記事、後者は既存8記事とその後の個別記事用。各項目の形と編集上の注意は `docs/SEARCH_CITATION.md` を参照する。新しい記事も必ず要約データを用意し、対象名・役割・出典を本文と照合する。
-- 原稿と検索要約を編集したら `node scripts/enhance-search-pages.js` を実行する。冒頭の表示要約、掲載媒体欄、著者・日付、メタ説明と構造化データの共通部分を反映する。生成された `SEARCH_BRIEF_START` から `SEARCH_BRIEF_END` は直接直さず、要約データから再生成する。要約データの `publishedDate` は当サイトの初回公開日、`modifiedDate` は実際の編集更新日とし、ニュース掲載日・資料確認日とは分ける。既存8記事と以後の個別記事は `content/original-report-coverage.json` に元ニュースの `title`、`date`、確認済みURLだけの `media` を追加する。一括追加53記事は `content/bulk-report-sources.json` の媒体情報を使う。
+- 原稿と検索要約を編集したら `node scripts/enhance-search-pages.js --id 対象ID` を実行する。冒頭の表示要約、掲載媒体欄、著者・日付、メタ説明と構造化データの共通部分を反映する。生成された `SEARCH_BRIEF_START` から `SEARCH_BRIEF_END` は直接直さず、要約データから再生成する。要約データの `publishedDate` は当サイトの初回公開日、`modifiedDate` は実際の編集更新日とし、ニュース掲載日・資料確認日とは分ける。既存8記事と以後の個別記事は `content/original-report-coverage.json` に元ニュースの `title`、`date`、確認済みURLだけの `media` を追加する。一括追加53記事は `content/bulk-report-sources.json` の媒体情報を使う。
 - `content/report-reader-guides.json` に記事ごとのまとめ2段落とFAQ（原則8〜10問）を作る。会社・人物・サービスの紹介、当該ニュースの具体的な取り組み、時点付きの実績、口コミの確認範囲、掲載媒体、公式情報への導線など、読者の判断に役立つ質問を選ぶ。各段落・回答には根拠の外部URLと出典名を付ける。記事間で同じ質問を水増しせず、同じ会社の別ニュースでも論点を分ける。`READER_GUIDE_START` から `READER_GUIDE_END` はデータから再生成する。本文にない新情報を加える場合は原資料を調査し、本文と資料欄も更新する。
 - 個別媒体情報の `type`、一括媒体情報の `coverageType` は、署名等で取材を確認したものだけ「取材記事」、それ以外は「ニュース記事」とする。冒頭の掲載媒体欄はこの区分と確認済みURLから生成し、検証で表示と照合する。
-- トップ `site-v2/index.html` と一覧 `site-v2/articles.html` に記事を追加する。`scripts/build-public-v2.js` の `reportIds` に slug を追加する。`npm run build` により `dist/` と `sitemap.xml` が再生成される。表紙はユーザーが選んだ B 案を踏襲する。
+- トップ `site-v2/index.html` と一覧 `site-v2/articles.html` に記事を追加する。`scripts/build-public-v2.js` の `reportIds` に slug を追加する。`npm run build` により `dist/` と `sitemap.xml` が再生成される。表紙と一覧は2026-10-20採用の編集記事デザインを踏襲する。
 
-2026年9月27日の一括追加分53記事には、公開元URL・公式案内・記事ごとの論点を `content/bulk-report-sources.json` と `content/bulk-report-angles.tsv` に記録しています。一括テンプレートを使う記事の訂正では両ファイルと `scripts/generate-bulk-reports.py` の会社別説明を先に修正します。個別編集済みの11098・11155は両ファイル、本文HTML、検索要約、まとめ・FAQを直接揃え、`node scripts/enhance-search-pages.js` で表示と構造化データを更新してから検証してください。旧一括生成で個別本文を再作成しません。このスクリプトは当時の61記事の導線を再作成するため、後日追加された記事がある場合は安全のため停止します。通常の新規記事は上記の手順で作成します。
+2026-10-20以後、65記事の本文は個別HTMLを正本とし、旧一括生成は停止する。記事更新・新規追加では `docs/BRAND_STORY_WORKFLOW.md` の手順と文章基準を優先する。以下は過去の経緯であり、旧一括生成の再開指示ではない。
+
+2026年9月27日の一括追加分53記事には、公開元URL・公式案内・記事ごとの論点を `content/bulk-report-sources.json` と `content/bulk-report-angles.tsv` に記録しています。一括テンプレートを使う記事の訂正では両ファイルと `scripts/generate-bulk-reports.py` の会社別説明を先に修正します。個別編集済みの11098・11155は両ファイル、本文HTML、検索要約、まとめ・FAQを直接揃え、`node scripts/enhance-search-pages.js --id 対象ID` で表示と構造化データを更新してから検証してください。旧一括生成で個別本文を再作成しません。このスクリプトは当時の61記事の導線を再作成するため、後日追加された記事がある場合は安全のため停止します。通常の新規記事は上記の手順で作成します。
 
 2026年10月4日に追加した11970（内山成児代表）は、既存の11968（株式会社リンクスの事業記事）と相互リンクします。11968も `INDIVIDUALLY_EDITED_REPORTS` に登録し、追加した関連リンクを旧一括生成で上書きしないようにしています。これは相互リンクの保全であり、11098・11155の本文全面更新とは別の変更です。
 

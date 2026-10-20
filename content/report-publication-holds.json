@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "articles": {
+    "11906": {
+      "sha256": "f92e731a8f8c6f87715cb10249f895616b9b4fd8ace797b4ba3e02a26e70916b",
+      "publicUrl": "https://minnano-hyouban.com/reports/11906/",
+      "observedDate": "2026-10-20",
+      "mode": "preserve-public-no-deploy",
+      "note": "基準計測待ち。公開前照合で既存公開現物のOrganization.address/url追加を確認し保全した。今回のデザイン改修でAI情報を追加したものではない。本文と計測は従来どおり。"
+    }
+  }
+}

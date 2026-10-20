@@ -53,7 +53,7 @@ function renderInterview(entry, id) {
   <p class="section-kicker">INTERVIEW NOTES</p><h2 id="interview-notes-heading">${esc(entry.heading)}</h2>
   <p class="interview-deck">${esc(entry.introduction)}</p>
   <dl class="interview-credit"><div><dt>話を聞いた相手</dt><dd>${esc(entry.interviewee)}</dd></div><div><dt>取材記録の表示日</dt><dd><time datetime="${entry.recordDate}">${jaDate(entry.recordDate)}</time></dd></div></dl>
-  <p class="interview-provenance">提供された取材記録をもとに、会社・サービスに関する説明を編集・要約しています。本記事のための追加取材は行っていません。以下は記録当時の説明で、現在の提供内容・条件は公式窓口で確認できます。</p>
+  <p class="interview-provenance">提供された取材記録から、会社・サービスに関する発言を編集しています。本記事のための追加取材は行っていません。記述は取材当時の説明であり、現在の提供内容・条件は公式窓口で確認できます。</p>
   ${entry.sections.map(section => `<div class="interview-topic" id="interview-${section.key}"><h3>${headingText(section.heading)}</h3>${section.paragraphs.map(p=>`<p>${esc(p)}</p>`).join('')}</div>`).join('\n  ')}
 </section>
 <section class="report-section company-profile" id="company-profile" aria-labelledby="company-profile-heading">
