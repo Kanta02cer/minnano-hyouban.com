@@ -5,6 +5,7 @@
 // stage-branch-root.js maintains the reviewed GitHub mirror; deployment is separate.
 const fs = require('node:fs');
 const path = require('node:path');
+const { validateMeasurement } = require('./validate-measurement');
 
 const root = path.resolve(__dirname, '..');
 const sourceDir = path.join(root, 'site-v2');
@@ -24,6 +25,8 @@ const publicFiles = [
   ['site-v2/site.css', 'site.css'],
   ['site-v2/home-b.css', 'home-b.css'],
   ['site-v2/site.js', 'site.js'],
+  ...['media-clicks.js', 'media-analytics-bootstrap.js', 'media-analytics-entry.js', 'media-consent.css']
+    .map(file => [`site-v2/${file}`, file]),
   ['site-v2/sw.js', 'sw.js'],
   ['site-v2/favicon.svg', 'favicon.svg'],
   ...reportIds.map(id => [`site-v2/reports/${id}/index.html`, `reports/${id}/index.html`]),
@@ -108,6 +111,9 @@ function build() {
   if (!fs.existsSync(sourceDir)) {
     throw new Error(`公開元ディレクトリがありません: ${sourceDir}`);
   }
+
+  // Fail closed if an article edit removed a measurement block or changed a registered link.
+  validateMeasurement(sourceDir, reportIds);
 
   // Validate every input before replacing a previous local build.
   for (const [src] of publicFiles) assertRegularFile(path.join(root, src));

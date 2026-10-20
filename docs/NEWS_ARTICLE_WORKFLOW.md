@@ -90,3 +90,7 @@ python3 -m http.server 8080 --directory dist
 ### 次回 Codex に貼る文面の例
 
 > みんなの評判.com のリポジトリの `AGENTS.md` と `docs/NEWS_ARTICLE_WORKFLOW.md` に従って、次のニュースを調査記事にして本番サイトまで更新してください。会社・代表者の別ニュースがあれば別記事にし、公式サイトや公開資料も調べてください。記事 URL と媒体 URL：〔ここに貼る〕。
+
+## 計測コードの保全（2026-10-20）
+
+記事の追加・再生成・URL変更時は `docs/MEASUREMENT_WORKFLOW.md` に従う。全記事の媒体ID・記事ID・正確なリンク台帳、同意設定、公開runtimeを保ち、計測の検証を通してから公開する。公開読戻しとGA受信・月次集計の確認は別々に記録する。
