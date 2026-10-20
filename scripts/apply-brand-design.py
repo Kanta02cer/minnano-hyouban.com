@@ -184,6 +184,47 @@ def photo_measurement(source, article_id):
     return re.sub(r'(<script\s+type="application/ld\+json"[^>]*>)([\s\S]*?)(</script>)', cite, source)
 
 
+def replacement_text(item):
+    """Keep paragraph structure in HTML/list sources and plain text in metadata."""
+    if "toParagraphs" in item:
+        paragraphs = item["toParagraphs"]
+        if ("to" in item or not isinstance(paragraphs, list) or not paragraphs
+                or any(not isinstance(p, str) or not p.strip() for p in paragraphs)):
+            raise ValueError("Expected nonempty reviewed paragraphs, without 'to'")
+        value = "\n\n".join(paragraphs)
+    else:
+        value = item["to"]
+    if not isinstance(item["from"], str) or not item["from"] or not isinstance(value, str):
+        raise ValueError("Expected nonempty source text and replacement text")
+    if "<" in item["from"] or "<" in value:
+        raise ValueError("Text replacements must not contain HTML")
+    return value
+
+
+def rewrite_text_data(value, replacements, paragraph_list=False):
+    if isinstance(value, str):
+        if value.startswith(("https://", "http://", "/")):
+            return value
+        for item in replacements:
+            value = value.replace(item["from"], replacement_text(item))
+        return value
+    if isinstance(value, list):
+        result = []
+        for entry in value:
+            split = next((item["toParagraphs"] for item in replacements
+                          if paragraph_list and isinstance(entry, str)
+                          and "toParagraphs" in item and entry == item["from"]), None)
+            if split is not None:
+                result.extend(split)
+            else:
+                result.append(rewrite_text_data(entry, replacements))
+        return result
+    if isinstance(value, dict):
+        return {key: rewrite_text_data(entry, replacements, key == "paragraphs")
+                for key, entry in value.items()}
+    return value
+
+
 def apply_text(source, entry):
     scripts = []
     def hold(match):
@@ -191,9 +232,40 @@ def apply_text(source, entry):
         return f"@@BRAND_SCRIPT_{len(scripts) - 1}@@"
     source = re.sub(r"<script\b[\s\S]*?</script>", hold, source)
     for item in entry.get("textReplacements", []):
-        old, new = item["from"], item["to"]
-        if "<" in old or "<" in new:
-            raise ValueError("Text replacements must not contain HTML")
+        old, new = item["from"], replacement_text(item)
+        if "toParagraphs" in item:
+            # Split complete paragraphs only. Existing plain-text links can
+            # move with their unique label, retaining their exact markup.
+            doc = Elements(source)
+            matches = [n for n in doc.nodes if n["tag"] == "p" and "end" in n
+                       and plain(doc.inside(n)) == old]
+            if matches:
+                for n in sorted(matches, key=lambda n: n["start"], reverse=True):
+                    opening = source[n["start"]:n["inner"]]
+                    parts = [opening + E(item["toParagraphs"][0], quote=True) + "</p>"]
+                    parts.extend("<p>" + E(p, quote=True) + "</p>"
+                                 for p in item["toParagraphs"][1:])
+                    replacement = "\n".join(parts)
+                    inside = doc.inside(n)
+                    anchors = re.findall(r'<a\b[^>]*>[^<]*</a>', inside)
+                    without_links = inside
+                    for anchor in anchors:
+                        label = html.unescape(re.sub(r"<[^>]+>", "", anchor))
+                        if not label or old.count(label) != 1 or new.count(label) != 1:
+                            raise ValueError("Existing link label must occur exactly once")
+                        replacement = replacement.replace(E(label, quote=True), anchor)
+                        without_links = without_links.replace(anchor, "")
+                    if "<" in without_links:
+                        raise ValueError("Unsupported inline markup in paragraph")
+                    source = source[:n["start"]] + replacement + source[n["end"]:]
+            else:
+                actual = [plain(doc.inside(n)) for n in doc.nodes
+                          if n["tag"] == "p" and "end" in n]
+                width = len(item["toParagraphs"])
+                if not any(actual[i:i + width] == item["toParagraphs"]
+                           for i in range(len(actual) - width + 1)):
+                    raise ValueError(f"Whole paragraph source missing: {old[:80]}")
+            continue
         found = False
         replacement = E(new, quote=True)
         for encoded in dict.fromkeys([E(old, quote=True), E(old, quote=False), old]):
@@ -202,22 +274,10 @@ def apply_text(source, entry):
                 found = True
         if not found and replacement not in source and new not in source:
             raise ValueError(f"Replacement source missing: {old[:80]}")
-    def rewrite(value):
-        if isinstance(value, str):
-            if value.startswith(("https://", "http://", "/")):
-                return value
-            for item in entry.get("textReplacements", []):
-                value = value.replace(item["from"], item["to"])
-            return value
-        if isinstance(value, list):
-            return [rewrite(x) for x in value]
-        if isinstance(value, dict):
-            return {k: rewrite(v) for k, v in value.items()}
-        return value
     for i, script in enumerate(scripts):
         if 'type="application/ld+json"' in script:
             opening, body, closing = re.fullmatch(r"(<script\b[^>]*>)([\s\S]*?)(</script>)", script).groups()
-            script = opening + json.dumps(rewrite(json.loads(body)), ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/") + closing
+            script = opening + json.dumps(rewrite_text_data(json.loads(body), entry.get("textReplacements", [])), ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/") + closing
         source = source.replace(f"@@BRAND_SCRIPT_{i}@@", script)
     return source
 
@@ -373,18 +433,6 @@ def main():
             entries.setdefault(id, {}).update(data)
         # Keep typed interview/summary/FAQ source text aligned with the visible
         # replacement. Only exact, reviewed strings are changed, never URLs/IDs.
-        def rewrite(value, replacements):
-            if isinstance(value, str):
-                if value.startswith(("https://", "http://", "/")):
-                    return value
-                for item in replacements:
-                    value = value.replace(item["from"], item["to"])
-                return value
-            if isinstance(value, list):
-                return [rewrite(x, replacements) for x in value]
-            if isinstance(value, dict):
-                return {k: rewrite(v, replacements) for k, v in value.items()}
-            return value
         for name in ["search-briefs-bulk.json", "search-briefs-original.json",
                      "report-interviews.json", "report-reader-guides.json"]:
             path = ROOT / "content" / name
@@ -392,7 +440,7 @@ def main():
             changed = False
             for id, update in updates.items():
                 if id in values and update.get("textReplacements"):
-                    new = rewrite(values[id], update["textReplacements"])
+                    new = rewrite_text_data(values[id], update["textReplacements"])
                     changed = changed or new != values[id]
                     values[id] = new
             if changed:
