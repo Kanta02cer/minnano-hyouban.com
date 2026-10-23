@@ -28,7 +28,8 @@ const publicFiles = [
   ['site-v2/home-b.css', 'home-b.css'],
   ['site-v2/site.js', 'site.js'],
   ...['brand-story.css', 'brand-story.js', 'sachi-plamo-murakami-11755.jpg',
-    'hira-tire-tanaka-11627.jpg', 'brain-sako-11820.jpg']
+    'hira-tire-tanaka-11627.jpg', 'brain-sako-11820.jpg',
+    'mobile-editorial-20261023.css', 'mobile-editorial-20261023.js']
     .map(file => [`site-v2/${file}`, file]),
   ...['media-clicks.js', 'media-analytics-bootstrap.js', 'media-analytics-entry.js', 'media-consent.css']
     .map(file => [`site-v2/${file}`, file]),

@@ -175,7 +175,12 @@ for (const id of reportIds) {
     const presentation = JSON.parse(read('content/report-presentation.json'))[id];
     check(!!presentation?.identity && !!presentation?.heading && !!presentation?.lead, `${file}: 編集見出しの原稿がありません。`);
     const headline = presentation ? `${presentation.identity}｜${presentation.heading}` : '';
-    check(sameText(h1, headline) && sameText(ogTitle, headline) && sameText(article.headline || '', headline),
+    const mobileEditorial = html.includes('data-editorial-design="mobile-editorial-20261023"');
+    const visibleIdentity = plainText(contentOf(html, /<p\b[^>]*class="cover-entity"[^>]*>([\s\S]*?)<\/p>/i));
+    const visibleHeadingMatches = mobileEditorial
+      ? sameText(h1, presentation?.heading || '') && sameText(visibleIdentity, presentation?.identity || '')
+      : sameText(h1, headline);
+    check(visibleHeadingMatches && sameText(ogTitle, headline) && sameText(article.headline || '', headline),
       `${file}: 表示H1・OG・Article.headlineが編集見出しと一致しません。`);
     check(containsText(html, presentation?.lead || ''), `${file}: 編集した導入が本文にありません。`);
   }
