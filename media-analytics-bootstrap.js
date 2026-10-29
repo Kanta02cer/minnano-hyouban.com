@@ -151,30 +151,52 @@ export function createProductionPlatform(win, doc, config) {
   };
 }
 
-export function mountConsentUI({doc,controller,privacyUrl}) {
-  const root = doc.createElement('section'); root.className='mm-consent'; root.setAttribute('aria-label','アクセス解析の設定');
-  root.innerHTML = `<div class="mm-consent-panel" hidden><h2 class="mm-consent-title">アクセス解析について</h2><p class="mm-consent-copy">記事の閲覧数や、企業・ニュースへのリンクのクリック数を集計するため、Google アナリティクスを利用します。許可しなくても、すべての記事をご覧いただけます。</p><p class="mm-consent-links"><a class="mm-consent-privacy">詳しい取り扱い</a><span>設定はいつでも変更できます。</span></p><div class="mm-consent-actions"><button type="button" data-choice="granted">解析を許可する</button><button type="button" data-choice="denied">許可しない</button></div><p class="mm-consent-status" aria-live="polite"></p><button type="button" class="mm-consent-close">閉じる</button></div><button type="button" class="mm-consent-open" aria-expanded="false">解析の設定</button>`;
-  const panel=root.querySelector('.mm-consent-panel'), reopen=root.querySelector('.mm-consent-open');
-  const close=root.querySelector('.mm-consent-close'), status=root.querySelector('.mm-consent-status');
-  root.querySelector('.mm-consent-privacy').setAttribute('href',privacyUrl);
-  const show = (open, focus=false) => {
-    panel.hidden=!open; reopen.setAttribute('aria-expanded',String(open));
-    if (focus) (open ? root.querySelector('[data-choice="granted"]') : reopen).focus();
+/** Privacy-page controls only. This module never inserts an overlay into an article. */
+export function startPrivacySettings({win=globalThis.window,doc=globalThis.document,config}={}) {
+  const expected = {
+    minnano_hyouban: ['minnano-hyouban.com', '/privacy.html', 'G-YBRSKWW8VE'],
+    shacho_shuzai: ['shacho-shuzai.com', '/about/', 'G-TWTSBFXEL1'],
+  }[config?.mediaId];
+  let url;
+  try { url = new URL(win.location.href); } catch { return false; }
+  if (!expected || url.protocol !== 'https:' || url.hostname !== expected[0] || url.port
+    || url.username || url.password || !(expected[1].endsWith('/') ? [expected[1], expected[1] + 'index.html'] : [expected[1]]).includes(url.pathname)
+    || config.measurementId !== expected[2] || !/^[A-Za-z0-9_-]{1,64}$/.test(config.consentVersion || '')) return false;
+  const root = doc.getElementById('media-privacy-settings');
+  if (!root || root.dataset.initialized === 'true') return false;
+  const status = root.querySelector('[role="status"]');
+  const buttons = [...root.querySelectorAll('button[data-choice]')];
+  if (!status || buttons.length !== 2) return false;
+  let storage;
+  try { storage = win.localStorage; } catch {}
+  const render = (message='') => {
+    const choice = savedChoice(storage,config.consentVersion);
+    status.textContent = message || (choice === 'granted' ? '現在の設定：許可しています。次に記事を開いたときから適用されます。'
+      : choice === 'denied' ? '現在の設定：許可していません。' : '現在の設定：未選択です。アクセス解析は停止しています。');
+    for (const button of buttons) button.setAttribute('aria-pressed',String(button.dataset.choice === choice));
   };
-  reopen.addEventListener('click',()=>show(panel.hidden,true));
-  close.addEventListener('click',()=>show(false,true));
-  root.addEventListener('keydown',event=>{if(event.key==='Escape'&&!panel.hidden){show(false,true);}});
-  for(const button of root.querySelectorAll('[data-choice]')) button.addEventListener('click',()=>{
-    controller.choose(button.dataset.choice); show(false,true);
+  for (const button of buttons) button.addEventListener('click',()=>{
+    const choice=button.dataset.choice;
+    if (!['granted','denied'].includes(choice)) return;
+    if (choice === 'denied') {
+      win[`ga-disable-${config.measurementId}`] = true;
+      removeOwnGaCookies(win,doc,config.measurementId);
+    }
+    try {
+      if (!storage) throw Error('storage_unavailable');
+      storage.setItem(CONSENT_KEY,JSON.stringify({version:config.consentVersion,choice,at:Date.now()}));
+      if (savedChoice(storage,config.consentVersion) !== choice) throw Error('storage_write_not_retained');
+      render();
+    } catch {
+      try { storage?.removeItem(CONSENT_KEY); } catch {}
+      render('設定を保存できませんでした。ブラウザーの保存設定をご確認ください。');
+    }
   });
-  controller.subscribe(s=>{
-    status.textContent = s.choice==='granted' ? '現在の設定：解析を許可' : s.choice==='denied' ? '現在の設定：解析を許可しない' : '現在の設定：未選択（解析は停止中）';
-    if (!s.storageAvailable) status.textContent += '。このブラウザーでは設定を保存できないため、次のページで再度選択してください。';
-    if(s.state==='error') status.textContent+='。現在、解析は停止しています。';
-  });
-  show(controller.getState().choice==='unknown');
-  doc.body.append(root);
-  return Object.freeze({open:()=>show(true,true),element:root});
+  win.addEventListener('storage',event=>{if(event.key === CONSENT_KEY || event.key === null) render();});
+  root.dataset.initialized='true';
+  for (const button of buttons) button.disabled=false;
+  render();
+  return true;
 }
 
 export function startProductionAnalytics({win=globalThis.window,doc=globalThis.document,config}={}) {
@@ -187,7 +209,8 @@ export function startProductionAnalytics({win=globalThis.window,doc=globalThis.d
   const controller=createConsentController({config,storage,platform:createProductionPlatform(win,doc,config)});
   const clicks=installArticleClicks({win,doc,config,consentGranted:controller.allowed,ga4Ready:id=>id===config.measurementId&&controller.allowed()});
   if(!clicks.installed) return disabled(clicks.reason);
-  const ui=mountConsentUI({doc,controller,privacyUrl:config.privacyUrl});
+  // Articles remain unobstructed; preferences are changed on the privacy page.
+  const ui=null;
   const api=Object.freeze({installed:true,controller,ui,clicks});
   win[SINGLETON]={fingerprint,api};
   win.addEventListener('storage',controller.onStorage);

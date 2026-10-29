@@ -16,7 +16,73 @@ const siteUrl = 'https://minnano-hyouban.com';
 const domain = 'minnano-hyouban.com';
 const reportIds = ['12104', '12043', '12042', '11970', '11906', '11999', '12000', '11904', '11968', '11902', '11905', '11903', '11813', '11901', '11838', '11820', '11812', '11811', '11837', '11805', '11819', '11758', '11810', '11756', '11809', '11804', '11757', '11672', '11755', '11670', '11745', '11668', '11671', '11640', '11612', '11669', '11638', '11667', '11625', '11639', '11607', '11604', '11637', '11627', '11603', '11557', '11286', '11285', '11270', '11245', '11244', '11198', '11197', '11155', '11098', '11037', '11010', '10969', '10911', '10728', '10617', '10613', '10552', '10512', '10509', '10482'];
 
+const editorialDesign = JSON.parse(fs.readFileSync(path.join(root, 'content/editorial-cover-20261029/manifest.json'), 'utf8'));
 const publicFiles = [
+  ...Object.keys(editorialDesign.assets).map(file => [`content/editorial-cover-20261029/assets/${file}`, `editorial-design-20261029/${file}`]),
+  // Explicit reviewed image files, no evidence directories.
+  ["site-v2/watercolor/sachi-tools-watercolor-v1-line-watercolor-v1.webp", "watercolor/sachi-tools-watercolor-v1-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-001-watercolor-line-watercolor-v1.webp", "watercolor/subject-001-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-002-watercolor-line-watercolor-v1.webp", "watercolor/subject-002-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-003-context-watercolor-v1-line-watercolor-v1.webp", "watercolor/subject-003-context-watercolor-v1-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-003-official-v2-watercolor-line-watercolor-v1.webp", "watercolor/subject-003-official-v2-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-004-watercolor-line-watercolor-v1.webp", "watercolor/subject-004-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-005-watercolor-line-watercolor-v1.webp", "watercolor/subject-005-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-006-watercolor-line-watercolor-v1.webp", "watercolor/subject-006-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-007-watercolor-line-watercolor-v1.webp", "watercolor/subject-007-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-008-a-watercolor-line-watercolor-v1.webp", "watercolor/subject-008-a-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-008-b-watercolor-line-watercolor-v1.webp", "watercolor/subject-008-b-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-008-c-watercolor-line-watercolor-v1.webp", "watercolor/subject-008-c-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-009-watercolor-line-watercolor-v1.webp", "watercolor/subject-009-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-010-context-watercolor-v1-line-watercolor-v1.webp", "watercolor/subject-010-context-watercolor-v1-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-010-demo-minnano-11819-watercolor-line-watercolor-v1.webp", "watercolor/subject-010-demo-minnano-11819-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-010-demo-minnano-11820-watercolor-line-watercolor-v1.webp", "watercolor/subject-010-demo-minnano-11820-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-011-context-watercolor-v1-line-watercolor-v1.webp", "watercolor/subject-011-context-watercolor-v1-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-011-watercolor-line-watercolor-v1.webp", "watercolor/subject-011-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-012-context-watercolor-v1-line-watercolor-v1.webp", "watercolor/subject-012-context-watercolor-v1-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-012-watercolor-line-watercolor-v1.webp", "watercolor/subject-012-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-013-demo-minnano-11755-watercolor-line-watercolor-v1.webp", "watercolor/subject-013-demo-minnano-11755-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-013-demo-minnano-11756-watercolor-line-watercolor-v1.webp", "watercolor/subject-013-demo-minnano-11756-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-014-watercolor-line-watercolor-v1.webp", "watercolor/subject-014-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-015-watercolor-line-watercolor-v1.webp", "watercolor/subject-015-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-016-watercolor-line-watercolor-v1.webp", "watercolor/subject-016-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-017-official-v2-watercolor-line-watercolor-v1.webp", "watercolor/subject-017-official-v2-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-018-context-watercolor-v1-line-watercolor-v1.webp", "watercolor/subject-018-context-watercolor-v1-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-018-demo-minnano-11639-watercolor-line-watercolor-v1.webp", "watercolor/subject-018-demo-minnano-11639-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-018-demo-minnano-11640-watercolor-line-watercolor-v1.webp", "watercolor/subject-018-demo-minnano-11640-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-019-official-watercolor-line-watercolor-v1.webp", "watercolor/subject-019-official-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-020-context-v1-line-watercolor-v1.webp", "watercolor/subject-020-context-v1-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-020-official-watercolor-line-watercolor-v1.webp", "watercolor/subject-020-official-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-021-context-v1-line-watercolor-v1.webp", "watercolor/subject-021-context-v1-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-021-demo-minnano-11625-watercolor-line-watercolor-v1.webp", "watercolor/subject-021-demo-minnano-11625-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-021-demo-minnano-11627-watercolor-line-watercolor-v1.webp", "watercolor/subject-021-demo-minnano-11627-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-022-watercolor-line-watercolor-v1.webp", "watercolor/subject-022-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-023-watercolor-line-watercolor-v1.webp", "watercolor/subject-023-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-024-official-watercolor-line-watercolor-v1.webp", "watercolor/subject-024-official-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-025-official-watercolor-line-watercolor-v1.webp", "watercolor/subject-025-official-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-026-watercolor-line-watercolor-v1.webp", "watercolor/subject-026-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-027-context-v1-line-watercolor-v1.webp", "watercolor/subject-027-context-v1-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-027-watercolor-line-watercolor-v1.webp", "watercolor/subject-027-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-028-context-v1-line-watercolor-v1.webp", "watercolor/subject-028-context-v1-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-028-demo-minnano-11197-watercolor-line-watercolor-v1.webp", "watercolor/subject-028-demo-minnano-11197-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-028-demo-minnano-11198-watercolor-line-watercolor-v1.webp", "watercolor/subject-028-demo-minnano-11198-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-029-watercolor-line-watercolor-v1.webp", "watercolor/subject-029-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-030-watercolor-line-watercolor-v1.webp", "watercolor/subject-030-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-031-watercolor-line-watercolor-v1.webp", "watercolor/subject-031-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-032-watercolor-line-watercolor-v1.webp", "watercolor/subject-032-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-033-watercolor-line-watercolor-v1.webp", "watercolor/subject-033-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-034-watercolor-line-watercolor-v1.webp", "watercolor/subject-034-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-035-watercolor-line-watercolor-v1.webp", "watercolor/subject-035-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-036-watercolor-line-watercolor-v1.webp", "watercolor/subject-036-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-037-official-watercolor-line-watercolor-v1.webp", "watercolor/subject-037-official-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-038-official-watercolor-line-watercolor-v1.webp", "watercolor/subject-038-official-watercolor-line-watercolor-v1.webp"],
+  ["site-v2/watercolor/subject-039-editor-v1-watercolor-line-watercolor-v1.webp", "watercolor/subject-039-editor-v1-watercolor-line-watercolor-v1.webp"],
+  // Exact private candidate assets; no recursive evidence-directory copy.
+  ["site-v2/watercolor/mobile-story-20261028.css", "watercolor/mobile-story-20261028.css"],
+  // Full narrative in four illustrated chapters, reviewed 2026-10-27.
+  ["site-v2/watercolor/chapters.css", "watercolor/chapters.css"],
+  // Continuous-reading assets, reviewed 2026-10-27.
+  ...["continuous.css", "sachi-tools-watercolor-v1.webp", "subject-003-context-watercolor-v1.webp", "subject-010-context-watercolor-v1.webp", "subject-011-context-watercolor-v1.webp", "subject-012-context-watercolor-v1.webp", "subject-018-context-watercolor-v1.webp", "subject-020-context-v1.webp", "subject-021-context-v1.webp", "subject-027-context-v1.webp", "subject-028-context-v1.webp"].map(file => [`site-v2/watercolor/${file}`, `watercolor/${file}`]),
+  ...["subject-001-watercolor.webp", "subject-002-watercolor.webp", "subject-003-official-v2-watercolor.webp", "subject-004-watercolor.webp", "subject-005-watercolor.webp", "subject-006-watercolor.webp", "subject-007-watercolor.webp", "subject-008-a-watercolor.webp", "subject-008-b-watercolor.webp", "subject-008-c-watercolor.webp", "subject-009-watercolor.webp", "subject-010-demo-minnano-11819-watercolor.webp", "subject-010-demo-minnano-11820-watercolor.webp", "subject-011-watercolor.webp", "subject-012-watercolor.webp", "subject-013-demo-minnano-11755-watercolor.webp", "subject-013-demo-minnano-11756-watercolor.webp", "subject-014-watercolor.webp", "subject-015-watercolor.webp", "subject-016-watercolor.webp", "subject-017-official-v2-watercolor.webp", "subject-018-demo-minnano-11639-watercolor.webp", "subject-018-demo-minnano-11640-watercolor.webp", "subject-019-official-watercolor.webp", "subject-020-official-watercolor.webp", "subject-021-demo-minnano-11625-watercolor.webp", "subject-021-demo-minnano-11627-watercolor.webp", "subject-022-watercolor.webp", "subject-023-watercolor.webp", "subject-024-official-watercolor.webp", "subject-025-official-watercolor.webp", "subject-026-watercolor.webp", "subject-027-watercolor.webp", "subject-028-demo-minnano-11197-watercolor.webp", "subject-028-demo-minnano-11198-watercolor.webp", "subject-029-watercolor.webp", "subject-030-watercolor.webp", "subject-031-watercolor.webp", "subject-032-watercolor.webp", "subject-033-watercolor.webp", "subject-034-watercolor.webp", "subject-035-watercolor.webp", "subject-036-watercolor.webp", "subject-037-official-watercolor.webp", "subject-038-official-watercolor.webp", "subject-039-editor-v1-watercolor.webp", "watercolor.css", "watercolor.js"].map(file => [`site-v2/watercolor/${file}`, `watercolor/${file}`]),
   ['site-v2/index.html', 'index.html'],
   ['site-v2/404.html', '404.html'],
   ['site-v2/articles.html', 'articles.html'],
@@ -195,6 +261,9 @@ function build() {
     fs.mkdirSync(path.dirname(path.join(outputDir, dest)), { recursive: true });
     fs.writeFileSync(path.join(outputDir, dest), content, 'utf8');
   }
+
+  // Preserve all article evidence; the final display adapter adds only typography links.
+  require('node:child_process').execFileSync('python3', [path.join(root, 'content/editorial-cover-20261029/apply_design.py'), '--output', outputDir, '--bundle', path.join(root, 'content/editorial-cover-20261029')], {stdio:'inherit'});
 
   const expected = [...publicFiles.map(([, dest]) => dest), ...Object.keys(generatedFiles)].sort();
   const listOutputFiles = (dir, prefix = '') => fs.readdirSync(dir, { withFileTypes: true })

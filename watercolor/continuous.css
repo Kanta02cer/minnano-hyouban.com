@@ -1,0 +1,20 @@
+/* Full article and Q&A remain visible without an interaction. */
+[data-continuous-reading] .cr-report{padding-top:28px}
+[data-continuous-reading] .cr-report-title{font:500 clamp(24px,2.4vw,32px)/1.8 'Noto Serif JP','Hiragino Mincho ProN',serif;letter-spacing:0;margin:0 0 20px;text-wrap:balance;color:var(--wc-ink)}
+[data-continuous-reading] .cr-info-title{font-size:12px;line-height:1.9;margin:0;color:var(--wc-muted)}
+[data-continuous-reading] .cr-info>div{padding:8px 0 12px}
+[data-continuous-reading] .desktop-toc{position:static;max-height:none;overflow:visible}
+[data-continuous-reading] .cr-mobile-toc{display:none}
+[data-continuous-reading] .cr-answer{border-top:1px solid var(--wc-line);padding:26px 0;margin:0}
+[data-continuous-reading] .cr-question{display:flex;align-items:center;gap:14px;font-size:17px;line-height:1.85;font-weight:600;margin:0 0 18px;color:var(--wc-ink);letter-spacing:0;text-wrap:balance}
+[data-continuous-reading] .cr-question .faq-number{flex:none;font-size:11px;font-weight:500;color:var(--wc-accent);align-self:center}
+[data-continuous-reading] .cr-question .faq-question{min-width:0}
+[data-continuous-reading] .cr-answer>.faq-answer{padding:0;background:none}
+[data-continuous-reading] .cr-answer p{font-size:16px;line-height:2.1;margin:0 0 18px}
+[data-continuous-reading] .cr-answer .reader-guide-sources{font-size:12px;line-height:1.9}
+@media(max-width:550px){
+ [data-continuous-reading] .cr-report-title{font-size:23px}
+ [data-continuous-reading] .cr-question{font-size:17px;gap:12px}
+ [data-continuous-reading] .cr-answer{padding-block:23px}
+}
+@media print{[data-continuous-reading] .cr-mobile-toc{display:none}}

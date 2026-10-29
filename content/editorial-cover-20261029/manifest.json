@@ -1,0 +1,32 @@
+{
+  "edition": "20261029-A6",
+  "media": "minnano",
+  "origin": "https://minnano-hyouban.com",
+  "prefix": "/editorial-design-20261029/",
+  "asset_directory": "editorial-design-20261029",
+  "home_sha256": "c3d1a8fcc24035467a4def813fcecaf2345cc4afc8afe45c99191482cac843f4",
+  "assets": {
+    "app.js": "fdc28473b3197f02b2681babe3be3456cc0d1f3758eae76dc96b192de857ba33",
+    "archive.js": "c83413d3fcbfb623457cbceb728899066f9d33717d1b1e31489dbd7514b42ec9",
+    "article-round.css": "ef9104f596594a7644d05e07fd95ff75da039848172d004fbdc06355348ac2df",
+    "cover.css": "53e1e45a7d97a5cf4368a338bc26aa9212579f2871e41212db63f2bc1193ffab",
+    "font-round.css": "b45799301bbf2280b9789df95f71a4d2234b9a705f721a04fd12b50042587bf5",
+    "fonts/OFL.txt": "2a20cf7ce1909d8ee1e949095d340f7d7656705f7c810a2d6faf56800ad0cb3d",
+    "fonts/zen-maru-r4-reading-00-400.woff2": "df616dcaab9749363025a3e36f321c0010888bb3f8fc7f498dcdb417a2120209",
+    "fonts/zen-maru-r4-reading-00-500.woff2": "ac88a8affebf1b607fe8076109a57b10e33253debee9dd784c63c77e5f054a9b",
+    "fonts/zen-maru-r4-reading-00-700.woff2": "543616db9bb76b8865fb7ed73ec34a8b85ab0c4c0058522f29899361de632da0",
+    "fonts/zen-maru-r4-reading-01-400.woff2": "754bead2ec6e98c49ba71966fc2a27dd6cd05949b371aa8816f6491da5a84743",
+    "fonts/zen-maru-r4-reading-01-500.woff2": "80cfa13cfc9d3fa67624f4516c8c986f5442061a231615167cd019855075d52f",
+    "fonts/zen-maru-r4-reading-01-700.woff2": "6e4dacd6025ce3c14d4a681007808245c508643ab1a6611266cf2c5d95d9c390",
+    "fonts/zen-maru-r4-reading-02-400.woff2": "583a80aeaff1183715ed0c698f9e8b37e25aebf2bdc584f7bd107db1742f32a1",
+    "fonts/zen-maru-r4-reading-02-500.woff2": "c18287d35ddace58c7526990bb5218a41aa2972c8adac9d2bb23efe859bb53f8",
+    "fonts/zen-maru-r4-reading-02-700.woff2": "8c777c001d17739a1bd273e5a7ef3f0f9e3a3346566d760f6cb571e7121a3445",
+    "gentle-motion.js": "c5911305125cbb7f668d7510234d3473b1e0d7500bb519110c26ac9e415902ce",
+    "subject-005-watercolor-line-watercolor-v1.webp": "25d05a1ac6ffc87164a4664563e993a067e989cdadda70015f02b51100ea7c1b",
+    "subject-010-demo-minnano-11819-watercolor-line-watercolor-v1.webp": "50f45f945eea6224f1c64a11bd82975dad7e1eb4e13cfa67081d25651911f1b8",
+    "subject-013-demo-minnano-11756-watercolor-line-watercolor-v1.webp": "ac65b2d51f4a3b1c77eedc8890f15f77047efb9a850efc9af8ba93736ada2de1"
+  },
+  "article_count": 66,
+  "authorization": "2026-10-29: これでOKです反映してください。",
+  "preview_revision": 6
+}

@@ -1,0 +1,43 @@
+/* The four illustrated chapters are the full narrative, not a second summary. */
+[data-illustrated-chapters] .ic-chapter{position:relative;align-items:start;gap:6%;margin:0 0 76px;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr)}
+[data-illustrated-chapters] .ic-chapter:nth-of-type(even){grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}
+[data-illustrated-chapters] .ic-chapter>figure{position:sticky;top:35px}
+[data-illustrated-chapters] .ic-anchor{position:absolute;width:0;height:0;pointer-events:none}
+[data-illustrated-chapters] .ic-copy>p:not(.wc-number){font-size:17px;line-height:2.05;margin:0 0 22px;letter-spacing:0;text-wrap:pretty}
+[data-illustrated-chapters] .ic-copy>h2{margin-top:12px;margin-bottom:25px;font-size:28px;line-height:1.65;text-wrap:balance}
+[data-illustrated-chapters] .ic-copy>h2 span{display:inline-block}
+[data-illustrated-chapters] .ic-copy>.refs{display:block;font-size:11px;line-height:1.9;color:var(--wc-muted);margin:18px 0}
+[data-illustrated-chapters] .ic-copy .cr-answer{border-top:1px solid var(--wc-line);padding:20px 0;margin-top:18px}
+[data-illustrated-chapters] .ic-endmatter{max-width:760px;margin:20px auto 60px;border-top:1px solid var(--wc-line);padding-top:35px;position:relative}
+[data-illustrated-chapters] .ic-endmatter .career-overview{margin:0 0 32px;padding:0;background:none;border:0}
+[data-illustrated-chapters] .ic-endmatter .reading-section{margin:0 0 30px;padding:22px 0}
+[data-illustrated-chapters] .ic-endmatter h2{font-size:23px;line-height:1.7;text-wrap:balance}
+[data-illustrated-chapters] .ic-endmatter .disclosure,[data-illustrated-chapters] .ic-endmatter .reading-note{font-size:12px;line-height:1.9;color:var(--wc-muted)}
+[data-illustrated-chapters] .ic-endmatter .company-fact{margin-block:16px}
+@media(max-width:850px){
+ [data-illustrated-chapters] .ic-chapter,[data-illustrated-chapters] .ic-chapter:nth-of-type(even){display:flex;gap:24px;margin-bottom:60px}
+ [data-illustrated-chapters] .ic-chapter>figure{position:static}
+ [data-illustrated-chapters] .ic-copy>h2{font-size:27px}
+}
+@media(max-width:550px){
+ [data-illustrated-chapters] .ic-copy>h2{font-size:25px;line-height:1.7}
+ [data-illustrated-chapters] .ic-copy>p:not(.wc-number){font-size:16px;line-height:2.05;margin-bottom:20px}
+ [data-illustrated-chapters] .ic-endmatter h2{font-size:21px}
+ [data-illustrated-chapters] .wc-lead{font-size:15px;line-height:2}
+}
+
+[data-illustrated-chapters] .ic-provenance{max-width:760px;margin:0 auto 36px;font-size:12px;line-height:1.9;color:var(--wc-muted)}
+[data-illustrated-chapters] .ic-provenance p{font-size:12px;line-height:1.9}
+[data-illustrated-chapters] .ic-copy .media-spotlight{display:block;margin:25px 0;padding:22px;background:rgba(255,255,255,.35)}
+[data-illustrated-chapters] .ic-copy .media-spotlight h2{font-size:19px;line-height:1.8}
+[data-illustrated-chapters] .ic-copy .media-spotlight .media-spotlight-label{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:14px}
+[data-illustrated-chapters] .ic-copy .media-spotlight .media-spotlight-label strong{display:flex;align-items:center;gap:6px}
+[data-illustrated-chapters] .ic-copy .cr-question{font-size:16px;line-height:1.85}
+[data-illustrated-chapters] .ic-copy .faq-answer p{font-size:15px;line-height:2}
+[data-illustrated-chapters] .ic-copy .reader-guide-sources{font-size:11px!important;line-height:1.85!important}
+[data-illustrated-chapters] .ic-copy .report-facts{display:block}
+[data-illustrated-chapters] .ic-copy .report-facts dt{font-weight:600;margin-top:18px}
+[data-illustrated-chapters] .ic-copy .report-facts dd{margin:5px 0 15px;font-size:15px;line-height:2}
+[data-illustrated-chapters] .ic-copy .source-list{font-size:13px;line-height:1.9;padding-left:20px}
+
+[data-illustrated-chapters] .ic-endmatter .career-sidebar{position:static;width:auto;max-width:none;margin:0 0 30px;padding:0;border:0;background:none}

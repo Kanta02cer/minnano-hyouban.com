@@ -1,22 +1,14 @@
-/* Scoped consent UI: do not change article typography or layout. */
-.mm-consent{--mm-paper:#fffdf9;--mm-ink:#34322e;--mm-line:#a49b8e;--mm-accent:#865633;font:400 14px/1.65 -apple-system,BlinkMacSystemFont,"Noto Sans JP","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;color:var(--mm-ink);position:fixed;right:20px;bottom:16px;z-index:1000;max-width:calc(100vw - 32px);text-align:left}
-.mm-consent *{box-sizing:border-box}
-.mm-consent [hidden]{display:none!important}
-.mm-consent-panel{width:min(480px,calc(100vw - 32px));padding:22px;background:var(--mm-paper);border:1px solid var(--mm-line);box-shadow:0 8px 30px #23201c24;border-radius:4px;margin-bottom:10px;max-height:calc(100dvh - 100px);overflow:auto}
-.mm-consent .mm-consent-title{font-family:inherit;font-size:18px;line-height:1.5;font-weight:700;letter-spacing:.02em;margin:0 0 10px;text-align:left}
-.mm-consent .mm-consent-copy{font-size:14px;line-height:1.8;margin:0 0 12px;text-align:left;overflow-wrap:anywhere;word-break:normal}
-.mm-consent .mm-consent-links{display:flex;flex-wrap:wrap;align-items:center;gap:5px 14px;font-size:12px;line-height:1.7;margin:0 0 14px}
-.mm-consent .mm-consent-privacy{color:var(--mm-accent);text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
-.mm-consent-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:stretch}
-.mm-consent button{font:inherit;letter-spacing:normal;text-transform:none;cursor:pointer;border-radius:3px}
-.mm-consent-actions button{display:flex;align-items:center;justify-content:center;min-height:46px;padding:9px 10px;background:var(--mm-paper);color:var(--mm-ink);border:1px solid var(--mm-ink);font-weight:600;white-space:nowrap}
-.mm-consent-actions button:hover,.mm-consent .mm-consent-open:hover{background:#ece6dd}
-.mm-consent button:focus-visible,.mm-consent a:focus-visible{outline:3px solid #7b592e;outline-offset:3px}
-.mm-consent .mm-consent-status{font-size:12px;line-height:1.7;margin:12px 0 0;text-align:left;color:#5d574f}
-.mm-consent .mm-consent-close{display:block;margin:8px 0 0 auto;padding:3px 5px;border:0;background:transparent;color:var(--mm-ink);text-decoration:underline;text-underline-offset:3px;font-size:12px}
-.mm-consent .mm-consent-open{display:block;margin-left:auto;min-height:36px;padding:7px 12px;border:1px solid var(--mm-line);background:var(--mm-paper);color:var(--mm-ink);font-size:12px;box-shadow:0 2px 8px #23201c12}
-@media(max-width:480px){.mm-consent{right:12px;bottom:12px;max-width:calc(100vw - 24px)}.mm-consent-panel{width:calc(100vw - 24px);padding:18px}.mm-consent-actions{gap:8px}.mm-consent-actions button{padding:10px 7px;font-size:13px}}
-@media(prefers-reduced-motion:reduce){.mm-consent *{scroll-behavior:auto}}
+/* Retire cached legacy overlays; settings live in the privacy document only. */
+.mm-consent{display:none!important}
+.mm-privacy-settings{margin:24px 0;padding:20px 0;border-block:1px solid #c9c4bc;text-align:left}
+.mm-privacy-settings .mm-privacy-heading{font-family:inherit;font-weight:600;font-size:17px;line-height:1.6;margin:0 0 10px;letter-spacing:normal;text-align:left}
+.mm-privacy-settings .mm-privacy-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:16px 0}
+.mm-privacy-settings button{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 18px;border:1px solid #77716a;border-radius:3px;background:#fffdf9;color:#34322e;font:inherit;font-size:14px;line-height:1.6;white-space:nowrap;cursor:pointer}
+.mm-privacy-settings button[aria-pressed="true"]{background:#eae5dd;border-color:#34322e}
+.mm-privacy-settings button:focus-visible{outline:3px solid #7b592e;outline-offset:3px}
+.mm-privacy-settings button:disabled{opacity:.6;cursor:default}
+.mm-privacy-settings p[role="status"]{font-size:14px;line-height:1.8;margin:12px 0 0;text-align:left}
+@media(max-width:380px){.mm-privacy-settings .mm-privacy-actions{display:grid;grid-template-columns:1fr;gap:10px}.mm-privacy-settings button{width:100%}}
 /* Dedicated official-company CTA added only where the source registry is verified. */
 .mm-official-panel{border:1px solid #b4a794;padding:24px;margin:36px 0;background:#f7f5f0;text-align:left}
 .mm-official-panel h2{font-family:inherit;font-size:clamp(18px,2vw,23px);line-height:1.6;margin:0 0 10px;letter-spacing:.02em;text-align:left}

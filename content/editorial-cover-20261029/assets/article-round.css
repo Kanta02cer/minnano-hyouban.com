@@ -1,0 +1,12 @@
+/* Reading typography applies to article previews; editorial content is unchanged. */
+:root{--reading-round:'Cover Maru','Hiragino Maru Gothic ProN','Yu Gothic',sans-serif;--sans:var(--reading-round);--serif:var(--reading-round)}
+body,body[data-mobile-story]{font-family:var(--reading-round);font-weight:400;font-synthesis:none}
+button,input,select,textarea{font-family:inherit}
+[data-watercolor-story] .article-header h1,[data-mobile-story] .ms-faq .cr-question{font-family:var(--reading-round)}
+[data-mobile-story] .ic-copy>h2,[data-mobile-story] .wc-number,[data-continuous-reading] .cr-report-title{font-family:var(--reading-round)}
+[data-mobile-story] .article-header h1{font-weight:500;letter-spacing:.015em}
+[data-mobile-story] .ic-copy>h2,[data-mobile-story] .ms-faq h2,[data-mobile-story] .ic-endmatter h2{font-weight:500}
+[data-mobile-story] .ms-faq .cr-question{font-weight:700}
+[data-mobile-story] .ic-copy>p:not(.wc-number),[data-mobile-story] .wc-lead{line-height:2;letter-spacing:.02em}
+[data-mobile-story] .ms-faq .faq-answer>p,[data-mobile-story] .ms-faq .cr-answer>p{line-height:2;letter-spacing:.015em}
+.masthead .brand{font-weight:500;letter-spacing:-.025em}

@@ -1,0 +1,197 @@
+/* Article-only type and spacing: the established covers and navigation stay scoped out. */
+@media (min-width: 851px) {
+  [data-mobile-story] .article-heading h1 {
+    font-size: clamp(32px, 2.5vw, 36px);
+    line-height: 1.65;
+  }
+}
+[data-mobile-story] .wc-lead,
+[data-mobile-story] .ic-copy > p:not(.wc-number) {
+  font-size: 17px;
+  line-height: 1.95;
+  letter-spacing: .015em;
+  text-align: left;
+  text-wrap: pretty;
+  line-break: strict;
+  overflow-wrap: break-word;
+  margin-block: 0 1.2em;
+}
+[data-mobile-story] .ic-copy > h2 {
+  font-size: clamp(24px, 2.3vw, 29px);
+  line-height: 1.6;
+  letter-spacing: .025em;
+  margin-block: 10px 22px;
+  text-wrap: balance;
+}
+[data-mobile-story] .ic-copy > h2 span { max-width: 100%; }
+[data-mobile-story] .article-heading h1 .ms-heading-phrase,
+[data-mobile-story] .ic-copy > h2 .ms-heading-phrase {
+  display: inline-block;
+  white-space: nowrap;
+  max-width: 100%;
+}
+[data-mobile-story] .ic-copy > .refs {
+  font-size: 12px;
+  line-height: 1.85;
+  margin-block: 14px 22px;
+}
+[data-mobile-story] .ic-endmatter {
+  max-width: 760px;
+  padding-top: 0;
+  border-top: 0;
+}
+[data-mobile-story] .ms-faq {
+  margin-block: 12px 52px;
+  padding-block: 30px 8px;
+  border-top: 1px solid var(--wc-line);
+}
+[data-mobile-story] .ms-section-label {
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: .12em;
+  color: var(--wc-accent, #4d6259);
+  margin: 0 0 12px;
+}
+[data-mobile-story] .ms-faq > h2 {
+  font-size: 25px;
+  line-height: 1.6;
+  margin: 0 0 16px;
+  text-wrap: balance;
+}
+[data-mobile-story] .ms-faq-intro {
+  font-size: 14px;
+  line-height: 1.85;
+  margin: 0 0 25px;
+  color: var(--wc-muted);
+}
+[data-mobile-story] .ms-faq-group-heading {
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.75;
+  margin: 32px 0 18px;
+}
+[data-mobile-story] .ms-supplement .report-facts {
+  font-size: 16px;
+  line-height: 1.9;
+}
+[data-mobile-story] .ms-supplement table { width: 100%; border-collapse: collapse; }
+[data-mobile-story] .ms-supplement caption {
+  text-align: left;
+  font-size: 14px;
+  line-height: 1.8;
+  margin: 12px 0;
+}
+[data-mobile-story] .ms-supplement th,
+[data-mobile-story] .ms-supplement td {
+  font-size: 15.5px;
+  line-height: 1.85;
+  text-align: left;
+  vertical-align: middle;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--wc-line);
+}
+[data-mobile-story] .ms-supplement th { width: 126px; padding-right: 14px; }
+[data-mobile-story] .ms-supplement {
+  margin-block: 0 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--wc-line);
+}
+[data-mobile-story] .ms-supplement > p {
+  font-size: 16px;
+  line-height: 1.9;
+  margin: 0 0 18px;
+  text-wrap: pretty;
+}
+[data-mobile-story] .ms-faq .cr-answer {
+  border-top: 1px solid var(--wc-line);
+  padding: 24px 0 8px;
+  margin: 0;
+}
+[data-mobile-story] .ms-faq .cr-question {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", Meiryo, sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.7;
+  letter-spacing: .01em;
+  margin: 0 0 16px;
+  text-wrap: pretty;
+}
+[data-mobile-story] .ms-faq .cr-question::before {
+  content: "Q";
+  flex: 0 0 26px;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--wc-line);
+  border-radius: 50%;
+  font-size: 13px;
+  line-height: 1;
+  font-weight: 500;
+  color: var(--wc-accent, #4d6259);
+}
+[data-mobile-story] .ms-faq .faq-answer > p,
+[data-mobile-story] .ms-faq .cr-answer > p {
+  font-size: 16.5px;
+  line-height: 1.95;
+  letter-spacing: .01em;
+  margin: 0 0 18px;
+  text-wrap: pretty;
+  line-break: strict;
+}
+[data-mobile-story] .ms-faq .reader-guide-sources {
+  font-size: 12px !important;
+  line-height: 1.85 !important;
+  color: var(--wc-muted);
+  margin-block: 12px 16px !important;
+}
+[data-mobile-story] .ic-endmatter .company-profile-section dd,
+[data-mobile-story] .ic-endmatter .profile-list dd,
+[data-mobile-story] .ic-endmatter .career-overview dd {
+  font-size: 16px;
+  line-height: 1.9;
+}
+@media (max-width: 850px) {
+  [data-mobile-story] .ic-chapter,
+  [data-mobile-story] .ic-chapter:nth-of-type(even) {
+    gap: 22px;
+    margin-bottom: 52px;
+  }
+  [data-mobile-story] .ic-copy { min-width: 0; }
+}
+@media (max-width: 550px) {
+  [data-mobile-story] main.wrap { width: calc(100% - 40px); }
+  [data-mobile-story] .article-heading h1 {
+    font-size: 30px;
+    line-height: 1.65;
+    letter-spacing: .025em;
+    text-wrap: balance;
+  }
+  [data-mobile-story] .wc-lead {
+    font-size: 17px;
+    line-height: 1.9;
+    margin-bottom: 26px;
+  }
+  [data-mobile-story] .ic-copy > p:not(.wc-number) {
+    font-size: 17px;
+    line-height: 1.9;
+    margin-bottom: 20px;
+  }
+  [data-mobile-story] .ic-copy > h2 { font-size: 24px; line-height: 1.65; }
+  [data-mobile-story] .article-heading h1 .headline-phrase,
+  [data-mobile-story] .ic-copy > h2 span { display: inline; }
+  [data-mobile-story] .ic-endmatter h2 { font-size: 22px; line-height: 1.65; }
+  [data-mobile-story] .ms-faq .cr-question { font-size: 17px; }
+  [data-mobile-story] .ic-provenance { margin-bottom: 30px; }
+}
+@media (max-width: 350px) {
+  [data-mobile-story] main.wrap { width: calc(100% - 36px); }
+  [data-mobile-story] .wc-lead,
+  [data-mobile-story] .ic-copy > p:not(.wc-number) { font-size: 16.5px; }
+  [data-mobile-story] .article-heading h1 { font-size: 28px; }
+  [data-mobile-story] .ic-copy > h2 { font-size: 23px; letter-spacing: .01em; }
+}
