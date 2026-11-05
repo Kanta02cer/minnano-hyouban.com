@@ -1,0 +1,67 @@
+{
+  "kind": "verified-public-release-history",
+  "articleId": "12163",
+  "url": "https://minnano-hyouban.com/reports/12163/",
+  "verifiedAt": "2026-11-05T13:29:24.450592+00:00",
+  "liveHost": "XServer",
+  "defaultBranchChanged": false,
+  "scope": "One new article and discovery paths; unrelated editing work and private source material are excluded.",
+  "files": [
+    {
+      "path": "feed.xml",
+      "sha256": "c007f4c2487d58b3f606c1ca70bbb98d90bcbf5f83041daee94a47e1475d71d6"
+    },
+    {
+      "path": "llms.txt",
+      "sha256": "7dd6ec40d59700df3150e171f442745daf1ad059bfa003a3c717c8723d0958e2"
+    },
+    {
+      "path": "native-reports-20261105/article.css",
+      "sha256": "c0f16e4dfb7119a866a5349ea0321ddaf1d65cc4ff0bf9460065784118add6d5"
+    },
+    {
+      "path": "sitemap.xml",
+      "sha256": "3164e659bc3455b988af4c563f4d9b1390046152ff3859dac911d292088ab6b7"
+    },
+    {
+      "path": "watercolor/12163-chapter1.webp",
+      "sha256": "79984d902029a65b0a3fee44b718d13a9870dd8dd45f859609b01a9ae5e9e535"
+    },
+    {
+      "path": "watercolor/12163-chapter2.webp",
+      "sha256": "caa1531b68779897673bcb4c77d9242941bc4147c9680b18708286cfa6f020c0"
+    },
+    {
+      "path": "watercolor/12163-chapter3.webp",
+      "sha256": "1e8e59d48d2750a6718a016259d708966391234dcf1bdc3486136cc877d1afc6"
+    },
+    {
+      "path": "watercolor/12163-chapter4.webp",
+      "sha256": "64567d6ef626973ae040d8dac09c14932e93fa0829d2e8417b568476d2cb95c2"
+    },
+    {
+      "path": "watercolor/12163-cover.webp",
+      "sha256": "330528523938b51954af33557cfd358a016c60458ffe567ad4d5f7405fbdd53c"
+    },
+    {
+      "path": "watercolor/12163-extra1.webp",
+      "sha256": "40d158d5d29170f5eb7767dd591032ee7be3893b3c4405eb19637ba1257d661f"
+    },
+    {
+      "path": "watercolor/12163-extra2.webp",
+      "sha256": "6b4d6eb9a8d04fe39d2fbf9422b889740072dda39f67b98cee845c3395390559"
+    },
+    {
+      "path": "articles.html",
+      "sha256": "9141ab6ecce52c2e902e20baac80ee90e4d7b9bd1d58ce21cf799839b22f7f28"
+    },
+    {
+      "path": "index.html",
+      "sha256": "dff62d7db1fe852a7d65ce8d96874c4c53133ff92b2bb6b646d356b6890dda53"
+    },
+    {
+      "path": "reports/12163/index.html",
+      "sha256": "fe704c820d661084b9440685f88683cadd3acf7908874bc2a903b3eca7f0c31f"
+    }
+  ]
+}
